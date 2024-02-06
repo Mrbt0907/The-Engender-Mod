@@ -1,4 +1,4 @@
-# The-Titans-Mod
+# Engender
 Welcome to Engender! Raise an army of mobs and fight with your army to victory! This mod was created by Enderman_Of_D00M and is co-developed by me!
 
 ## Dependencies
