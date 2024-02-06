@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+        {
+            "item": "minecraft:cooked_fish",
+			"data": 0
+        },
+        {
+            "item": "minecraft:cooked_fish",
+			"data": 0
+        },
+        {
+            "item": "minecraft:fishing_rod"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_dieting",
+        "count": 1,
+        "data": 0
+	}
+}

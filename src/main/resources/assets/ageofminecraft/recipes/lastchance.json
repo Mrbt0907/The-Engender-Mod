@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        " xa",
+        "xbx",
+        "cx "
+    ],
+    "key":
+    {
+        "x":
+		{
+            "item": "minecraft:blaze_powder",
+			"data": 0
+		},
+        "a":
+		{
+            "item": "minecraft:totem_of_undying",
+            "data": 0
+		},
+        "b":
+		{
+            "type": "forge:ore_dict",
+            "ore": "feather"
+		},
+        "c":
+		{
+            "item": "minecraft:blaze_rod",
+			"data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:last_chance",
+        "count": 1,
+        "data": 0
+    }
+}

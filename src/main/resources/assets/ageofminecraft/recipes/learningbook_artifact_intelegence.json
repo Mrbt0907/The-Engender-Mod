@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master_knowledge"
+        },
+        {
+            "item": "minecraft:ender_eye"
+        },
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_artifact_intelegence",
+        "count": 1,
+        "data": 0
+	}
+}

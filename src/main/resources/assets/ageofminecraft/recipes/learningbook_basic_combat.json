@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_basic"
+        },
+        {
+            "item": "minecraft:wooden_sword"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_basic_combat",
+        "count": 1,
+        "data": 0
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_basic"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "gemLapis"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_basic_knowledge",
+        "count": 1,
+        "data": 0
+	}
+}

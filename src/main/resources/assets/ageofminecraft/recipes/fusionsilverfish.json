@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "type": "forge:ore_dict",
+            "ore": "cobblestone"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionsilverfish",
+        "count": 1,
+        "data": 0
+	}
+}

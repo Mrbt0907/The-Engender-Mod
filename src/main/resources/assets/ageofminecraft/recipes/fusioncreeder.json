@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:gunpowder"
+        },
+        {
+        "item": "minecraft:spider_eye"
+        },
+        {
+        "item": "minecraft:iron_bars"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusioncreeder",
+        "count": 1,
+        "data": 0
+	}
+}

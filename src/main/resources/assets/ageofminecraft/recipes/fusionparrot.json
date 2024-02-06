@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:feather",
+		"data": 0
+        },
+        {
+        "item": "minecraft:cookie"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionparrot",
+        "count": 1,
+        "data": 0
+	}
+}

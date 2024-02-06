@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:bone"
+        },
+        {
+        "item": "minecraft:arrow"
+        },
+        {
+        "item": "minecraft:snow"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionstray",
+        "count": 1,
+        "data": 0
+	}
+}

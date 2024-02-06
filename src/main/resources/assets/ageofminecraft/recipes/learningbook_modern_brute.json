@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_modern"
+        },
+        {
+            "item": "ageofminecraft:wooden_cleaver"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_modern_brute",
+        "count": 1,
+        "data": 0
+	}
+}

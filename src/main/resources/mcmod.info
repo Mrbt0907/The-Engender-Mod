@@ -1,0 +1,21 @@
+{
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "ageofminecraft",
+    "name": "Engender - The Age of Minecraft",
+    "description": "Craft your army with the magic of your world and obliterate your enemies in the test of war!",
+    "version": "0.7 Pre Release 2",
+    "mcversion": "1.12.2",
+    "url": "https://discord.gg/fnZxHdz",
+    "updateUrl": "",
+    "authorList": [ "Enderman_of_D00M", "Mrbt0907" ],
+    "credits": "Created by Enderman_of_D00M, mob girl models made by Yarrmateys, and co-developed by Mrbt0907.",
+    "logoFile": "engendermodlogo.png",
+    "screenshots": [""],
+    "parent": "",
+    "requiredMods": ["FML"],
+    "dependencies": ["mac"],
+    "dependants": [],
+    "useDependencyInformation": true
+  }]
+}

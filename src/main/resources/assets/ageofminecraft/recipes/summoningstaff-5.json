@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "xax",
+        "bob",
+        "xax"
+    ],
+    "key":
+    {
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockDiamond"
+		},
+        "a":
+		{
+			"item": "minecraft:end_crystal",
+			"data": 0
+		},
+        "b":
+		{
+			"item": "ageofminecraft:heromaker",
+			"data": 0
+		},
+        "o":
+		{
+			"item": "ageofminecraft:summoningstaff",
+			"data": 3
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:summoningstaff",
+        "count": 1,
+        "data": 4
+    }
+}

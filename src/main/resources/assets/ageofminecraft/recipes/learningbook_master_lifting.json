@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+        {
+            "item": "minecraft:shears"
+        },
+        {
+            "item": "minecraft:iron_hoe"
+        },
+        {
+            "item": "minecraft:water_bucket"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_lifting",
+        "count": 1,
+        "data": 0
+	}
+}

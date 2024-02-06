@@ -1,0 +1,6 @@
+{
+    "parent":"item/handheld",
+        "textures": {
+        "layer0": "ageofminecraft:items/portal_staff"
+    }
+}

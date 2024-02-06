@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+        {
+            "item": "ageofminecraft:convertingstaff",
+			"data": 0
+        },
+        {
+            "item": "minecraft:blaze_rod"
+        },
+        {
+            "item": "minecraft:blaze_rod"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_pacifist",
+        "count": 1,
+        "data": 0
+	}
+}

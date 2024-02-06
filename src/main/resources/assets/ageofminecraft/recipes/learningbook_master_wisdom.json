@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+		{
+            "item": "minecraft:experience_bottle"
+        },
+		{
+            "item": "minecraft:experience_bottle"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "netherStar"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_wisdom",
+        "count": 1,
+        "data": 0
+	}
+}

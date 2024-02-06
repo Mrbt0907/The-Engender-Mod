@@ -1,0 +1,48 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "xax",
+        "boc",
+        "xdx"
+    ],
+    "key":
+    {
+		"x":
+		{
+			"item": "minecraft:end_crystal",
+			"data": 0
+		},
+		"o":
+		{
+            "type": "forge:ore_dict",
+            "ore": "dragonEgg"
+		},
+        "a":
+		{
+			"item": "ageofminecraft:convertingstaff",
+			"data": 4
+		},
+		"b":
+		{
+			"item": "ageofminecraft:summoningstaff",
+			"data": 4
+		},
+		"c":
+		{
+			"item": "ageofminecraft:commandingstaff",
+			"data": 4
+		},
+		"d":
+		{
+			"item": "ageofminecraft:portalstaff",
+			"data": 4
+		}
+    },
+    "result":
+    {
+        "item": "minecraft:command_block",
+        "count": 1,
+        "data": 0
+    }
+}

@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+        {
+            "item": "minecraft:golden_sword"
+        },
+        {
+            "item": "minecraft:bow"
+        },
+        {
+            "item": "minecraft:shield"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_combat",
+        "count": 1,
+        "data": 0
+	}
+}

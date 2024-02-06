@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "type": "forge:ore_dict",
+            "ore": "gemEmerald"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "doorWood"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionvillager",
+        "count": 1,
+        "data": 0
+	}
+}

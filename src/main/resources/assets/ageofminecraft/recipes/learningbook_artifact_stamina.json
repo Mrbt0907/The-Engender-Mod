@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master_cooking"
+        },
+        {
+            "item": "minecraft:cookie"
+        },
+        {
+            "item": "minecraft:cake"
+        },
+        {
+            "item": "minecraft:pumpkin_pie"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_artifact_stamina",
+        "count": 1,
+        "data": 0
+	}
+}

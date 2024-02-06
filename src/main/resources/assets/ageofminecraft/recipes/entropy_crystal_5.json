@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "lel",
+        "qdq",
+        "lel"
+    ],
+    "key":
+    {
+        "l":
+        {
+            "type": "forge:ore_dict",
+            "ore": "obsidian"
+        },
+        "q":
+        {
+        "item": "minecraft:magma_cream",
+        "data": 0
+        },
+        "e":
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockQuartz"
+        },
+        "d":
+        {
+        "item": "ageofminecraft:entropy_collector",
+        "data": 3
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:entropy_collector",
+        "count": 1,
+        "data": 4
+    }
+}

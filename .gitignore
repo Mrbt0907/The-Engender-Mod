@@ -1,0 +1,30 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+/references/
+/libs/
+/old_libs/
+/reference/
+/MCA_API-1.0.jar
+/Engender Particles.psd
+/rebuild.bat
+/setup.bat

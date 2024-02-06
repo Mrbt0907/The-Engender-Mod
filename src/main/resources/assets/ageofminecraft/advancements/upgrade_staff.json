@@ -1,0 +1,69 @@
+{
+  "display": {
+    "icon": {
+        "item": "ageofminecraft:convertingstaff",
+        "data": 4
+    },
+    "title": {
+      "translate": "advancements.engender.vanilla.upgrade_staff.title"
+    },
+    "description": {
+      "translate": "advancements.engender.vanilla.upgrade_staff.desc"
+    }
+  },
+    "parent": "ageofminecraft:make_summon_staff",
+    "criteria": {
+        "convertstaff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:convertingstaff",
+                        "data": 1
+                    }
+                ]
+            }
+        },
+        "summonstaff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:summoningstaff",
+                        "data": 1
+                    }
+                ]
+            }
+        },
+        "commandstaff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:commandingstaff",
+                        "data": 1
+                    }
+                ]
+            }
+        },
+        "portalstaff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:portalstaff",
+                        "data": 1
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "convertstaff",
+            "summonstaff",
+            "commandstaff",
+            "portalstaff"
+        ]
+    ]
+}

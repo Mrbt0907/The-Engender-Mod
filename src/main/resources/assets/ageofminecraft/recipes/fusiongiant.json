@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "iri",
+        "rer",
+        "grg"
+    ],
+    "key":
+    {
+        "i":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockIron"
+		},
+        "r":
+		{
+            "item": "minecraft:rotten_flesh",
+            "data": 0
+		},
+        "e":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		},
+        "g":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockGold"
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusiongiant",
+        "count": 1,
+        "data": 0
+    }
+}

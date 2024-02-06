@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "cpc",
+        "pep",
+        "cpc"
+    ],
+    "key":
+    {
+        "c":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		},
+        "p":
+		{
+            "item": "minecraft:sea_lantern",
+            "data": 0
+		},
+        "e":
+		{
+            "item": "minecraft:sponge",
+            "data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusionelderguardian",
+        "count": 1,
+        "data": 0
+    }
+}

@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_advanced"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "cropCarrot"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "cropPotato"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced_eating",
+        "count": 1,
+        "data": 0
+	}
+}

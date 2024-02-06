@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+        {
+            "item": "minecraft:water_bucket"
+        },
+        {
+            "item": "minecraft:stone_hoe"
+        },
+        {
+            "item": "minecraft:stone_hoe"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_lifting",
+        "count": 1,
+        "data": 0
+	}
+}

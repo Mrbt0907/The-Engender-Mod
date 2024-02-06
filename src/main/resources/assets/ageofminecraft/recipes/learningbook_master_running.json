@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+        {
+            "item": "minecraft:cooked_rabbit"
+        },
+        {
+            "item": "minecraft:cooked_rabbit"
+        },
+        {
+            "item": "minecraft:golden_carrot"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_running",
+        "count": 1,
+        "data": 0
+	}
+}

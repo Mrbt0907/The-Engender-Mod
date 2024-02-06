@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "sss",
+        "unu",
+        "eue"
+    ],
+    "key":
+    {
+        "s":
+		{
+            "item": "minecraft:skull",
+            "data": 1
+		},
+        "u":
+		{
+            "item": "minecraft:soul_sand",
+            "data": 0
+		},
+        "n":
+		{
+            "item": "minecraft:nether_star",
+            "data": 0
+		},
+        "e":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusionwither",
+        "count": 1,
+        "data": 0
+    }
+}

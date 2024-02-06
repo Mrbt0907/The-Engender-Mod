@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_advanced"
+        },
+        {
+            "item": "ageofminecraft:stone_cleaver"
+        },
+		{
+            "item": "minecraft:leather_helmet"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced_brute",
+        "count": 1,
+        "data": 0
+	}
+}

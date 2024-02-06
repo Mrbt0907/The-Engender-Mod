@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_modern"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "paper"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "paper"
+        },
+        {
+            "item": "minecraft:writable_book"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced",
+        "count": 1,
+        "data": 0
+	}
+}

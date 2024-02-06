@@ -1,0 +1,39 @@
+package net.minecraft.AgeOfMinecraft.renders;
+import net.minecraft.AgeOfMinecraft.entity.tier2.EntitySnowman;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+@SideOnly(Side.CLIENT)
+
+public class LayerSnowmanHead implements LayerRenderer<EntitySnowman>
+{
+	private final ModelRenderer modelRenderer;
+	public LayerSnowmanHead(ModelRenderer p_i46120_1_)
+	{
+		this.modelRenderer = p_i46120_1_;
+	}
+	public void doRenderLayer(EntitySnowman entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+	{
+		if (!entitylivingbaseIn.isInvisible() && !entitylivingbaseIn.isChild() && (!entitylivingbaseIn.isPumpkinEquipped()))
+		{
+			GlStateManager.pushMatrix();
+			this.modelRenderer.postRender(0.0625F);
+			float f = 0.625F;
+			GlStateManager.translate(0.0F, -0.34375F, 0.0F);
+			GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+			GlStateManager.scale(f, -f, -f);
+			Minecraft.getMinecraft().getItemRenderer().renderItem(entitylivingbaseIn, new ItemStack(Blocks.PUMPKIN, 1), ItemCameraTransforms.TransformType.HEAD);
+			GlStateManager.popMatrix();
+		}
+	}
+	public boolean shouldCombineTextures()
+	{
+		return true;
+	}
+}

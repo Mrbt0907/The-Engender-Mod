@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockLapis"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockLapis"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockLapis"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_knowledge",
+        "count": 1,
+        "data": 0
+	}
+}

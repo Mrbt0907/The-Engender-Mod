@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+        {
+            "item": "minecraft:golden_apple",
+			"data": 0
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_exercise",
+        "count": 1,
+        "data": 0
+	}
+}

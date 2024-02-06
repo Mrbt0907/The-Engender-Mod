@@ -1,0 +1,9 @@
+{
+    "overrides": [
+        { "predicate": { "percent": 0 }, "model": "ageofminecraft:item/entropy_crystal_empty"},
+        { "predicate": { "percent": 0.25 }, "model": "ageofminecraft:item/entropy_crystal_25" },
+        { "predicate": { "percent": 0.5 }, "model": "ageofminecraft:item/entropy_crystal_50" },
+        { "predicate": { "percent": 0.75 }, "model": "ageofminecraft:item/entropy_crystal_75" },
+        { "predicate": { "percent": 1 }, "model": "ageofminecraft:item/entropy_crystal_full"}
+    ]
+}

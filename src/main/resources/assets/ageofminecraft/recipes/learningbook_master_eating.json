@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "cropPotato"
+        },
+        {
+            "item": "minecraft:beetroot_soup"
+        },
+        {
+            "item": "minecraft:cooked_fish",
+			"data": 1
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_eating",
+        "count": 1,
+        "data": 0
+	}
+}

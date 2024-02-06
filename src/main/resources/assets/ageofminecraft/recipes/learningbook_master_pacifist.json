@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockGold"
+        },
+        {
+            "item": "ageofminecraft:convertingstaff",
+			"data": 1
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_pacifist",
+        "count": 1,
+        "data": 0
+	}
+}

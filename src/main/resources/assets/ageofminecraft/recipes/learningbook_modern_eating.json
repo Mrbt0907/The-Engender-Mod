@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_modern"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "cropWheat"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "cropWheat"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "cropWheat"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_modern_eating",
+        "count": 1,
+        "data": 0
+	}
+}

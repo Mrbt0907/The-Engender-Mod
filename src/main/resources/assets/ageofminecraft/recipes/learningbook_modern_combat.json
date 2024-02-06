@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_modern"
+        },
+        {
+            "item": "minecraft:stone_sword"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_modern_combat",
+        "count": 1,
+        "data": 0
+	}
+}

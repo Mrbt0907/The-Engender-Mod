@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_advanced"
+        },
+        {
+            "item": "minecraft:map"
+        },
+        {
+            "item": "minecraft:map"
+        },
+        {
+            "item": "minecraft:map"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced_wisdom",
+        "count": 1,
+        "data": 0
+	}
+}

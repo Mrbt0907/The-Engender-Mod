@@ -1,0 +1,65 @@
+{
+  "display": {
+    "icon": {
+        "item": "ageofminecraft:portalstaff",
+        "data": 4
+    },
+    "title": {
+      "translate": "advancements.engender.vanilla.max_staves.title"
+    },
+    "description": {
+      "translate": "advancements.engender.vanilla.max_staves.desc"
+    },
+        "frame": "challenge"
+  },
+    "parent": "ageofminecraft:upgrade_staff",
+    "rewards": {
+        "experience": 500
+    },
+    "criteria": {
+        "convertstaff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:convertingstaff",
+                        "data": 4
+                    }
+                ]
+            }
+        },
+        "summonstaff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:summoningstaff",
+                        "data": 4
+                    }
+                ]
+            }
+        },
+        "commandstaff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:commandingstaff",
+                        "data": 4
+                    }
+                ]
+            }
+        },
+        "portalstaff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:portalstaff",
+                        "data": 4
+                    }
+                ]
+            }
+        }
+    }
+}

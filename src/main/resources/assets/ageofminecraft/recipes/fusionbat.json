@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "type": "forge:ore_dict",
+            "ore": "stickWood"
+        },
+        {
+        "item": "minecraft:egg",
+		"data": 0
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionbat",
+        "count": 1,
+        "data": 0
+	}
+}

@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "lel",
+        "qdq",
+        "lel"
+    ],
+    "key":
+    {
+        "l":
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockGold"
+        },
+        "q":
+        {
+        "item": "minecraft:end_crystal",
+        "data": 0
+        },
+        "e":
+        {
+        "item": "minecraft:golden_apple",
+        "data": 1
+        },
+        "d":
+        {
+        "item": "ageofminecraft:entropy_collector",
+        "data": 6
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:entropy_collector",
+        "count": 1,
+        "data": 7
+    }
+}

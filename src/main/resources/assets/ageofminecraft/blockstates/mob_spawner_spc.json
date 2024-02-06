@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "ageofminecraft:mob_spawner_spc" }
+    }
+}

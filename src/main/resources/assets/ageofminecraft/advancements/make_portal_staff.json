@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "ageofminecraft:portalstaff"
+    },
+    "title": {
+      "translate": "advancements.engender.vanilla.make_portal_staff.title"
+    },
+    "description": {
+      "translate": "advancements.engender.vanilla.make_portal_staff.desc"
+    },
+        "frame": "challenge"
+    },
+    "parent": "ageofminecraft:make_command_staff",
+    "rewards": {
+        "experience": 500
+    },
+    "criteria": {
+        "staff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:portalstaff"
+                    }
+                ]
+            }
+        }
+    }
+}

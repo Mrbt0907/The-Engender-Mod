@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "xyx",
+        "opo",
+        "xyx"
+    ],
+    "key":
+    {
+        "o":
+		{
+            "item": "minecraft:repeater",
+            "data": 0
+		},
+        "p":
+		{
+            "item": "minecraft:comparator",
+            "data": 0
+		},
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "ingotIron"
+		},
+        "y":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockGlass"
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:statchecker",
+        "count": 1,
+        "data": 0
+    }
+}

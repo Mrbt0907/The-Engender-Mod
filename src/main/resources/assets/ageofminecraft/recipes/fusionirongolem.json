@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "epe",
+        "iii",
+        "eie"
+    ],
+    "key":
+    {
+        "e":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		},
+        "p":
+		{
+            "item": "minecraft:pumpkin",
+            "data": 0
+		},
+        "i":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockIron"
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusionirongolem",
+        "count": 1,
+        "data": 0
+    }
+}

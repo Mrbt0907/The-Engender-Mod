@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "lel",
+        "qdq",
+        "lel"
+    ],
+    "key":
+    {
+		"l":
+		{
+        "item": "minecraft:beacon",
+        "data": 0
+		},
+        "q":
+        {
+        "item": "minecraft:skull",
+        "data": 5
+        },
+        "e":
+        {
+            "type": "forge:ore_dict",
+            "ore": "dragonEgg"
+        },
+        "d":
+        {
+        "item": "ageofminecraft:mana_collector",
+        "data": 8
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:mana_collector",
+        "count": 1,
+        "data": 9
+    }
+}

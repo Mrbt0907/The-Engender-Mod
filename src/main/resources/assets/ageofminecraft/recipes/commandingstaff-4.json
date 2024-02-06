@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "xax",
+        "bob",
+        "xax"
+    ],
+    "key":
+    {
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		},
+        "a":
+		{
+			"item": "minecraft:beacon",
+			"data": 0
+		},
+        "b":
+		{
+			"item": "minecraft:ender_eye",
+			"data": 0
+		},
+        "o":
+		{
+			"item": "ageofminecraft:commandingstaff",
+			"data": 2
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:commandingstaff",
+        "count": 1,
+        "data": 3
+    }
+}

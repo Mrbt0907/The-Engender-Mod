@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "no ",
+        "ob ",
+        " oo"
+    ],
+    "key":
+    {
+        "n":
+		{
+            "type": "forge:ore_dict",
+            "ore": "netherStar"
+		},
+        "o":
+		{
+            "type": "forge:ore_dict",
+            "ore": "obsidian"
+		},
+        "b":
+		{
+            "item": "ageofminecraft:moralhorn",
+            "data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:enderdragonshorn",
+        "count": 1,
+        "data": 0
+    }
+}

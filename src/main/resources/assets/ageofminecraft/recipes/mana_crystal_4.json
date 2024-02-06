@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "lel",
+        "qdq",
+        "lel"
+    ],
+    "key":
+    {
+		"l":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockLapis"
+		},
+        "q":
+        {
+        "item": "minecraft:blaze_powder",
+        "data": 0
+        },
+        "e":
+        {
+            "type": "forge:ore_dict",
+            "ore": "gemQuartz"
+        },
+        "d":
+        {
+        "item": "ageofminecraft:mana_collector",
+        "data": 2
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:mana_collector",
+        "count": 1,
+        "data": 3
+    }
+}

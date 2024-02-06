@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "xax",
+        "bob",
+        "xax"
+    ],
+    "key":
+    {
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockIron"
+		},
+        "a":
+		{
+            "type": "forge:ore_dict",
+            "ore": "gemDiamond"
+		},
+        "b":
+		{
+			"item": "minecraft:skull",
+			"data": 0
+		},
+        "o":
+		{
+			"item": "ageofminecraft:summoningstaff",
+			"data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:summoningstaff",
+        "count": 1,
+        "data": 1
+    }
+}

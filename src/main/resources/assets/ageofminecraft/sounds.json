@@ -1,0 +1,518 @@
+{
+  "darkness": {"category": "music", "sounds": [{"name":"ageofminecraft:chaosguardiantheme","stream":true}]},
+  "darkness_max": {"category": "music", "sounds": [{"name":"ageofminecraft:chaosguardiantheme","stream":true}]},
+  "slashflesh": {
+    "sounds": [
+      "ageofminecraft:slashflesh"
+    ],
+    "subtitle": "subtitles.slashflesh"
+  },
+
+  "amalgamate": {
+    "sounds": [
+      "ageofminecraft:amalgamate"
+    ],
+    "subtitle": "subtitles.amalgamate"
+  },
+  
+  "blast": {
+    "sounds": [
+      "ageofminecraft:blast"
+    ],
+    "subtitle": "subtitles.blast"
+  },
+
+  "magicMissileFire": {
+    "sounds": [
+      "ageofminecraft:magicmissile"
+    ],
+    "subtitle": "subtitles.magicMissileFire"
+  },
+
+  "heresJohnny": {
+    "sounds": [
+      "ageofminecraft:vindicatordoorbreak"
+    ],
+    "subtitle": "subtitles.heresJohnny"
+  },
+
+  "witherSpecial": {
+    "sounds": [
+      "ageofminecraft:witherpower"
+    ],
+    "subtitle": "subtitles.witherspecial"
+  },
+
+  "witchSpecial": {
+    "sounds": [
+      "ageofminecraft:witchpower"
+    ],
+    "subtitle": "subtitles.witchspecial"
+  },
+
+  "pigmanSpecial": {
+    "sounds": [
+      "ageofminecraft:pigmangore"
+    ],
+    "subtitle": "subtitles.pigmanspecial"
+  },
+
+  "bugSpecial": {
+    "sounds": [
+      "ageofminecraft:split"
+    ],
+    "subtitle": "subtitles.bugspecial"
+  },
+
+  "golemSmash": {
+    "sounds": [
+      "ageofminecraft:smash"
+    ],
+    "subtitle": "subtitles.smash"
+  },
+
+  "golemSpecial": {
+    "sounds": [
+      "ageofminecraft:golemspecial"
+    ],
+    "subtitle": "subtitles.golemspecial"
+  },
+
+  "skeletonSpecial": {
+    "sounds": [
+      "ageofminecraft:rainofarrows"
+    ],
+    "subtitle": "subtitles.skeletonspecial"
+  },
+
+  "pigSpecial": {
+    "sounds": [
+      "ageofminecraft:pigspecial1",
+      "ageofminecraft:pigspecial2",
+      "ageofminecraft:pigspecial3",
+      "ageofminecraft:pigspecial4"
+    ],
+    "subtitle": "subtitles.pigspecial"
+  },
+
+  "zombieSpecial": {
+    "sounds": [
+      "ageofminecraft:zombiespecial"
+    ],
+    "subtitle": "subtitles.zombiespecial"
+  },
+  
+  "battleStart": {
+    "sounds": [
+      "ageofminecraft:cameo/undertale/battlestart"
+    ],
+    "subtitle": "subtitles.battlestart"
+  },
+  
+  "sansTalk": {
+    "sounds": [
+      "ageofminecraft:cameo/undertale/sanstalk"
+    ],
+    "subtitle": "subtitles.sanstalk"
+  },
+  
+  "sans": {
+    "sounds": [
+      { "name": "ageofminecraft:cameo/undertale/undertale_ost_015_sans", "stream": true }
+    ]
+  },
+  
+  "nyehhehheh": {
+    "sounds": [
+      { "name": "ageofminecraft:cameo/undertale/undertale_ost_016_nyeh_heh_heh!", "stream": true }
+    ]
+  },
+  
+  "bonetrousle": {
+    "sounds": [
+      { "name": "ageofminecraft:cameo/undertale/undertale_ost_024_bonetrousle", "stream": true }
+    ]
+  },
+  
+  "tstmpwyfSans": {
+    "sounds": [
+      { "name": "ageofminecraft:cameo/undertale/undertale_ost_072_tstmpwyfsans", "stream": true }
+    ]
+  },
+  
+  "btertd": {
+    "sounds": [
+      { "name": "ageofminecraft:cameo/undertale/undertale_ost_097_btertd", "stream": true }
+    ]
+  },
+  
+  "megalovania": {
+    "sounds": [
+      { "name": "ageofminecraft:cameo/undertale/undertale_ost_100_megalovania", "stream": true }
+    ]
+  },
+  
+  "dunksandjudgement": {
+    "sounds": [
+      { "name": "ageofminecraft:cameo/undertale/undertale_ost_102_dunks_and_judgment", "stream": true }
+    ]
+  },
+  
+  "witherstormthemeinitial": {
+    "sounds": [
+      { "name": "ageofminecraft:witherstorm/witherstormbeginningtheme", "stream": true }
+    ]
+  },
+  
+  "witherstormtheme": {
+    "sounds": [
+      { "name": "ageofminecraft:witherstorm/witherstormtheme", "stream": true }
+    ]
+  },
+  
+  "witherstormtheme2": {
+    "sounds": [
+      { "name": "ageofminecraft:witherstorm/witherstormthemedevourer", "stream": true }
+    ]
+  },
+  
+  "witherstormtheme3": {
+    "sounds": [
+      { "name": "ageofminecraft:witherstorm/witherstormthemethunderstorm", "stream": true }
+    ]
+  },
+  
+  "withertheme": {
+    "sounds": [
+      { "name": "ageofminecraft:withertheme", "stream": true }
+    ]
+  },
+  
+  "chaosguardiantheme": {
+    "sounds": [
+      { "name": "ageofminecraft:chaosguardiantheme", "stream": true }
+    ]
+  },
+
+  "giantmagmagolemtheme": {
+    "sounds": [
+      { "name": "ageofminecraft:giantmagmagolemtheme", "stream": true }
+    ]
+  },
+  
+  "ghasthertheme": {
+    "sounds": [
+      { "name": "ageofminecraft:ghasthertheme", "stream": true }
+    ]
+  },
+  
+  "lightningShot": {
+    "sounds": [
+      "ageofminecraft:lightningshot"
+    ],
+    "subtitle": "subtitles.portallightning"
+  },
+
+  "buildingDeath": {
+    "sounds": [
+      { "name": "ageofminecraft:buildingdeath", "stream": true }
+    ],
+    "subtitle": "subtitles.buildingdestroy"
+  },
+
+  "portalAmbient": {
+    "sounds": [
+      { "name": "ageofminecraft:portalotherside", "stream": true }
+    ],
+    "subtitle": "subtitles.portalotherside"
+  },
+
+  "portalExist": {
+    "sounds": [{ "name": "ageofminecraft:portalwhoosh", "stream": true }
+    ],
+    "subtitle": "subtitles.portal_exist"
+  },
+
+  "portalCreation": {
+    "sounds": [
+      {"name": "ageofminecraft:portal_create", "stream": true}
+    ],
+    "subtitle": "subtitles.portal_create"
+  },
+  
+  "commandBlockWitherHum": {
+    "sounds": [
+      {"name": "ageofminecraft:witherstorm/commandblockhum", "stream": true}
+    ],
+    "subtitle": "subtitles.commandblockhum"
+  },
+
+  "chaos": {
+    "sounds": [
+      "ageofminecraft:turncoat"
+    ],
+    "subtitle": "subtitles.turncoat"
+  },
+
+  "heroBirth": {
+    "sounds": [
+      {"name": "ageofminecraft:heromob", "stream": true}
+    ],
+    "subtitle": "subtitles.heroBirth"
+  },
+
+  "converting": {
+    "sounds": [
+      "ageofminecraft:converting"
+    ],
+    "subtitle": "subtitles.converting"
+  },
+
+  "converted": {
+    "sounds": [
+      "ageofminecraft:converted"
+    ],
+    "subtitle": "subtitles.converted"
+  },
+
+  "sliceFlesh": {
+    "sounds": [
+      "ageofminecraft:hit/swordonflesh1",
+      "ageofminecraft:hit/swordonflesh2",
+      "ageofminecraft:hit/swordonflesh3",
+      "ageofminecraft:hit/swordonflesh4"
+    ],
+    "subtitle": "subtitles.hit.regular.flesh"
+  },
+  
+  "pierceFlesh": {
+    "sounds": [
+      "ageofminecraft:hit/arrowonflesh1",
+      "ageofminecraft:hit/arrowonflesh2",
+      "ageofminecraft:hit/arrowonflesh3",
+      "ageofminecraft:hit/arrowonflesh4"
+    ],
+    "subtitle": "subtitles.hit.pierce.flesh"
+  },
+  
+  "crushFlesh": {
+    "sounds": [
+      "ageofminecraft:hit/fleshcrush1",
+      "ageofminecraft:hit/fleshcrush2",
+      "ageofminecraft:hit/fleshcrush3"
+    ],
+    "subtitle": "subtitles.hit.crush.flesh"
+  },
+  
+  "crushFleshHeavy": {
+    "sounds": [
+      "ageofminecraft:hit/heavyhit1",
+      "ageofminecraft:hit/heavyhit2"
+    ],
+    "subtitle": "subtitles.hit.crush.flesh.heavy"
+  },
+  
+  "sliceWood": {
+    "sounds": [
+      "ageofminecraft:hit/swordonwood1",
+      "ageofminecraft:hit/swordonwood2",
+      "ageofminecraft:hit/swordonwood3",
+      "ageofminecraft:hit/swordonwood4",
+      "ageofminecraft:hit/swordonwood5"
+    ],
+    "subtitle": "subtitles.hit.regular.wood"
+  },
+  
+  "pierceWood": {
+    "sounds": [
+      "ageofminecraft:hit/arrowonwood1",
+      "ageofminecraft:hit/arrowonwood2",
+      "ageofminecraft:hit/arrowonwood3"
+    ],
+    "subtitle": "subtitles.hit.pierce.wood"
+  },
+  
+  "crushWood": {
+    "sounds": [
+      "ageofminecraft:hit/woodcrush1",
+      "ageofminecraft:hit/woodcrush2",
+      "ageofminecraft:hit/woodcrush3"
+    ],
+    "subtitle": "subtitles.hit.crush.wood"
+  },
+  
+  "sliceMetal": {
+    "sounds": [
+      "ageofminecraft:hit/swordonmetal1",
+      "ageofminecraft:hit/swordonmetal2",
+      "ageofminecraft:hit/swordonmetal3",
+      "ageofminecraft:hit/swordonmetal4",
+      "ageofminecraft:hit/swordonmetal5",
+      "ageofminecraft:hit/swordonmetal6"
+    ],
+    "subtitle": "subtitles.hit.regular.metal"
+  },
+  
+  "pierceMetal": {
+    "sounds": [
+      "ageofminecraft:hit/piercemetal1",
+      "ageofminecraft:hit/piercemetal2",
+      "ageofminecraft:hit/piercemetal3"
+    ],
+    "subtitle": "subtitles.hit.pierce.metal"
+  },
+  
+  "crushMetal": {
+    "sounds": [
+      "ageofminecraft:hit/crushmetal1",
+      "ageofminecraft:hit/crushmetal2",
+      "ageofminecraft:hit/crushmetal3"
+    ],
+    "subtitle": "subtitles.hit.crush.metal"
+  },
+
+  "commandBlockWitherSpawn": {
+    "sounds": [{ "name": "ageofminecraft:witherstorm/commandblockwither" , "stream": true }
+    ],
+    "subtitle": "subtitles.commandblockwitherspawn"
+  },
+  
+  "commandBlockWitherIdle": {
+    "sounds": [
+      "ageofminecraft:witherstorm/commanblockwithertransitionidle1",
+      "ageofminecraft:witherstorm/commanblockwithertransitionidle2"
+    ],
+    "subtitle": "subtitles.commanblockwithertransitionidle"
+  },
+  
+  "commandBlockWitherGrow": {
+    "sounds": [
+      "ageofminecraft:witherstorm/stormgrow"
+    ],
+    "subtitle": "subtitles.growingstorm"
+  },
+  
+  "witherStormFirstRoar": {
+    "sounds": [
+      "ageofminecraft:witherstorm/witherstormfirstbellow"
+    ],
+    "subtitle": "subtitles.witherstorm.firstbellow"
+  },
+  
+  "witherStormFinish": {
+    "sounds": [
+      { "name": "ageofminecraft:witherstorm/witherstormfinished", "stream": true }
+    ],
+    "subtitle": "subtitles.witherstorm.finished"
+  },
+  
+  "witherStormAmbient": {
+    "sounds": [
+      "ageofminecraft:witherstorm/witherstormambient1",
+      "ageofminecraft:witherstorm/witherstormambient2",
+      "ageofminecraft:witherstorm/witherstormambient3",
+      "ageofminecraft:witherstorm/witherstormambient4",
+      "ageofminecraft:witherstorm/witherstormambient5",
+      "ageofminecraft:witherstorm/witherstormambient6",
+      "ageofminecraft:witherstorm/witherstormambient7",
+      "ageofminecraft:witherstorm/witherstormambient8",
+      "ageofminecraft:witherstorm/witherstormambient9",
+      "ageofminecraft:witherstorm/witherstormambient10",
+      "ageofminecraft:witherstorm/witherstormambient11",
+      "ageofminecraft:witherstorm/witherstormambient12",
+      "ageofminecraft:witherstorm/witherstormambient13",
+      "ageofminecraft:witherstorm/witherstormambient14",
+      "ageofminecraft:witherstorm/witherstormambient15",
+      "ageofminecraft:witherstorm/witherstormambient16"
+    ],
+    "subtitle": "subtitles.witherstorm.ambient"
+  },
+  
+  "witherStormRoar": {
+    "sounds": [
+      "ageofminecraft:witherstorm/witherstormroar1",
+      "ageofminecraft:witherstorm/witherstormroar2",
+      "ageofminecraft:witherstorm/witherstormroar3",
+      "ageofminecraft:witherstorm/witherstormroar4",
+      "ageofminecraft:witherstorm/witherstormroar5"
+    ],
+    "subtitle": "subtitles.witherstorm.roar"
+  },
+    
+  "witherStormTentacleWhack": {
+    "sounds": [
+      "ageofminecraft:witherstorm/tenteclewhack"
+    ],
+    "subtitle": "subtitles.witherstorm.tentaclehit"
+  },
+    
+  "witherStormFall": {
+    "sounds": [
+      "ageofminecraft:witherstorm/witherstormfall"
+    ],
+    "subtitle": "subtitles.witherstorm.fall"
+  },
+    
+  "witherStormHurt": {
+    "sounds": [
+      "ageofminecraft:witherstorm/witherstormhurt1",
+      "ageofminecraft:witherstorm/witherstormhurt2",
+      "ageofminecraft:witherstorm/witherstormhurt3",
+      "ageofminecraft:witherstorm/witherstormhurt4"
+    ],
+    "subtitle": "subtitles.witherstorm.hurt"
+  },
+    
+  "witherStormHurtCommandBlock": {
+    "sounds": [
+      "ageofminecraft:witherstorm/witherstormhurtcommandblock1",
+      "ageofminecraft:witherstorm/witherstormhurtcommandblock2"
+    ],
+    "subtitle": "subtitles.witherstorm.hurtcommandblock"
+  },
+    
+  "witherStormDeath": {
+    "sounds": [
+      { "name": "ageofminecraft:witherstorm/witherstormdeath", "stream": true }
+    ],
+    "subtitle": "subtitles.witherstorm.death"
+  },
+  
+  "battlecry": {
+    "sounds": [
+      "ageofminecraft:battlecry1",
+      "ageofminecraft:battlecry2",
+      "ageofminecraft:battlecry3",
+      "ageofminecraft:battlecry4"
+    ],
+    "subtitle": "subtitles.battlecry"
+  },
+  
+  "spawnMob": {
+    "sounds": [
+      "ageofminecraft:mythcreate"
+    ],
+    "subtitle": "subtitles.spawnMob"
+  },
+  
+  "bossBirth": {
+    "sounds": [
+      "ageofminecraft:bosscreated"
+    ],
+    "subtitle": "subtitles.spawnBossMob"
+  },
+  
+  "hornMorallity": {
+    "sounds": [
+      "ageofminecraft:moralhorn"
+    ],
+    "subtitle": "subtitles.hornMorallity"
+  },
+  
+  "hornDragon": {
+    "sounds": [
+      "ageofminecraft:enderdragonshorn"
+    ],
+    "subtitle": "subtitles.hornDragon"
+  }
+}

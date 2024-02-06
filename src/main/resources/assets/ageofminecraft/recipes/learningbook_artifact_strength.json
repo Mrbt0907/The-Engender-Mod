@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master_combat"
+        },
+        {
+            "item": "ageofminecraft:diamond_cleaver"
+        },
+        {
+            "item": "minecraft:totem_of_undying"
+        },
+        {
+            "item": "minecraft:diamond_sword"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_artifact_strength",
+        "count": 1,
+        "data": 0
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+        {
+            "item": "ageofminecraft:golden_cleaver"
+        },
+		{
+            "item": "minecraft:golden_chestplate"
+        },
+		{
+            "item": "minecraft:golden_boots"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_brute",
+        "count": 1,
+        "data": 0
+	}
+}

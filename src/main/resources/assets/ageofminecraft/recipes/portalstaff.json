@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        " ao",
+        " xa",
+        "x  "
+    ],
+    "key":
+    {
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockDiamond"
+		},
+        "a":
+		{
+            "item": "ageofminecraft:heromaker",
+            "data": 0
+		},
+        "o":
+		{
+            "item": "minecraft:dragon_egg",
+            "data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:portalstaff",
+        "count": 1,
+        "data": 0
+    }
+}

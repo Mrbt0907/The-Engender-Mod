@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+		{
+            "item": "minecraft:beetroot"
+        },
+        {
+            "item": "minecraft:beetroot"
+        },
+        {
+            "item": "minecraft:bread"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_eating",
+        "count": 1,
+        "data": 0
+	}
+}

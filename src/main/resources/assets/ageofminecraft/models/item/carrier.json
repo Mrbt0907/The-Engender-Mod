@@ -1,0 +1,10 @@
+{
+    "overrides": [
+        { "predicate": { "carrying": 0 }, "model": "ageofminecraft:item/carrier_empty"},
+        { "predicate": { "carrying": 0.1 }, "model": "ageofminecraft:item/carrier_mob" },
+        { "predicate": { "carrying": 0.3 }, "model": "ageofminecraft:item/carrier_boss" },
+        { "predicate": { "carrying": 0.4 }, "model": "ageofminecraft:item/carrier_hero" },
+        { "predicate": { "carrying": 0.6 }, "model": "ageofminecraft:item/carrier_hero_boss" },
+        { "predicate": { "carrying": 1 }, "model": "ageofminecraft:item/carrier_wither_storm"}
+    ]
+}

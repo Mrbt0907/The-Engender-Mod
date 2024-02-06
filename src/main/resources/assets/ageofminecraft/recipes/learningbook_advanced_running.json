@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_advanced"
+        },
+        {
+            "item": "minecraft:sugar"
+        },
+		{
+            "item": "minecraft:sugar"
+        },
+		{
+            "item": "minecraft:rabbit_foot"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced_running",
+        "count": 1,
+        "data": 0
+	}
+}

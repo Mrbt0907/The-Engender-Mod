@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_advanced"
+        },
+		{
+            "item": "minecraft:rotten_flesh"
+        },
+		{
+            "item": "minecraft:rotten_flesh"
+        },
+		{
+            "item": "minecraft:blaze_powder"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced_cooking",
+        "count": 1,
+        "data": 0
+	}
+}

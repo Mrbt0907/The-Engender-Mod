@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {  
+			"item": "ageofminecraft:learningbook_artifact_strength"
+        },
+		{  
+			"item": "ageofminecraft:learningbook_artifact_stamina"
+        },
+		{  
+			"item": "ageofminecraft:learningbook_artifact_speed"
+        },
+		{  
+			"item": "ageofminecraft:learningbook_artifact_intelegence"
+        },
+		{  
+			"item": "ageofminecraft:withered_nether_star"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_artifact",
+        "count": 1,
+        "data": 0
+	}
+}

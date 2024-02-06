@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:string"
+        },
+        {
+        "item": "minecraft:spider_eye"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionspider",
+        "count": 1,
+        "data": 0
+	}
+}

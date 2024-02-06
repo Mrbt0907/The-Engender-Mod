@@ -1,0 +1,353 @@
+{
+    "display": {
+        "icon": {
+            "item": "ageofminecraft:fusionzombie"
+        },
+        "title": {
+            "translate": "advancements.engender.vanilla.defeat_mob.title"
+        },
+        "description": {
+            "translate": "advancements.engender.vanilla.defeat_mob.desc"
+        }
+    },
+    "parent": "ageofminecraft:root",
+    "criteria": {
+        "bat": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:BatHelpful"
+                }
+            }
+        },
+        "chicken": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:ChickenHelpful"
+                }
+            }
+        },
+        "cow": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:CowHelpful"
+                }
+            }
+        },
+        "mooshroom": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:MushroomcowHelpful"
+                }
+            }
+        },
+        "pig": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:PigHelpful"
+                }
+            }
+        },
+        "rabbit": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:RabbitHelpful"
+                }
+            }
+        },
+        "sheep": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:SheepHelpful"
+                }
+            }
+        },
+        "ocelot": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:OzelotHelpful"
+                }
+            }
+        },
+        "squid": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:SquidHelpful"
+                }
+            }
+        },
+        "llama": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:LlamaHelpful"
+                }
+            }
+        },
+        "villager": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:VillagerHelpful"
+                }
+            }
+        },
+        "snow_golem": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:SnowmanHelpful"
+                }
+            }
+        },
+        "silverfish": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:SilverfishHelpful"
+                }
+            }
+        },
+        "endermite": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:EndermiteHelpful"
+                }
+            }
+        },
+        "wolf": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:WolfHelpful"
+                }
+            }
+        },
+        "spider": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:SpiderHelpful"
+                }
+            }
+        },
+        "zombie": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:ZombieHelpful"
+                }
+            }
+        },
+        "skeleton": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:SkeletonHelpful"
+                }
+            }
+        },
+        "creeper": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:CreeperHelpful"
+                }
+            }
+        },
+        "polar_bear": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:PolarBearHelpful"
+                }
+            }
+        },
+        "slime": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:SlimeHelpful"
+                }
+            }
+        },
+        "magma_cube": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:LavaSlimeHelpful"
+                }
+            }
+        },
+        "vex": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:VexHelpful"
+                }
+            }
+        },
+        "blaze": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:BlazeHelpful"
+                }
+            }
+        },
+        "cave_spider": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:CaveSpiderHelpful"
+                }
+            }
+        },
+        "enderman": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:EndermanHelpful"
+                }
+            }
+        },
+        "ghast": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:GhastHelpful"
+                }
+            }
+        },
+        "guardian": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:GuardianHelpful"
+                }
+            }
+        },
+        "zombie_pigman": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:PigZombieHelpful"
+                }
+            }
+        },
+        "shulker": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:ShulkerHelpful"
+                }
+            }
+        },
+        "vindicator": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:VindicatorHelpful"
+                }
+            }
+        },
+        "witch": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:WitchHelpful"
+                }
+            }
+        },
+        "ender_dragon": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:EnderDragonHelpful"
+                }
+            }
+        },
+        "evoker": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:EvokerHelpful"
+                }
+            }
+        },
+        "giant": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:GiantHelpful"
+                }
+            }
+        },
+        "iron_golem": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:VillagerGolemHelpful"
+                }
+            }
+        },
+        "wither": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:WitherBossHelpful"
+                }
+            }
+        }
+    },
+    "requirements": [
+        [
+            "bat",
+            "chicken",
+            "cow",
+            "mooshroom",
+            "ocelot",
+            "pig",
+            "rabbit",
+            "sheep",
+            "endermite",
+            "llama",
+            "silverfish",
+            "snow_golem",
+            "squid",
+            "villager",
+            "wolf",
+            "creeper",
+            "magma_cube",
+            "polar_bear",
+            "skeleton",
+            "slime",
+            "spider",
+            "vex",
+            "zombie",
+            "blaze",
+            "cave_spider",
+            "enderman",
+            "ghast",
+            "guardian",
+            "zombie_pigman",
+            "shulker",
+            "vindicator",
+            "witch",
+            "ender_dragon",
+            "evoker",
+            "giant",
+            "iron_golem",
+            "wither"
+        ]
+    ]
+}

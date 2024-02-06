@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "ageofminecraft:fusionskeleton"
+        },
+        {
+        "item": "ageofminecraft:fusionspider"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionspiderjockey",
+        "count": 1,
+        "data": 0
+	}
+}

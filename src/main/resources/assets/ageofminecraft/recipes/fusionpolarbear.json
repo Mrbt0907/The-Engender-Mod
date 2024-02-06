@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:leather"
+        },
+        {
+        "item": "minecraft:fish",
+        "data": 0
+        },
+        {
+        "item": "minecraft:fish",
+        "data": 1
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionpolarbear",
+        "count": 1,
+        "data": 0
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+		{
+            "item": "minecraft:book"
+        },
+		{
+            "item": "minecraft:book"
+        },
+		{
+            "item": "ageofminecraft:heromaker"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master",
+        "count": 1,
+        "data": 0
+	}
+}

@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "iri",
+        "rer",
+        "grg"
+    ],
+    "key":
+    {
+        "i":
+		{
+            "item": "minecraft:tnt",
+            "data": 0
+		},
+        "r":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		},
+        "e":
+		{
+            "item": "minecraft:nether_star",
+            "data": 0
+		},
+        "g":
+		{
+            "item": "minecraft:ghast_tear",
+            "data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusionghasther",
+        "count": 1,
+        "data": 0
+    }
+}

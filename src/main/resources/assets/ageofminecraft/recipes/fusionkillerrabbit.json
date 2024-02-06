@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:rabbit_hide"
+        },
+        {
+        "item": "minecraft:rabbit_foot"
+        },
+        {
+        "item": "minecraft:rabbit_stew"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionkillerbunny",
+        "count": 1,
+        "data": 0
+	}
+}

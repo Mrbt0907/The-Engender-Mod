@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "  o",
+        " x ",
+        "x  "
+    ],
+    "key":
+    {
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "stickWood"
+		},
+        "o":
+		{
+            "type": "forge:ore_dict",
+            "ore": "torch"
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:convertingstaff",
+        "count": 1,
+        "data": 0
+    }
+}

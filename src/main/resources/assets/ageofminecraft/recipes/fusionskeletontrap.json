@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "ksk",
+        "ses",
+        "ksk"
+    ],
+    "key":
+    {
+        "k":
+		{
+            "item": "ageofminecraft:fusionskeleton",
+            "data": 0
+		},
+        "s":
+		{
+            "item": "minecraft:saddle",
+            "data": 0
+		},
+        "e":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusionskeletontrap",
+        "count": 1,
+        "data": 0
+    }
+}

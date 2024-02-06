@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        " x ",
+        "xox",
+        " x "
+    ],
+    "key":
+    {
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "ingotIron"
+		},
+        "o":
+		{
+            "item": "minecraft:lead",
+            "data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:carrier",
+        "count": 1,
+        "data": 0
+    }
+}

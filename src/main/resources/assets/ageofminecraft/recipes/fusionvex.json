@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:glowstone_dust"
+        },
+        {
+        "item": "minecraft:iron_sword"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionvex",
+        "count": 1,
+        "data": 0
+	}
+}

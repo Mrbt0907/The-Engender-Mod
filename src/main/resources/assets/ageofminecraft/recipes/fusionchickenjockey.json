@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "ageofminecraft:fusionzombie"
+        },
+        {
+        "item": "ageofminecraft:fusionchicken"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionchickenjockey",
+        "count": 1,
+        "data": 0
+	}
+}

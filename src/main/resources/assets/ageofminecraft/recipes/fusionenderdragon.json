@@ -1,0 +1,43 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "oho",
+        "ede",
+        "oyo"
+    ],
+    "key":
+    {
+        "o":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		},
+        "h":
+		{
+            "item": "minecraft:skull",
+            "data": 5
+		},
+        "e":
+		{
+            "item": "minecraft:end_crystal",
+            "data": 0
+		},
+        "d":
+		{
+            "item": "minecraft:dragon_egg",
+            "data": 0
+		},
+        "y":
+		{
+            "item": "minecraft:elytra",
+            "data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusionenderdragon",
+        "count": 1,
+        "data": 0
+    }
+}

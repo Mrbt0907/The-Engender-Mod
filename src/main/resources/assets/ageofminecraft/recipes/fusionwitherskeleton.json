@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:bone"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "coal"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionwitherskeleton",
+        "count": 1,
+        "data": 0
+	}
+}

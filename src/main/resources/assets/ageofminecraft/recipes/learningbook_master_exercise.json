@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+        {
+            "item": "minecraft:milk_bucket"
+        },
+        {
+            "item": "minecraft:golden_apple",
+			"data": 0
+        },
+        {
+            "item": "minecraft:golden_apple",
+			"data": 0
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_exercise",
+        "count": 1,
+        "data": 0
+	}
+}

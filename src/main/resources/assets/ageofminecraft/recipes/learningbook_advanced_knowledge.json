@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_advanced"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockLapis"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced_knowledge",
+        "count": 1,
+        "data": 0
+	}
+}

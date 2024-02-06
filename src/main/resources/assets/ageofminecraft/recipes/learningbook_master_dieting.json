@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_master"
+        },
+        {
+            "item": "minecraft:fish",
+            "data": 0
+        },
+        {
+            "item": "minecraft:fish",
+            "data": 1
+        },
+        {
+            "item": "minecraft:bowl"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_master_dieting",
+        "count": 1,
+        "data": 0
+	}
+}

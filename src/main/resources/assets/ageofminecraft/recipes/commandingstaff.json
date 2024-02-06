@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "  o",
+        " x ",
+        "x  "
+    ],
+    "key":
+    {
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "gemDiamond"
+		},
+        "o":
+		{
+            "type": "forge:ore_dict",
+            "ore": "enderpearl"
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:commandingstaff",
+        "count": 1,
+        "data": 0
+    }
+}

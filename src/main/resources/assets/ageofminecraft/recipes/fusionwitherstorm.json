@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "sss",
+        "ucu",
+        "aua"
+    ],
+    "key":
+    {
+        "s":
+		{
+            "item": "minecraft:skull",
+            "data": 1
+		},
+        "u":
+		{
+            "item": "minecraft:soul_sand",
+            "data": 0
+		},
+        "c":
+		{
+            "item": "minecraft:command_block",
+            "data": 0
+		},
+        "a":
+		{
+            "item": "ageofminecraft:fusionwither",
+            "data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusionwitherstorm",
+        "count": 1,
+        "data": 0
+    }
+}

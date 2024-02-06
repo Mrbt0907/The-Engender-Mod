@@ -1,0 +1,29 @@
+{
+    "display": {
+        "icon": {
+            "item": "ageofminecraft:witherstorm"
+        },
+        "title": {
+            "translate": "advancements.engender.vanilla.kill_wither_storm.title"
+        },
+        "description": {
+            "translate": "advancements.engender.vanilla.kill_wither_storm.desc"
+        },
+        "frame": "challenge",
+        "hidden": true
+    },
+    "parent": "ageofminecraft:kill_wither_storm_potion",
+    "rewards": {
+        "experience": 1000000
+    },
+    "criteria": {
+        "killed_wither_storm": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "ageofminecraft:WitherStormBossHelpful"
+                }
+            }
+        }
+    }
+}

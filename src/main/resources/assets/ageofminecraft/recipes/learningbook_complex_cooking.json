@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+        {
+            "item": "minecraft:pumpkin_pie"
+        },
+        {
+            "item": "minecraft:blaze_rod"
+        },
+        {
+            "item": "minecraft:blaze_rod"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_cooking",
+        "count": 1,
+        "data": 0
+	}
+}

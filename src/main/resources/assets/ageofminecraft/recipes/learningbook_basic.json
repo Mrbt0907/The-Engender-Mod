@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+			"item": "minecraft:book"
+        },
+        {
+            "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_basic",
+        "count": 1,
+        "data": 0
+	}
+}

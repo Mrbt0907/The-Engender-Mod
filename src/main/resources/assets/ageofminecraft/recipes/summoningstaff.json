@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        " ba",
+        " xb",
+        "x  "
+    ],
+    "key":
+    {
+        "x":
+		{
+            "type": "forge:ore_dict",
+            "ore": "ingotIron"
+		},
+        "a":
+		{
+			"type": "forge:ore_dict",
+            "ore": "gemEmerald"
+		},
+        "b":
+		{
+			"item": "minecraft:iron_bars",
+			"data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:summoningstaff",
+        "count": 1,
+        "data": 0
+    }
+}

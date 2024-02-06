@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "lel",
+        "qdq",
+        "lel"
+    ],
+    "key":
+    {
+		"l":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockRedstone"
+		},
+        "q":
+        {
+            "type": "forge:ore_dict",
+            "ore": "dustGlowstone"
+        },
+        "e":
+        {
+            "type": "forge:ore_dict",
+            "ore": "gemLapis"
+        },
+        "d":
+        {
+        "item": "ageofminecraft:mana_collector",
+        "data": 0
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:mana_collector",
+        "count": 1,
+        "data": 1
+    }
+}

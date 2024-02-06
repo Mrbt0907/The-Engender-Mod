@@ -1,0 +1,32 @@
+{
+    "pools": [
+        {
+        "name": "color",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:dye",
+                    "weight": 1,
+                    "functions": [
+                        {
+                            "function": "minecraft:set_data",
+                            "data": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+        "name": "sheep_loot",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "ageofminecraft:entities/shulker",
+                    "weight": 1
+                }
+            ]
+        }
+    ]
+}

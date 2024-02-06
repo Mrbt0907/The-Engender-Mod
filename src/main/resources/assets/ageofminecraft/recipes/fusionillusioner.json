@@ -1,0 +1,37 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "cbc",
+        "pep",
+        "cbc"
+    ],
+    "key":
+    {
+        "c":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		},
+        "p":
+		{
+            "item": "minecraft:log2",
+            "data": 1
+		},
+        "b":
+        {
+            "item": "minecraft:bow"
+        },
+        "e":
+		{
+            "item": "minecraft:totem_of_undying",
+            "data": 0
+		}
+    },
+    "result":
+    {
+        "item": "ageofminecraft:fusionillusioner",
+        "count": 1,
+        "data": 0
+    }
+}

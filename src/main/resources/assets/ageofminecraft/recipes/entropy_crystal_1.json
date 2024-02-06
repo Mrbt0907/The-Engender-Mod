@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "rer",
+        "gmg",
+        "rer"
+    ],
+    "key":
+    {
+		"r":
+		{
+            "type": "forge:ore_dict",
+            "ore": "dustRedstone"
+		},
+        "g":
+        {
+            "type": "forge:ore_dict",
+            "ore": "dustGlowstone"
+        },
+        "e":
+        {
+            "type": "forge:ore_dict",
+            "ore": "enderpearl"
+        },
+        "m":
+        {
+            "item": "ageofminecraft:mana_collector",
+            "data": 0
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:entropy_collector",
+        "count": 1,
+        "data": 0
+    }
+}

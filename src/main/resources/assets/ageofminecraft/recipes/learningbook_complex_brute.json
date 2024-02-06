@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+        {
+            "item": "minecraft:iron_chestplate"
+        },
+        {
+            "item": "ageofminecraft:iron_cleaver"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_brute",
+        "count": 1,
+        "data": 0
+	}
+}

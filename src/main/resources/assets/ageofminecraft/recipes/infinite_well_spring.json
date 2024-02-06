@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "geg",
+        "mwm",
+        "geg"
+    ],
+    "key":
+    {
+		"w":
+		{
+            "item": "ageofminecraft:withered_nether_star",
+            "data": 0
+		},
+        "g":
+        {
+            "type": "forge:ore_dict",
+            "ore": "blockGold"
+        },
+        "e":
+        {
+            "item": "ageofminecraft:entropy_collector",
+            "data": 9
+        },
+        "m":
+        {
+            "item": "ageofminecraft:mana_collector",
+            "data": 9
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:infinite_well_spring",
+        "count": 1,
+        "data": 0
+    }
+}

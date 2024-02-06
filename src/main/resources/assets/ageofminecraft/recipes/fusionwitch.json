@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:gunpowder"
+        },
+        {
+        "item": "minecraft:glass_bottle"
+        },
+        {
+        "item": "minecraft:glowstone_dust"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionwitch",
+        "count": 1,
+        "data": 0
+	}
+}

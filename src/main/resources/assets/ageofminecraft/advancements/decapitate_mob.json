@@ -1,0 +1,68 @@
+{
+    "display": {
+        "icon": {
+            "item": "ageofminecraft:iron_cleaver"
+        },
+        "title": {
+            "translate": "advancements.engender.vanilla.decapitate_mob.title"
+        },
+        "description": {
+            "translate": "advancements.engender.vanilla.decapitate_mob.desc"
+        }
+    },
+    "parent": "ageofminecraft:root",
+    "criteria": {
+        "skeleton_skull": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:skull",
+                        "data": 0
+                    }
+                ]
+            }
+        },
+        "wither_skull": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:skull",
+                        "data": 1
+                    }
+                ]
+            }
+        },
+        "zombie_head": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:skull",
+                        "data": 2
+                    }
+                ]
+            }
+        },
+        "creeper_head": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:skull",
+                        "data": 4
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "skeleton_skull",
+            "wither_skull",
+            "zombie_head",
+            "creeper_head"
+        ]
+    ]
+}

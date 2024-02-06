@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_complex"
+        },
+        {
+            "item": "minecraft:rabbit_foot"
+        },
+        {
+            "item": "minecraft:rabbit_hide"
+        },
+        {
+            "item": "minecraft:rabbit_hide"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_complex_running",
+        "count": 1,
+        "data": 0
+	}
+}

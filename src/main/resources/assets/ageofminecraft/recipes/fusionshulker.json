@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:shulker_shell"
+        },
+        {
+        "item": "minecraft:shulker_shell"
+        },
+        {
+        "item": "minecraft:chorus_fruit_popped"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionshulker",
+        "count": 1,
+        "data": 0
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+        "item": "minecraft:slime_ball"
+        },
+        {
+        "item": "minecraft:iron_bars"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionprisonslime",
+        "count": 1,
+        "data": 0
+	}
+}

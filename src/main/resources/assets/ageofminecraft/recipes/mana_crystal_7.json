@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "lel",
+        "qdq",
+        "lel"
+    ],
+    "key":
+    {
+		"l":
+		{
+            "type": "forge:ore_dict",
+            "ore": "blockEmerald"
+		},
+        "q":
+        {
+        "item": "minecraft:ender_eye",
+        "data": 0
+        },
+        "e":
+        {
+        "item": "minecraft:golden_apple",
+        "data": 0
+        },
+        "d":
+        {
+        "item": "ageofminecraft:mana_collector",
+        "data": 5
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:mana_collector",
+        "count": 1,
+        "data": 6
+    }
+}

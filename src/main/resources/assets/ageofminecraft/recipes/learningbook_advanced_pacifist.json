@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_advanced"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "ingotGold"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "ingotGold"
+        },
+        {
+            "item": "minecraft:blaze_rod"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced_pacifist",
+        "count": 1,
+        "data": 0
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "ageofminecraft:learningbook_advanced"
+        },
+		{
+            "item": "minecraft:iron_sword"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "arrow"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:learningbook_advanced_combat",
+        "count": 1,
+        "data": 0
+	}
+}

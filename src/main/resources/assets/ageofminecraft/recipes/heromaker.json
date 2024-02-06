@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        " x ",
+        "xox",
+        " x "
+    ],
+    "key":
+    {
+        "x":
+        {
+            "type": "forge:ore_dict",
+            "ore": "glowstone"
+        },
+        "o":
+        {
+            "type": "forge:ore_dict",
+            "ore": "netherStar"
+        }
+    },
+    "result":
+    {
+        "item": "ageofminecraft:heromaker"
+    }
+}

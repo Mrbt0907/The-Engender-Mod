@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "ageofminecraft:convertingstaff"
+    },
+    "title": {
+      "translate": "advancements.engender.vanilla.root.title"
+    },
+    "description": {
+      "translate": "advancements.engender.vanilla.root.desc"
+    },
+    "background": "minecraft:textures/blocks/stonebrick.png",
+    "announce_to_chat": false
+  },
+    "criteria": {
+        "staff": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:convertingstaff"
+                    }
+                ]
+            }
+        },
+        "spawner": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ageofminecraft:mob_spawner_spc"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "staff",
+            "spawner"
+        ]
+    ]
+}

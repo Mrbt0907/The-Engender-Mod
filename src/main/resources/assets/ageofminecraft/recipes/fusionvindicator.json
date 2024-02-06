@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "type": "forge:ore_dict",
+            "ore": "gemEmerald"
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "gemEmerald"
+        },
+        {
+        "item": "minecraft:iron_axe"
+        },
+        {
+        "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "ageofminecraft:fusionvindicator",
+        "count": 1,
+        "data": 0
+	}
+}
