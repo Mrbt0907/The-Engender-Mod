@@ -13,7 +13,7 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -121,7 +121,7 @@ public class EntityPolarBear extends EntityFriendlyCreature implements Light, An
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_POLAR_BEAR;
+		return LootRegistry.ENTITIES_POLAR_BEAR;
 	}
 
 	protected void entityInit()

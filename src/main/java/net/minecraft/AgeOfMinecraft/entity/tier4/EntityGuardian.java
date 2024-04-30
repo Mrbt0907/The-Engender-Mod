@@ -5,7 +5,7 @@ import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityElderGuardian;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -470,7 +470,7 @@ public class EntityGuardian extends EntityFriendlyCreature implements Armored
 			}
 			protected ResourceLocation getLootTable()
 			{
-				return ELoot.ENTITIES_GUARDIAN;
+				return LootRegistry.ENTITIES_GUARDIAN;
 			}
 			public boolean isNotColliding()
 			{

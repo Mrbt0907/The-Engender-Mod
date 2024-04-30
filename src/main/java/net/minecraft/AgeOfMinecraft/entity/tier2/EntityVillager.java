@@ -14,7 +14,7 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIHarvestFarmland;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAITradePlayer;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityWitch;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -382,7 +382,7 @@ public void onDeath(DamageSource cause)
 @Nullable
 protected ResourceLocation getLootTable()
 {
-	return ELoot.ENTITIES_VILLAGER;
+	return LootRegistry.ENTITIES_VILLAGER;
 }
 
 public void setProfession(int professionId)

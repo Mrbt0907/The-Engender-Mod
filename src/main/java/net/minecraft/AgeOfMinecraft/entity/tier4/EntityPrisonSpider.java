@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntitySpider;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -63,6 +63,6 @@ public class EntityPrisonSpider extends EntitySpider
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_PRISON_SPIDER;
+		return LootRegistry.ENTITIES_PRISON_SPIDER;
 	}
 }

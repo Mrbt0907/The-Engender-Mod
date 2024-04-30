@@ -3,7 +3,7 @@ package net.minecraft.AgeOfMinecraft.effects;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.AgeOfMinecraft.EngenderMod;
+import net.minecraft.AgeOfMinecraft.api.entity.EntityType;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,7 +28,7 @@ public class PotionBleeding extends PotionEngender
 
 	public void performEffect(EntityLivingBase mob, int amplifier)
 	{
-		if(!EngenderMod.doesntHaveTimeToBleed(mob))
+		if(!EntityType.doesntHaveTimeToBleed(mob))
 		{
 			if (mob.world.isRemote)
 			mob.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, true, mob.posX + (mob.getRNG().nextFloat() - 0.5D) * mob.width, mob.posY + (mob.getRNG().nextFloat()* mob.height), mob.posZ + (mob.getRNG().nextFloat() - 0.5D) * mob.width, 4.0D * (mob.getRNG().nextFloat() - 0.5D), 0.5D, (mob.getRNG().nextFloat() - 0.5D) * 4.0D, new int[] { Block.getStateId(Blocks.REDSTONE_BLOCK.getDefaultState()) });

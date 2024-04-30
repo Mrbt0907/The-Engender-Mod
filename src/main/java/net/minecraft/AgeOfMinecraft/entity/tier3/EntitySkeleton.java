@@ -14,8 +14,8 @@ import net.minecraft.AgeOfMinecraft.entity.Undead;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAttackRangedBowAlly;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -297,7 +297,7 @@ implements IRangedAttackMob, Undead
 		if ((getHeldItem(EnumHand.MAIN_HAND) != null) && (getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemBow))
 		{
 			setSpecialAttackTimer(500);
-			playSound(ESound.skeletonSpecial, 10.0F, 1.0F);
+			playSound(SoundRegistry.skeletonSpecial, 10.0F, 1.0F);
 		}
 		else
 		{
@@ -327,7 +327,7 @@ implements IRangedAttackMob, Undead
 			}
 		}
 
-		if (this.world.canSeeSky(getPosition()) && ((this.getAttackTarget() != null && this.onGround) || (!this.isWild() && this.getOwner().posY > this.posY && this.getOwner().isElytraFlying())) && getItemStackFromSlot(EntityEquipmentSlot.CHEST) != null && getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.ELYTRA)
+		if (this.world.canSeeSky(getPosition()) && ((this.getAttackTarget() != null && this.onGround) || (getOwner() != null && this.getOwner().posY > this.posY && this.getOwner().isElytraFlying())) && getItemStackFromSlot(EntityEquipmentSlot.CHEST) != null && getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.ELYTRA)
 		{
 			this.motionY = 1F;
 			this.setFlag(7, true);
@@ -523,11 +523,11 @@ implements IRangedAttackMob, Undead
 					switch (this.getSkeletonType())
 					{
 						case 1:
-						return ELoot.ENTITIES_WITHER_SKELETON;
+						return LootRegistry.ENTITIES_WITHER_SKELETON;
 						case 2:
-						return ELoot.ENTITIES_STRAY;
+						return LootRegistry.ENTITIES_STRAY;
 						default:
-						return ELoot.ENTITIES_SKELETON;
+						return LootRegistry.ENTITIES_SKELETON;
 					}
 				}
 				protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
@@ -907,15 +907,15 @@ implements IRangedAttackMob, Undead
 					}
 					protected SoundEvent getRegularHurtSound()
 					{
-						return getTotalArmorValue() > 10 ? ESound.metalHit : ESound.woodHit;
+						return getTotalArmorValue() > 10 ? SoundRegistry.metalHit : SoundRegistry.woodHit;
 					}
 					protected SoundEvent getPierceHurtSound()
 					{
-						return ESound.woodHitPierce;
+						return SoundRegistry.woodHitPierce;
 					}
 					protected SoundEvent getCrushHurtSound()
 					{
-						return ESound.woodHitCrush;
+						return SoundRegistry.woodHitCrush;
 					}
 					@Override
 					public void setSwingingArms(boolean swingingArms) {}

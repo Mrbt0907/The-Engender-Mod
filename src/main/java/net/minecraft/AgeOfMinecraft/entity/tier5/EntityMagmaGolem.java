@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.Elemental;
@@ -15,7 +15,7 @@ import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -80,7 +80,7 @@ public class EntityMagmaGolem extends EntityFriendlyCreature implements Armored,
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return ESetup.CONSTRUCT;
+		return EngenderSetup.CONSTRUCT;
 	}
 	/**
 	* Bonus damage vs mobs that implement Light
@@ -129,7 +129,7 @@ public class EntityMagmaGolem extends EntityFriendlyCreature implements Armored,
 	public void performSpecialAttack()
 	{
 		this.motionY = 1.0D;
-		playSound(ESound.golemSpecial, 10.0F, 1.0F);
+		playSound(SoundRegistry.golemSpecial, 10.0F, 1.0F);
 	}
 	public boolean interact(EntityPlayer player, EnumHand hand)
 	{
@@ -363,7 +363,7 @@ public class EntityMagmaGolem extends EntityFriendlyCreature implements Armored,
 		if ((getSpecialAttackTimer() <= 0) && (isHero()))
 		{
 			setSpecialAttackTimer(300);
-			playSound(ESound.golemSmash, 10.0F, 1.0F);
+			playSound(SoundRegistry.golemSmash, 10.0F, 1.0F);
 			createEngenderModExplosionFireless(this, this.posX, this.posY - 2.0D, this.posZ, 3.0F, false);
 			List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, getEntityBoundingBox().grow(24.0D, 3.0D, 24.0D), Predicates.and(new Predicate[] { EntitySelectors.IS_ALIVE }));
 			if ((list != null) && (!list.isEmpty()))
@@ -413,18 +413,18 @@ public class EntityMagmaGolem extends EntityFriendlyCreature implements Armored,
 		@Nullable
 		protected ResourceLocation getLootTable()
 		{
-			return ELoot.ENTITIES_MAGMA_GOLEM;
+			return LootRegistry.ENTITIES_MAGMA_GOLEM;
 		}
 		protected SoundEvent getRegularHurtSound()
 		{
-			return ESound.woodHit;
+			return SoundRegistry.woodHit;
 		}
 		protected SoundEvent getPierceHurtSound()
 		{
-			return ESound.woodHitPierce;
+			return SoundRegistry.woodHitPierce;
 		}
 		protected SoundEvent getCrushHurtSound()
 		{
-			return ESound.woodHitCrush;
+			return SoundRegistry.woodHitCrush;
 		}
 	}

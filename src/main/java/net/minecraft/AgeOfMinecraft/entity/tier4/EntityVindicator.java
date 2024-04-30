@@ -9,8 +9,8 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIVindicatorBreakDoor;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
@@ -139,7 +139,7 @@ public class EntityVindicator extends EntityAbstractIllagers
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_VINDICATION_ILLAGER;
+		return LootRegistry.ENTITIES_VINDICATION_ILLAGER;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -276,7 +276,7 @@ public class EntityVindicator extends EntityAbstractIllagers
 		if (!this.johnny && "Johnny".equals(name))
 		{
 			this.ticksExisted = 0;
-			this.playSound(ESound.heresJohnny, 2F, 1F);
+			this.playSound(SoundRegistry.heresJohnny, 2F, 1F);
 			this.johnny = true;
 			((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
 			this.tasks.addTask(1, new EntityAIVindicatorBreakDoor(this));

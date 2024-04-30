@@ -2,12 +2,12 @@ package net.minecraft.AgeOfMinecraft.items;
 
 import java.util.List;
 
-import net.minecraft.AgeOfMinecraft.registry.EItem;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
+import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemSimpleFoiled;
@@ -49,7 +49,7 @@ public class ItemLearningBook extends ItemSimpleFoiled
 		this.setRegistryName(name);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(durability);
-		this.setCreativeTab(ETab.engender);
+		this.setCreativeTab(CreativeTabRegistry.engender);
 		this.tier = tier;
 		this.artifact = tier >= 6 ? true : false;
 		this.EXPERIENCE = experience;
@@ -59,11 +59,11 @@ public class ItemLearningBook extends ItemSimpleFoiled
 		this.DEXTERITY = dexterity;
 		this.AGILITY = agility;
 		this.tooltip = description;
-		EItem.SKILL_BOOKS.add(this);
+		ItemRegistry.SKILL_BOOKS.add(this);
 	}
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		return artifact ? ESetup.UBEREPIC : super.getRarity(stack);
+		return artifact ? EngenderSetup.UBEREPIC : super.getRarity(stack);
 	}
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{

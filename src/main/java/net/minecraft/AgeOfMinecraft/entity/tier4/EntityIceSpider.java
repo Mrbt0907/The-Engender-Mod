@@ -5,7 +5,7 @@ import net.endermanofdoom.mac.util.TranslateUtil;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntitySpider;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -92,6 +92,6 @@ public class EntityIceSpider extends EntitySpider
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_ICE_SPIDER;
+		return LootRegistry.ENTITIES_ICE_SPIDER;
 	}
 }

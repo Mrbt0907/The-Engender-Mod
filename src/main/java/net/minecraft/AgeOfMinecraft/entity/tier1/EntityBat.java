@@ -11,7 +11,7 @@ import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.Tiny;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -363,7 +363,7 @@ public class EntityBat extends EntityFriendlyCreature implements EntityFlying, L
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_BAT;
+		return LootRegistry.ENTITIES_BAT;
 	}
 	public boolean getCanSpawnHere()
 	{

@@ -14,7 +14,7 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAttackRangedBowAlly;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntityTippedArrowOther;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -855,7 +855,7 @@ public class EntityIllusioner extends EntitySpellcasterIllager implements IRange
 				{
 					if (entitysheep.getIllusionFormTime() <= 0)
 					{
-						entitysheep.playSound(ESound.bugSpecial, 1F, 1F);
+						entitysheep.playSound(SoundRegistry.bugSpecial, 1F, 1F);
 						entitysheep.spawnExplosionParticle();
 						entitysheep.spawnExplosionParticle();
 						entitysheep.spawnExplosionParticle();

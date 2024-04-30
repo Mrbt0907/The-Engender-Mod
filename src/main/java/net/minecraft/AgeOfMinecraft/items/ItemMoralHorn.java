@@ -7,8 +7,8 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,10 +33,7 @@ extends Item
 {
 	public ItemMoralHorn()
 	{
-		setRegistryName("moralhorn");
-		setUnlocalizedName("moralhorn");
 		setMaxStackSize(1);
-		setCreativeTab(ETab.engender);
 	}
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
@@ -97,7 +94,7 @@ public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer pl
 			}
 		}
 	}
-	playerIn.playSound(ESound.battlecry, 10.0F, 1.0F);
+	playerIn.playSound(SoundRegistry.battlecry, 10.0F, 1.0F);
 	playerIn.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 600, 0));
 	playerIn.addPotionEffect(new PotionEffect(MobEffects.SPEED, 600, 1));
 	playerIn.addExhaustion(0.5F);
@@ -105,7 +102,7 @@ public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer pl
 }
 public SoundEvent getHornSound()
 {
-	return ESound.moralHornBlow;
+	return SoundRegistry.moralHornBlow;
 }
 }
 

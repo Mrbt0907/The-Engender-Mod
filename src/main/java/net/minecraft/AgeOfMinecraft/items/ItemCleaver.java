@@ -15,7 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityAgeable;
@@ -36,17 +36,14 @@ import net.minecraft.world.World;
 
 
 public class ItemCleaver extends ItemSword{
-	public ItemCleaver(ToolMaterial material, String name, CreativeTabs tab)
+	public ItemCleaver(ToolMaterial material)
 	{
-		this(material, name, tab, null);
+		this(material, null);
 	}
 
-	public ItemCleaver(ToolMaterial material, String name, CreativeTabs tab, TextFormatting format)
+	public ItemCleaver(ToolMaterial material, TextFormatting format)
 	{
 		super(material);
-		setRegistryName(name);
-		setUnlocalizedName(name);
-		setCreativeTab(tab);
 	}
 
 	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand)
@@ -103,7 +100,7 @@ public class ItemCleaver extends ItemSword{
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
 		stack.damageItem(1, attacker);
-		target.playSound(ESound.slashflesh, 1.0F, (target.getRNG().nextFloat() - target.getRNG().nextFloat()) * 0.2F + 1.0F);
+		target.playSound(SoundRegistry.slashflesh, 1.0F, (target.getRNG().nextFloat() - target.getRNG().nextFloat()) * 0.2F + 1.0F);
 		if (!target.isEntityAlive() && !target.world.isRemote)
 		{
 			if (target.getClass() == net.minecraft.entity.monster.EntitySkeleton.class)

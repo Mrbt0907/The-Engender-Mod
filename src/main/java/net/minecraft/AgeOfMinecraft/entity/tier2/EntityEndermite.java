@@ -8,8 +8,8 @@ import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.Tiny;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -98,7 +98,7 @@ extends EntityFriendlyCreature implements Light, Tiny, Ender
 	public void performSpecialAttack()
 	{
 		setSpecialAttackTimer(400);
-		playSound(ESound.bugSpecial, 10.0F, 1.0F);
+		playSound(SoundRegistry.bugSpecial, 10.0F, 1.0F);
 		if (!this.world.isRemote)
 		{
 			for (int i = 0; i < 2; i++)
@@ -130,7 +130,7 @@ extends EntityFriendlyCreature implements Light, Tiny, Ender
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_ENDERMITE;
+		return LootRegistry.ENTITIES_ENDERMITE;
 	}
 	public void onUpdate()
 	{

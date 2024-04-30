@@ -2,7 +2,7 @@ package net.minecraft.AgeOfMinecraft.blocks;
 
 import net.minecraft.AgeOfMinecraft.items.ItemFusion;
 import net.minecraft.AgeOfMinecraft.items.ItemManaCollector;
-import net.minecraft.AgeOfMinecraft.items.ItemTierItem;
+import net.minecraft.AgeOfMinecraft.items.ItemFusionSpawner;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -279,7 +279,7 @@ public class ContainerMobSpawner extends Container
 		}
 		public static boolean canHoldItem(ItemStack stack)
 		{
-			return stack.getItem() instanceof ItemTierItem;
+			return stack.getItem() instanceof ItemFusionSpawner;
 		}
 	}
 }

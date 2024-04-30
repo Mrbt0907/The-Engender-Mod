@@ -13,7 +13,7 @@ import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAICustomLeapAttack;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -149,7 +149,7 @@ public class EntityOcelot extends EntityFriendlyCreature implements Light, Anima
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_OCELOT;
+		return LootRegistry.ENTITIES_OCELOT;
 	}
 
 	public float getBlockPathWeight(BlockPos pos)

@@ -14,7 +14,7 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCarpet;
 import net.minecraft.entity.EntityLivingBase;
@@ -185,7 +185,7 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 		{
 			if (this.getSheared())
 			{
-				return ELoot.ENTITIES_SHEEP;
+				return LootRegistry.ENTITIES_SHEEP;
 			}
 			else
 			{
@@ -193,37 +193,37 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 				{
 					case WHITE:
 					default:
-					return ELoot.ENTITIES_SHEEP_WHITE;
+					return LootRegistry.ENTITIES_SHEEP_WHITE;
 					case ORANGE:
-					return ELoot.ENTITIES_SHEEP_ORANGE;
+					return LootRegistry.ENTITIES_SHEEP_ORANGE;
 					case MAGENTA:
-					return ELoot.ENTITIES_SHEEP_MAGENTA;
+					return LootRegistry.ENTITIES_SHEEP_MAGENTA;
 					case LIGHT_BLUE:
-					return ELoot.ENTITIES_SHEEP_LIGHT_BLUE;
+					return LootRegistry.ENTITIES_SHEEP_LIGHT_BLUE;
 					case YELLOW:
-					return ELoot.ENTITIES_SHEEP_YELLOW;
+					return LootRegistry.ENTITIES_SHEEP_YELLOW;
 					case LIME:
-					return ELoot.ENTITIES_SHEEP_LIME;
+					return LootRegistry.ENTITIES_SHEEP_LIME;
 					case PINK:
-					return ELoot.ENTITIES_SHEEP_PINK;
+					return LootRegistry.ENTITIES_SHEEP_PINK;
 					case GRAY:
-					return ELoot.ENTITIES_SHEEP_GRAY;
+					return LootRegistry.ENTITIES_SHEEP_GRAY;
 					case SILVER:
-					return ELoot.ENTITIES_SHEEP_SILVER;
+					return LootRegistry.ENTITIES_SHEEP_SILVER;
 					case CYAN:
-					return ELoot.ENTITIES_SHEEP_CYAN;
+					return LootRegistry.ENTITIES_SHEEP_CYAN;
 					case PURPLE:
-					return ELoot.ENTITIES_SHEEP_PURPLE;
+					return LootRegistry.ENTITIES_SHEEP_PURPLE;
 					case BLUE:
-					return ELoot.ENTITIES_SHEEP_BLUE;
+					return LootRegistry.ENTITIES_SHEEP_BLUE;
 					case BROWN:
-					return ELoot.ENTITIES_SHEEP_BROWN;
+					return LootRegistry.ENTITIES_SHEEP_BROWN;
 					case GREEN:
-					return ELoot.ENTITIES_SHEEP_GREEN;
+					return LootRegistry.ENTITIES_SHEEP_GREEN;
 					case RED:
-					return ELoot.ENTITIES_SHEEP_RED;
+					return LootRegistry.ENTITIES_SHEEP_RED;
 					case BLACK:
-					return ELoot.ENTITIES_SHEEP_BLACK;
+					return LootRegistry.ENTITIES_SHEEP_BLACK;
 				}
 			}
 		}

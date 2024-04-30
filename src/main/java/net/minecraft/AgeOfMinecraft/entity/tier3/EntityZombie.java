@@ -16,8 +16,8 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.tier1.EntityChicken;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityPigZombie;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -302,7 +302,7 @@ extends EntityFriendlyCreature implements Undead
 			}
 		}
 
-		if (this.world.canSeeSky(getPosition()) && ((this.getAttackTarget() != null && this.onGround) || (!this.isWild() && this.getOwner().posY > this.posY && this.getOwner().isElytraFlying())) && getItemStackFromSlot(EntityEquipmentSlot.CHEST) != null && getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.ELYTRA)
+		if (this.world.canSeeSky(getPosition()) && ((this.getAttackTarget() != null && this.onGround) || (this.getOwner() != null && this.getOwner().posY > this.posY && this.getOwner().isElytraFlying())) && getItemStackFromSlot(EntityEquipmentSlot.CHEST) != null && getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.ELYTRA)
 		{
 			this.motionY = 1F;
 			this.setFlag(7, true);
@@ -365,9 +365,9 @@ extends EntityFriendlyCreature implements Undead
 			if ((isHero()) && (getSpecialAttackTimer() == 640))
 			{
 				if (isChild())
-				playSound(ESound.zombieSpecial, 10.0F, 1.5F);
+				playSound(SoundRegistry.zombieSpecial, 10.0F, 1.5F);
 				else
-					playSound(ESound.zombieSpecial, 10.0F, 1.0F);
+					playSound(SoundRegistry.zombieSpecial, 10.0F, 1.0F);
 				spawnZombieAlly();
 			}
 			if ((getAttackTarget() != null) && (getDistanceSq(getAttackTarget()) < 128.0D) && (getSpecialAttackTimer() <= 0) && (isHero()))
@@ -521,15 +521,15 @@ extends EntityFriendlyCreature implements Undead
 			switch (this.getZombieType())
 			{
 				case 1:
-				return ELoot.ENTITIES_HUSK;
+				return LootRegistry.ENTITIES_HUSK;
 				case 2:
-				return ELoot.ENTITIES_PRISON_ZOMBIE;
+				return LootRegistry.ENTITIES_PRISON_ZOMBIE;
 				default:
 				{
 					if (this.isVillager())
-					return ELoot.ENTITIES_ZOMBIE_VILLAGER;
+					return LootRegistry.ENTITIES_ZOMBIE_VILLAGER;
 					else
-					return ELoot.ENTITIES_ZOMBIE;
+					return LootRegistry.ENTITIES_ZOMBIE;
 				}
 			}
 		}
@@ -1066,7 +1066,7 @@ extends EntityFriendlyCreature implements Undead
 		}
 		protected SoundEvent getRegularHurtSound()
 		{
-			return getTotalArmorValue() >= 10 ? ESound.metalHit : ESound.fleshHit;
+			return getTotalArmorValue() >= 10 ? SoundRegistry.metalHit : SoundRegistry.fleshHit;
 		}
 		
 		public class GroupData implements IEntityLivingData

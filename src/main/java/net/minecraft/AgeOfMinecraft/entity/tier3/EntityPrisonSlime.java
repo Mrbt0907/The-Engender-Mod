@@ -1,7 +1,7 @@
 package net.minecraft.AgeOfMinecraft.entity.tier3;
 import javax.annotation.Nullable;
 
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -51,7 +51,7 @@ public class EntityPrisonSlime extends EntitySlime
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return this.isSmallSlime() ? ELoot.ENTITIES_PRISON_SLIME : LootTableList.EMPTY;
+		return this.isSmallSlime() ? LootRegistry.ENTITIES_PRISON_SLIME : LootTableList.EMPTY;
 	}
 	public boolean attackEntityAsMob(Entity p_70652_1_)
 	{

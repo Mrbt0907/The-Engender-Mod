@@ -6,9 +6,9 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntityZombie;
-import net.minecraft.AgeOfMinecraft.registry.EItem;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -124,7 +124,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Light
 			this.wingRotation += this.wingRotDelta * 2.0F;
 			if ((!this.world.isRemote) && (!isChild()) && (!isChickenJockey()) && (--this.timeUntilNextEgg <= 0))
 			{
-				playSound(ESound.createMob, this.getSoundVolume(), 1.0F);
+				playSound(SoundRegistry.createMob, this.getSoundVolume(), 1.0F);
 				playSound(SoundEvents.ENTITY_CHICKEN_EGG, this.getSoundVolume(), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 				dropItem(randomSpawnItem(), 1);
 				this.timeUntilNextEgg = this.isHero() ? (100 + this.rand.nextInt(100)) : (200 + this.rand.nextInt(600));
@@ -135,89 +135,89 @@ extends EntityFriendlyCreature implements IJumpingMount, Light
 			switch (this.rand.nextInt(42))
 			{
 				default:
-				return EItem.chickenItem;
+				return ItemRegistry.chickenItem;
 				case 1:
-				return EItem.batItem;
+				return ItemRegistry.batItem;
 				case 2:
-				return EItem.cowItem;
+				return ItemRegistry.cowItem;
 				case 3:
-				return EItem.mooshroomItem;
+				return ItemRegistry.mooshroomItem;
 				case 4:
-				return EItem.pigItem;
+				return ItemRegistry.pigItem;
 				case 5:
-				return EItem.rabbitItem;
+				return ItemRegistry.rabbitItem;
 				case 6:
-				return EItem.sheepItem;
+				return ItemRegistry.sheepItem;
 				case 7:
-				return EItem.ozelotItem;
+				return ItemRegistry.ozelotItem;
 				case 8:
-				return EItem.squidItem;
+				return ItemRegistry.squidItem;
 				case 9:
-				return EItem.llamaItem;
+				return ItemRegistry.llamaItem;
 				case 10:
-				return EItem.villagerItem;
+				return ItemRegistry.villagerItem;
 				case 11:
-				return EItem.snowmanItem;
+				return ItemRegistry.snowmanItem;
 				case 12:
-				return EItem.silverfishItem;
+				return ItemRegistry.silverfishItem;
 				case 13:
-				return EItem.endermiteItem;
+				return ItemRegistry.endermiteItem;
 				case 14:
-				return EItem.wolfItem;
+				return ItemRegistry.wolfItem;
 				case 15:
-				return EItem.spiderItem;
+				return ItemRegistry.spiderItem;
 				case 16:
-				return EItem.zombieItem;
+				return ItemRegistry.zombieItem;
 				case 17:
-				return EItem.skeletonItem;
+				return ItemRegistry.skeletonItem;
 				case 18:
-				return EItem.polarBearItem;
+				return ItemRegistry.polarBearItem;
 				case 19:
-				return EItem.slimeItem;
+				return ItemRegistry.slimeItem;
 				case 20:
-				return EItem.magmacubeItem;
+				return ItemRegistry.magmacubeItem;
 				case 21:
-				return EItem.vexItem;
+				return ItemRegistry.vexItem;
 				case 22:
-				return EItem.spiderjockeyItem;
+				return ItemRegistry.spiderjockeyItem;
 				case 23:
-				return EItem.chickenjockeyItem;
+				return ItemRegistry.chickenjockeyItem;
 				case 24:
-				return EItem.blazeItem;
+				return ItemRegistry.blazeItem;
 				case 25:
-				return EItem.endermanItem;
+				return ItemRegistry.endermanItem;
 				case 26:
-				return EItem.cavespiderItem;
+				return ItemRegistry.cavespiderItem;
 				case 27:
-				return EItem.pigzombieItem;
+				return ItemRegistry.pigzombieItem;
 				case 28:
-				return EItem.guardianItem;
+				return ItemRegistry.guardianItem;
 				case 29:
-				return EItem.ghastItem;
+				return ItemRegistry.ghastItem;
 				case 30:
-				return EItem.huskItem;
+				return ItemRegistry.huskItem;
 				case 31:
-				return EItem.shulkerItem;
+				return ItemRegistry.shulkerItem;
 				case 32:
-				return EItem.strayItem;
+				return ItemRegistry.strayItem;
 				case 33:
-				return EItem.witchItem;
+				return ItemRegistry.witchItem;
 				case 34:
-				return EItem.vindicatorItem;
+				return ItemRegistry.vindicatorItem;
 				case 35:
-				return EItem.witherskeletonItem;
+				return ItemRegistry.witherskeletonItem;
 				case 36:
-				return EItem.killerrabbitItem;
+				return ItemRegistry.killerrabbitItem;
 				case 37:
-				return EItem.elderguardianItem;
+				return ItemRegistry.elderguardianItem;
 				case 38:
-				return EItem.the4horsemenItem;
+				return ItemRegistry.the4horsemenItem;
 				case 39:
-				return EItem.evokerItem;
+				return ItemRegistry.evokerItem;
 				case 40:
-				return EItem.giantItem;
+				return ItemRegistry.giantItem;
 				case 41:
-				return EItem.villagergolemItem;
+				return ItemRegistry.villagergolemItem;
 			}
 		}
 		public boolean takesFallDamage()
@@ -243,7 +243,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Light
 		@Nullable
 		protected ResourceLocation getLootTable()
 		{
-			return ELoot.ENTITIES_CHICKEN;
+			return LootRegistry.ENTITIES_CHICKEN;
 		}
 		public void readEntityFromNBT(NBTTagCompound tagCompund)
 		{

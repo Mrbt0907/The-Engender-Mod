@@ -5,8 +5,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
@@ -14,7 +14,7 @@ import net.minecraft.AgeOfMinecraft.entity.Flying;
 import net.minecraft.AgeOfMinecraft.entity.Massive;
 import net.minecraft.AgeOfMinecraft.entity.Undead;
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -94,7 +94,7 @@ public class EntityWitherStormTentacleDevourer extends EntityFriendlyCreature im
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return ESetup.WITHER_STORM;
+		return EngenderSetup.WITHER_STORM;
 	}
 	public EnumTier getTier()
 	{
@@ -108,7 +108,7 @@ public class EntityWitherStormTentacleDevourer extends EntityFriendlyCreature im
 	{
 		if (super.attackEntityAsMob(entityIn))
 		{
-			entityIn.playSound(ESound.witherStormTentacleWhack, 10.0F, this.getSoundPitch() - 0.15F);
+			entityIn.playSound(SoundRegistry.witherStormTentacleWhack, 10.0F, this.getSoundPitch() - 0.15F);
 			List<EntityLivingBase> list1 = this.world.getEntitiesWithinAABB(EntityLivingBase.class, entityIn.getEntityBoundingBox().grow(6D), Predicates.and(new Predicate[] { EntitySelectors.NOT_SPECTATING }));
 			
 			if ((list1 != null) && (!list1.isEmpty()))
@@ -181,7 +181,7 @@ public class EntityWitherStormTentacleDevourer extends EntityFriendlyCreature im
 	}
 	public void fall(float distance, float damageMultiplier)
 	{
-		playSound(ESound.witherStormFall, 10.0F, 1.0F);
+		playSound(SoundRegistry.witherStormFall, 10.0F, 1.0F);
 	}
 	protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {if (this.residentWitherStorm == null)super.updateFallState(y, onGroundIn, state, pos);}
 	public boolean isEntityImmuneToCoralium()
@@ -263,11 +263,11 @@ public class EntityWitherStormTentacleDevourer extends EntityFriendlyCreature im
 	}
 	protected SoundEvent getHurtSound(DamageSource source)
 	{
-		return ESound.witherStormHurt;
+		return SoundRegistry.witherStormHurt;
 	}
 	protected SoundEvent getDeathSound()
 	{
-		return ESound.witherStormHurt;
+		return SoundRegistry.witherStormHurt;
 	}
 	protected float getSoundVolume()
 	{
@@ -328,7 +328,7 @@ public class EntityWitherStormTentacleDevourer extends EntityFriendlyCreature im
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_WITHER_STORM_BIG_TENTACLE;
+		return LootRegistry.ENTITIES_WITHER_STORM_BIG_TENTACLE;
 	}
 	public boolean canBreatheUnderwater()
 	{
@@ -458,7 +458,7 @@ public class EntityWitherStormTentacleDevourer extends EntityFriendlyCreature im
 	}
 	protected SoundEvent getCrushHurtSound()
 	{
-		return ESound.fleshHitCrushHeavy;
+		return SoundRegistry.fleshHitCrushHeavy;
 	}
 }
 

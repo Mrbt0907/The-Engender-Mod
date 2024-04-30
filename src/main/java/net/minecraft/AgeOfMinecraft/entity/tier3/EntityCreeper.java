@@ -14,7 +14,7 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAvoidEntitySPC;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAICreeperSwell;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAreaEffectCloud;
@@ -311,7 +311,7 @@ extends EntityFriendlyCreature implements Light
 			@Nullable
 			protected ResourceLocation getLootTable()
 			{
-				return ELoot.ENTITIES_CREEPER;
+				return LootRegistry.ENTITIES_CREEPER;
 			}
 			public int getCreeperState()
 			{

@@ -1,5 +1,5 @@
 package net.minecraft.AgeOfMinecraft.enchantments;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -40,7 +40,7 @@ public class EnchantmentWitherStormKiller extends Enchantment
 	}
 	public float calcDamageByCreature(int level, EnumCreatureAttribute creatureType)
 	{
-		return creatureType == ESetup.WITHER_STORM ? 25000F : 50F;
+		return creatureType == EngenderSetup.WITHER_STORM ? 25000F : 50F;
 	}
 	public String getName()
 	{

@@ -1,8 +1,8 @@
 package net.minecraft.AgeOfMinecraft.entity;
 
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityEnderDragon;
-import net.minecraft.AgeOfMinecraft.registry.EItem;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityItem;
@@ -28,7 +28,7 @@ public class EntityItemCarrier extends EntityItem
 		if(!stack.hasTagCompound())
 		stack.setTagCompound(new NBTTagCompound());
 		
-		if (stack.getItem() == EItem.carrier)
+		if (stack.getItem() == ItemRegistry.carrier)
 		{
 			if (stack.getTagCompound().hasKey("Entity"))
 			{
@@ -46,7 +46,7 @@ public class EntityItemCarrier extends EntityItem
 					entity.world.setEntityState(entity, (byte)20);
 					entity.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1.0F, 2.0F);
 					entity.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1.0F, 2.0F);
-					entity.playSound(ESound.createMob, 1.0F, 1.0F);
+					entity.playSound(SoundRegistry.createMob, 1.0F, 1.0F);
 					entity.world.setEntityState(entity, (byte)35);
 					stack.getTagCompound().removeTag("Entity");
 					stack.getTagCompound().removeTag("EntityName");

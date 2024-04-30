@@ -13,8 +13,8 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAILeaderHurtByTarget;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAILeaderHurtTarget;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityBlaze;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntitySnowballHarmful;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityList;
@@ -140,7 +140,7 @@ public class EntitySnowman extends EntityFriendlyCreature implements IRangedAtta
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return ESetup.CONSTRUCT;
+		return EngenderSetup.CONSTRUCT;
 	}
 	public void onLivingUpdate()
 	{
@@ -191,7 +191,7 @@ public class EntitySnowman extends EntityFriendlyCreature implements IRangedAtta
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_SNOWMAN;
+		return LootRegistry.ENTITIES_SNOWMAN;
 	}
 	public boolean interact(EntityPlayer player, EnumHand hand)
 	{

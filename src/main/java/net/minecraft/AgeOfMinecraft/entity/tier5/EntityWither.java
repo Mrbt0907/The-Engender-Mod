@@ -20,8 +20,8 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntitySkeleton;
 import net.minecraft.AgeOfMinecraft.entity.tier6.EntityCommandBlockWither;
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -532,7 +532,7 @@ public void handleStopJump()
 		public void performSpecialAttack()
 		{
 			playLivingSound();
-			playSound(ESound.witherSpecial, 10.0F, 1.0F);
+			playSound(SoundRegistry.witherSpecial, 10.0F, 1.0F);
 			setSpecialAttackTimer(1600);
 		}
 		public boolean isImmuneToExplosions()
@@ -999,8 +999,8 @@ public void handleStopJump()
 					setInvulTime(220);
 					this.ticksExisted = 0;
 					playLivingSound();
-					playSound(ESound.createMob, 10.0F, 0.75F);
-					playSound(ESound.createBossMob, 1.0E7F, 1.0F);
+					playSound(SoundRegistry.createMob, 10.0F, 0.75F);
+					playSound(SoundRegistry.createBossMob, 1.0E7F, 1.0F);
 				}
 
 				for (int i = 1; i < 3; i++)
@@ -1238,7 +1238,7 @@ public void handleStopJump()
 			@Nullable
 			protected ResourceLocation getLootTable()
 			{
-				return ELoot.ENTITIES_WITHER;
+				return LootRegistry.ENTITIES_WITHER;
 			}
 			protected void despawnEntity()
 			{
@@ -1340,15 +1340,15 @@ public void handleStopJump()
 			}
 			protected SoundEvent getRegularHurtSound()
 			{
-				return ESound.woodHit;
+				return SoundRegistry.woodHit;
 			}
 			protected SoundEvent getPierceHurtSound()
 			{
-				return ESound.woodHitPierce;
+				return SoundRegistry.woodHitPierce;
 			}
 			protected SoundEvent getCrushHurtSound()
 			{
-				return ESound.woodHitCrush;
+				return SoundRegistry.woodHitCrush;
 			}
 
 			protected void onDeathUpdate()
@@ -1362,11 +1362,11 @@ public void handleStopJump()
 				
 				if (!this.world.isRemote && this.deathTicks == 120)
 				{
-					this.playSound(ESound.blast, 10F, 1F);
+					this.playSound(SoundRegistry.blast, 10F, 1F);
 					createEngenderModExplosionFireless(this, this.posX, this.posY + 1.0D, this.posZ, 14F, this.world.getGameRules().getBoolean("mobGriefing"));
 					List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(this, getEntityBoundingBox().grow(128D));
 					this.world.playEvent(3000, getPosition(), 0);
-					playSound(ESound.blast, 10F, 1F);
+					playSound(SoundRegistry.blast, 10F, 1F);
 					if ((list != null) && (!list.isEmpty()))
 					{
 						for (int i = 0; i < list.size(); i++)
@@ -1539,6 +1539,6 @@ public int getMusicPriority()
 @SideOnly(Side.CLIENT)
 public SoundEvent getMusic()
 {
-	return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) ? null : ESound.withertheme;
+	return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) ? null : SoundRegistry.withertheme;
 }
 		}

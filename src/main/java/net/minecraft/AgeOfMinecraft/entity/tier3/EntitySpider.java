@@ -16,7 +16,7 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityCaveSpider;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityCreeder;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -215,7 +215,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Light
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_SPIDER;
+		return LootRegistry.ENTITIES_SPIDER;
 	}
 	public boolean isOnLadder()
 	{

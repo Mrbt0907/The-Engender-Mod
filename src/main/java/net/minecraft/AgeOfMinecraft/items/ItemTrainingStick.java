@@ -3,7 +3,7 @@ package net.minecraft.AgeOfMinecraft.items;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -21,9 +21,6 @@ import net.minecraft.world.World;
 public class ItemTrainingStick extends Item{
 	public ItemTrainingStick()
 	{
-		setRegistryName("trainingstick");
-		setUnlocalizedName("trainingstick");
-		setCreativeTab(ETab.engender);
 		this.setMaxStackSize(1);
 	}
 

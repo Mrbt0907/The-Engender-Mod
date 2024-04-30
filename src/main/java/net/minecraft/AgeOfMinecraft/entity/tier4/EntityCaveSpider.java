@@ -5,7 +5,7 @@ import net.endermanofdoom.mac.util.TranslateUtil;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntitySpider;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -146,7 +146,7 @@ public class EntityCaveSpider extends EntitySpider
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_CAVE_SPIDER;
+		return LootRegistry.ENTITIES_CAVE_SPIDER;
 	}
 }
 

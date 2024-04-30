@@ -1,7 +1,7 @@
 package net.minecraft.AgeOfMinecraft.items;
 import java.util.List;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 
 import javax.annotation.Nullable;
 
@@ -10,7 +10,7 @@ import com.google.common.base.Predicates;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -41,10 +41,7 @@ public class ItemCommandingStaff extends Item
 {
 	public ItemCommandingStaff()
 	{
-		setRegistryName("commandingstaff");
-		setUnlocalizedName("commandingstaff");
 		setMaxStackSize(1);
-		setCreativeTab(ETab.engender);
 		this.setHasSubtypes(true);
 	}
 	public EnumAction getItemUseAction(ItemStack stack)
@@ -70,9 +67,9 @@ public class ItemCommandingStaff extends Item
 			case 3:
 			return EnumRarity.EPIC;
 			case 4:
-			return ESetup.SUPEREPIC;
+			return EngenderSetup.SUPEREPIC;
 			default:
-			return ESetup.UBEREPIC;
+			return EngenderSetup.UBEREPIC;
 		}
 	}
 	@SideOnly(Side.CLIENT)
@@ -114,7 +111,7 @@ public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer pl
 	{
 		if (!list.isEmpty())
 		{
-			playerIn.world.playSound(null, new BlockPos(playerIn), ESound.chaos, SoundCategory.PLAYERS, 100.0F, 1.0F);
+			playerIn.world.playSound(null, new BlockPos(playerIn), SoundRegistry.chaos, SoundCategory.PLAYERS, 100.0F, 1.0F);
 			if (!playerIn.world.isRemote)
 			playerIn.sendMessage(new TextComponentTranslation("Nearby mobs are deserting their original alliances!", new Object[0]));
 			for (int i1 = 0; i1 < list.size(); i1++)

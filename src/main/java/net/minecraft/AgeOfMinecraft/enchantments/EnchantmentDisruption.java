@@ -1,6 +1,6 @@
 package net.minecraft.AgeOfMinecraft.enchantments;
 
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDamage;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -37,7 +37,7 @@ public class EnchantmentDisruption extends EnchantmentDamage {
 	@Override
 	public float calcDamageByCreature(int par1, EnumCreatureAttribute par2CreatureAttribute)
 	{
-		return par2CreatureAttribute == ESetup.ENDER ? par1 * 3.5F : 0.0F;
+		return par2CreatureAttribute == EngenderSetup.ENDER ? par1 * 3.5F : 0.0F;
 	}
 
 	@Override

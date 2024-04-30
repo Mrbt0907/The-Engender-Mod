@@ -2,8 +2,8 @@ package net.minecraft.AgeOfMinecraft.entity.tier6;
 import java.util.List;
 
 import javax.annotation.Nullable;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -21,7 +21,7 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntitySkeleton;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityEnderDragon;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityWither;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
@@ -108,7 +108,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return ESetup.WITHER_STORM;
+		return EngenderSetup.WITHER_STORM;
 	}
 	protected void applyEntityAttributes()
 	{
@@ -209,7 +209,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	}
 	protected SoundEvent getAmbientSound()
 	{
-		return getSize() >= 5000 ? ESound.commandBlockWitherIdle : SoundEvents.ENTITY_WITHER_AMBIENT;
+		return getSize() >= 5000 ? SoundRegistry.commandBlockWitherIdle : SoundEvents.ENTITY_WITHER_AMBIENT;
 	}
 	protected SoundEvent getHurtSound(DamageSource source)
 	{
@@ -273,7 +273,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 		this.motionZ = -1D;
 		if ((this.ticksExisted + this.getEntityId()) % 100 == 0)
 		{
-			playSound(ESound.commandBlockWitherHum, getSize() >= 5250 ? 0.25F : 5.0F, 1.0F);
+			playSound(SoundRegistry.commandBlockWitherHum, getSize() >= 5250 ? 0.25F : 5.0F, 1.0F);
 		}
 
 		if (this.getSize() >= 12500 && !this.world.isRemote)
@@ -289,7 +289,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 		}
 		if (this.ticksExisted % 160 == 0)
 		{
-			playSound(ESound.commandBlockWitherGrow, 2.0F, 1.0F);
+			playSound(SoundRegistry.commandBlockWitherGrow, 2.0F, 1.0F);
 		}
 		if ((this.ticksExisted % 30 == 0) && (getSize() > 5000))
 		{
@@ -297,7 +297,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 		}
 		if ((this.ticksExisted % 60 == 0) && (getSize() > 12000))
 		{
-			playSound(ESound.witherStormFirstRoar, 100.0F, 1.0F);
+			playSound(SoundRegistry.witherStormFirstRoar, 100.0F, 1.0F);
 		}
 
 		for (int i = 0; i < 16; i++)
@@ -562,10 +562,10 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 			if (i <= 0)
 			{
 				createEngenderModExplosionFireless(this, this.posX, this.posY + getEyeHeight(), this.posZ, 7.0F, false);
-				playSound(ESound.commandBlockWitherSpawn, Float.MAX_VALUE, 1.0F);
+				playSound(SoundRegistry.commandBlockWitherSpawn, Float.MAX_VALUE, 1.0F);
 				for (EntityPlayer entityplayer : world.playerEntities)
 				{
-					this.world.playSound(null, entityplayer.getPosition(), ESound.commandBlockWitherSpawn, this.getSoundCategory(), Float.MAX_VALUE, 1.0F);
+					this.world.playSound(null, entityplayer.getPosition(), SoundRegistry.commandBlockWitherSpawn, this.getSoundCategory(), Float.MAX_VALUE, 1.0F);
 					entityplayer.sendStatusMessage(new TextComponentTranslation("\u00A75A Wither Storm has been summoned in " + this.world.provider.getDimensionType().getName() +"!"), true);
 				}
 			}
@@ -745,7 +745,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_COMMAND_BLOCK_WITHER;
+		return LootRegistry.ENTITIES_COMMAND_BLOCK_WITHER;
 	}
 	protected void despawnEntity()
 	{
@@ -813,15 +813,15 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	}
 	protected SoundEvent getRegularHurtSound()
 	{
-		return ESound.woodHit;
+		return SoundRegistry.woodHit;
 	}
 	protected SoundEvent getPierceHurtSound()
 	{
-		return ESound.woodHitPierce;
+		return SoundRegistry.woodHitPierce;
 	}
 	protected SoundEvent getCrushHurtSound()
 	{
-		return ESound.woodHitCrush;
+		return SoundRegistry.woodHitCrush;
 	}
 	class AIDoNothing extends EntityAIBase
 	{
@@ -852,6 +852,6 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	@SideOnly(Side.CLIENT)
 	public SoundEvent getMusic()
 	{
-		return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) && false ? null : ESound.commandBlockWitherTheme;
+		return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) && false ? null : SoundRegistry.commandBlockWitherTheme;
 	}
 }

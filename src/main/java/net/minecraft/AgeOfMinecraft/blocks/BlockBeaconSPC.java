@@ -1,6 +1,6 @@
 package net.minecraft.AgeOfMinecraft.blocks;
 
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
@@ -33,7 +33,7 @@ public class BlockBeaconSPC extends BlockContainer
 		setUnlocalizedName("beacon_spc");
 		setHardness(3.0F);
 		setResistance(6000000.0F);
-		setCreativeTab(ETab.engender);
+		setCreativeTab(CreativeTabRegistry.engender);
 	}
 
 	/**

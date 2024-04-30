@@ -18,8 +18,8 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityGhast;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityLargeFireballOther;
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -381,7 +381,7 @@ extends EntityFriendlyCreature implements Massive, Flying, Armored, IMusicIntera
 		@Nullable
 		protected ResourceLocation getLootTable()
 		{
-			return ELoot.ENTITIES_GHASTHER;
+			return LootRegistry.ENTITIES_GHASTHER;
 		}
 		protected float getSoundVolume()
 		{
@@ -434,7 +434,7 @@ extends EntityFriendlyCreature implements Massive, Flying, Armored, IMusicIntera
 		}
 		protected SoundEvent getCrushHurtSound()
 		{
-			return ESound.fleshHitCrushHeavy;
+			return SoundRegistry.fleshHitCrushHeavy;
 		}
 		public void launchFireball(EntityGhasther ghast, double d2, double d3, double d4, double d5, double d6, double d7)
 		{
@@ -999,6 +999,6 @@ extends EntityFriendlyCreature implements Massive, Flying, Armored, IMusicIntera
 						@SideOnly(Side.CLIENT)
 						public SoundEvent getMusic()
 						{
-							return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) ? null : ESound.ghasthertheme;
+							return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) ? null : SoundRegistry.ghasthertheme;
 						}
 					}

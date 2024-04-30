@@ -12,7 +12,7 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAvoidEntitySPC;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntitySpider;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -324,7 +324,7 @@ public class EntityCreeder extends EntitySpider implements Light
 			@Nullable
 			protected ResourceLocation getLootTable()
 			{
-				return ELoot.ENTITIES_CREEDER;
+				return LootRegistry.ENTITIES_CREEDER;
 			}
 			public int getCreeperState()
 			{

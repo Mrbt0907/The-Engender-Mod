@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.AgeOfMinecraft.util.DialogColors;
 
 import com.google.common.base.Optional;
@@ -20,6 +20,7 @@ import net.endermanofdoom.mac.util.math.Maths;
 import net.minecraft.AgeOfMinecraft.EngenderCompat;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
+import net.minecraft.AgeOfMinecraft.api.entity.EntityType;
 import net.minecraft.AgeOfMinecraft.blocks.BlockGuardBlock;
 import net.minecraft.AgeOfMinecraft.effects.EngenderExplosion;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAvoidEntitySPC;
@@ -49,8 +50,8 @@ import net.minecraft.AgeOfMinecraft.entity.tier6.EntityWitherStormTentacleDevour
 import net.minecraft.AgeOfMinecraft.items.ItemEngenderStatChecker;
 import net.minecraft.AgeOfMinecraft.items.ItemLearningBook;
 import net.minecraft.AgeOfMinecraft.particles.ParticleCustom;
-import net.minecraft.AgeOfMinecraft.registry.EItem;
-import net.minecraft.AgeOfMinecraft.registry.EParticle;
+import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.ParticleRegistry;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEndGateway;
@@ -277,7 +278,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		{
 			public boolean shouldExecute()
 			{
-				if (!EntityFriendlyCreature.this.getCurrentBook().isEmpty() || EntityFriendlyCreature.this.getAttackTarget() != null || EntityFriendlyCreature.this.getCreatureAttribute() != ESetup.WITHER_STORM)
+				if (!EntityFriendlyCreature.this.getCurrentBook().isEmpty() || EntityFriendlyCreature.this.getAttackTarget() != null || EntityFriendlyCreature.this.getCreatureAttribute() != EngenderSetup.WITHER_STORM)
 					return false;
 				else
 					return super.shouldExecute();
@@ -289,7 +290,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		targetTasks.addTask(2, new EntityAIFindNearestUnalliedTarget(this, EntityLivingBase.class));
 		
 		if (getBookID() != 0)
-			setCurrentBook(new ItemStack(EItem.SKILL_BOOKS.get(getBookID()), 1, getBookDurability()));
+			setCurrentBook(new ItemStack(ItemRegistry.SKILL_BOOKS.get(getBookID()), 1, getBookDurability()));
 
 		renderLocations = new Vec3d[2][4];
 		
@@ -565,7 +566,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		isAirBorne = !onGround;
 		
 		//TODO: Optimize inventory setting
-		currentReadingBook = getBookID() != 0 ? new ItemStack(EItem.SKILL_BOOKS.get(getBookID()), 1, getBookDurability()) : ItemStack.EMPTY;
+		currentReadingBook = getBookID() != 0 ? new ItemStack(ItemRegistry.SKILL_BOOKS.get(getBookID()), 1, getBookDurability()) : ItemStack.EMPTY;
 		basicInventory.setInventorySlotContents(0, getItemStackFromSlot(EntityEquipmentSlot.HEAD));
 		basicInventory.setInventorySlotContents(1, getItemStackFromSlot(EntityEquipmentSlot.CHEST));
 		basicInventory.setInventorySlotContents(2, getItemStackFromSlot(EntityEquipmentSlot.LEGS));
@@ -832,7 +833,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 				setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
 				playSound(SoundEvents.ENTITY_WITCH_THROW, 1.0F, 0.8F + rand.nextFloat() * 0.4F);
 			}
-			else if (mainItem.equals(EItem.carrier) || offItem != null && offItem.equals(EItem.carrier))
+			else if (mainItem.equals(ItemRegistry.carrier) || offItem != null && offItem.equals(ItemRegistry.carrier))
 				dropEquipmentUndamaged();
 		}
 		//----------- Polymorphing -----------\\
@@ -840,8 +841,8 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		{
 			EntityEvoker entity = new EntityEvoker(world);
 			entity.copyLocationAndAnglesFrom(this);
-			entity.playSound(ESound.bugSpecial, 10F, 0.5F);
-			entity.playSound(ESound.blast, 10F, 1F);
+			entity.playSound(SoundRegistry.bugSpecial, 10F, 0.5F);
+			entity.playSound(SoundRegistry.blast, 10F, 1F);
 			entity.spawnExplosionParticle();
 			entity.readEntityFromNBT(polymorpherData);
 			entity.writeEntityToNBT(polymorpherData);
@@ -976,7 +977,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		//----------- Moral System -----------\\
 		if (moralRaisedTimer >= 600)
 		{
-			playSound(ESound.battlecry, 10.0F, 1.0F);
+			playSound(SoundRegistry.battlecry, 10.0F, 1.0F);
 			playSound(getAmbientSound(), getSoundVolume(), getSoundPitch() + (rand.nextFloat() * 0.15F));
 			playSound(getHurtSound(null), getSoundVolume(), getSoundPitch() + (rand.nextFloat() * 0.35F));
 		}
@@ -1795,7 +1796,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		{
 				if (level == maxLevel - 1)
 				{
-					if (!world.isRemote && !isWild())
+					if (!world.isRemote && getOwner() != null)
 						getOwner().sendMessage(new TextComponentTranslation(TextFormatting.AQUA + getName() + TextFormatting.RESET + " has reached " + TextFormatting.GOLD + "Max Level" + TextFormatting.RESET + "!", new Object[0]));
 					playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1.0F, 1.0F);
 					if (!world.isRemote)
@@ -1803,7 +1804,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 				}
 				else
 				{
-					if (!world.isRemote && !isWild())
+					if (!world.isRemote && getOwner() != null)
 						getOwner().sendMessage(new TextComponentTranslation(TextFormatting.AQUA + getName() + TextFormatting.RESET + " has reached " + TextFormatting.BLUE + "Level " + (level + 1) + TextFormatting.RESET + "!", new Object[0]));
 					playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 0.5F, 1F);
 				}
@@ -1996,7 +1997,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	*/
 	public boolean isUndead() 
 	{
-		return this instanceof EntitySlime || isEntityUndead() || getCreatureAttribute() == ESetup.CONSTRUCT || this instanceof Structure || this instanceof Elemental;
+		return this instanceof EntitySlime || isEntityUndead() || getCreatureAttribute() == EngenderSetup.CONSTRUCT || this instanceof Structure || this instanceof Elemental;
 	}
 	
 	public final double getVigor()
@@ -2275,10 +2276,10 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 				world.playEvent((EntityPlayer)null, 3000, new BlockPos(posX, posY, posZ), 0);
 				setOwnerId(player.getPersistentID());
 				ticksExisted = 0;
-				playSound(ESound.converted, 3.0F, 1.0F);
+				playSound(SoundRegistry.converted, 3.0F, 1.0F);
 				if (player instanceof EntityPlayerMP)
 				{
-					ESetup.CONVERT_MOB.trigger((EntityPlayerMP)player, this);
+					EngenderSetup.CONVERT_MOB.trigger((EntityPlayerMP)player, this);
 				}
 				if (player != null && !isWild() && !world.isRemote)
 					player.sendMessage(new TextComponentTranslation(getName() + " has been converted by " + player.getName() + " (" + (int)posX + ", " + (int)posY + ", " + (int)posZ + ", " + ")", new Object[0]));
@@ -2288,7 +2289,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 			{
 				convertionInt++;
 				EngenderMod.debug("Converting B");
-				playSound(ESound.converting, 3.0F, 1.0F);
+				playSound(SoundRegistry.converting, 3.0F, 1.0F);
 				setAttackTarget(null);
 				convertionDelay = 200;
 			}
@@ -2760,7 +2761,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		{
 		if (getIllusionFormTime() > 0)
 		{
-		playSound(ESound.bugSpecial, 1F, 1F);
+		playSound(SoundRegistry.bugSpecial, 1F, 1F);
 		spawnExplosionParticle();
 		spawnExplosionParticle();
 		spawnExplosionParticle();
@@ -3346,20 +3347,20 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (entity.isEntityInvulnerable(DamageSource.causeMobDamage(this)) && f >= 6.0F)
 	{
 	((EntityLivingBase)entity).setHealth(((EntityLivingBase)entity).getHealth() - f);
-	if (EngenderMod.isWoodLikeMob(entity))
+	if (EntityType.isWoodLikeMob(entity))
 	{
-	entity.playSound(ESound.woodHitCrush, 2F, 1.0F);
+	entity.playSound(SoundRegistry.woodHitCrush, 2F, 1.0F);
 	}
-	else if (EngenderMod.isMetalLikeMob(entity))
+	else if (EntityType.isMetalLikeMob(entity))
 	{
-	entity.playSound(ESound.metalHitCrush, 2F, 1.0F);
+	entity.playSound(SoundRegistry.metalHitCrush, 2F, 1.0F);
 	}
 	else
 	{
 	if (entity.height >= 5.0F)
-	entity.playSound(ESound.fleshHitCrushHeavy, 2F, 1.0F);
+	entity.playSound(SoundRegistry.fleshHitCrushHeavy, 2F, 1.0F);
 	else
-	entity.playSound(ESound.fleshHitCrush, 2F, 1.0F);
+	entity.playSound(SoundRegistry.fleshHitCrush, 2F, 1.0F);
 	}
 	if (((EntityLivingBase)entity).getHealth() <= 0F)
 	((EntityLivingBase)entity).onDeath(DamageSource.causeMobDamage(this));
@@ -3595,20 +3596,20 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (entity.isEntityInvulnerable(attacktype) && (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA))
 	{
 	entity.setHealth(entity.getHealth() - damage);
-	if (EngenderMod.isWoodLikeMob(entity))
+	if (EntityType.isWoodLikeMob(entity))
 	{
-	entity.playSound(ESound.woodHitCrush, 2F, 1.0F);
+	entity.playSound(SoundRegistry.woodHitCrush, 2F, 1.0F);
 	}
-	else if (EngenderMod.isMetalLikeMob(entity))
+	else if (EntityType.isMetalLikeMob(entity))
 	{
-	entity.playSound(ESound.metalHitCrush, 2F, 1.0F);
+	entity.playSound(SoundRegistry.metalHitCrush, 2F, 1.0F);
 	}
 	else
 	{
 	if (entity.height >= 5.0F)
-	entity.playSound(ESound.fleshHitCrushHeavy, 2F, 1.0F);
+	entity.playSound(SoundRegistry.fleshHitCrushHeavy, 2F, 1.0F);
 	else
-	entity.playSound(ESound.fleshHitCrush, 2F, 1.0F);
+	entity.playSound(SoundRegistry.fleshHitCrush, 2F, 1.0F);
 	}
 	if (entity.getHealth() <= 0F)
 	entity.onDeath(attacktype);
@@ -3742,6 +3743,11 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		return currentEXP;
 	}
 	
+	public int getSpawnEXP()
+	{
+		return 1;
+	}
+	
 	public float getTotalEXP()
 	{
 		return ((Float)dataManager.get(TOTALEXP)).floatValue();
@@ -3801,7 +3807,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	{
 	setChild(false);
 	ticksExisted = 1;
-	playSound(ESound.hero, 1.0F, 1.5F);
+	playSound(SoundRegistry.hero, 1.0F, 1.5F);
 	}
 	
 	if (getGuardBlock() != null)
@@ -3994,16 +4000,16 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 				int id = -1;
 				player.swingArm(hand);
 				
-				for (ItemLearningBook book : EItem.SKILL_BOOKS)
+				for (ItemLearningBook book : ItemRegistry.SKILL_BOOKS)
 					if (playerItem.equals(book))
 					{
-						id = EItem.SKILL_BOOKS.indexOf(book);
+						id = ItemRegistry.SKILL_BOOKS.indexOf(book);
 						break;
 					}
 				
 				setBookID(id);
 				setBookDurability(playerStack.getItemDamage());
-				ItemStack stack = new ItemStack(EItem.SKILL_BOOKS.get(id), 1 , getBookDurability());
+				ItemStack stack = new ItemStack(ItemRegistry.SKILL_BOOKS.get(id), 1 , getBookDurability());
 				stack.setTagCompound(playerStack.getTagCompound());
 				stack.setItemDamage(playerStack.getItemDamage());
 				playerStack.shrink(1);
@@ -4047,7 +4053,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 			}
 			else
 			{
-			entityDropItem(new ItemStack(EItem.SKILL_BOOKS.get(getBookID()), 1 , getBookDurability()), 1F);
+			entityDropItem(new ItemStack(ItemRegistry.SKILL_BOOKS.get(getBookID()), 1 , getBookDurability()), 1F);
 			setBookID(0);
 			setBookDurability(0);
 			}
@@ -4175,7 +4181,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	{
 	playSound(SoundEvents.ENTITY_PAINTING_PLACE, 1.0F, 1.3F + rand.nextFloat() * 0.4F);
 	if (!world.isRemote)
-	entityDropItem(new ItemStack(EItem.SKILL_BOOKS.get(getBookID()), 1 , getBookDurability()), 1F);
+	entityDropItem(new ItemStack(ItemRegistry.SKILL_BOOKS.get(getBookID()), 1 , getBookDurability()), 1F);
 	setBookID(0);
 	setBookDurability(0);
 	}
@@ -4490,15 +4496,15 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	}
 	protected SoundEvent getRegularHurtSound()
 	{
-	return ESound.fleshHit;
+	return SoundRegistry.fleshHit;
 	}
 	protected SoundEvent getPierceHurtSound()
 	{
-	return ESound.fleshHitPierce;
+	return SoundRegistry.fleshHitPierce;
 	}
 	protected SoundEvent getCrushHurtSound()
 	{
-	return ESound.fleshHitCrush;
+	return SoundRegistry.fleshHitCrush;
 	}
 	
 	public EnumSoundType getSoundType()
@@ -4559,7 +4565,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public void becomeAHero()
 	{
 	setIsHero(true);
-	playSound(ESound.hero, 100.0F, 1.0F);
+	playSound(SoundRegistry.hero, 100.0F, 1.0F);
 	ticksExisted = -20;
 	}
 	public boolean hasLastChance()

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
@@ -16,8 +16,8 @@ import net.minecraft.AgeOfMinecraft.entity.Undead;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAvoidEntitySPC;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntityTippedArrowOther;
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
-import net.minecraft.AgeOfMinecraft.registry.EItem;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -94,7 +94,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 		this.ignoreFrustumCheck = true;
 		for (EntityPlayer entityplayer : worldIn.playerEntities)
 		{
-			worldIn.playSound(null, entityplayer.getPosition(), ESound.witherStormFinish, this.getSoundCategory(), Float.MAX_VALUE, 1.0F);
+			worldIn.playSound(null, entityplayer.getPosition(), SoundRegistry.witherStormFinish, this.getSoundCategory(), Float.MAX_VALUE, 1.0F);
 		}
 
 		if (!worldIn.isRemote)
@@ -194,7 +194,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return ESetup.WITHER_STORM;
+		return EngenderSetup.WITHER_STORM;
 	}
 
 	public double getDefaultStrengthStat()
@@ -320,15 +320,15 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	}
 	protected SoundEvent getAmbientSound()
 	{
-		return ESound.witherStormAmbient;
+		return SoundRegistry.witherStormAmbient;
 	}
 	protected SoundEvent getHurtSound(DamageSource source)
 	{
-		return this.doesntContainACommandBlock() ? ESound.witherStormHurt : ESound.witherStormHurtCommandBlock;
+		return this.doesntContainACommandBlock() ? SoundRegistry.witherStormHurt : SoundRegistry.witherStormHurtCommandBlock;
 	}
 	protected SoundEvent getDeathSound()
 	{
-		return this.doesntContainACommandBlock() ? ESound.witherStormHurt : ESound.witherStormDeath;
+		return this.doesntContainACommandBlock() ? SoundRegistry.witherStormHurt : SoundRegistry.witherStormDeath;
 	}
 	protected float getSoundVolume()
 	{
@@ -720,7 +720,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 
 		if ((this.ticksExisted + this.getEntityId()) % 100 == 0)
 		{
-			playSound(ESound.commandBlockWitherHum, 0.25F, 1.0F);
+			playSound(SoundRegistry.commandBlockWitherHum, 0.25F, 1.0F);
 		}
 
 		float rot = this.rotationYawHead * 0.017453292F;
@@ -897,7 +897,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 				for (int i1 = 0; i1 < list11.size(); i1++)
 				{
 					EntityItem entity = (EntityItem)list11.get(i1);
-					if (entity != null && entity.getItem().getItem() != EItem.witheredNetherStar)
+					if (entity != null && entity.getItem().getItem() != ItemRegistry.witheredNetherStar)
 					{
 						double d01 = this.posX - entity.posX;
 						double d11 = this.posY + 2.0D - entity.posY;
@@ -915,7 +915,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 				for (int i1 = 0; i1 < list111.size(); i1++)
 				{
 					EntityItem entity = (EntityItem)list111.get(i1);
-					if (entity != null && entity.getItem().getItem() != EItem.witheredNetherStar)
+					if (entity != null && entity.getItem().getItem() != ItemRegistry.witheredNetherStar)
 					{
 						entity.setDead();
 						Grow(getSize() + 1 + entity.getItem().getCount());
@@ -1237,11 +1237,11 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return this.doesntContainACommandBlock() ? ELoot.ENTITIES_WITHER_STORM_MULAGEN : ELoot.ENTITIES_WITHER_STORM;
+		return this.doesntContainACommandBlock() ? LootRegistry.ENTITIES_WITHER_STORM_MULAGEN : LootRegistry.ENTITIES_WITHER_STORM;
 	}
 	protected SoundEvent getCrushHurtSound()
 	{
-		return ESound.fleshHitCrushHeavy;
+		return SoundRegistry.fleshHitCrushHeavy;
 	}
 
 	protected void onDeathUpdate()
@@ -1452,7 +1452,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					i -= j;
 					this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY + 8.0D, this.posZ, j));
 				}
-				EntityItem entityitem = entityDropItem(new ItemStack(EItem.witheredNetherStar), 0.0F);
+				EntityItem entityitem = entityDropItem(new ItemStack(ItemRegistry.witheredNetherStar), 0.0F);
 				if (entityitem != null)
 				{
 					entityitem.setNoDespawn();
@@ -1645,6 +1645,6 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 		public SoundEvent getMusic()
 		{
 			int size = getSize();
-			return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) && false ? null : size >= 250000 ? ESound.witherStormTheme3 : size >= 50000 ? ESound.witherStormTheme2 : ESound.witherStormTheme;
+			return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) && false ? null : size >= 250000 ? SoundRegistry.witherStormTheme3 : size >= 50000 ? SoundRegistry.witherStormTheme2 : SoundRegistry.witherStormTheme;
 		}
 	}

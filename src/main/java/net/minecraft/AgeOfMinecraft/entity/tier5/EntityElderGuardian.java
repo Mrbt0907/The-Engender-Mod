@@ -10,7 +10,7 @@ import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Massive;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityGuardian;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -56,7 +56,7 @@ public class EntityElderGuardian extends EntityGuardian implements Massive
 	}
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_ELDER_GUARDIAN;
+		return LootRegistry.ENTITIES_ELDER_GUARDIAN;
 	}
 	public int func_175464_ck()
 	{

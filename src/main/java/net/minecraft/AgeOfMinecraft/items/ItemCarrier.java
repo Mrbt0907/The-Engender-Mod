@@ -8,8 +8,8 @@ import net.minecraft.AgeOfMinecraft.entity.EntityItemCarrier;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityShulker;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityEnderDragon;
 import net.minecraft.AgeOfMinecraft.entity.tier6.EntityWitherStorm;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -36,9 +36,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemCarrier extends Item{
 	public ItemCarrier()
 	{
-		setRegistryName("carrier");
-		setUnlocalizedName("carrier");
-		setCreativeTab(ETab.engender);
 		this.setMaxStackSize(1);
 		this.addPropertyOverride(new ResourceLocation("carrying"), new IItemPropertyGetter()
 		{
@@ -179,7 +176,7 @@ public class ItemCarrier extends Item{
 							entity.world.setEntityState(entity, (byte)20);
 							entity.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1.0F, 2.0F);
 							entity.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1.0F, 2.0F);
-							entity.playSound(ESound.createMob, 1.0F, 1.0F);
+							entity.playSound(SoundRegistry.createMob, 1.0F, 1.0F);
 							stack.getTagCompound().removeTag("Entity");
 							stack.getTagCompound().removeTag("EntityName");
 							if (stack.getTagCompound().hasKey("IsBoss"))
@@ -218,7 +215,7 @@ public class ItemCarrier extends Item{
 							entityliving.world.setEntityState(entityliving, (byte)20);
 							entityliving.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1.0F, 2.0F);
 							entityliving.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1.0F, 2.0F);
-							entityliving.playSound(ESound.createMob, 1.0F, 1.0F);
+							entityliving.playSound(SoundRegistry.createMob, 1.0F, 1.0F);
 							stack.getTagCompound().removeTag("Entity");
 							stack.getTagCompound().removeTag("EntityName");
 							if (!worldIn.isRemote)

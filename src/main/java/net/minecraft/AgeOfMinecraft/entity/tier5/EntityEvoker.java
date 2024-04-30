@@ -25,8 +25,8 @@ import net.minecraft.AgeOfMinecraft.entity.tier4.EntityBlaze;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityEnderman;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityLargeFireballOther;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntitySmallFireballOther;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -162,7 +162,7 @@ public class EntityEvoker extends EntitySpellcasterIllager implements IRangedAtt
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_EVOCATION_ILLAGER;
+		return LootRegistry.ENTITIES_EVOCATION_ILLAGER;
 	}
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float p_82196_2_)
 	{
@@ -1361,7 +1361,7 @@ public class EntityEvoker extends EntitySpellcasterIllager implements IRangedAtt
 							
 							if (entitysheep != null && entitysheep.isEntityAlive())
 							{
-								EntityEvoker.this.playSound(ESound.converted, 1.0F, 1.0F);
+								EntityEvoker.this.playSound(SoundRegistry.converted, 1.0F, 1.0F);
 								if (EntityEvoker.this.isWild())
 								entitysheep.setFleeceColor(EnumDyeColor.RED);
 								else
@@ -1706,8 +1706,8 @@ public class EntityEvoker extends EntitySpellcasterIllager implements IRangedAtt
 								entityvex.setLastChance(EntityEvoker.this.hasLastChance());
 								entityvex.setLevel(EntityEvoker.this.getLevel());
 								entityvex.setGrowingAge(EntityEvoker.this.getGrowingAge());
-								entityvex.playSound(ESound.bugSpecial, 10F, 0.5F);
-								entityvex.playSound(ESound.blast, 10F, 1F);
+								entityvex.playSound(SoundRegistry.bugSpecial, 10F, 0.5F);
+								entityvex.playSound(SoundRegistry.blast, 10F, 1F);
 								entityvex.spawnExplosionParticle();
 								entityvex.setPolymorphTime(getCastingInterval());
 								entityvex.setCustomNameTag(EntityEvoker.this.getName());
@@ -1727,8 +1727,8 @@ public class EntityEvoker extends EntitySpellcasterIllager implements IRangedAtt
 								entityvex.setLastChance(EntityEvoker.this.hasLastChance());
 								entityvex.setLevel(EntityEvoker.this.getLevel());
 								entityvex.setGrowingAge(EntityEvoker.this.getGrowingAge());
-								entityvex.playSound(ESound.bugSpecial, 10F, 0.5F);
-								entityvex.playSound(ESound.blast, 10F, 1F);
+								entityvex.playSound(SoundRegistry.bugSpecial, 10F, 0.5F);
+								entityvex.playSound(SoundRegistry.blast, 10F, 1F);
 								entityvex.spawnExplosionParticle();
 								entityvex.setPolymorphTime(getCastingInterval());
 								entityvex.setCustomNameTag(EntityEvoker.this.getName());
@@ -1747,8 +1747,8 @@ public class EntityEvoker extends EntitySpellcasterIllager implements IRangedAtt
 								entityvex.setLastChance(EntityEvoker.this.hasLastChance());
 								entityvex.setLevel(EntityEvoker.this.getLevel());
 								entityvex.setGrowingAge(EntityEvoker.this.getGrowingAge());
-								entityvex.playSound(ESound.bugSpecial, 10F, 0.5F);
-								entityvex.playSound(ESound.blast, 10F, 1F);
+								entityvex.playSound(SoundRegistry.bugSpecial, 10F, 0.5F);
+								entityvex.playSound(SoundRegistry.blast, 10F, 1F);
 								entityvex.spawnExplosionParticle();
 								entityvex.setPolymorphTime(getCastingInterval());
 								entityvex.setCustomNameTag(EntityEvoker.this.getName());
@@ -1767,8 +1767,8 @@ public class EntityEvoker extends EntitySpellcasterIllager implements IRangedAtt
 								entityvex.setLastChance(EntityEvoker.this.hasLastChance());
 								entityvex.setLevel(EntityEvoker.this.getLevel());
 								entityvex.setGrowingAge(EntityEvoker.this.getGrowingAge());
-								entityvex.playSound(ESound.bugSpecial, 10F, 0.5F);
-								entityvex.playSound(ESound.blast, 10F, 1F);
+								entityvex.playSound(SoundRegistry.bugSpecial, 10F, 0.5F);
+								entityvex.playSound(SoundRegistry.blast, 10F, 1F);
 								entityvex.spawnExplosionParticle();
 								entityvex.setPolymorphTime(getCastingInterval());
 								entityvex.setCustomNameTag(EntityEvoker.this.getName());

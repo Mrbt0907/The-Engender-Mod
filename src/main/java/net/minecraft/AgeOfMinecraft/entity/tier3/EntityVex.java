@@ -15,7 +15,7 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyHurtByTarget;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAILeaderHurtByTarget;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAILeaderHurtTarget;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.MoverType;
@@ -304,7 +304,7 @@ public class EntityVex extends EntityFriendlyCreature implements Light, Flying, 
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_VEX;
+		return LootRegistry.ENTITIES_VEX;
 	}
 	/**
 	* Gives armor or weapon for entity based on given DifficultyInstance

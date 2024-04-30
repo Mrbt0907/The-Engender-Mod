@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
-import net.minecraft.AgeOfMinecraft.registry.EBlock;
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.BlockRegistry;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -39,7 +39,7 @@ extends BlockContainer
 		setHardness(5.0F);
 		setResistance(6000000.0F);
 		setHarvestLevel("pickaxe", 0);
-		setCreativeTab(ETab.engender);
+		setCreativeTab(CreativeTabRegistry.engender);
 	}
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
@@ -126,10 +126,10 @@ extends BlockContainer
 	}
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(EBlock.mob_spawner_spc);
+		return new ItemStack(BlockRegistry.mob_spawner_spc);
 	}
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(EBlock.mob_spawner_spc);
+		return Item.getItemFromBlock(BlockRegistry.mob_spawner_spc);
 	}
 }

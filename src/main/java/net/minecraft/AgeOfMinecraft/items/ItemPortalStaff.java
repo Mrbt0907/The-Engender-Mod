@@ -1,12 +1,12 @@
 package net.minecraft.AgeOfMinecraft.items;
 import java.util.List;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 
 import javax.annotation.Nullable;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityPortal;
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -34,10 +34,7 @@ public class ItemPortalStaff extends Item
 {
 	public ItemPortalStaff()
 	{
-		setRegistryName("portalstaff");
-		setUnlocalizedName("portalstaff");
 		setMaxStackSize(1);
-		setCreativeTab(ETab.engender);
 		this.setHasSubtypes(true);
 	}
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
@@ -63,9 +60,9 @@ public class ItemPortalStaff extends Item
 			case 3:
 			return EnumRarity.EPIC;
 			case 4:
-			return ESetup.SUPEREPIC;
+			return EngenderSetup.SUPEREPIC;
 			default:
-			return ESetup.UBEREPIC;
+			return EngenderSetup.UBEREPIC;
 		}
 	}
 	@SideOnly(Side.CLIENT)
@@ -107,8 +104,8 @@ public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer pl
 	EntityPortal portal = new EntityPortal(worldIn);
 	portal.setLocationAndAngles((int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ, 0.0F, 0.0F);
 	portal.setOwnerId(playerIn.getUniqueID());
-	portal.playSound(ESound.portalMake, 100.0F, 1.0F);
-	portal.playSound(ESound.portalAmbient, 5.0F, 1.0F);
+	portal.playSound(SoundRegistry.portalMake, 100.0F, 1.0F);
+	portal.playSound(SoundRegistry.portalAmbient, 5.0F, 1.0F);
 	if (!worldIn.isRemote)
 	{
 		worldIn.spawnEntity(portal);

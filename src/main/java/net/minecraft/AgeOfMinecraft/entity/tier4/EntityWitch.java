@@ -13,8 +13,8 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAttackRangedAlly;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -145,7 +145,7 @@ public class EntityWitch extends EntityFriendlyCreature implements IRangedAttack
 	}
 	public void performSpecialAttack()
 	{
-		playSound(ESound.witchSpecial, 10.0F, 1.0F);
+		playSound(SoundRegistry.witchSpecial, 10.0F, 1.0F);
 		setSpecialAttackTimer(1200);
 	}
 	public void onLivingUpdate()
@@ -301,7 +301,7 @@ public class EntityWitch extends EntityFriendlyCreature implements IRangedAttack
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_WITCH;
+		return LootRegistry.ENTITIES_WITCH;
 	}
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float p_82196_2_)
 	{

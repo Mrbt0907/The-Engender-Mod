@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -27,7 +27,7 @@ import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.PhaseList;
 import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.PhaseManager;
 import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.PhaseRamAttack;
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.AgeOfMinecraft.util.Maths;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockJukebox;
@@ -248,7 +248,7 @@ public float getBonusVSMassive()
 */
 public EnumCreatureAttribute getCreatureAttribute()
 {
-	return ESetup.ENDER;
+	return EngenderSetup.ENDER;
 }
 
 public boolean isChild()
@@ -352,7 +352,7 @@ protected void applyEntityAttributes()
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_ENDER_DRAGON;
+		return LootRegistry.ENTITIES_ENDER_DRAGON;
 	}
 
 	public boolean interact(EntityPlayer player, EnumHand hand)
@@ -1946,7 +1946,7 @@ protected void applyEntityAttributes()
 
 							protected SoundEvent getCrushHurtSound()
 							{
-								return ESound.fleshHitCrushHeavy;
+								return SoundRegistry.fleshHitCrushHeavy;
 							}
 							public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) { }
 						}

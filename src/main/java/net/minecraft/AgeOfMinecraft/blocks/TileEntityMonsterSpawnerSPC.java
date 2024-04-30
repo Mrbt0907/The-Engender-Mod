@@ -3,7 +3,7 @@ import java.util.Random;
 
 import net.minecraft.AgeOfMinecraft.items.ItemFusion;
 import net.minecraft.AgeOfMinecraft.items.ItemManaCollector;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
@@ -246,7 +246,7 @@ public class TileEntityMonsterSpawnerSPC extends TileEntity implements ITickable
 					break;
 					case 38:this.world.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), SoundEvents.ENTITY_WITHER_AMBIENT, SoundCategory.BLOCKS, 2F, 1F, false);
 					break;
-					case 39:this.world.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), ESound.witherStormRoar, SoundCategory.BLOCKS, 10F, 1F, false);
+					case 39:this.world.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), SoundRegistry.witherStormRoar, SoundCategory.BLOCKS, 10F, 1F, false);
 				}
 			}
 
@@ -281,7 +281,7 @@ public class TileEntityMonsterSpawnerSPC extends TileEntity implements ITickable
 			{
 				if (!((ItemStack)this.fuserItemStacks.get(0)).isEmpty())
 				{
-					if (this.canSmelt() && this.mana >= ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).getManaCost() && this.entropy >= ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).getEntropyCost())
+					if (this.canSmelt() && this.mana >= ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).manaCost && this.entropy >= ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).entropyCost)
 					{
 						this.totalSpawnMobTime = timeToSpawnmob((ItemStack)this.fuserItemStacks.get(0));
 						this.currentItemBurnTime = this.fuseTime;
@@ -291,8 +291,8 @@ public class TileEntityMonsterSpawnerSPC extends TileEntity implements ITickable
 						{
 							this.fuseTime = 0;
 							this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 1F, 2F);
-							this.mana -= ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).getManaCost();
-							this.entropy -= ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).getEntropyCost();
+							this.mana -= ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).manaCost;
+							this.entropy -= ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).entropyCost;
 							this.smeltItem();
 							flag1 = true;
 						}
@@ -317,7 +317,7 @@ public class TileEntityMonsterSpawnerSPC extends TileEntity implements ITickable
 		{
 			Item item = p_174904_1_.getItem();
 			if (item instanceof ItemFusion)
-			return ((ItemFusion)item).getItemToFuse().getTimeToSpawnMob() * 20;
+				return ((ItemFusion)item).fusionTime;
 			
 			return 0;
 		}
@@ -340,7 +340,7 @@ public class TileEntityMonsterSpawnerSPC extends TileEntity implements ITickable
 					ItemStack itemstack1 = (ItemStack)this.fuserItemStacks.get(2);
 					if (itemstack1.isEmpty()) return true;
 					if (!itemstack1.isItemEqual(itemstack)) return false;
-					if (this.mana < ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).getManaCost())return false;if (this.entropy < ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).getEntropyCost())return false;
+					if (this.mana < ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).manaCost)return false;if (this.entropy < ((ItemFusion)((ItemStack)this.fuserItemStacks.get(0)).getItem()).entropyCost)return false;
 					int result = itemstack1.getCount() + itemstack.getCount();
 					return result <= getInventoryStackLimit() && result <= itemstack1.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
 				}

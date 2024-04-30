@@ -10,8 +10,8 @@ import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.Tiny;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.block.state.IBlockState;
@@ -152,7 +152,7 @@ extends EntityFriendlyCreature implements Light, Tiny
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_SILVERFISH;
+		return LootRegistry.ENTITIES_SILVERFISH;
 	}
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
@@ -177,7 +177,7 @@ extends EntityFriendlyCreature implements Light, Tiny
 	public void performSpecialAttack()
 	{
 		setSpecialAttackTimer(400);
-		playSound(ESound.bugSpecial, 10.0F, 1.0F);
+		playSound(SoundRegistry.bugSpecial, 10.0F, 1.0F);
 		if (!this.world.isRemote)
 		{
 			for (int i = 0; i < 2; i++)

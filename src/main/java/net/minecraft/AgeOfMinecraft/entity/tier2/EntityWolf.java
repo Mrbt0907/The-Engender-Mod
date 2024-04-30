@@ -8,7 +8,7 @@ import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAICustomLeapAttack;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IJumpingMount;
@@ -163,7 +163,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Light, Animal
 		@Nullable
 		protected ResourceLocation getLootTable()
 		{
-			return ELoot.ENTITIES_WOLF;
+			return LootRegistry.ENTITIES_WOLF;
 		}
 
 		public void onLivingUpdate()

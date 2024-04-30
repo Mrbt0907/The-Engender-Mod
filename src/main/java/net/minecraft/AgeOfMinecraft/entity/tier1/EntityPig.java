@@ -13,8 +13,8 @@ import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityPigZombie;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IJumpingMount;
@@ -107,7 +107,7 @@ public class EntityPig extends EntityFriendlyCreature implements IJumpingMount, 
 	public void performSpecialAttack()
 	{
 		setSpecialAttackTimer(400);
-		playSound(ESound.pigSpecial, 5.0F, getSoundPitch());
+		playSound(SoundRegistry.pigSpecial, 5.0F, getSoundPitch());
 		List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, getEntityBoundingBox().grow(32.0D, 32.0D, 32.0D), Predicates.and(new Predicate[] { EntitySelectors.IS_ALIVE }));
 		if ((list != null) && (!list.isEmpty()))
 		{
@@ -206,7 +206,7 @@ public class EntityPig extends EntityFriendlyCreature implements IJumpingMount, 
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_PIG;
+		return LootRegistry.ENTITIES_PIG;
 	}
 
 	public boolean getSaddled()

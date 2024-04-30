@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -82,7 +82,7 @@ public class EntityMooshroom extends EntityCow implements net.minecraftforge.com
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_MUSHROOM_COW;
+		return LootRegistry.ENTITIES_MUSHROOM_COW;
 	}
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
 	{
@@ -97,15 +97,15 @@ public class EntityMooshroom extends EntityCow implements net.minecraftforge.com
 	}
 	protected SoundEvent getRegularHurtSound()
 	{
-		return ESound.woodHit;
+		return SoundRegistry.woodHit;
 	}
 	protected SoundEvent getPierceHurtSound()
 	{
-		return ESound.woodHitPierce;
+		return SoundRegistry.woodHitPierce;
 	}
 	protected SoundEvent getCrushHurtSound()
 	{
-		return ESound.woodHitCrush;
+		return SoundRegistry.woodHitCrush;
 	}
 }
 

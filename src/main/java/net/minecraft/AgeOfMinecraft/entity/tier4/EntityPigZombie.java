@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 import net.endermanofdoom.mac.util.TranslateUtil;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntityZombie;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -106,7 +106,7 @@ public class EntityPigZombie extends EntityZombie implements IJumpingMount
 	public void performSpecialAttack()
 	{
 		getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), (float)getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue() * 5.0F);
-		this.playSound(ESound.pigmanSpecial, this.getSoundVolume(), 1F);
+		this.playSound(SoundRegistry.pigmanSpecial, this.getSoundVolume(), 1F);
 		setSpecialAttackTimer(500);
 	}
 	public void onLivingUpdate()
@@ -120,7 +120,7 @@ public class EntityPigZombie extends EntityZombie implements IJumpingMount
 		{
 			this.jump();
 			getAttackTarget().motionY += 2D;
-			this.playSound(ESound.pigmanSpecial, this.getSoundVolume(), 1F);
+			this.playSound(SoundRegistry.pigmanSpecial, this.getSoundVolume(), 1F);
 			performSpecialAttack();
 		}
 	}
@@ -309,7 +309,7 @@ public class EntityPigZombie extends EntityZombie implements IJumpingMount
 		@Nullable
 		protected ResourceLocation getLootTable()
 		{
-			return ELoot.ENTITIES_ZOMBIE_PIGMAN;
+			return LootRegistry.ENTITIES_ZOMBIE_PIGMAN;
 		}
 		protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 		{

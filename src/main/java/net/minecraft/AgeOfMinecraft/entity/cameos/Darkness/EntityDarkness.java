@@ -19,7 +19,7 @@ import net.minecraft.AgeOfMinecraft.entity.other.BeamHitbox;
 import net.minecraft.AgeOfMinecraft.entity.other.IBeamHitboxHandler;
 import net.minecraft.AgeOfMinecraft.entity.sources.EngenderDamageSources;
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.AgeOfMinecraft.util.DialogColors;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -1578,6 +1578,6 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	@SideOnly(Side.CLIENT)
 	public SoundEvent getMusic()
 	{
-		return getPhase() > 0 ? ESound.darknessMax : ESound.darkness;
+		return getPhase() > 0 ? SoundRegistry.darknessMax : SoundRegistry.darkness;
 	}
 }

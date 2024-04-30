@@ -10,8 +10,8 @@ import net.endermanofdoom.mac.util.TranslateUtil;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -253,7 +253,7 @@ extends EntityFriendlyCreature implements IJumpingMount
 		if ((getAttackTarget() != null) && (getDistanceSq(getAttackTarget()) < 64D * getSlimeSize()) && (getSpecialAttackTimer() <= 0) && (isHero()))
 		{
 			setSpecialAttackTimer(100 * getSlimeSize());
-			playSound(ESound.golemSmash, 10.0F, 2.0F - getSlimeSize() * 0.25F);
+			playSound(SoundRegistry.golemSmash, 10.0F, 2.0F - getSlimeSize() * 0.25F);
 			createEngenderModExplosionFireless(this, this.posX, this.posY - 0.5D, this.posZ, getSlimeSize(), false);
 			if ((getAttackTarget() != null) && (!isOnSameTeam(getAttackTarget())))
 			{
@@ -509,7 +509,7 @@ extends EntityFriendlyCreature implements IJumpingMount
 		@Nullable
 		protected ResourceLocation getLootTable()
 		{
-			return this.isSmallSlime() ? ELoot.ENTITIES_SLIME : LootTableList.EMPTY;
+			return this.isSmallSlime() ? LootRegistry.ENTITIES_SLIME : LootTableList.EMPTY;
 		}
 		public boolean isSmallSlime()
 		{

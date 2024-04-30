@@ -1,6 +1,6 @@
 package net.minecraft.AgeOfMinecraft.entity.ai;
 
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.entity.EntityLiving;
@@ -104,7 +104,7 @@ public class EntityAIVindicatorBreakDoor extends EntityAIDoorInteract
 			this.breakingTime = 8;
 			this.entity.world.setBlockToAir(this.doorPosition);
 			this.entity.world.setBlockToAir(this.doorPosition.down());
-			this.entity.playSound(ESound.heresJohnny, 2F, 1F);
+			this.entity.playSound(SoundRegistry.heresJohnny, 2F, 1F);
 			this.entity.world.playEvent(1021, this.doorPosition, 0);
 			this.entity.world.playEvent(2001, this.doorPosition, Block.getIdFromBlock(this.doorBlock));
 		}

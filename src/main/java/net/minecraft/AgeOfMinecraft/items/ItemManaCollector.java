@@ -3,10 +3,10 @@ package net.minecraft.AgeOfMinecraft.items;
 import java.util.List;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import javax.annotation.Nullable;
 
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -32,13 +32,11 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 {
 	private final int type;
 	
-	public ItemManaCollector(String name, int data)
+	public ItemManaCollector(int data)
 	{
 		this.type = data;
-		this.setRegistryName(name);
-		this.setUnlocalizedName(name);
 		this.setMaxStackSize(1);
-		this.setCreativeTab(ETab.engender);
+		this.setCreativeTab(CreativeTabRegistry.engender);
 		this.setHasSubtypes(true);
 		if (data != 2)
 		this.addPropertyOverride(new ResourceLocation("percent"), new IItemPropertyGetter()
@@ -179,7 +177,7 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 				stack.getTagCompound().setInteger("mana", 0);
 				stack.getTagCompound().setInteger("entropy", 0);
 			}
-			return type == 2 ? ESetup.UBEREPIC : EnumRarity.EPIC;
+			return type == 2 ? EngenderSetup.UBEREPIC : EnumRarity.EPIC;
 		}
 
 		public int getMaxMana(ItemStack stack)

@@ -8,7 +8,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -34,7 +34,7 @@ extends Block
 	{
 		super(Material.IRON);
 		setTickRandomly(true);
-		setCreativeTab(ETab.engender);
+		setCreativeTab(CreativeTabRegistry.engender);
 		setUnlocalizedName("guard_block");
 		setHardness(5.0F);
 		setResistance(6000000.0F);

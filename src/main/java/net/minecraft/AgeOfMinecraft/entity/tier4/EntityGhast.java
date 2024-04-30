@@ -16,8 +16,8 @@ import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.Massive;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAvoidEntitySPC;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -372,7 +372,7 @@ extends EntityFriendlyCreature implements Massive, Flying, Light
 			@Nullable
 			protected ResourceLocation getLootTable()
 			{
-				return ELoot.ENTITIES_GHAST;
+				return LootRegistry.ENTITIES_GHAST;
 			}
 			protected float getSoundVolume()
 			{
@@ -440,7 +440,7 @@ extends EntityFriendlyCreature implements Massive, Flying, Light
 			}
 			protected SoundEvent getCrushHurtSound()
 			{
-				return ESound.fleshHitCrushHeavy;
+				return SoundRegistry.fleshHitCrushHeavy;
 			}
 			static class AIFireballAttack extends EntityAIBase
 			{

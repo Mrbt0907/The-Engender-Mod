@@ -8,7 +8,7 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAttackRangedAlly;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -226,7 +226,7 @@ public class EntityLlama extends EntityFriendlyCreature implements IRangedAttack
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_LLAMA;
+		return LootRegistry.ENTITIES_LLAMA;
 	}
 
 	public void makeMad()

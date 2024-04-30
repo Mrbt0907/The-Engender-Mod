@@ -3,7 +3,7 @@ package net.minecraft.AgeOfMinecraft.renders;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.AgeOfMinecraft.entity.cameos.Darkness.EntityDarkProjectile;
-import net.minecraft.AgeOfMinecraft.registry.ETextures;
+import net.minecraft.AgeOfMinecraft.registry.TextureRegistry;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -64,7 +64,7 @@ public class RenderDarkProjectile extends Render<EntityDarkProjectile>
 		switch (entity.getType())
 		{
 			default:
-				return ETextures.getTexture(ETextures.textureErasure);
+				return TextureRegistry.getTexture(TextureRegistry.textureErasure);
 		}
 	}
 

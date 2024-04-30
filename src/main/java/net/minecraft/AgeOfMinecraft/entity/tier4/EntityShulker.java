@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
@@ -15,7 +15,7 @@ import net.minecraft.AgeOfMinecraft.entity.Ender;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Structure;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonExtension;
 import net.minecraft.block.material.Material;
@@ -162,7 +162,7 @@ extends EntityFriendlyCreature implements Armored, Structure, Ender
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return ESetup.ENDER;
+		return EngenderSetup.ENDER;
 	}
 	public int getMaxSpawnedInChunk()
 	{
@@ -308,7 +308,7 @@ extends EntityFriendlyCreature implements Armored, Structure, Ender
 		this.motionY = -0.6D;
 		if (this.deathTime == 1)
 		{
-			playSound(ESound.buildingDeath, 2.0F, 1.0F);
+			playSound(SoundRegistry.buildingDeath, 2.0F, 1.0F);
 			for (int k = 0; k < 200; k++)
 			{
 				double d2 = this.rand.nextGaussian() * 0.1D;
@@ -828,37 +828,37 @@ extends EntityFriendlyCreature implements Armored, Structure, Ender
 			{
 				case WHITE:
 				default:
-				return ELoot.ENTITIES_SHULKER_WHITE;
+				return LootRegistry.ENTITIES_SHULKER_WHITE;
 				case ORANGE:
-				return ELoot.ENTITIES_SHULKER_ORANGE;
+				return LootRegistry.ENTITIES_SHULKER_ORANGE;
 				case MAGENTA:
-				return ELoot.ENTITIES_SHULKER_MAGENTA;
+				return LootRegistry.ENTITIES_SHULKER_MAGENTA;
 				case LIGHT_BLUE:
-				return ELoot.ENTITIES_SHULKER_LIGHT_BLUE;
+				return LootRegistry.ENTITIES_SHULKER_LIGHT_BLUE;
 				case YELLOW:
-				return ELoot.ENTITIES_SHULKER_YELLOW;
+				return LootRegistry.ENTITIES_SHULKER_YELLOW;
 				case LIME:
-				return ELoot.ENTITIES_SHULKER_LIME;
+				return LootRegistry.ENTITIES_SHULKER_LIME;
 				case PINK:
-				return ELoot.ENTITIES_SHULKER_PINK;
+				return LootRegistry.ENTITIES_SHULKER_PINK;
 				case GRAY:
-				return ELoot.ENTITIES_SHULKER_GRAY;
+				return LootRegistry.ENTITIES_SHULKER_GRAY;
 				case SILVER:
-				return ELoot.ENTITIES_SHULKER_SILVER;
+				return LootRegistry.ENTITIES_SHULKER_SILVER;
 				case CYAN:
-				return ELoot.ENTITIES_SHULKER_CYAN;
+				return LootRegistry.ENTITIES_SHULKER_CYAN;
 				case PURPLE:
-				return ELoot.ENTITIES_SHULKER_PURPLE;
+				return LootRegistry.ENTITIES_SHULKER_PURPLE;
 				case BLUE:
-				return ELoot.ENTITIES_SHULKER_BLUE;
+				return LootRegistry.ENTITIES_SHULKER_BLUE;
 				case BROWN:
-				return ELoot.ENTITIES_SHULKER_BROWN;
+				return LootRegistry.ENTITIES_SHULKER_BROWN;
 				case GREEN:
-				return ELoot.ENTITIES_SHULKER_GREEN;
+				return LootRegistry.ENTITIES_SHULKER_GREEN;
 				case RED:
-				return ELoot.ENTITIES_SHULKER_RED;
+				return LootRegistry.ENTITIES_SHULKER_RED;
 				case BLACK:
-				return ELoot.ENTITIES_SHULKER_BLACK;
+				return LootRegistry.ENTITIES_SHULKER_BLACK;
 			}
 		}
 
@@ -956,15 +956,15 @@ extends EntityFriendlyCreature implements Armored, Structure, Ender
 		}
 		protected SoundEvent getRegularHurtSound()
 		{
-			return ESound.woodHit;
+			return SoundRegistry.woodHit;
 		}
 		protected SoundEvent getPierceHurtSound()
 		{
-			return ESound.woodHitPierce;
+			return SoundRegistry.woodHitPierce;
 		}
 		protected SoundEvent getCrushHurtSound()
 		{
-			return ESound.woodHitCrush;
+			return SoundRegistry.woodHitCrush;
 		}
 		class AIAttack extends EntityAIBase
 		{

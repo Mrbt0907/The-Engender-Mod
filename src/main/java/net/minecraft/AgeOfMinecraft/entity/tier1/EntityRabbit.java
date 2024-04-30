@@ -11,7 +11,7 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAILeaderHurtByTarget;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAILeaderHurtTarget;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCarrot;
 import net.minecraft.block.state.IBlockState;
@@ -305,7 +305,7 @@ extends EntityFriendlyCreature implements Light, Tiny, Animal
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_RABBIT;
+		return LootRegistry.ENTITIES_RABBIT;
 	}
 	public int getRabbitType()
 	{

@@ -21,8 +21,8 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.tier2.EntityEndermite;
 import net.minecraft.AgeOfMinecraft.entity.tier6.EntityWitherStorm;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -179,7 +179,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Armored, Ender
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return ESetup.ENDER;
+		return EngenderSetup.ENDER;
 	}
 
 	public void func_184716_o()
@@ -723,7 +723,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Armored, Ender
 			@Nullable
 			protected ResourceLocation getLootTable()
 			{
-				return ELoot.ENTITIES_ENDERMAN;
+				return LootRegistry.ENTITIES_ENDERMAN;
 			}
 			public void setHeldBlockState(IBlockState state)
 			{

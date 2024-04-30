@@ -12,14 +12,17 @@ import net.minecraft.AgeOfMinecraft.entity.tier4.*;
 import net.minecraft.AgeOfMinecraft.entity.tier5.*;
 import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.EntityAreaEffectCloudOther;
 import net.minecraft.AgeOfMinecraft.entity.tier6.*;
-import net.minecraft.AgeOfMinecraft.registry.EItem;
-import net.minecraft.AgeOfMinecraft.registry.EParticle;
+import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.ParticleRegistry;
 import net.minecraft.AgeOfMinecraft.renders.*;
-import net.minecraft.AgeOfMinecraft.registry.EBlock;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -31,7 +34,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		MinecraftForge.EVENT_BUS.register(EParticle.class);
+		MinecraftForge.EVENT_BUS.register(ParticleRegistry.class);
 		renderEntities();
 		super.preInit(e);
 	}
@@ -40,20 +43,18 @@ public class ClientProxy extends CommonProxy
 	public void init(FMLInitializationEvent e)
 	{
 		super.init(e);
+		
+
 	}
 
 	@Override
 	public void postInit(FMLPostInitializationEvent e)
 	{
 		super.postInit(e);
-		EItem.registerRenders();
-		EBlock.registerRenders();
 	}
 
 	public void renderEntities()
 	{
-		//TileEntityRendererDispatcher.instance.renderers.put(TileEntityBeaconSPC.class, new TileEntityRenderBeaconSPC());
-		
 		 RenderingRegistry.registerEntityRenderingHandler(EntityManaOrb.class, manager -> new RenderManaOrb(manager));
 		 RenderingRegistry.registerEntityRenderingHandler(EntityAreaEffectCloudOther.class, manager -> new RenderNullEntity(manager));
 		 RenderingRegistry.registerEntityRenderingHandler(EntityEversource.class, manager -> new RenderEversource(manager));
@@ -124,4 +125,8 @@ public class ClientProxy extends CommonProxy
 		 RenderingRegistry.registerEntityRenderingHandler(EntityDarkness.class, manager -> new RenderDarkness(manager));
 		 RenderingRegistry.registerEntityRenderingHandler(EntityDarkProjectile.class, manager -> new RenderDarkProjectile(manager));
 	}
+    public static void registerItemSubbed(ItemModelMesher renderItem, Item item, int meta)
+    {
+    	ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation("ageofminecraft:" + item.getUnlocalizedName().substring(5), "inventory"));
+    }
 }

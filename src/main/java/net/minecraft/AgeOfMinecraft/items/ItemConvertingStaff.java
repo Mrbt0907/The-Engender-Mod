@@ -3,14 +3,14 @@ import java.util.List;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,10 +36,7 @@ public class ItemConvertingStaff extends Item
 {
 	public ItemConvertingStaff()
 	{
-		setRegistryName("convertingstaff");
-		setUnlocalizedName("convertingstaff");
 		setMaxStackSize(1);
-		setCreativeTab(ETab.engender);
 		this.setHasSubtypes(true);
 	}
 	public EnumAction getItemUseAction(ItemStack stack)
@@ -65,9 +62,9 @@ public class ItemConvertingStaff extends Item
 			case 3:
 			return EnumRarity.EPIC;
 			case 4:
-			return ESetup.SUPEREPIC;
+			return EngenderSetup.SUPEREPIC;
 			default:
-			return ESetup.UBEREPIC;
+			return EngenderSetup.UBEREPIC;
 		}
 	}
 	@SideOnly(Side.CLIENT)

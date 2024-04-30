@@ -6,6 +6,7 @@ import net.endermanofdoom.mac.internal.music.MusicManager;
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
+import net.minecraft.AgeOfMinecraft.api.entity.EntityType;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
 import net.minecraft.AgeOfMinecraft.entity.cameos.Darkness.EntityDarkness;
@@ -47,13 +48,13 @@ import net.minecraft.AgeOfMinecraft.entity.tier5.EntityGiant;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityIronGolem;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityWither;
 import net.minecraft.AgeOfMinecraft.items.ItemFusion;
-import net.minecraft.AgeOfMinecraft.items.ItemTierItem;
+import net.minecraft.AgeOfMinecraft.items.ItemFusionSpawner;
 import net.minecraft.AgeOfMinecraft.nexudium.NexudiumClient;
 import net.minecraft.AgeOfMinecraft.nexudium.NexudiumServer;
-import net.minecraft.AgeOfMinecraft.registry.EEffect;
-import net.minecraft.AgeOfMinecraft.registry.EItem;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
-import net.minecraft.AgeOfMinecraft.registry.ETextures;
+import net.minecraft.AgeOfMinecraft.registry.PotionRegistry;
+import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
+import net.minecraft.AgeOfMinecraft.registry.TextureRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -118,7 +119,7 @@ public class EngenderEventHandler
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(TextureStitchEvent.Pre event)
 	{	
-		ETextures.init(event);	
+		TextureRegistry.init(event);	
 	}
 	
 	@SubscribeEvent
@@ -158,46 +159,46 @@ public class EngenderEventHandler
 		
 		if (main != null)
 			if(location.equals(LootTableList.CHESTS_SPAWN_BONUS_CHEST))
-				main.addEntry(new LootEntryItem(EItem.convertingStaff, 5, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":convertingstaff"));
+				main.addEntry(new LootEntryItem(ItemRegistry.convertingStaff, 5, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":convertingstaff"));
 			else if(location.equals(LootTableList.CHESTS_SIMPLE_DUNGEON))
 			{
-				main.addEntry(new LootEntryItem(EItem.zombieItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":zombie"));
-				main.addEntry(new LootEntryItem(EItem.skeletonItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":skeleton"));
-				main.addEntry(new LootEntryItem(EItem.spiderItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 3))}, new LootCondition[0], EngenderMod.MODID + ":spider"));
+				main.addEntry(new LootEntryItem(ItemRegistry.zombieItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":zombie"));
+				main.addEntry(new LootEntryItem(ItemRegistry.skeletonItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":skeleton"));
+				main.addEntry(new LootEntryItem(ItemRegistry.spiderItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 3))}, new LootCondition[0], EngenderMod.MODID + ":spider"));
 			}
 			else if(location.equals(LootTableList.CHESTS_DESERT_PYRAMID))
-				main.addEntry(new LootEntryItem(EItem.huskItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":husk"));
+				main.addEntry(new LootEntryItem(ItemRegistry.huskItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":husk"));
 			else if(location.equals(LootTableList.CHESTS_IGLOO_CHEST))
-				main.addEntry(new LootEntryItem(EItem.strayItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":stray"));
+				main.addEntry(new LootEntryItem(ItemRegistry.strayItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":stray"));
 			else if(location.equals(LootTableList.CHESTS_ABANDONED_MINESHAFT))
-				main.addEntry(new LootEntryItem(EItem.cavespiderItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(2, 8))}, new LootCondition[0], EngenderMod.MODID + ":cavespider"));
+				main.addEntry(new LootEntryItem(ItemRegistry.cavespiderItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(2, 8))}, new LootCondition[0], EngenderMod.MODID + ":cavespider"));
 			else if(location.equals(LootTableList.CHESTS_VILLAGE_BLACKSMITH))
 			{
-				main.addEntry(new LootEntryItem(EItem.villagerItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 4))}, new LootCondition[0], EngenderMod.MODID + ":villager"));
-				main.addEntry(new LootEntryItem(EItem.villagergolemItem, 1, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":irongolem"));
+				main.addEntry(new LootEntryItem(ItemRegistry.villagerItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 4))}, new LootCondition[0], EngenderMod.MODID + ":villager"));
+				main.addEntry(new LootEntryItem(ItemRegistry.villagergolemItem, 1, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":irongolem"));
 			}
 			else if(location.equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR) || event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING) || event.getName().equals(LootTableList.CHESTS_STRONGHOLD_LIBRARY))
 			{
-				main.addEntry(new LootEntryItem(EItem.silverfishItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 4))}, new LootCondition[0], EngenderMod.MODID + ":silverfish"));
-				main.addEntry(new LootEntryItem(EItem.spiderItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":spider"));
-				main.addEntry(new LootEntryItem(EItem.endermanItem, 1, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":endermanItem"));
+				main.addEntry(new LootEntryItem(ItemRegistry.silverfishItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 4))}, new LootCondition[0], EngenderMod.MODID + ":silverfish"));
+				main.addEntry(new LootEntryItem(ItemRegistry.spiderItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":spider"));
+				main.addEntry(new LootEntryItem(ItemRegistry.endermanItem, 1, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":endermanItem"));
 			}
 			else if(location.equals(LootTableList.CHESTS_JUNGLE_TEMPLE))
 			{
-				main.addEntry(new LootEntryItem(EItem.zombieItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":zombie"));
-				main.addEntry(new LootEntryItem(EItem.ozelotItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(2, 8))}, new LootCondition[0], EngenderMod.MODID + ":ozelot"));
+				main.addEntry(new LootEntryItem(ItemRegistry.zombieItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":zombie"));
+				main.addEntry(new LootEntryItem(ItemRegistry.ozelotItem, 1, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(2, 8))}, new LootCondition[0], EngenderMod.MODID + ":ozelot"));
 			}
 			else if(location.equals(LootTableList.CHESTS_WOODLAND_MANSION))
 			{
-				main.addEntry(new LootEntryItem(EItem.vindicatorItem, 5, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":vindicator"));
-				main.addEntry(new LootEntryItem(EItem.vexItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(2, 8))}, new LootCondition[0], EngenderMod.MODID + ":vex"));
-				main.addEntry(new LootEntryItem(EItem.evokerItem, 1, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":evoker"));
+				main.addEntry(new LootEntryItem(ItemRegistry.vindicatorItem, 5, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":vindicator"));
+				main.addEntry(new LootEntryItem(ItemRegistry.vexItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(2, 8))}, new LootCondition[0], EngenderMod.MODID + ":vex"));
+				main.addEntry(new LootEntryItem(ItemRegistry.evokerItem, 1, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":evoker"));
 			}
 			else if(location.equals(LootTableList.CHESTS_END_CITY_TREASURE))
 			{
-				main.addEntry(new LootEntryItem(EItem.shulkerItem, 5, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":shulker"));
-				main.addEntry(new LootEntryItem(EItem.endermiteItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(2, 8))}, new LootCondition[0], EngenderMod.MODID + ":endermite"));
-				main.addEntry(new LootEntryItem(EItem.endermanItem, 5, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":enderman"));
+				main.addEntry(new LootEntryItem(ItemRegistry.shulkerItem, 5, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(1, 2))}, new LootCondition[0], EngenderMod.MODID + ":shulker"));
+				main.addEntry(new LootEntryItem(ItemRegistry.endermiteItem, 10, 0, new LootFunction[]{new SetCount(new LootCondition[0], new RandomValueRange(2, 8))}, new LootCondition[0], EngenderMod.MODID + ":endermite"));
+				main.addEntry(new LootEntryItem(ItemRegistry.endermanItem, 5, 0, new LootFunction[0], new LootCondition[0], EngenderMod.MODID + ":enderman"));
 			}
 	}
 	
@@ -208,7 +209,7 @@ public class EngenderEventHandler
 		{
 			EntityLivingBase entity = (EntityLivingBase)event.getEntity();
 			
-			if (EngenderMod.doesntHaveTimeToBleed(entity) && event.getPotionEffect().getPotion().equals(EEffect.BLEEDING))
+			if (EntityType.doesntHaveTimeToBleed(entity) && event.getPotionEffect().getPotion().equals(PotionRegistry.BLEEDING))
 				entity.removeActivePotionEffect(event.getPotionEffect().getPotion());
 		}
 	}
@@ -242,37 +243,37 @@ public class EngenderEventHandler
 	public static void playOnHitSound(DamageSource attacktype, Entity entity, float damage)
 	{
 		if (attacktype.getDamageType() != "yell")
-			if (EngenderMod.isWoodLikeMob(entity))
+			if (EntityType.isWoodLikeMob(entity))
 			{
 				if (attacktype.isProjectile() && attacktype.getDamageType() != "fireball")
-					entity.playSound(ESound.woodHitPierce, 2F, 1.0F);
+					entity.playSound(SoundRegistry.woodHitPierce, 2F, 1.0F);
 				else if (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA)
-					entity.playSound(ESound.woodHitCrush, 2F, 1.0F);
+					entity.playSound(SoundRegistry.woodHitCrush, 2F, 1.0F);
 				else
-					entity.playSound(ESound.woodHit, 2F, 1.0F);
+					entity.playSound(SoundRegistry.woodHit, 2F, 1.0F);
 			}
-			else if (EngenderMod.isMetalLikeMob(entity))
+			else if (EntityType.isMetalLikeMob(entity))
 			{
 				if (attacktype.isProjectile() && attacktype.getDamageType() != "fireball")
-					entity.playSound(ESound.metalHitPierce, 2F, 1.0F);
+					entity.playSound(SoundRegistry.metalHitPierce, 2F, 1.0F);
 				else if (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA)
-					entity.playSound(ESound.metalHitCrush, 2F, 1.0F);
+					entity.playSound(SoundRegistry.metalHitCrush, 2F, 1.0F);
 				else
-					entity.playSound(ESound.metalHit, 2F, 1.0F);
+					entity.playSound(SoundRegistry.metalHit, 2F, 1.0F);
 			}
 			else
 			{
 				if (attacktype.isProjectile() && attacktype.getDamageType() != "fireball")
-					entity.playSound(ESound.fleshHitPierce, 2F, 1.0F);
+					entity.playSound(SoundRegistry.fleshHitPierce, 2F, 1.0F);
 				else if (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA)
 				{
 				if (entity.height >= 5.0F)
-					entity.playSound(ESound.fleshHitCrushHeavy, 2F, 1.0F);
+					entity.playSound(SoundRegistry.fleshHitCrushHeavy, 2F, 1.0F);
 				else
-					entity.playSound(ESound.fleshHitCrush, 2F, 1.0F);
+					entity.playSound(SoundRegistry.fleshHitCrush, 2F, 1.0F);
 				}
 				else
-					entity.playSound(ESound.fleshHit, 2F, 1.0F);
+					entity.playSound(SoundRegistry.fleshHit, 2F, 1.0F);
 			}
 	}
 	
@@ -297,7 +298,7 @@ public class EngenderEventHandler
 		}
 		
 		
-		if (EngenderConfig.general.useBleeding && !source.isMagicDamage() && !source.isFireDamage() && !EngenderMod.doesntHaveTimeToBleed(victim))
+		if (EngenderConfig.general.useBleeding && !source.isMagicDamage() && !source.isFireDamage() && !EntityType.doesntHaveTimeToBleed(victim))
 			if ((damage > 1.5F || source.isProjectile() || source.isExplosion()) && victim.getRNG().nextFloat() >= 0.3F)
 			{
 				int level = damage > 10 ? 3 : damage > 6 ? 2 : damage > 4 ? 1 : 0;
@@ -307,7 +308,7 @@ public class EngenderEventHandler
 				
 					if (victim.world.isRemote)
 						victim.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, true, victim.posX + (victim.getRNG().nextFloat() - 0.5D) * victim.width, victim.posY + (victim.getRNG().nextFloat()* victim.height), victim.posZ + (victim.getRNG().nextFloat() - 0.5D) * victim.width, 4.0D * (victim.getRNG().nextFloat() - 0.5D), 0.5D, (victim.getRNG().nextFloat() - 0.5D) * 4.0D, new int[] { Block.getStateId(Blocks.REDSTONE_BLOCK.getDefaultState()) });
-				victim.addPotionEffect(new PotionEffect(EEffect.BLEEDING, (int)(damage * (60 + (damage * level))), level, false, false));
+				victim.addPotionEffect(new PotionEffect(PotionRegistry.BLEEDING, (int)(damage * (60 + (damage * level))), level, false, false));
 			}
 		
 		if (attacker instanceof EntityLivingBase)
@@ -515,13 +516,13 @@ public class EngenderEventHandler
 			EntityItem itemEntity = (EntityItem)entity;
 			Item item = itemEntity.getItem().getItem();
 			
-			if (item instanceof ItemTierItem || item instanceof ItemFusion)
+			if (item instanceof ItemFusionSpawner || item instanceof ItemFusion)
 				itemEntity.setNoDespawn();
 			
-			if (item == EItem.witheredNetherStar ||
-			item == EItem.witherStormItem || item == EItem.fusionItemWitherStorm ||
-			item == EItem.jzaharItem || item == EItem.fusionItemJzahar || item == EItem.chaosGuardianItem ||
-			item == EItem.fusionItemChaosGuardian || item == Item.getItemFromBlock(Blocks.COMMAND_BLOCK) ||
+			if (item == ItemRegistry.witheredNetherStar ||
+			item == ItemRegistry.witherStormItem || item == ItemRegistry.fusionItemWitherStorm ||
+			item == ItemRegistry.jzaharItem || item == ItemRegistry.fusionItemJzahar || item == ItemRegistry.chaosGuardianItem ||
+			item == ItemRegistry.fusionItemChaosGuardian || item == Item.getItemFromBlock(Blocks.COMMAND_BLOCK) ||
 			item == Item.getItemFromBlock(Blocks.CHAIN_COMMAND_BLOCK) || item == Item.getItemFromBlock(Blocks.REPEATING_COMMAND_BLOCK) ||
 			item == Item.getItemFromBlock(Blocks.BARRIER) || item == Item.getItemFromBlock(Blocks.BEDROCK) ||
 			item == Item.getItemFromBlock(Blocks.STRUCTURE_BLOCK) || item == Item.getItemFromBlock(Blocks.STRUCTURE_VOID) ||

@@ -13,8 +13,8 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Massive;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -305,7 +305,7 @@ public class EntityGiant extends EntityFriendlyCreature implements Massive, Armo
 	public void performSpecialAttack()
 	{
 		this.motionY = 2D;
-		playSound(ESound.golemSpecial, 10.0F, 0.75F);
+		playSound(SoundRegistry.golemSpecial, 10.0F, 0.75F);
 	}
 	public boolean takesFallDamage()
 	{
@@ -316,7 +316,7 @@ public class EntityGiant extends EntityFriendlyCreature implements Massive, Armo
 		if ((getSpecialAttackTimer() <= 0) && (isHero()))
 		{
 			setSpecialAttackTimer(500);
-			playSound(ESound.golemSmash, 10.0F, 0.9F);
+			playSound(SoundRegistry.golemSmash, 10.0F, 0.9F);
 			createEngenderModExplosionFireless(this, this.posX, this.posY - 3.0D, this.posZ, 6.0F, false);
 			List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, getEntityBoundingBox().grow(48.0D, 3.0D, 48.0D), Predicates.and(new Predicate[] { EntitySelectors.IS_ALIVE }));
 			if ((list != null) && (!list.isEmpty()))
@@ -374,7 +374,7 @@ public class EntityGiant extends EntityFriendlyCreature implements Massive, Armo
 		@Nullable
 		protected ResourceLocation getLootTable()
 		{
-			return ELoot.ENTITIES_GIANT;
+			return LootRegistry.ENTITIES_GIANT;
 		}
 		protected float getSoundPitch()
 		{
@@ -382,7 +382,7 @@ public class EntityGiant extends EntityFriendlyCreature implements Massive, Armo
 		}
 		protected SoundEvent getCrushHurtSound()
 		{
-			return ESound.fleshHitCrushHeavy;
+			return SoundRegistry.fleshHitCrushHeavy;
 		}
 
 		public boolean canBeCollidedWith()

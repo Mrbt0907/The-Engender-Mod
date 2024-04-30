@@ -13,7 +13,7 @@ import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.Tiny;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntityZombie;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -186,7 +186,7 @@ public class EntityChicken extends EntityFriendlyCreature implements IJumpingMou
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_CHICKEN;
+		return LootRegistry.ENTITIES_CHICKEN;
 	}
 	public void readEntityFromNBT(NBTTagCompound tagCompund)
 	{

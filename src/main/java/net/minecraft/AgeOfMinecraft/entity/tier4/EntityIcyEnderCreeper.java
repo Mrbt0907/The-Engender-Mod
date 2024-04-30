@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
@@ -16,7 +16,7 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.minecraft.AgeOfMinecraft.entity.tier2.EntityEndermite;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -158,7 +158,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Armored, Ender
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return ESetup.ENDER;
+		return EngenderSetup.ENDER;
 	}
 
 	public void func_184716_o()
@@ -570,7 +570,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Armored, Ender
 		@Nullable
 		protected ResourceLocation getLootTable()
 		{
-			return ELoot.ENTITIES_ICY_ENDER_CREEPER;
+			return LootRegistry.ENTITIES_ICY_ENDER_CREEPER;
 		}
 		public boolean takesFallDamage()
 		{

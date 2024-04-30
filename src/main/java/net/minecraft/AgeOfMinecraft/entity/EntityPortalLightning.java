@@ -3,7 +3,7 @@ package net.minecraft.AgeOfMinecraft.entity;
 import java.util.List;
 
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -146,7 +146,7 @@ public class EntityPortalLightning extends EntityFireball
 		}
 		if (this.ticksExisted > 5 && this.shootingEntity != null && targetEntity != null && this.getDistance(targetEntity) <= 2D)
 		{
-			this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, ESound.lightningShot, SoundCategory.WEATHER, 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+			this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundRegistry.lightningShot, SoundCategory.WEATHER, 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
 			targetEntity.onStruckByLightning(null);
 			targetEntity.hurtResistantTime = 0;
 			if (this.shootingEntity instanceof EntityFriendlyCreature)

@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,9 +22,6 @@ public class ItemEngenderStatChecker extends Item
 	public static EntityFriendlyCreature viewedEntity;
 	public ItemEngenderStatChecker()
 	{
-		setRegistryName("statchecker");
-		setUnlocalizedName("statchecker");
-		setCreativeTab(ETab.engender);
 		setMaxStackSize(1);
 	}
 	public EnumRarity getRarity(ItemStack stack)

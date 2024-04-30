@@ -5,8 +5,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import net.minecraft.AgeOfMinecraft.registry.ESetup;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.tier1.EntityChicken;
 import net.minecraft.AgeOfMinecraft.entity.tier1.EntityCow;
@@ -36,8 +36,8 @@ import net.minecraft.AgeOfMinecraft.entity.tier4.EntityWitch;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityElderGuardian;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityEvoker;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityIllusioner;
-import net.minecraft.AgeOfMinecraft.registry.EItem;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -104,8 +104,8 @@ public EntityPortal(World worldIn)
 	setSize(4F, 1F);
 	this.reachWidth = 6F;
 	this.isImmuneToFire = true;
-	playSound(ESound.portalMake, 100.0F, 1.0F);
-	playSound(ESound.portalAmbient, 5.0F, 1.0F);
+	playSound(SoundRegistry.portalMake, 100.0F, 1.0F);
+	playSound(SoundRegistry.portalAmbient, 5.0F, 1.0F);
 	this.experienceValue = 18000;
 	this.setLevel(300);
 	this.setLocationAndAngles((int)this.posX, (int)this.posY, (int)this.posZ, 0.0F, -90.0F);
@@ -133,7 +133,7 @@ public boolean canWearEasterEggs()
 */
 public EnumCreatureAttribute getCreatureAttribute()
 {
-	return ESetup.CONSTRUCT;
+	return EngenderSetup.CONSTRUCT;
 }
 protected void entityInit()
 {
@@ -284,8 +284,8 @@ public void fall(float distance, float damageMultiplier)
 	
 	if (i > 0)
 	{
-		playSound(ESound.golemSmash, 10.0F, 0.75F);
-		playSound(ESound.golemSmash, 10.0F, 0.5F);
+		playSound(SoundRegistry.golemSmash, 10.0F, 0.75F);
+		playSound(SoundRegistry.golemSmash, 10.0F, 0.5F);
 		List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, getEntityBoundingBox().grow(4.0D + i, 2.0D, 4.0D + i), Predicates.and(new Predicate[] { EntitySelectors.IS_ALIVE }));
 		if ((list != null) && (!list.isEmpty()))
 		{
@@ -574,15 +574,15 @@ if (this.world.isRemote)
 }
 if ((this.ticksExisted + this.getEntityId()) % (this.getJukeboxToDanceTo() != null ? 20 : 200) == 0)
 {
-	playSound(ESound.portalWhoosh, 5.0F, 1.0F);
+	playSound(SoundRegistry.portalWhoosh, 5.0F, 1.0F);
 }
 if ((this.ticksExisted + this.getEntityId()) % 670 == 0)
 {
-	playSound(ESound.portalAmbient, 5.0F, 1.0F);
+	playSound(SoundRegistry.portalAmbient, 5.0F, 1.0F);
 }
 if ((this.ticksExisted + this.getEntityId()) > 60 && ((this.ticksExisted + this.getEntityId()) % (this.getJukeboxToDanceTo() != null ? 20 : (this.getMetaData() > 2 ? 50 : 100)) == 0) && (this.rand.nextInt((this.getJukeboxToDanceTo() != null ? 5 : 10)) == 0))
 {
-	playSound(ESound.portalWhoosh, 10.0F, getSoundPitch() + 1.9F);
+	playSound(SoundRegistry.portalWhoosh, 10.0F, getSoundPitch() + 1.9F);
 	int i = 0;
 	if (this.rand.nextInt(2) == 0)
 	{
@@ -972,9 +972,9 @@ if ((this.ticksExisted + this.getEntityId()) > 60 && ((this.ticksExisted + this.
 					this.deathTime += 1;
 					if (this.deathTime == 1)
 					{
-						playSound(ESound.buildingDeath, 10.0F, 1.0F);
+						playSound(SoundRegistry.buildingDeath, 10.0F, 1.0F);
 						if (!this.world.isRemote)
-						this.entityDropItem(new ItemStack(EItem.portalStaff, 1, this.getMetaData()), 1F);
+						this.entityDropItem(new ItemStack(ItemRegistry.portalStaff, 1, this.getMetaData()), 1F);
 						for (int k = 0; k < 2500; k++)
 						{
 							double d2 = this.rand.nextGaussian() * 0.05D;
@@ -1014,7 +1014,7 @@ if ((this.ticksExisted + this.getEntityId()) > 60 && ((this.ticksExisted + this.
 				@Nullable
 				protected ResourceLocation getLootTable()
 				{
-					return ELoot.ENTITIES_PORTAL;
+					return LootRegistry.ENTITIES_PORTAL;
 				}
 
 				protected SoundEvent getDeathSound()
@@ -1034,15 +1034,15 @@ if ((this.ticksExisted + this.getEntityId()) > 60 && ((this.ticksExisted + this.
 				}
 				protected SoundEvent getRegularHurtSound()
 				{
-					return ESound.woodHit;
+					return SoundRegistry.woodHit;
 				}
 				protected SoundEvent getPierceHurtSound()
 				{
-					return ESound.woodHitPierce;
+					return SoundRegistry.woodHitPierce;
 				}
 				protected SoundEvent getCrushHurtSound()
 				{
-					return ESound.woodHitCrush;
+					return SoundRegistry.woodHitCrush;
 				}
 				public boolean processInteract(EntityPlayer player, EnumHand hand)
 				{

@@ -6,7 +6,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityFireball;
@@ -41,7 +41,7 @@ public class EntityMagicMissile extends EntityFireball
 	{
 		this(worldIn, shooter, accelX, accelY, accelZ);
 		this.targetEntity = target;
-		this.playSound(ESound.magicMissileFire, 1F, 1F);
+		this.playSound(SoundRegistry.magicMissileFire, 1F, 1F);
 		this.accelerationX = 0D;
 		this.accelerationY = 0D;
 		this.accelerationZ = 0D;

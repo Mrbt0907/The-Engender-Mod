@@ -13,8 +13,8 @@ import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Flying;
 import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
-import net.minecraft.AgeOfMinecraft.registry.ESound;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
+import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityList;
@@ -290,7 +290,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Light, Flying, Elementa
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return ELoot.ENTITIES_BLAZE;
+		return LootRegistry.ENTITIES_BLAZE;
 	}
 	public boolean func_70845_n()
 	{
@@ -535,15 +535,15 @@ extends EntityFriendlyCreature implements IJumpingMount, Light, Flying, Elementa
 		}
 		protected SoundEvent getRegularHurtSound()
 		{
-			return ESound.metalHit;
+			return SoundRegistry.metalHit;
 		}
 		protected SoundEvent getPierceHurtSound()
 		{
-			return ESound.metalHitPierce;
+			return SoundRegistry.metalHitPierce;
 		}
 		protected SoundEvent getCrushHurtSound()
 		{
-			return ESound.metalHitCrush;
+			return SoundRegistry.metalHitCrush;
 		}
 
 		protected float getSoundPitch()

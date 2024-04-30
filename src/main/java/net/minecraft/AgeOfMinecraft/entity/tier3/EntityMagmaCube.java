@@ -2,7 +2,7 @@ package net.minecraft.AgeOfMinecraft.entity.tier3;
 import javax.annotation.Nullable;
 
 import net.endermanofdoom.mac.util.TranslateUtil;
-import net.minecraft.AgeOfMinecraft.registry.ELoot;
+import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.SoundEvents;
@@ -86,7 +86,7 @@ public class EntityMagmaCube extends EntitySlime
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
-		return this.isSmallSlime() ? LootTableList.EMPTY : ELoot.ENTITIES_MAGMA_CUBE;
+		return this.isSmallSlime() ? LootTableList.EMPTY : LootRegistry.ENTITIES_MAGMA_CUBE;
 	}
 	public boolean isBurning()
 	{

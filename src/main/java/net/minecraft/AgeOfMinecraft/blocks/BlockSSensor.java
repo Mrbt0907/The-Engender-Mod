@@ -2,7 +2,7 @@ package net.minecraft.AgeOfMinecraft.blocks;
 
 import java.util.Random;
 
-import net.minecraft.AgeOfMinecraft.registry.ETab;
+import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -27,7 +27,7 @@ public class BlockSSensor extends Block
     	setHardness(0.6F);
         setResistance(10.0F);
         setUnlocalizedName(name);
-        setCreativeTab(ETab.engender);
+        setCreativeTab(CreativeTabRegistry.engender);
         this.setDefaultState(this.blockState.getBaseState().withProperty(POWER, Integer.valueOf(0)));
         this.setTickRandomly(true);
     }
