@@ -21,6 +21,6 @@ public class CreativeTabRegistry
 	public static final CreativeTabs ENGENDER_FUSION = new CreativeTabs(EngenderMod.MODID)
 	{
 		@Override
-		public ItemStack getTabIconItem() {return new ItemStack(ItemRegistry.witherStormItem);}
+		public ItemStack getTabIconItem() {return new ItemStack(ItemRegistry.FUSION_SPAWNERS.get("witherstorm"));}
 	};
 }
