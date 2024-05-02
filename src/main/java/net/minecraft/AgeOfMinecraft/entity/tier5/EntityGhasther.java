@@ -51,6 +51,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -84,6 +85,11 @@ extends EntityFriendlyCreature implements Massive, Flying, Armored, IMusicIntera
 		super.updateBossBar();
 		this.bossInfo.setColor(BossInfo.Color.YELLOW);
 	}
+    
+    public TextFormatting getNameColor()
+    {
+    	return TextFormatting.GRAY;
+    }
 	public boolean isBoss()
 	{
 		return true;

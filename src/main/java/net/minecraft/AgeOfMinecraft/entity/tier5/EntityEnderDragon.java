@@ -199,6 +199,11 @@ public void updateBossBar()
 	this.bossInfo.setColor(this.getTier() == EnumTier.TIER6 ? BossInfo.Color.RED : BossInfo.Color.PINK);
 }
 
+public TextFormatting getNameColor()
+{
+	return TextFormatting.LIGHT_PURPLE;
+}
+
 public boolean isBoss()
 {
 	return true;

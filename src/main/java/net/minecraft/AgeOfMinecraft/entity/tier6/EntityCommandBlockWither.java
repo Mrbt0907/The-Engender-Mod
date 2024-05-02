@@ -55,6 +55,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -98,6 +99,11 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 		this.bossInfo.setColor(BossInfo.Color.RED);
 		this.bossInfo.setDarkenSky(true);
 	}
+    
+    public TextFormatting getNameColor()
+    {
+    	return TextFormatting.DARK_GRAY;
+    }
 
 	public boolean isBoss()
 	{

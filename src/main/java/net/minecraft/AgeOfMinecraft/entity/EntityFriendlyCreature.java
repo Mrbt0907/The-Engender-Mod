@@ -16,6 +16,7 @@ import net.endermanofdoom.mac.dialogue.DialogueManager;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.endermanofdoom.mac.util.math.Maths;
+import net.endermanofdoom.mca.MinecraftAdventures;
 import net.minecraft.AgeOfMinecraft.EngenderCompat;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
@@ -141,6 +142,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
@@ -4386,6 +4388,21 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	bossInfo.setVisible(!isSneaking() && !isInvisible() && isEntityAlive());
 	bossInfo.setOverlay(getTier().ordinal() > EnumTier.TIER5.ordinal() ? BossInfo.Overlay.NOTCHED_20 : (getTier() == EnumTier.TIER5 ? (getMaxHealth() >= 250 ? BossInfo.Overlay.NOTCHED_12 : BossInfo.Overlay.NOTCHED_10) : (getMaxHealth() >= 50 ? BossInfo.Overlay.NOTCHED_6 : BossInfo.Overlay.PROGRESS)));
 	}
+    
+    public TextFormatting getNameColor()
+    {
+    	return TextFormatting.WHITE;
+    }
+    
+    public String getName()
+    {
+    	TextFormatting color = this.getNameColor();
+    	
+    	if (this.isBoss())
+    		return color + super.getName() + TextFormatting.WHITE + " " + MinecraftAdventures.parseFloat(getHealth() + this.getAbsorptionAmount());
+    	else
+    		return super.getName();
+    }
 	
 	public boolean isBoss()
 	{
