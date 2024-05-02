@@ -10,6 +10,8 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import com.google.common.collect.ImmutableMap;
+
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.tier1.EntityMooshroom;
@@ -54,6 +56,8 @@ public class ItemRegistry
 	private static final List<Block> blocks = new ArrayList<Block>();
 	private static final Map<Integer, Map<String, Item>> fusions = new HashMap<Integer, Map<String, Item>>();
 	private static final Map<Integer, Map<String, Item>> fusionSpawners = new HashMap<Integer, Map<String, Item>>();
+	public static ImmutableMap<String, ItemFusion> FUSIONS = null;
+	public static ImmutableMap<String, ItemFusionSpawner> FUSION_SPAWNERS = null;
 	
 	public static ItemManaCollector manaContainer = new ItemManaCollector(0);
 	public static ItemManaCollector entropyContainer = new ItemManaCollector(1);
@@ -389,6 +393,7 @@ public class ItemRegistry
 		{
 			fusion = new ItemFusion(tier, mana, entropy, fusionTime);
 			fusions.get(tier).put("fusion" + entityName, fusion);
+			
 		}
 		fusionSpawner = spawnMechanicsPost == null ? new ItemFusionSpawner(entityClass, tier, spawnMechanics) : new ItemFusionSpawner(entityClass, tier, spawnMechanics, spawnMechanicsPost);
 		fusionSpawners.get(tier).put(entityName, fusionSpawner);
@@ -431,16 +436,28 @@ public class ItemRegistry
 		Integer[] fusionTiers = new Integer[fusionSpawners.size()];
 		fusionTiers = fusionSpawners.keySet().toArray(fusionTiers);
 		Arrays.sort(fusionTiers);
+		Map<String, ItemFusion> fusionTemp = new HashMap<String, ItemFusion>();
+		Map<String, ItemFusionSpawner> fusionSpawnerTemp = new HashMap<String, ItemFusionSpawner>();
+		
 		for (int tier : fusionTiers)
 		{
 			for (Entry<String, Item> entry : fusionSpawners.get(tier).entrySet())
+			{
 				addItem(entry.getKey(), entry.getValue(), CreativeTabRegistry.ENGENDER_FUSION);
+				fusionSpawnerTemp.put(entry.getKey(), (ItemFusionSpawner) entry.getValue());
+			}
 		}
 		for (int tier : fusionTiers)
 		{
 			for (Entry<String, Item> entry : fusions.get(tier).entrySet())
+			{
 				addItem(entry.getKey(), entry.getValue(), CreativeTabRegistry.ENGENDER_FUSION);
+				fusionTemp.put(entry.getKey(), (ItemFusion) entry.getValue());
+			}
 		}
+		
+		FUSIONS = ImmutableMap.copyOf(fusionTemp);
+		FUSION_SPAWNERS = ImmutableMap.copyOf(fusionSpawnerTemp);
 		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(carrier, new BehaviorDefaultDispenseItem()
 		{
@@ -475,7 +492,7 @@ public class ItemRegistry
 		ItemFusion witherFusion = new ItemFusion(4, 12000, 750, 540);
 		ItemFusionSpawner wither = new ItemFusionSpawner(EntityWither.class, 4, SpawnerRegistry.SPAWN_NORMAL);
 		fusions.get(4).put("fusionwither", witherFusion);
-		fusions.get(4).put("witherboss", wither);
+		fusionSpawners.get(4).put("witherboss", wither);
 		FusionRecipeRegistry.INSTANCE.addRecipe(new ItemStack(witherFusion), new ItemStack(wither), witherFusion.manaCost, witherFusion.entropyCost, witherFusion.fusionTime);
 		
 	}
