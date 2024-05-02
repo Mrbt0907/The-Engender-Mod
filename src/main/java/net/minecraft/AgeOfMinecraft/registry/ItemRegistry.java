@@ -24,8 +24,7 @@ import net.minecraft.AgeOfMinecraft.items.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
@@ -39,7 +38,6 @@ import net.minecraft.item.ItemSimpleFoiled;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -537,7 +535,7 @@ public class ItemRegistry
 			registry.register(item);			
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
 				for (int i = 0;i <= meta;i++)
-					ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(EngenderMod.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+					net.minecraftforge.client.model.ModelLoader.setCustomModelResourceLocation(item, i, new net.minecraft.client.renderer.block.model.ModelResourceLocation(EngenderMod.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 			
 			EngenderMod.debug("Registered item " + item.getRegistryName());
 			return;
@@ -564,13 +562,5 @@ public class ItemRegistry
 		public static void createLearningBook(Item book, int tier, String name, String description, int durability, int experience, float strength, float stamina, float intelegence, float dexterity, float agility)
 		{
 			book = new ItemLearningBook(tier, name, description, durability, experience, strength, stamina, intelegence, dexterity, agility);
-		}
-		public static void registerItem(ItemModelMesher renderItem, Item item)
-		{
-			registerItemSubbed(renderItem, item, 0);
-		}
-		public static void registerItemSubbed(ItemModelMesher renderItem, Item item, int meta)
-		{
-			renderItem.register(item, meta, new ModelResourceLocation("ageofminecraft:" + item.getUnlocalizedName().substring(5), "inventory"));
 		}
 	}
