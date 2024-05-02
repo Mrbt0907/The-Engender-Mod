@@ -68,16 +68,16 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	private float[] field_82221_e = new float[2];
 	private float[] field_82217_f = new float[2];
 	private float[] field_82218_g = new float[2];
-	public EntityWitherStormHead centerHead = new EntityWitherStormHead(this.world);
-	public EntityWitherStormHead rightHead = new EntityWitherStormHead(this.world);
-	public EntityWitherStormHead leftHead = new EntityWitherStormHead(this.world);
-	public EntityWitherStormTentacle tentacle1 = new EntityWitherStormTentacle(this.world);
-	public EntityWitherStormTentacle tentacle2 = new EntityWitherStormTentacle(this.world);
-	public EntityWitherStormTentacle tentacle3 = new EntityWitherStormTentacle(this.world);
-	public EntityWitherStormTentacle tentacle4 = new EntityWitherStormTentacle(this.world);
-	public EntityWitherStormTentacle tentacle5 = new EntityWitherStormTentacle(this.world);
-	public EntityWitherStormTentacleDevourer tentacledevourer1 = new EntityWitherStormTentacleDevourer(this.world);
-	public EntityWitherStormTentacleDevourer tentacledevourer2 = new EntityWitherStormTentacleDevourer(this.world);
+	public EntityWitherStormHead centerHead = null;
+	public EntityWitherStormHead rightHead = null;
+	public EntityWitherStormHead leftHead = null;
+	public EntityWitherStormTentacle tentacle1 = null;
+	public EntityWitherStormTentacle tentacle2 = null;
+	public EntityWitherStormTentacle tentacle3 = null;
+	public EntityWitherStormTentacle tentacle4 = null;
+	public EntityWitherStormTentacle tentacle5 = null;
+	public EntityWitherStormTentacleDevourer tentacledevourer1 = null;
+	public EntityWitherStormTentacleDevourer tentacledevourer2 = null;
 	public EntityWitherStorm(World worldIn)
 	{
 		super(worldIn);
@@ -93,72 +93,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 		this.setLevel(300);
 		this.ignoreFrustumCheck = true;
 		for (EntityPlayer entityplayer : worldIn.playerEntities)
-		{
 			worldIn.playSound(null, entityplayer.getPosition(), SoundRegistry.witherStormFinish, this.getSoundCategory(), Float.MAX_VALUE, 1.0F);
-		}
-
-		if (!worldIn.isRemote)
-		{
-			this.centerHead = new EntityWitherStormHead(worldIn);
-			this.centerHead.residentWitherStorm = this;
-			this.centerHead.copyLocationAndAnglesFrom(this);
-			this.centerHead.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.centerHead);
-			
-			this.rightHead = new EntityWitherStormHead(worldIn);
-			this.rightHead.residentWitherStorm = this;
-			this.rightHead.copyLocationAndAnglesFrom(this);
-			this.rightHead.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.rightHead);
-			
-			this.leftHead = new EntityWitherStormHead(worldIn);
-			this.leftHead.residentWitherStorm = this;
-			this.leftHead.copyLocationAndAnglesFrom(this);
-			this.leftHead.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.leftHead);
-			
-			this.tentacle1 = new EntityWitherStormTentacle(worldIn);
-			this.tentacle1.residentWitherStorm = this;
-			this.tentacle1.copyLocationAndAnglesFrom(this);
-			this.tentacle1.setOwnerId(this.getOwnerId());
-			this.world.spawnEntity(this.tentacle1);
-			
-			this.tentacle2 = new EntityWitherStormTentacle(worldIn);
-			this.tentacle2.residentWitherStorm = this;
-			this.tentacle2.copyLocationAndAnglesFrom(this);
-			this.tentacle2.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.tentacle2);
-			
-			this.tentacle3 = new EntityWitherStormTentacle(worldIn);
-			this.tentacle3.residentWitherStorm = this;
-			this.tentacle3.copyLocationAndAnglesFrom(this);
-			this.tentacle3.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.tentacle3);
-			
-			this.tentacle4 = new EntityWitherStormTentacle(worldIn);
-			this.tentacle4.residentWitherStorm = this;
-			this.tentacle4.copyLocationAndAnglesFrom(this);
-			this.tentacle4.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.tentacle4);
-			
-			this.tentacle5 = new EntityWitherStormTentacle(worldIn);
-			this.tentacle5.residentWitherStorm = this;
-			this.tentacle5.copyLocationAndAnglesFrom(this);
-			this.tentacle5.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.tentacle5);
-			
-			this.tentacledevourer1 = new EntityWitherStormTentacleDevourer(worldIn);
-			this.tentacledevourer1.residentWitherStorm = this;
-			this.tentacledevourer1.copyLocationAndAnglesFrom(this);
-			this.tentacledevourer1.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.tentacledevourer1);
-			
-			this.tentacledevourer2 = new EntityWitherStormTentacleDevourer(worldIn);
-			this.tentacledevourer2.residentWitherStorm = this;
-			this.tentacledevourer2.copyLocationAndAnglesFrom(this);
-			this.tentacledevourer2.setOwnerId(this.getOwnerId());
-			worldIn.spawnEntity(this.tentacledevourer2);
-		}
 	}
 	
 	public boolean leavesNoCorpse()
@@ -1490,7 +1425,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 				this.witherStorm.getLookHelper().setLookPositionWithEntity(this.witherStorm.getAttackTarget(), 3.0F, 0.0F);
 			} else {
 					
-					if (witherStorm != null && this.witherStorm.centerHead.isBeingRidden())
+					if (witherStorm != null && this.witherStorm.centerHead != null && this.witherStorm.centerHead.isBeingRidden())
 					{
 						Vec3d vec3 = this.witherStorm.centerHead.getControllingPassenger().getLook(1.0F);
 						this.witherStorm.getLookHelper().setLookPosition(this.witherStorm.centerHead.getControllingPassenger().posX + (vec3.x * 8D), this.witherStorm.centerHead.getControllingPassenger().posY + (vec3.y * 8D), this.witherStorm.centerHead.getControllingPassenger().posZ + (vec3.z * 8D), 180F, 0.0F);
@@ -1539,7 +1474,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						d1 = this.witherStorm.getOwner().posY - 60.0D - (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
 						d2 = this.witherStorm.getOwner().posZ + (random.nextFloat() * 2.0F - 1.0F) * 2.0F;
 					}
-					if (this.witherStorm.centerHead.isBeingRidden())
+					if (this.witherStorm.centerHead != null && this.witherStorm.centerHead.isBeingRidden())
 					{
 						Vec3d vec3 = this.witherStorm.getOwner().getLook(1.0F);
 						d0 = this.witherStorm.posX + (vec3.x * 8D);
@@ -1599,12 +1534,6 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						this.courseChangeCooldown += this.witherStorm.getRNG().nextInt(5) + 2;
 						d3 = MathHelper.sqrt(d3);
 						if ((this.witherStorm.getOwner() != null) && (this.witherStorm.getDistanceSq(this.witherStorm.getOwner()) > 5184D) && (this.witherStorm.getGuardBlock() == null))
-						{
-							this.witherStorm.motionX += d0 / d3 * 0.2D;
-							this.witherStorm.motionY += d1 / d3 * 0.2D;
-							this.witherStorm.motionZ += d2 / d3 * 0.2D;
-						}
-						else if (this.witherStorm.moralRaisedTimer > 200)
 						{
 							this.witherStorm.motionX += d0 / d3 * 0.2D;
 							this.witherStorm.motionY += d1 / d3 * 0.2D;

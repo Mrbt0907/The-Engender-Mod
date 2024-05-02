@@ -3183,44 +3183,20 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (this instanceof EntityWitherStormHead)
 	{
 	i += 3;
-	double d2 = entity.posX - posX;
-	double d3 = entity.posZ - posZ;
-	double d4 = d2 * d2 + d3 * d3;
-	entity.motionX += d2 / d4 * 2;
-	entity.motionY += 0.5D;
-	entity.motionZ += d3 / d4 * 2;
 	}
 	if (this instanceof EntityEnderDragon)
 	{
 	i += 4;
-	double d2 = entity.posX - posX;
-	double d3 = entity.posZ - posZ;
-	double d4 = d2 * d2 + d3 * d3;
-	entity.motionX += d2 / d4 * 2;
-	entity.motionY += 0.5D;
-	entity.motionZ += d3 / d4 * 2;
 	}
 	
 	if (this instanceof EntityWitherStormTentacle)
 	{
 	i += 9;
-	double d2 = entity.posX - posX;
-	double d3 = entity.posZ - posZ;
-	double d4 = d2 * d2 + d3 * d3;
-	entity.motionX += d2 / d4 * 4;
-	entity.motionY += 0.5D;
-	entity.motionZ += d3 / d4 * 4;
 	}
 	
 	if (this instanceof EntityWitherStormTentacleDevourer)
 	{
 	i += 12;
-	double d2 = entity.posX - posX;
-	double d3 = entity.posZ - posZ;
-	double d4 = d2 * d2 + d3 * d3;
-	entity.motionX += d2 / d4 * 6;
-	entity.motionY += 0.5D;
-	entity.motionZ += d3 / d4 * 6;
 	}
 	}
 	

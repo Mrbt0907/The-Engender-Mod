@@ -601,7 +601,7 @@ public class EntityWitherStormHead extends EntityFriendlyCreature implements IRa
 							attackEntityAsMob(entity1);
 						}
 
-						if ((residentWitherStorm != null) && (entity1 != null) && getDistance(entity1) <= 10D && (entity1.isEntityAlive()) && ((!isOnSameTeam(entity1)) || ((entity1 instanceof EntityAnimal))) && (!(target instanceof net.minecraft.AgeOfMinecraft.entity.tier4.EntityEnderman)) && (!(target instanceof net.minecraft.entity.monster.EntityEnderman)) && (!(entity1 instanceof EntityFriendlyCreature)) && (!(entity1 instanceof EntityWitherStorm)) && (!(entity1 instanceof EntityWitherStormHead)) && (!(entity1 instanceof EntityWitherStormTentacle)) && (!(entity1 instanceof EntityWitherStormTentacleDevourer)))
+						if ((residentWitherStorm != null) && entity1.isNonBoss() && (entity1 != null) && getDistance(entity1) <= 10D && (entity1.isEntityAlive()) && ((!isOnSameTeam(entity1)) || ((entity1 instanceof EntityAnimal))) && (!(target instanceof net.minecraft.AgeOfMinecraft.entity.tier4.EntityEnderman)) && (!(target instanceof net.minecraft.entity.monster.EntityEnderman)) && (!(entity1 instanceof EntityFriendlyCreature)) && (!(entity1 instanceof EntityWitherStorm)) && (!(entity1 instanceof EntityWitherStormHead)) && (!(entity1 instanceof EntityWitherStormTentacle)) && (!(entity1 instanceof EntityWitherStormTentacleDevourer)))
 						{
 							if (!isWild() && EngenderConfig.general.useMessage)
 							{
