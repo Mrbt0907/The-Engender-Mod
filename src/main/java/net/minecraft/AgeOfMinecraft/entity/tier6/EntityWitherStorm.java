@@ -989,8 +989,6 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 
 			if (posY > 200)
 				posY = 200;
-			else if (posY < 0)
-				posY = 0;
 		}
 	}
 	public void setInWeb() { }
