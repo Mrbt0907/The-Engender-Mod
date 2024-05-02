@@ -6,17 +6,21 @@ import net.minecraft.item.ItemStack;
 
 public class CreativeTabRegistry 
 {
-	public static CreativeTabs engender;
-	public static CreativeTabs abyssal;
-	public static CreativeTabs draconic;
-	public static CreativeTabs mutant;
-	
-	public static void init()
+	public static final CreativeTabs ENGENDER = new CreativeTabs(EngenderMod.MODID)
 	{
-		engender = new CreativeTabs(EngenderMod.MODID)
-		{
-			@Override
-			public ItemStack getTabIconItem() {return new ItemStack(ItemRegistry.witherStormItem);}
-		};
-	}
+		@Override
+		public ItemStack getTabIconItem() {return new ItemStack(BlockRegistry.fusionCrafter);}
+	};
+
+	public static final CreativeTabs ENGENDER_EQUIPMENT = new CreativeTabs(EngenderMod.MODID)
+	{
+		@Override
+		public ItemStack getTabIconItem() {return new ItemStack(ItemRegistry.portalStaff);}
+	};
+
+	public static final CreativeTabs ENGENDER_FUSION = new CreativeTabs(EngenderMod.MODID)
+	{
+		@Override
+		public ItemStack getTabIconItem() {return new ItemStack(ItemRegistry.witherStormItem);}
+	};
 }

@@ -10,7 +10,6 @@ import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityEnderDragon;
 import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.PhaseList;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
-import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;

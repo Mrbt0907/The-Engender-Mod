@@ -1,10 +1,14 @@
 package net.minecraft.AgeOfMinecraft.registry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
@@ -27,6 +31,7 @@ import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
@@ -49,8 +54,8 @@ public class ItemRegistry
 {
 	private static IForgeRegistry<Item> registry;
 	private static final List<Block> blocks = new ArrayList<Block>();
-	private static final Map<String, ItemFusion> fusions = new HashMap<String, ItemFusion>();
-	private static final Map<String, ItemFusionSpawner> fusionSpawners = new HashMap<String, ItemFusionSpawner>();
+	private static final Map<Integer, Map<String, Item>> fusions = new HashMap<Integer, Map<String, Item>>();
+	private static final Map<Integer, Map<String, Item>> fusionSpawners = new HashMap<Integer, Map<String, Item>>();
 	
 	public static ItemManaCollector manaContainer = new ItemManaCollector(0);
 	public static ItemManaCollector entropyContainer = new ItemManaCollector(1);
@@ -332,13 +337,27 @@ public class ItemRegistry
 	
 	public static final List<ItemLearningBook> SKILL_BOOKS = new ArrayList<ItemLearningBook>();
 	
-	
 	public static void addBlock(Block block)
 	{
 		blocks.add(block);
 	}
 	
 	public static void addEngenderedEntity(Class<? extends EntityFriendlyCreature> entityClass, int tier, int mana, int entropy, int fusionTime)
+	{
+		addEngenderedEntity(entityClass, tier, mana, entropy, fusionTime, SpawnerRegistry.SPAWN_NORMAL, null);
+	}
+	
+	public static void addEngenderedEntity(Class<? extends EntityFriendlyCreature> entityClass, int tier, int mana, int entropy, int fusionTime, BiConsumer<EntityPlayer, Object[]> spawnMechanics)
+	{
+		addEngenderedEntity(entityClass, tier, mana, entropy, fusionTime, spawnMechanics, null);
+	}
+	
+	public static void addEngenderedEntity(Class<? extends EntityFriendlyCreature> entityClass, int tier, int mana, int entropy, int fusionTime, Consumer<EntityFriendlyCreature> spawnMechanicsPost)
+	{
+		addEngenderedEntity(entityClass, tier, mana, entropy, fusionTime, SpawnerRegistry.SPAWN_NORMAL, spawnMechanicsPost);
+	}
+	
+	public static void addEngenderedEntity(Class<? extends EntityFriendlyCreature> entityClass, int tier, int mana, int entropy, int fusionTime, BiConsumer<EntityPlayer, Object[]> spawnMechanics, Consumer<EntityFriendlyCreature> spawnMechanicsPost)
 	{
 		EntityEntry registryName = net.minecraftforge.fml.common.registry.EntityRegistry.getEntry(entityClass);
 		String name = "";
@@ -348,9 +367,36 @@ public class ItemRegistry
 			return;
 		}
 		name = registryName.getName().toLowerCase().replaceAll("[^a-z0-9]", "").replaceFirst("helpful$", "");
+		
+		addEngenderedEntity(entityClass, name, tier, mana, entropy, fusionTime, spawnMechanics, spawnMechanicsPost);
+	}
+	
+	public static void addEngenderedEntity(Class<? extends EntityFriendlyCreature> entityClass, String entityName, int tier, int mana, int entropy, int fusionTime, BiConsumer<EntityPlayer, Object[]> spawnMechanics, Consumer<EntityFriendlyCreature> spawnMechanicsPost)
+	{
+		EntityEntry registryName = net.minecraftforge.fml.common.registry.EntityRegistry.getEntry(entityClass);
+		if (registryName == null)
+		{
+			EngenderMod.error("Could not register fusions for entity class " + entityClass + " because entity registry returned a null entity.");
+			return;
+		}
+		
+		if (!fusions.containsKey(tier))
+		{
+			fusions.put(tier, new HashMap<String, Item>());
+			fusionSpawners.put(tier, new HashMap<String, Item>());
+		}
+		ItemFusion fusion = null;
+		ItemFusionSpawner fusionSpawner = null;
 		if (mana > -1 && entropy > -1 && fusionTime > -1)
-			fusions.put("fusion" + name, new ItemFusion(tier, mana, entropy, fusionTime));
-		fusionSpawners.put(name, new ItemFusionSpawner(entityClass, tier, SpawnerRegistry.SPAWN_NORMAL));
+		{
+			fusion = new ItemFusion(tier, mana, entropy, fusionTime);
+			fusions.get(tier).put("fusion" + entityName, fusion);
+		}
+		fusionSpawner = spawnMechanicsPost == null ? new ItemFusionSpawner(entityClass, tier, spawnMechanics) : new ItemFusionSpawner(entityClass, tier, spawnMechanics, spawnMechanicsPost);
+		fusionSpawners.get(tier).put(entityName, fusionSpawner);
+		
+		if (fusion != null)
+			FusionRecipeRegistry.INSTANCE.addRecipe(new ItemStack(fusion), new ItemStack(fusionSpawner), mana, entropy, fusionTime);
 	}
 	
 	@SubscribeEvent
@@ -360,58 +406,43 @@ public class ItemRegistry
 		registry = event.getRegistry();
 		for (Block block : blocks)
 			addItem(block.getRegistryName().getResourcePath(), new ItemBlock(block));
-		for (Entry<String, ItemFusion> entry : fusions.entrySet())
-			addItem(entry.getKey(), entry.getValue(), CreativeTabRegistry.engender);
-		for (Entry<String, ItemFusionSpawner> entry : fusionSpawners.entrySet())
-			addItem(entry.getKey(), entry.getValue(), CreativeTabRegistry.engender);
-		addItem("mana_collector", manaContainer, CreativeTabRegistry.engender, 9);
-		addItem("entropy_collector", entropyContainer, CreativeTabRegistry.engender, 9);
-		addItem("infinite_well_spring", artifact1, CreativeTabRegistry.engender);
-		addItem("withered_nether_star", witheredNetherStar, CreativeTabRegistry.engender);
-		addItem("wooden_cleaver", woodencleaver, CreativeTabRegistry.engender);
-		addItem("stone_cleaver", stonecleaver, CreativeTabRegistry.engender);
-		addItem("iron_cleaver", ironcleaver, CreativeTabRegistry.engender);
-		addItem("golden_cleaver", goldencleaver, CreativeTabRegistry.engender);
-		addItem("diamond_cleaver", diamondcleaver, CreativeTabRegistry.engender);
-		addItem("statchecker", statChecker, CreativeTabRegistry.engender);
-		addItem("carrier", carrier, CreativeTabRegistry.engender);
-		addItem("heromaker", heromaker, CreativeTabRegistry.engender);
-		addItem("last_chance", lastchance, CreativeTabRegistry.engender);
-		addItem("trainingstick", trainingstick, CreativeTabRegistry.engender);
-		addItem("moralhorn", blowhorn, CreativeTabRegistry.engender);
-		addItem("enderdragonshorn", blowhorn2, CreativeTabRegistry.engender);
-		addItem("convertingstaff", convertingStaff, CreativeTabRegistry.engender, 4);
-		addItem("summoningstaff", summoningStaff, CreativeTabRegistry.engender, 4);
-		addItem("commandingstaff", commandingStaff, CreativeTabRegistry.engender, 4);
-		addItem("portalstaff", portalStaff, CreativeTabRegistry.engender, 4);
 		
-		addItem("chickenjockey", new ItemFusionSpawner(EntityZombie.class, 2, SpawnerRegistry.SPAWN_CHICKEN_JOCKEY, zombie -> {zombie.setChild(true); zombie.setGrowingAge(-48000);}), CreativeTabRegistry.engender);
-		addItem("spiderjockey", new ItemFusionSpawner(EntitySkeleton.class, 2, SpawnerRegistry.SPAWN_JOCKEY), CreativeTabRegistry.engender);
-		addItem("husk", new ItemFusionSpawner(EntityZombie.class, 3, SpawnerRegistry.SPAWN_NORMAL, zombie -> ((EntityZombie)zombie).setZombieType(1)), CreativeTabRegistry.engender);
-		addItem("killerbunny", new ItemFusionSpawner(EntityRabbit.class, 3, SpawnerRegistry.SPAWN_NORMAL, rabbit -> ((EntityRabbit)rabbit).setRabbitType(99)), CreativeTabRegistry.engender);
-		addItem("prisonzombie", new ItemFusionSpawner(EntityZombie.class, 3, SpawnerRegistry.SPAWN_NORMAL, zombie -> ((EntityZombie)zombie).setZombieType(2)), CreativeTabRegistry.engender);
-		addItem("stray", new ItemFusionSpawner(EntitySkeleton.class, 3, SpawnerRegistry.SPAWN_NORMAL, skeleton -> ((EntitySkeleton)skeleton).setSkeletonType(2)), CreativeTabRegistry.engender);
-		addItem("skeletontrap", new ItemFusionSpawner(EntitySkeleton.class, 4, SpawnerRegistry.SPAWN_FOUR_HORSEMEN), CreativeTabRegistry.engender);
-		addItem("witherskeleton", new ItemFusionSpawner(EntitySkeleton.class, 3, SpawnerRegistry.SPAWN_NORMAL, skeleton -> ((EntitySkeleton)skeleton).setSkeletonType(1)), CreativeTabRegistry.engender);
-		addItem("mooshroom", new ItemFusionSpawner(EntityMooshroom.class, 0, SpawnerRegistry.SPAWN_NORMAL), CreativeTabRegistry.engender);
-		addItem("irongolem", new ItemFusionSpawner(EntityIronGolem.class, 4, SpawnerRegistry.SPAWN_NORMAL), CreativeTabRegistry.engender);
-		addItem("witherboss", new ItemFusionSpawner(EntityWither.class, 4, SpawnerRegistry.SPAWN_NORMAL), CreativeTabRegistry.engender);
-		addItem("magmacube", new ItemFusionSpawner(EntityMagmaCube.class, 2, SpawnerRegistry.SPAWN_NORMAL), CreativeTabRegistry.engender);
-		addItem("witherstorm", new ItemFusionSpawner(EntityCommandBlockWither.class, 5, SpawnerRegistry.SPAWN_NORMAL), CreativeTabRegistry.engender);
+		registerExtras();
 		
-		addItem("fusionchickenjockey", new ItemFusion(2, 10, 0, 22), CreativeTabRegistry.engender);
-		addItem("fusionspiderjockey", new ItemFusion(2, 32, 0, 30), CreativeTabRegistry.engender);
-		addItem("fusionhusk", new ItemFusion(3, 40, 0, 36), CreativeTabRegistry.engender);
-		addItem("fusionkillerbunny", new ItemFusion(3, 200, 0, 24), CreativeTabRegistry.engender);
-		addItem("fusionprisonzombie", new ItemFusion(3, 60, 0, 40), CreativeTabRegistry.engender);
-		addItem("fusionstray", new ItemFusion(3, 80, 0, 28), CreativeTabRegistry.engender);
-		addItem("fusionskeletontrap", new ItemFusion(4, 2400, 80, 100), CreativeTabRegistry.engender);
-		addItem("fusionwitherskeleton", new ItemFusion(3, 125, 0, 40), CreativeTabRegistry.engender);
-		addItem("fusionmooshroom", new ItemFusion(0, 4, 0, 5), CreativeTabRegistry.engender);
-		addItem("fusionirongolem", new ItemFusion(4, 1500, 20, 140), CreativeTabRegistry.engender);
-		addItem("fusionwither", new ItemFusion(4, 12000, 750, 540), CreativeTabRegistry.engender);
-		addItem("fusionmagmacube", new ItemFusion(2, 10, 0, 30), CreativeTabRegistry.engender);
-		addItem("fusionwitherstorm", new ItemFusion(5, 100000, 5000, 1200), CreativeTabRegistry.engender);
+		addItem("mana_collector", manaContainer, CreativeTabRegistry.ENGENDER_EQUIPMENT, 9);
+		addItem("entropy_collector", entropyContainer, CreativeTabRegistry.ENGENDER_EQUIPMENT, 9);
+		addItem("infinite_well_spring", artifact1, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("withered_nether_star", witheredNetherStar, CreativeTabRegistry.ENGENDER);
+		addItem("wooden_cleaver", woodencleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("stone_cleaver", stonecleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("iron_cleaver", ironcleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("golden_cleaver", goldencleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("diamond_cleaver", diamondcleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("statchecker", statChecker, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("carrier", carrier, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("heromaker", heromaker, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("last_chance", lastchance, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("trainingstick", trainingstick, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("moralhorn", blowhorn, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("enderdragonshorn", blowhorn2, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("convertingstaff", convertingStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		addItem("summoningstaff", summoningStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		addItem("commandingstaff", commandingStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		addItem("portalstaff", portalStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		
+		Integer[] fusionTiers = new Integer[fusionSpawners.size()];
+		fusionTiers = fusionSpawners.keySet().toArray(fusionTiers);
+		Arrays.sort(fusionTiers);
+		for (int tier : fusionTiers)
+		{
+			for (Entry<String, Item> entry : fusionSpawners.get(tier).entrySet())
+				addItem(entry.getKey(), entry.getValue(), CreativeTabRegistry.ENGENDER_FUSION);
+		}
+		for (int tier : fusionTiers)
+		{
+			for (Entry<String, Item> entry : fusions.get(tier).entrySet())
+				addItem(entry.getKey(), entry.getValue(), CreativeTabRegistry.ENGENDER_FUSION);
+		}
 		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(carrier, new BehaviorDefaultDispenseItem()
 		{
@@ -433,6 +464,22 @@ public class ItemRegistry
 		blocks.clear();
 		fusions.clear();
 		fusionSpawners.clear();
+	}
+	
+	private static void registerExtras()
+	{
+		if (!fusions.containsKey(4))
+		{
+			fusions.put(4, new HashMap<String, Item>());
+			fusionSpawners.put(4, new HashMap<String, Item>());
+		}
+		
+		ItemFusion witherFusion = new ItemFusion(4, 12000, 750, 540);
+		ItemFusionSpawner wither = new ItemFusionSpawner(EntityWither.class, 4, SpawnerRegistry.SPAWN_NORMAL);
+		fusions.get(4).put("fusionwither", witherFusion);
+		fusions.get(4).put("witherboss", wither);
+		FusionRecipeRegistry.INSTANCE.addRecipe(new ItemStack(witherFusion), new ItemStack(wither), witherFusion.manaCost, witherFusion.entropyCost, witherFusion.fusionTime);
+		
 	}
 	
 	private static void addItem(String registryName, Item item)

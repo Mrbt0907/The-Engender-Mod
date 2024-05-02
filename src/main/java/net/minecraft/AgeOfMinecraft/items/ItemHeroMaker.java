@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
-import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;

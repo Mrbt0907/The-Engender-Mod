@@ -4,13 +4,8 @@ import java.util.UUID;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class EngenderTeam
 {

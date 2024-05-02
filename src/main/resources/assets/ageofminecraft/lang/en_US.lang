@@ -25,6 +25,8 @@ enchantment.superweapon=The Eraser Command
 enchantment.ageofminecraft.superweapon.desc=Adds 50 damage to anything and deals massive bonus damage to the Wither Storm
 
 #Items
+item.fusionspawner.spawn_wild=Fusion mode changed to %1%s[Spawn Wild]
+item.fusionspawner.spawn_friendly=Fusion mode changed to %1%s[Spawn Friendly]
 item.withered_nether_star.name=Withered Nether Star
 
 item.statchecker.name=Engender Reader
@@ -351,6 +353,8 @@ advancements.engender.vanilla.convert_mob.desc=Convert a wild Engender mob.
 
 #Creative Tabs
 itemGroup.ageofminecraft=Engender Mod
+itemGroup.ageofminecraft_equipment=Engender Equipment
+itemGroup.ageofminecraft_fusion=Engender Fusions
 
 #Messages
 death.attack.blaster=%1$s was blasted by %2$s

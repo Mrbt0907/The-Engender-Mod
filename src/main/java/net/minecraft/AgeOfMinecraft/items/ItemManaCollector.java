@@ -6,7 +6,6 @@ import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import javax.annotation.Nullable;
 
-import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -27,84 +26,85 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Interface(iface = "baubles.api.IBauble", modid = "baubles")
-
 public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.IBauble
 {
 	private final int type;
 	
 	public ItemManaCollector(int data)
 	{
-		this.type = data;
-		this.setMaxStackSize(1);
-		this.setCreativeTab(CreativeTabRegistry.engender);
-		this.setHasSubtypes(true);
+		type = data;
+		setMaxStackSize(1);
+		setHasSubtypes(true);
 		if (data != 2)
-		this.addPropertyOverride(new ResourceLocation("percent"), new IItemPropertyGetter()
+		addPropertyOverride(new ResourceLocation("percent"), new IItemPropertyGetter()
 		{
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
-				return ItemManaCollector.this.getState(stack);
+				return getState(stack);
 			}
 		});
-		}
+	}
 
-		public baubles.api.BaubleType getBaubleType(ItemStack itemstack)
-		{
-			return baubles.api.BaubleType.TRINKET;
-		}
+	@Override
+	public baubles.api.BaubleType getBaubleType(ItemStack itemstack)
+	{
+		return baubles.api.BaubleType.TRINKET;
+	}
 
-		public void onEquipped(ItemStack itemstack, EntityLivingBase player)
-		{
-			player.playSound(SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, .75F, 1.9f);
-		}
+	@Override
+	public void onEquipped(ItemStack itemstack, EntityLivingBase player)
+	{
+		 player.playSound(SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, .75F, 1.9f);
+	}
 
-		public void onUnequipped(ItemStack itemstack, EntityLivingBase player)
-		{
-			player.playSound(SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, .75F, 2f);
-		}
+	@Override
+	public void onUnequipped(ItemStack itemstack, EntityLivingBase player)
+	{
+		player.playSound(SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, .75F, 2f);
+	}
 
-		public void onWornTick(ItemStack stack, EntityLivingBase entityIn)
-		{
-			World world = entityIn.world;
+	@Override
+	public void onWornTick(ItemStack stack, EntityLivingBase entityIn)
+	{
+		World world = entityIn.world;
 			
-			if (!world.isRemote && entityIn instanceof EntityPlayer)
+		if (!world.isRemote && entityIn instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)entityIn;
+			if (!player.isSpectator())
 			{
-				EntityPlayer player = (EntityPlayer)entityIn;
-				if (!player.isSpectator())
+				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().grow(24D));
+				if (list != null && !list.isEmpty())
 				{
-					List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().grow(24D));
-					if (list != null && !list.isEmpty())
+					for (int i = 0; i < list.size(); i++)
 					{
-						for (int i = 0; i < list.size(); i++)
-						{
-							Entity entity = (Entity)list.get(i);
+						Entity entity = (Entity)list.get(i);
 							
-							if (entity instanceof EntityManaOrb)
+						if (entity instanceof EntityManaOrb)
+						{
+							EntityManaOrb orb = (EntityManaOrb)entity;
+							if (type == 2)
 							{
-								EntityManaOrb orb = (EntityManaOrb)entity;
-								if (this.type == 2)
+								orb.magnet = stack;
+								orb.closestPlayer = player;
+							}
+							else
+							{
+								if (orb.getEntropy())
 								{
-									orb.magnet = stack;
-									orb.closestPlayer = player;
+									if (getEntropy(stack) < getMaxEntropy(stack))
+									{
+										orb.magnet = stack;
+										orb.closestPlayer = player;
+									}
 								}
 								else
 								{
-									if (orb.getEntropy())
+									if (getMana(stack) < getMaxMana(stack))
 									{
-										if (this.getEntropy(stack) < this.getMaxEntropy(stack))
-										{
-											orb.magnet = stack;
-											orb.closestPlayer = player;
-										}
-									}
-									else
-									{
-										if (this.getMana(stack) < this.getMaxMana(stack))
-										{
-											orb.magnet = stack;
-											orb.closestPlayer = player;
-										}
+										orb.magnet = stack;
+										orb.closestPlayer = player;
 									}
 								}
 							}
@@ -113,17 +113,18 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 				}
 			}
 		}
+	}
 
 		public void onUpdate(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected)
 		{
 			if (entityIn instanceof EntityLivingBase)
-			this.onWornTick(stack, (EntityLivingBase)entityIn);
+			onWornTick(stack, (EntityLivingBase)entityIn);
 		}
 
 		public float getState(ItemStack stack)
 		{
-			float currentHolding = this.type == 1 ? ItemManaCollector.this.getEntropy(stack) : ItemManaCollector.this.getMana(stack);
-			float maxHolding = this.type == 1 ? ItemManaCollector.this.getMaxEntropy(stack) : ItemManaCollector.this.getMaxMana(stack);
+			float currentHolding = type == 1 ? getEntropy(stack) : getMana(stack);
+			float maxHolding = type == 1 ? getMaxEntropy(stack) : getMaxMana(stack);
 			
 			if (currentHolding >= maxHolding * 0.75F)
 			return 1F;
@@ -140,33 +141,33 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 		public void increaseHolding(int amount, ItemStack stack, boolean isEntropy)
 		{
 			if (isEntropy)
-			this.setEntropy((amount < 0 ? this.getEntropy(stack) - amount : this.getEntropy(stack) + amount), stack);
+			setEntropy((amount < 0 ? getEntropy(stack) - amount : getEntropy(stack) + amount), stack);
 			else
-			this.setMana((amount < 0 ? this.getMana(stack) - amount : this.getMana(stack) + amount), stack);
+			setMana((amount < 0 ? getMana(stack) - amount : getMana(stack) + amount), stack);
 		}
 
 		public void setMana(int amount, ItemStack stack)
 		{
 			if(!stack.hasTagCompound())
 			stack.setTagCompound(new NBTTagCompound());
-			stack.getTagCompound().setInteger("mana", amount > this.getMaxMana(stack) ? this.getMaxMana(stack) : amount);
+			stack.getTagCompound().setInteger("mana", amount > getMaxMana(stack) ? getMaxMana(stack) : amount);
 		}
 
 		public void setEntropy(int amount, ItemStack stack)
 		{
 			if(!stack.hasTagCompound())
 			stack.setTagCompound(new NBTTagCompound());
-			stack.getTagCompound().setInteger("entropy", amount > this.getMaxEntropy(stack) ? this.getMaxEntropy(stack) : amount);
+			stack.getTagCompound().setInteger("entropy", amount > getMaxEntropy(stack) ? getMaxEntropy(stack) : amount);
 		}
 
 		public int getMana(ItemStack stack)
 		{
-			return type == 1 ? 0 : stack.hasTagCompound() && stack.getTagCompound().hasKey("mana") ? (int)stack.getTagCompound().getInteger("mana") : 0;
+			return stack.hasTagCompound() && stack.getTagCompound().hasKey("mana") ? (int)stack.getTagCompound().getInteger("mana") : 0;
 		}
 
 		public int getEntropy(ItemStack stack)
 		{
-			return type == 0 ? 0 : stack.hasTagCompound() && stack.getTagCompound().hasKey("entropy") ? (int)stack.getTagCompound().getInteger("entropy") : 0;
+			return stack.hasTagCompound() && stack.getTagCompound().hasKey("entropy") ? (int)stack.getTagCompound().getInteger("entropy") : 0;
 		}
 
 		public EnumRarity getRarity(ItemStack stack)
@@ -182,17 +183,17 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 
 		public int getMaxMana(ItemStack stack)
 		{
-			return type == 2 ? Integer.MAX_VALUE : type == 0 ? this.getManaCrystalMana(stack) : 0;
+			return type == 2 ? Integer.MAX_VALUE : type == 0 ? getManaCrystalMana(stack) : 0;
 		}
 
 		public int getMaxEntropy(ItemStack stack)
 		{
-			return type == 2 ? Integer.MAX_VALUE : type == 1 ? this.getEntropyCrystalMana(stack) : 0;
+			return type == 2 ? Integer.MAX_VALUE : type == 1 ? getEntropyCrystalMana(stack) : 0;
 		}
 
 		public int getManaCrystalMana(ItemStack stack)
 		{
-			switch (this.getMetadata(stack))
+			switch (getMetadata(stack))
 			{
 				case 1:
 				{
@@ -239,7 +240,7 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 
 		public int getEntropyCrystalMana(ItemStack stack)
 		{
-			switch (this.getMetadata(stack))
+			switch (getMetadata(stack))
 			{
 				case 1:
 				{
@@ -293,24 +294,24 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 				case 0:
 				{
 					l.add("Allows you to collect Mana, then funnel it into the Fusion Crafter to make mobs.");
-					if (this.getMana(stack) > 0)
-					l.add(TextFormatting.AQUA + "Mana Count : " + this.getMana(stack) + "/" + this.getMaxMana(stack));
+					if (getMana(stack) > 0)
+					l.add(TextFormatting.AQUA + "Mana Count : " + getMana(stack) + "/" + getMaxMana(stack));
 					break;
 				}
 				case 1:
 				{
 					l.add("Allows you to collect Entropy, then funnel it into the Fusion Crafter to make mobs.");
-					if (this.getEntropy(stack) > 0)
-					l.add(TextFormatting.DARK_RED + "Entropy Count : " + this.getEntropy(stack) + "/" + this.getMaxEntropy(stack));
+					if (getEntropy(stack) > 0)
+					l.add(TextFormatting.DARK_RED + "Entropy Count : " + getEntropy(stack) + "/" + getMaxEntropy(stack));
 					break;
 				}case 2:
 					{
 						l.add("(" + TextFormatting.GOLD + "ARTIFACT" + TextFormatting.GRAY + ")");
 						l.add("Allows you to collect INFINITE Mana and Entropy, then funnel it into the Fusion Crafter to make mobs.");
-						if (this.getMana(stack) > 0)
-						l.add(TextFormatting.AQUA + "Mana Count : " + this.getMana(stack) + "/Infinite");
-						if (this.getEntropy(stack) > 0)
-						l.add(TextFormatting.DARK_RED + "Entropy Count : " + this.getEntropy(stack) + "/Infinite");
+						if (getMana(stack) > 0)
+						l.add(TextFormatting.AQUA + "Mana Count : " + getMana(stack) + "/Infinite");
+						if (getEntropy(stack) > 0)
+						l.add(TextFormatting.DARK_RED + "Entropy Count : " + getEntropy(stack) + "/Infinite");
 						break;
 					}
 				}
@@ -329,7 +330,7 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 				if (type != 0)
 				((ItemManaCollector) stack.getItem()).setEntropy(((ItemManaCollector) stack.getItem()).getMaxEntropy(stack), stack);
 				
-				if (this.isInCreativeTab(tab))
+				if (isInCreativeTab(tab))
 				{
 					items.add(new ItemStack(this, 1, type == 2 ? 0 : 9));
 					items.add(stack);

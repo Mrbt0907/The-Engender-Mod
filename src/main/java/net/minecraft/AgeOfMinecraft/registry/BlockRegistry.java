@@ -23,7 +23,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class BlockRegistry
 {
 	private static IForgeRegistry<Block> registry;
-	public static final BlockMonsterSpawnerSPC mob_spawner_spc = new BlockMonsterSpawnerSPC();
+	public static final BlockFusionCrafter fusionCrafter = new BlockFusionCrafter();
 	public static final BlockGuardBlock guard_block = new BlockGuardBlock();
 	
 	@SubscribeEvent
@@ -38,8 +38,8 @@ public class BlockRegistry
 		Blocks.STRUCTURE_BLOCK.setCreativeTab(CreativeTabs.REDSTONE);
 		Blocks.BARRIER.setCreativeTab(CreativeTabs.MISC);
 		
-		addBlock("mob_spawner_spc", mob_spawner_spc, CreativeTabRegistry.engender);
-		addBlock("guard_block", guard_block, CreativeTabRegistry.engender);
+		addBlock("mob_spawner_spc", fusionCrafter, CreativeTabRegistry.ENGENDER);
+		addBlock("guard_block", guard_block, CreativeTabRegistry.ENGENDER);
 		registry = null;
 	}
 	

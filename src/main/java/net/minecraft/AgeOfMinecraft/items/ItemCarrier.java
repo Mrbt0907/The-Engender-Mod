@@ -9,7 +9,6 @@ import net.minecraft.AgeOfMinecraft.entity.tier4.EntityShulker;
 import net.minecraft.AgeOfMinecraft.entity.tier5.EntityEnderDragon;
 import net.minecraft.AgeOfMinecraft.entity.tier6.EntityWitherStorm;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
-import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;

@@ -3,7 +3,6 @@ package net.minecraft.AgeOfMinecraft.items;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
-import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;

@@ -12,7 +12,6 @@ import net.minecraft.AgeOfMinecraft.entity.tier4.*;
 import net.minecraft.AgeOfMinecraft.entity.tier5.*;
 import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.EntityAreaEffectCloudOther;
 import net.minecraft.AgeOfMinecraft.entity.tier6.*;
-import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
 import net.minecraft.AgeOfMinecraft.registry.ParticleRegistry;
 import net.minecraft.AgeOfMinecraft.renders.*;
 import net.minecraft.client.Minecraft;

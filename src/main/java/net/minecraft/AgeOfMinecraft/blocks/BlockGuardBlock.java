@@ -34,7 +34,7 @@ extends Block
 	{
 		super(Material.IRON);
 		setTickRandomly(true);
-		setCreativeTab(CreativeTabRegistry.engender);
+		setCreativeTab(CreativeTabRegistry.ENGENDER);
 		setUnlocalizedName("guard_block");
 		setHardness(5.0F);
 		setResistance(6000000.0F);

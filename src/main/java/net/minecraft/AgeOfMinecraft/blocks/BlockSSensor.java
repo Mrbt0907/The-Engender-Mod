@@ -27,7 +27,7 @@ public class BlockSSensor extends Block
     	setHardness(0.6F);
         setResistance(10.0F);
         setUnlocalizedName(name);
-        setCreativeTab(CreativeTabRegistry.engender);
+        setCreativeTab(CreativeTabRegistry.ENGENDER);
         this.setDefaultState(this.blockState.getBaseState().withProperty(POWER, Integer.valueOf(0)));
         this.setTickRandomly(true);
     }

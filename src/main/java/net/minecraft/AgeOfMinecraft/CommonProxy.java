@@ -1,17 +1,15 @@
 package net.minecraft.AgeOfMinecraft;
 
-import net.minecraft.AgeOfMinecraft.blocks.TileEntityMonsterSpawnerSPC;
+import net.minecraft.AgeOfMinecraft.blocks.TileFusionCrafter;
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.registry.PotionRegistry;
 import net.minecraft.AgeOfMinecraft.registry.EnchantmentRegistry;
 import net.minecraft.AgeOfMinecraft.registry.EntityRegistry;
-import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
+import net.minecraft.AgeOfMinecraft.registry.FusionRecipeRegistry;
 import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.AgeOfMinecraft.registry.SpawnerRegistry;
-import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
-import net.minecraft.AgeOfMinecraft.registry.BlockRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -24,23 +22,22 @@ public class CommonProxy
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		new EngenderSetup();
-		CreativeTabRegistry.init();
 		SpawnerRegistry.init();
 		PotionRegistry.registerPotions();
 		EnchantmentRegistry.init();
 		LootRegistry.registerAllModdedLootTables();
 		SoundRegistry.registerSounds();
-		GameRegistry.registerTileEntity(TileEntityMonsterSpawnerSPC.class, new ResourceLocation(EngenderMod.MODID, "mob_spawner_spc"));
+		GameRegistry.registerTileEntity(TileFusionCrafter.class, new ResourceLocation(EngenderMod.MODID, "mob_spawner_spc"));
 		MobChunkLoader.init();
 		EntityRegistry.registerEntity();
 	}
 	
-	public void init(FMLInitializationEvent event)
-	{
-		
-	}
+	public void init(FMLInitializationEvent event) {}
 	
-	public void postInit(FMLPostInitializationEvent event) {}
+	public void postInit(FMLPostInitializationEvent event)
+	{
+		FusionRecipeRegistry.INSTANCE.postInit();
+	}
 }
 
 		

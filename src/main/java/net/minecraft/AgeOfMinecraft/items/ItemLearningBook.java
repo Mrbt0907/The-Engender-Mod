@@ -49,7 +49,7 @@ public class ItemLearningBook extends ItemSimpleFoiled
 		this.setRegistryName(name);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(durability);
-		this.setCreativeTab(CreativeTabRegistry.engender);
+		this.setCreativeTab(CreativeTabRegistry.ENGENDER);
 		this.tier = tier;
 		this.artifact = tier >= 6 ? true : false;
 		this.EXPERIENCE = experience;

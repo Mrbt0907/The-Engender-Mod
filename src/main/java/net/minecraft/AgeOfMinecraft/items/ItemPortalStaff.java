@@ -6,7 +6,6 @@ import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import javax.annotation.Nullable;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityPortal;
-import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

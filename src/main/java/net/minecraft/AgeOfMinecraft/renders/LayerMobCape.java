@@ -1,6 +1,5 @@
 package net.minecraft.AgeOfMinecraft.renders;
 
-import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.models.ICappedModel;
 import net.minecraft.client.entity.AbstractClientPlayer;

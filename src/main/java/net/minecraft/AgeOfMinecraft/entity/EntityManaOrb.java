@@ -34,12 +34,14 @@ public class EntityManaOrb extends Entity
 	private static final DataParameter<Integer> amount = EntityDataManager.<Integer>createKey(EntityManaOrb.class, DataSerializers.VARINT);
 	private static final DataParameter<Boolean> entropy = EntityDataManager.<Boolean>createKey(EntityManaOrb.class, DataSerializers.BOOLEAN);
 	private int blinkTimer;
+	
 	public EntityManaOrb(World worldIn, double x, double y, double z, int expValue, boolean isEntropy)
 	{
 		this(worldIn);
-		this.setPosition(x, y, z);
-		this.setMana(expValue);
-		this.setEntropy(isEntropy);
+		isImmuneToFire = true;
+		setPosition(x, y, z);
+		setMana(expValue);
+		setEntropy(isEntropy);
 	}
 
 	/**
@@ -54,12 +56,12 @@ public class EntityManaOrb extends Entity
 	public EntityManaOrb(World worldIn)
 	{
 		super(worldIn);
-		this.setSize(0.25F, 0.25F);
-		this.setNoGravity(true);
-		this.rotationYaw = (float)(Math.random() * 360.0D);
-		this.motionX = (double)((float)(Math.random() * 0.1D - 0.05D) * 2.0F);
-		this.motionY = (double)((float)(Math.random() * 0.1D) * 2.0F);
-		this.motionZ = (double)((float)(Math.random() * 0.1D - 0.05D) * 2.0F);
+		setSize(0.25F, 0.25F);
+		setNoGravity(true);
+		rotationYaw = (float)(Math.random() * 360.0D);
+		motionX = (double)((float)(Math.random() * 0.1D - 0.05D) * 2.0F);
+		motionY = (double)((float)(Math.random() * 0.1D) * 2.0F);
+		motionZ = (double)((float)(Math.random() * 0.1D - 0.05D) * 2.0F);
 	}
 
 	protected void entityInit()
@@ -73,7 +75,7 @@ public class EntityManaOrb extends Entity
 	}
 	public boolean getEntropy()
 	{
-		return ((Boolean)this.dataManager.get(entropy)).booleanValue();
+		return ((Boolean)dataManager.get(entropy)).booleanValue();
 	}
 	public void setMana(int mana)
 	{
@@ -81,7 +83,7 @@ public class EntityManaOrb extends Entity
 	}
 	public int getMana()
 	{
-		return ((Integer)this.dataManager.get(amount)).intValue();
+		return ((Integer)dataManager.get(amount)).intValue();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -104,113 +106,116 @@ public class EntityManaOrb extends Entity
 
 	protected int getFireImmuneTicks()
 	{
+		
 		return Integer.MAX_VALUE;
 	}
+	
 	@SideOnly(Side.CLIENT)
 	public static double getRenderDistanceWeight()
 	{
 		return 64D;
 	}
+	
 	/**
 	* Called to update the entity's position/logic.
 	*/
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (!this.magnet.isEmpty() && !(this.magnet.getItem() instanceof ItemManaCollector))
+		if (!magnet.isEmpty() && !(magnet.getItem() instanceof ItemManaCollector))
 		magnet = ItemStack.EMPTY;
-		if (this.blinkTimer > 0)
-		--this.blinkTimer;
-		else if (this.getEntropy())
-		this.blinkTimer += 20 + rand.nextInt(100);
+		if (blinkTimer > 0)
+		--blinkTimer;
+		else if (getEntropy())
+		blinkTimer += 20 + rand.nextInt(100);
 		else
-		this.blinkTimer += 20;
+		blinkTimer += 20;
 		
-		if (this.ticksExisted % 5 == 0)
+		if (ticksExisted % 5 == 0)
 		{
-			if (this.getEntropy())
-				this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY + 0.125D, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			if (getEntropy())
+				world.spawnParticle(EnumParticleTypes.FLAME, posX, posY + 0.125D, posZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			else
-				this.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY + 0.125D, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+				world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, posX, posY + 0.125D, posZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 		
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
+		prevPosX = posX;
+		prevPosY = posY;
+		prevPosZ = posZ;
 		
-		if (!this.hasNoGravity())
+		if (!hasNoGravity())
 		{
-			this.motionY -= 0.029999999329447746D;
+			motionY -= 0.029999999329447746D;
 		}
 
-		this.pushOutOfBlocks(this.posX, (this.getEntityBoundingBox().minY + this.getEntityBoundingBox().maxY) / 2.0D, this.posZ);
-		if (this.xpTargetColor < this.xpColor - 20 + this.getEntityId() % 100)
+		pushOutOfBlocks(posX, (getEntityBoundingBox().minY + getEntityBoundingBox().maxY) / 2.0D, posZ);
+		if (xpTargetColor < xpColor - 20 + getEntityId() % 100)
 		{
-			this.xpTargetColor = this.xpColor;
+			xpTargetColor = xpColor;
 		}
 
-		if (!this.world.isRemote && this.ticksExisted > 20 && !this.magnet.isEmpty() && this.closestPlayer != null && this.getDistance(closestPlayer) <= 16D)
+		if (!world.isRemote && ticksExisted > 20 && !magnet.isEmpty() && closestPlayer != null && getDistance(closestPlayer) <= 16D)
 		{
 			ItemStack stack = magnet;
 			Item item = stack.getItem();
-			if (item instanceof ItemManaCollector && (!this.getEntropy() && (((ItemManaCollector) item).getMana(stack) < ((ItemManaCollector) item).getMaxMana(stack)) || (this.getEntropy() && ((ItemManaCollector) item).getEntropy(stack) < ((ItemManaCollector) item).getMaxEntropy(stack))))
+			if (item instanceof ItemManaCollector && (!getEntropy() && (((ItemManaCollector) item).getMana(stack) < ((ItemManaCollector) item).getMaxMana(stack)) || (getEntropy() && ((ItemManaCollector) item).getEntropy(stack) < ((ItemManaCollector) item).getMaxEntropy(stack))))
 			{
-				double d1 = (this.closestPlayer.posX - this.posX) / 24D;
-				double d2 = (this.closestPlayer.posY + (double)this.closestPlayer.getEyeHeight() - this.posY) / 24D;
-				double d3 = (this.closestPlayer.posZ - this.posZ) / 24D;
+				double d1 = (closestPlayer.posX - posX) / 24D;
+				double d2 = (closestPlayer.posY + (double)closestPlayer.getEyeHeight() - posY) / 24D;
+				double d3 = (closestPlayer.posZ - posZ) / 24D;
 				double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
 				double d5 = 1.0D - d4;
 				
 				if (d5 > 0.0D)
 				{
 					d5 = d5 * d5;
-					this.motionX += d1 / d4 * d5 * 0.1D;
-					this.motionY += d2 / d4 * d5 * 0.1D;
-					this.motionZ += d3 / d4 * d5 * 0.1D;
+					motionX += d1 / d4 * d5 * 0.1D;
+					motionY += d2 / d4 * d5 * 0.1D;
+					motionZ += d3 / d4 * d5 * 0.1D;
 				}
 			}
 			else
 			{
-				this.magnet = ItemStack.EMPTY;
-				this.closestPlayer = null;
+				magnet = ItemStack.EMPTY;
+				closestPlayer = null;
 			}
 		}
-		if (this.magnet.isEmpty() || this.closestPlayer == null || (this.closestPlayer != null && this.getDistance(closestPlayer) > 24D))
+		if (magnet.isEmpty() || closestPlayer == null || (closestPlayer != null && getDistance(closestPlayer) > 24D))
 		{
-			this.magnet = ItemStack.EMPTY;
-			this.closestPlayer = null;
+			magnet = ItemStack.EMPTY;
+			closestPlayer = null;
 		}
-		if (this.ticksExisted == 40)
+		if (ticksExisted == 40)
 		{
-			this.motionX = 0D;
-			this.motionY = 0D;
-			this.motionZ = 0D;
+			motionX = 0D;
+			motionY = 0D;
+			motionZ = 0D;
 		}
 
-		this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+		move(MoverType.SELF, motionX, motionY, motionZ);
 		float f = 0.95F;
 		
-		if (this.onGround)
+		if (onGround)
 		{
-			BlockPos underPos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getEntityBoundingBox().minY) - 1, MathHelper.floor(this.posZ));
-			net.minecraft.block.state.IBlockState underState = this.world.getBlockState(underPos);
-			f = underState.getBlock().getSlipperiness(underState, this.world, underPos, this) * 0.99F;
+			BlockPos underPos = new BlockPos(MathHelper.floor(posX), MathHelper.floor(getEntityBoundingBox().minY) - 1, MathHelper.floor(posZ));
+			net.minecraft.block.state.IBlockState underState = world.getBlockState(underPos);
+			f = underState.getBlock().getSlipperiness(underState, world, underPos, this) * 0.99F;
 		}
 
-		this.motionX *= (double)f;
-		this.motionY *= 0.95D;
-		this.motionZ *= (double)f;
+		motionX *= (double)f;
+		motionY *= 0.95D;
+		motionZ *= (double)f;
 		
-		if (this.onGround)
+		if (onGround)
 		{
-			this.motionY *= -0.8999999761581421D;
+			motionY *= -0.8999999761581421D;
 		}
 
-		++this.xpColor;
-		++this.age;
+		++xpColor;
+		++age;
 		
-		if (this.age >= 6000)
-			this.setDead();
+		if (age >= 6000)
+			setDead();
 	}
 
 	/**
@@ -218,7 +223,7 @@ public class EntityManaOrb extends Entity
 	*/
 	public boolean handleWaterMovement()
 	{
-		return this.world.handleMaterialAcceleration(this.getEntityBoundingBox(), Material.WATER, this);
+		return world.handleMaterialAcceleration(getEntityBoundingBox(), Material.WATER, this);
 	}
 
 	/**
@@ -226,9 +231,9 @@ public class EntityManaOrb extends Entity
 	*/
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
-		compound.setShort("Age", (short)this.age);
-		compound.setInteger("Value", this.getMana());
-		compound.setBoolean("Entropy", this.getEntropy());
+		compound.setShort("Age", (short)age);
+		compound.setInteger("Value", getMana());
+		compound.setBoolean("Entropy", getEntropy());
 	}
 
 	/**
@@ -236,9 +241,9 @@ public class EntityManaOrb extends Entity
 	*/
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
-		this.age = compound.getShort("Age");
-		this.setMana(compound.getInteger("Value"));
-		this.setEntropy(compound.getBoolean("Entropy"));
+		age = compound.getShort("Age");
+		setMana(compound.getInteger("Value"));
+		setEntropy(compound.getBoolean("Entropy"));
 	}
 
 	/**
@@ -246,50 +251,50 @@ public class EntityManaOrb extends Entity
 	*/
 	public void onCollideWithPlayer(EntityPlayer entityIn)
 	{
-		if (!this.magnet.isEmpty() && this.closestPlayer != null && this.closestPlayer == entityIn)
+		if (!magnet.isEmpty() && closestPlayer != null && closestPlayer == entityIn)
 		{
 			ItemStack stack = magnet;
 			Item item = stack.getItem();
-			if (!this.world.isRemote && item instanceof ItemManaCollector)
+			if (!world.isRemote && item instanceof ItemManaCollector)
 			{
-				if (this.getMana() > 0)
+				if (getMana() > 0)
 				{
-					this.world.playSound(null, entityIn.getPosition(), this.getEntropy() ? SoundEvents.BLOCK_END_PORTAL_FRAME_FILL : SoundEvents.BLOCK_CHORUS_FLOWER_GROW, entityIn.getSoundCategory(), 2F, 2F);
-					if (this.getEntropy() && ((ItemManaCollector) item).getEntropy(stack) < ((ItemManaCollector) item).getMaxEntropy(stack))
+					world.playSound(null, entityIn.getPosition(), getEntropy() ? SoundEvents.BLOCK_END_PORTAL_FRAME_FILL : SoundEvents.BLOCK_CHORUS_FLOWER_GROW, entityIn.getSoundCategory(), 2F, 2F);
+					if (getEntropy() && ((ItemManaCollector) item).getEntropy(stack) < ((ItemManaCollector) item).getMaxEntropy(stack))
 					{
-						if (this.getMana() > (((ItemManaCollector)item).getMaxEntropy(stack) - ((ItemManaCollector)item).getEntropy(stack)))
+						if (getMana() > (((ItemManaCollector)item).getMaxEntropy(stack) - ((ItemManaCollector)item).getEntropy(stack)))
 						{
-							int oldamount = this.getMana();
-							this.setMana(oldamount - (((ItemManaCollector)item).getMaxEntropy(stack) - ((ItemManaCollector)item).getEntropy(stack)));
+							int oldamount = getMana();
+							setMana(oldamount - (((ItemManaCollector)item).getMaxEntropy(stack) - ((ItemManaCollector)item).getEntropy(stack)));
 							((ItemManaCollector)item).increaseHolding(oldamount, stack, true);
-							this.magnet = ItemStack.EMPTY;
-							this.closestPlayer = null;
+							magnet = ItemStack.EMPTY;
+							closestPlayer = null;
 						}
 						else
 						{
 							((ItemManaCollector)item).increaseHolding(getMana(), stack, true);
-							this.setDead();
+							setDead();
 						}
 					}
-					else if (!this.getEntropy() && (((ItemManaCollector) item).getMana(stack) < ((ItemManaCollector) item).getMaxMana(stack)))
+					else if (!getEntropy() && (((ItemManaCollector) item).getMana(stack) < ((ItemManaCollector) item).getMaxMana(stack)))
 					{
-						if (this.getMana() > (((ItemManaCollector)item).getMaxMana(stack) - ((ItemManaCollector)item).getMana(stack)))
+						if (getMana() > (((ItemManaCollector)item).getMaxMana(stack) - ((ItemManaCollector)item).getMana(stack)))
 						{
-							int oldamount = this.getMana();
-							this.setMana(oldamount - (((ItemManaCollector)item).getMaxMana(stack) - ((ItemManaCollector)item).getMana(stack)));
+							int oldamount = getMana();
+							setMana(oldamount - (((ItemManaCollector)item).getMaxMana(stack) - ((ItemManaCollector)item).getMana(stack)));
 							((ItemManaCollector)item).increaseHolding(oldamount, stack, false);
-							this.magnet = ItemStack.EMPTY;
-							this.closestPlayer = null;
+							magnet = ItemStack.EMPTY;
+							closestPlayer = null;
 						}
 						else
 						{
 							((ItemManaCollector)item).increaseHolding(getMana(), stack, false);
-							this.setDead();
+							setDead();
 						}
 					}
 				}
 				else
-				this.setDead();
+				setDead();
 			}
 		}
 	}
@@ -299,7 +304,7 @@ public class EntityManaOrb extends Entity
 	*/
 	public int getXpValue()
 	{
-		return this.getMana();
+		return getMana();
 	}
 
 	/**
@@ -308,36 +313,36 @@ public class EntityManaOrb extends Entity
 	*/
 	public float getTextureByXP()
 	{
-		if (this.getEntropy())
+		if (getEntropy())
 		{
-			if (this.getMana() >= 30)
+			if (getMana() >= 30)
 			{
-				if (this.blinkTimer > 20)
+				if (blinkTimer > 20)
 				return 1.992f;
-				else if (this.blinkTimer > 10)
+				else if (blinkTimer > 10)
 				return 2.496f;
 				else
 				return 3.0f;
 			}
-			else if (this.getMana() >= 20)
+			else if (getMana() >= 20)
 			{
-				if (this.blinkTimer > 20)
+				if (blinkTimer > 20)
 				return 2.496f;
-				else if (this.blinkTimer > 10)
+				else if (blinkTimer > 10)
 				return 3.0f;
 				else
 				return 3.504f;
 			}
-			else if (this.getMana() >= 10)
+			else if (getMana() >= 10)
 			{
-				if (this.blinkTimer > 20)
+				if (blinkTimer > 20)
 				return 3.0f;
-				else if (this.blinkTimer > 10)
+				else if (blinkTimer > 10)
 				return 3.504f;
 				else
 				return 1.992f;
 			}
-			else if (this.getMana() >= 5)
+			else if (getMana() >= 5)
 			{
 				return 2.496f;
 			}
@@ -348,36 +353,36 @@ public class EntityManaOrb extends Entity
 		}
 		else
 		{
-			if (this.getMana() >= 128)
+			if (getMana() >= 128)
 			{
-				if (this.blinkTimer > 13)
+				if (blinkTimer > 13)
 				return 0.0f;
-				else if (this.blinkTimer > 7)
+				else if (blinkTimer > 7)
 				return 0.504f;
 				else
 				return 1.008f;
 			}
-			else if (this.getMana() >= 24)
+			else if (getMana() >= 24)
 			{
-				if (this.blinkTimer > 13)
+				if (blinkTimer > 13)
 				return 0.504f;
-				else if (this.blinkTimer > 7)
+				else if (blinkTimer > 7)
 				return 1.008f;
 				else
 				return 1.512f;
 			}
-			else if (this.getMana() >= 8)
+			else if (getMana() >= 8)
 			{
-				if (this.blinkTimer > 10)
+				if (blinkTimer > 10)
 				return 1.512f;
 				else
 				return 0.0f;
 			}
-			else if (this.getMana() >= 4)
+			else if (getMana() >= 4)
 			{
 				return 1.008f;
 			}
-			else if (this.getMana() >= 2)
+			else if (getMana() >= 2)
 			{
 				return 0.5f;
 			}
@@ -393,24 +398,24 @@ public class EntityManaOrb extends Entity
 	*/
 	public float getTextureY()
 	{
-		if (this.getEntropy())
+		if (getEntropy())
 		{
-			if (this.getMana() >= 30)
+			if (getMana() >= 30)
 			{
 				return 8.0f;
 			}
-			else if (this.getMana() >= 20)
+			else if (getMana() >= 20)
 			{
 				return 4.0f;
 			}
-			else if (this.getMana() >= 10)
+			else if (getMana() >= 10)
 			{
-				if (this.blinkTimer > 10)
+				if (blinkTimer > 10)
 				return 0.0f;
 				else
 				return 4.0f;
 			}
-			else if (this.getMana() >= 5)
+			else if (getMana() >= 5)
 			{
 				return 0.0f;
 			}
@@ -421,38 +426,38 @@ public class EntityManaOrb extends Entity
 		}
 		else
 		{
-			if (this.getMana() >= 512)
+			if (getMana() >= 512)
 			{
 				return 8.0f;
 			}
-			else if (this.getMana() >= 256)
+			else if (getMana() >= 256)
 			{
 				return 8.0f;
 			}
-			else if (this.getMana() >= 128)
+			else if (getMana() >= 128)
 			{
 				return 8.0f;
 			}
-			else if (this.getMana() >= 72)
+			else if (getMana() >= 72)
 			{
 				return 4.0f;
 			}
-			else if (this.getMana() >= 48)
+			else if (getMana() >= 48)
 			{
 				return 4.0f;
 			}
-			else if (this.getMana() >= 24)
+			else if (getMana() >= 24)
 			{
 				return 4.0f;
 			}
-			else if (this.getMana() >= 8)
+			else if (getMana() >= 8)
 			{
-				if (this.blinkTimer > 10)
+				if (blinkTimer > 10)
 				return 0.0f;
 				else
 				return 4.0f;
 			}
-			else if (this.getMana() >= 4)
+			else if (getMana() >= 4)
 			{
 				return 0.0f;
 			}
@@ -510,9 +515,6 @@ public class EntityManaOrb extends Entity
 		}
 	}
 
-	/**
-	* Returns true if it's possible to attack this entity with an item.
-	*/
 	public boolean canBeAttackedWithItem()
 	{
 		return false;

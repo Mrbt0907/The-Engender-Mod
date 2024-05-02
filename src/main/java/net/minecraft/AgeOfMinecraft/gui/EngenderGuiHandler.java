@@ -2,7 +2,7 @@ package net.minecraft.AgeOfMinecraft.gui;
 
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.blocks.ContainerMobSpawner;
-import net.minecraft.AgeOfMinecraft.blocks.TileEntityMonsterSpawnerSPC;
+import net.minecraft.AgeOfMinecraft.blocks.TileFusionCrafter;
 import net.minecraft.AgeOfMinecraft.items.ItemEngenderStatChecker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,8 +22,8 @@ public class EngenderGuiHandler implements IGuiHandler
 		switch(ID)
 		{
 			case EngenderMod.engenderfuserGUIID:
-			if(entity != null && entity instanceof TileEntityMonsterSpawnerSPC)
-			return new ContainerMobSpawner(player.inventory, (TileEntityMonsterSpawnerSPC)entity);
+			if(entity != null && entity instanceof TileFusionCrafter)
+			return new ContainerMobSpawner(player.inventory, (TileFusionCrafter)entity);
 		}
 		return null;
 	}
@@ -39,8 +39,8 @@ public class EngenderGuiHandler implements IGuiHandler
 			if(!stack.isEmpty() && stack.getItem() instanceof ItemEngenderStatChecker)
 			return new GuiEngenderMobInventory(player, ItemEngenderStatChecker.viewedEntity);
 			case EngenderMod.engenderfuserGUIID:
-			if(entity != null && entity instanceof TileEntityMonsterSpawnerSPC)
-			return new GuiEngenderFusionCrafter(player.inventory, (TileEntityMonsterSpawnerSPC)entity);
+			if(entity != null && entity instanceof TileFusionCrafter)
+			return new GuiEngenderFusionCrafter(player.inventory, (TileFusionCrafter)entity);
 		}
 		return null;
 	}

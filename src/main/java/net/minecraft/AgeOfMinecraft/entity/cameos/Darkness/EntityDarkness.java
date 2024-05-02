@@ -6,9 +6,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.endermanofdoom.mac.MACCore;
 import net.endermanofdoom.mac.dialogue.DialogueManager;
-import net.endermanofdoom.mac.dialogue.SubDialogueMessage;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.endermanofdoom.mac.util.TranslateUtil;

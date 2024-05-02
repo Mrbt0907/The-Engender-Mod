@@ -33,7 +33,7 @@ public class BlockBeaconSPC extends BlockContainer
 		setUnlocalizedName("beacon_spc");
 		setHardness(3.0F);
 		setResistance(6000000.0F);
-		setCreativeTab(CreativeTabRegistry.engender);
+		setCreativeTab(CreativeTabRegistry.ENGENDER);
 	}
 
 	/**

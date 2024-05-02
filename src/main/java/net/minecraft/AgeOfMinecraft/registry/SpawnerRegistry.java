@@ -1,6 +1,5 @@
 package net.minecraft.AgeOfMinecraft.registry;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -67,7 +66,8 @@ public class SpawnerRegistry
 						player.world.spawnEntity(new EntityXPOrb(player.world, entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ, j));
 					}
 				
-				entity.setOwnerId(player.getUniqueID());
+				if (!(boolean)args[8])
+					entity.setOwnerId(player.getUniqueID());
 				entity.playLivingSound();
 			}
 		}
@@ -112,7 +112,8 @@ public class SpawnerRegistry
 						player.world.spawnEntity(new EntityXPOrb(player.world, entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ, j));
 					}
 				
-				entity.setOwnerId(player.getUniqueID());
+				if (!(boolean)args[8])
+					entity.setOwnerId(player.getUniqueID());
 				entity.playLivingSound();
 				
 				EntitySpider entityMount = new EntitySpider(player.world);
@@ -122,7 +123,8 @@ public class SpawnerRegistry
 				entityMount.renderYawOffset = entityMount.rotationYaw;
 				entityMount.onInitialSpawn(player.world.getDifficultyForLocation(new BlockPos(entityMount)), null);
 				player.world.spawnEntity(entityMount);
-				entityMount.setOwnerId(player.getUniqueID());
+				if (!(boolean)args[8])
+					entityMount.setOwnerId(player.getUniqueID());
 				entity.startRiding(entityMount, true);
 			}
 		}
@@ -167,7 +169,8 @@ public class SpawnerRegistry
 						player.world.spawnEntity(new EntityXPOrb(player.world, entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ, j));
 					}
 				
-				entity.setOwnerId(player.getUniqueID());
+				if (!(boolean)args[8])
+					entity.setOwnerId(player.getUniqueID());
 				entity.playLivingSound();
 				
 				EntityChicken entityMount = new EntityChicken(player.world);
@@ -177,7 +180,8 @@ public class SpawnerRegistry
 				entityMount.renderYawOffset = entityMount.rotationYaw;
 				entityMount.onInitialSpawn(player.world.getDifficultyForLocation(new BlockPos(entityMount)), null);
 				player.world.spawnEntity(entityMount);
-				entityMount.setOwnerId(player.getUniqueID());
+				if (!(boolean)args[8])
+					entityMount.setOwnerId(player.getUniqueID());
 				entity.startRiding(entityMount, true);
 			}
 		}
@@ -228,7 +232,8 @@ public class SpawnerRegistry
 						player.world.spawnEntity(new EntityXPOrb(player.world, entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ, j));
 					}
 				
-				entity.setOwnerId(player.getUniqueID());
+				if (!(boolean)args[8])
+					entity.setOwnerId(player.getUniqueID());
 				entity.playLivingSound();
 				
 				EntitySkeletonHorse entityMount = new EntitySkeletonHorse(player.world);
