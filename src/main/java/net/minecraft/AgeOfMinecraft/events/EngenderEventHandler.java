@@ -425,12 +425,7 @@ public class EngenderEventHandler
 			mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityFriendlyCreature>(mob, EntityFriendlyCreature.class, 0, false, false, ent -> ent.isEntityAlive() && !ent.isOnSameTeam(mob)));
 			mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityVillager>(mob, EntityVillager.class, true));
 		}
-		
-		if (entity instanceof net.minecraft.entity.monster.EntityIronGolem)
-		{
-			net.minecraft.entity.monster.EntityIronGolem golems = (net.minecraft.entity.monster.EntityIronGolem)entity;			
-			golems.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityLivingBase>(golems, EntityLivingBase.class, 0, false, false, ent -> IMob.MOB_SELECTOR.apply(ent)));
-		}
+
 		else if (entity instanceof net.minecraft.entity.passive.EntityVillager)
 		{
 			net.minecraft.entity.passive.EntityVillager testificate = (net.minecraft.entity.passive.EntityVillager)entity;
