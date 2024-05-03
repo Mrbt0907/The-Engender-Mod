@@ -170,25 +170,25 @@ public class EntityDarkProjectile extends Entity
 				if (distance <= size || collided || ticksExisted > 1200 || heath <= 0)
 				{
 					EntityFriendlyCreature.createEngenderModExplosion(shooter == null ? this : shooter, posX, posY, posZ, 1F, false, world.getGameRules().getBoolean("mobGriefing"));
-					attackEntities(EngenderDamageSources.VOID, 6.0D, 1.0F, 1.0F);
+					attackEntities(EngenderDamageSources.VOID, 6.0D, 10.0F, 10.0F);
 					setDead();
 				}
 				break;
 			case 1:
-				attackEntities(EngenderDamageSources.ERASURE, size + 3.0D, 2.0F, 5.0F);
+				attackEntities(EngenderDamageSources.ERASURE, size + 3.0D, 20.0F, 20.0F);
 				if (ticksExisted > 600 || heath <= 0)
 				{
 					EntityFriendlyCreature.createEngenderModExplosion(shooter == null ? this : shooter, posX, posY, posZ, 10F, false, world.getGameRules().getBoolean("mobGriefing"));
-					attackEntities(EngenderDamageSources.ERASURE, 20.0D, 60.0F, 260.0F);
+					attackEntities(EngenderDamageSources.ERASURE, 20.0D, 100.0F, 1000.0F);
 					setDead();
 				}
 				break;
 			default:
-				attackEntities(EngenderDamageSources.VOID, size + 3.0D, 1.0F, 1.5F);
+				attackEntities(EngenderDamageSources.VOID, size + 3.0D, 10.0F, 10F);
 				if (ticksExisted > 300 || heath <= 0)
 				{
 					EntityFriendlyCreature.createEngenderModExplosion(shooter == null ? this : shooter, posX, posY, posZ, 5F, false, world.getGameRules().getBoolean("mobGriefing"));
-					attackEntities(EngenderDamageSources.VOID, 10.0D, 20.0F, 40.0F);
+					attackEntities(EngenderDamageSources.VOID, 10.0D, 50.0F, 250.0F);
 					setDead();
 				}
 		}

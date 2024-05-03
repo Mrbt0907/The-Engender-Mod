@@ -107,12 +107,6 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	}
 	public void setChild(boolean childZombie) { }
 	
-	public void updateBossBar()
-	{
-		super.updateBossBar();
-		this.bossInfo.setColor(BossInfo.Color.PURPLE);
-		this.bossInfo.setDarkenSky(true);
-	}
 
 	public int getSpawnTimer()
 	{
@@ -289,7 +283,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-		if (!this.isWild() && getDistanceSq(getOwner()) >= 48400.0D)
+		if (getOwner() != null && getDistanceSq(getOwner()) >= 48400.0D)
 		{
 			setLocationAndAngles(getOwner().posX, getOwner().posY, getOwner().posZ, this.rotationYaw, this.rotationPitch);
 		}
@@ -334,7 +328,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 		if (this.motionZ < -1D)
 		this.motionZ = -1D;
 		
-		if (!this.isWild())
+		if (getOwner() != null)
 		{
 			this.getOwner().removeActivePotionEffect(MobEffects.WITHER);
 		}
@@ -355,7 +349,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					if (this.getJukeboxToDanceTo() != null)
 					this.centerHead.setJukeboxToDanceTo(getJukeboxToDanceTo());
 					
-					if (!this.isWild())
+					if (getOwner() != null)
 					this.centerHead.setOwnerId(getOwnerId());
 					}
 				}
@@ -381,7 +375,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					if (this.getJukeboxToDanceTo() != null)
 					this.rightHead.setJukeboxToDanceTo(getJukeboxToDanceTo());
 					
-					if (!this.isWild())
+					if (getOwner() != null)
 					this.rightHead.setOwnerId(getOwnerId());
 					}
 				}
@@ -407,7 +401,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					if (this.getJukeboxToDanceTo() != null)
 					this.leftHead.setJukeboxToDanceTo(getJukeboxToDanceTo());
 					
-					if (!this.isWild())
+					if (getOwner() != null)
 					this.leftHead.setOwnerId(getOwnerId());
 					}
 				}
@@ -433,7 +427,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					if (this.getJukeboxToDanceTo() != null)
 					this.tentacle1.setJukeboxToDanceTo(getJukeboxToDanceTo());
 					
-					if (!this.isWild())
+					if (getOwner() != null)
 					this.tentacle1.setOwnerId(getOwnerId());
 					}
 				}
@@ -459,7 +453,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					if (this.getJukeboxToDanceTo() != null)
 					this.tentacle2.setJukeboxToDanceTo(getJukeboxToDanceTo());
 					
-					if (!this.isWild())
+					if (getOwner() != null)
 					this.tentacle2.setOwnerId(getOwnerId());
 					}
 				}
@@ -486,7 +480,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						if (this.getJukeboxToDanceTo() != null)
 						this.tentacle3.setJukeboxToDanceTo(getJukeboxToDanceTo());
 						
-						if (!this.isWild())
+						if (getOwner() != null)
 						this.tentacle3.setOwnerId(getOwnerId());
 					}
 				}
@@ -512,7 +506,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					if (this.getJukeboxToDanceTo() != null)
 					this.tentacle4.setJukeboxToDanceTo(getJukeboxToDanceTo());
 					
-					if (!this.isWild())
+					if (getOwner() != null)
 					this.tentacle4.setOwnerId(getOwnerId());
 					}
 				}
@@ -538,7 +532,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					if (this.getJukeboxToDanceTo() != null)
 					this.tentacle5.setJukeboxToDanceTo(getJukeboxToDanceTo());
 					
-					if (!this.isWild())
+					if (getOwner() != null)
 					this.tentacle5.setOwnerId(getOwnerId());
 					}
 				}
@@ -564,7 +558,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					if (this.getJukeboxToDanceTo() != null)
 					this.tentacledevourer1.setJukeboxToDanceTo(getJukeboxToDanceTo());
 					
-					if (!this.isWild())
+					if (getOwner() != null)
 					this.tentacledevourer1.setOwnerId(getOwnerId());
 					}
 				}
@@ -590,7 +584,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						if (this.getJukeboxToDanceTo() != null)
 						this.tentacledevourer2.setJukeboxToDanceTo(getJukeboxToDanceTo());
 						
-						if (!this.isWild())
+						if (getOwner() != null)
 						this.tentacledevourer2.setOwnerId(getOwnerId());
 					}
 				}
@@ -1148,7 +1142,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 		{
 			this.dataManager.set(SIZE, Integer.valueOf(doesntContainACommandBlock() ? 12500 : p_82215_1_));
 			getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((doesntContainACommandBlock() ? 1000D : (p_82215_1_)));
-			if (p_82215_1_ == 12500 && !this.isWild())
+			if (p_82215_1_ == 12500 && getOwner() != null)
 			{
 				for (EntityPlayer entityplayer : world.playerEntities)
 				{

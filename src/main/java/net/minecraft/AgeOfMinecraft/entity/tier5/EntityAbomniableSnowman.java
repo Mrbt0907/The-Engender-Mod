@@ -75,11 +75,6 @@ public class EntityAbomniableSnowman extends EntityFriendlyCreature implements I
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 	}
 
-	public void updateBossBar()
-	{
-		super.updateBossBar();
-		this.bossInfo.setColor(BossInfo.Color.WHITE);
-	}
 	public boolean isBoss()
 	{
 		return true;

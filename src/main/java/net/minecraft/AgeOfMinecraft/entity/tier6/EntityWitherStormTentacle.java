@@ -68,7 +68,7 @@ public class EntityWitherStormTentacle extends EntityFriendlyCreature implements
 	}
 	public boolean isBoss()
 	{
-		return true;
+		return false;
 	}
 
 	public void addTrackingPlayer(EntityPlayerMP player) { }

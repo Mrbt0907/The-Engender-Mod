@@ -151,13 +151,6 @@ public void setCanSpawnSkeletons(boolean childZombie)
 	getDataManager().set(SPAWNEDSKELETONS, Boolean.valueOf(childZombie));
 }
 
-public void updateBossBar()
-{
-	super.updateBossBar();
-	this.bossInfo.setColor(BossInfo.Color.PURPLE);
-	this.bossInfo.setDarkenSky(true);
-}
-
 @SideOnly(Side.CLIENT)
 public float getCreeperFlashIntensity(float p_70831_1_)
 {

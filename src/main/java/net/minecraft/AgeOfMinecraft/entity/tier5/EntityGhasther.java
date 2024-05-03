@@ -79,11 +79,6 @@ extends EntityFriendlyCreature implements Massive, Flying, Armored, IMusicIntera
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 	}
 
-	public void updateBossBar()
-	{
-		super.updateBossBar();
-		this.bossInfo.setColor(BossInfo.Color.YELLOW);
-	}
 	public boolean isBoss()
 	{
 		return true;

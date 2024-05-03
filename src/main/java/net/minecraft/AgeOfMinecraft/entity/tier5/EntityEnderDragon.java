@@ -193,11 +193,6 @@ public void onUpdate()
 	}
 }
 
-public void updateBossBar()
-{
-	super.updateBossBar();
-	this.bossInfo.setColor(this.getTier() == EnumTier.TIER6 ? BossInfo.Color.RED : BossInfo.Color.PINK);
-}
 
 public boolean isBoss()
 {

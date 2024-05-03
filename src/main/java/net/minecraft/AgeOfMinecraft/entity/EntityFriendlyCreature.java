@@ -13,6 +13,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.endermanofdoom.mac.dialogue.DialogueManager;
+import net.endermanofdoom.mac.interfaces.IBossBar;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.endermanofdoom.mac.util.math.Maths;
@@ -152,7 +153,7 @@ import net.minecraftforge.fml.common.Optional.Interface;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 @Interface(iface = "com.github.alexthe666.iceandfire.entity.IBlacklistedFromStatues", modid = "iceandfire")
-public abstract class EntityFriendlyCreature extends EntityCreature implements IEntityOwnable, ITeamedMobs
+public abstract class EntityFriendlyCreature extends EntityCreature implements IEntityOwnable, ITeamedMobs, IBossBar
 {
 	//TODO: Make sure to revisit the reflection helper lines to see if they error
 	public static float EXP_FACTOR = 1.0F / (float)EngenderConfig.mobs.levelFactor;
@@ -226,7 +227,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	protected int blockTimer;
 	public float rotationPitchFalling;
 	public float prevRotationPitchFalling;
-	protected BossInfoServer bossInfo = new BossInfoServer(new TextComponentTranslation(getName(), new Object[0]), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS);
 	private EnumStudy currentStudy = EnumStudy.Physical;
 	private ItemStack currentReadingBook = ItemStack.EMPTY;
 	public NBTTagCompound polymorpherData;
@@ -248,7 +248,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		timeUntilPortal = 100;
 		basicInventory = new InventoryBasic("Basic inventory", false, 8);
 		lastChanceInvul = getSpawnTimer();
-		updateBossBar();
 		chasingPosX = posX;
 		chasingPosY = posY + getEyeHeight();
 		chasingPosZ = posZ;
@@ -626,7 +625,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		chasingPosY += d1 * 0.25D;
 		
 		//----------- General Operations -----------\\
-		updateBossBar();
 		
 		if (isAlive && posY <= -200D)
 		{
@@ -1346,7 +1344,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	}
 	public void onDeath(DamageSource cause)
 	{
-		if (!world.isRemote && EngenderConfig.general.useMessage && (isHero() || isBoss()))
+		if (!world.isRemote && EngenderConfig.general.useMessage && (isHero() || isBoss()) && !(this instanceof EntityWitherStormHead) && !(this instanceof EntityWitherStormTentacle) && !(this instanceof EntityWitherStormTentacleDevourer))
 		{
 			Entity owner = this.getOwner();
 			List<EntityPlayerMP> players = getServer().getPlayerList().getPlayers();
@@ -4379,13 +4377,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	sprinting = false;
 	super.setSprinting(sprinting);
 	}
-	public void updateBossBar()
-	{
-	bossInfo.setName(getDisplayName());
-	bossInfo.setPercent(getFakeHealth() > 0 ? getFakeHealth() / (getMaxHealth() * 2) : getHealth() / getMaxHealth());
-	bossInfo.setVisible(!isSneaking() && !isInvisible() && isEntityAlive());
-	bossInfo.setOverlay(getTier().ordinal() > EnumTier.TIER5.ordinal() ? BossInfo.Overlay.NOTCHED_20 : (getTier() == EnumTier.TIER5 ? (getMaxHealth() >= 250 ? BossInfo.Overlay.NOTCHED_12 : BossInfo.Overlay.NOTCHED_10) : (getMaxHealth() >= 50 ? BossInfo.Overlay.NOTCHED_6 : BossInfo.Overlay.PROGRESS)));
-	}
 	
 	public boolean isBoss()
 	{
@@ -4405,8 +4396,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public void addTrackingPlayer(EntityPlayerMP player)
 	{
 	super.addTrackingPlayer(player);
-	if (isBoss() || (getGrowingAge() <= 0 && player.getName().equals("Mrbt0907")))
-	bossInfo.addPlayer(player);
 	}
 	
 	/**
@@ -4416,7 +4405,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public void removeTrackingPlayer(EntityPlayerMP player)
 	{
 	super.removeTrackingPlayer(player);
-	bossInfo.removePlayer(player);
 	}
 	public int getSpawnTimer()
 	{
@@ -4800,5 +4788,35 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public static float calculateExperience(float level)
 	{
 		return (float) Math.pow(level, 2.0F) * EXP_FACTOR;
+	}
+	
+	@Override
+	public boolean canRenderBar()
+	{
+		return isBoss();
+	}
+
+	@Override
+	public boolean isDead()
+	{
+		return isDead;
+	}
+
+	@Override
+	public double getBarHealth()
+	{
+		return getHealth();
+	}
+
+	@Override
+	public double getBarMaxHealth()
+	{
+		return getMaxHealth();
+	}
+
+	@Override
+	public String getBarName()
+	{
+		return getDisplayName().getFormattedText();
 	}
 }
