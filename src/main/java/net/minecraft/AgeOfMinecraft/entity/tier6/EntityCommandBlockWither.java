@@ -90,20 +90,6 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 		this.experienceValue = 500;
 		this.setLevel(300);
 	}
-	public void updateBossBar()
-	{
-		super.updateBossBar();
-		if (getSize() >= 12250 && this.ticksExisted % 2 == 0)
-		this.bossInfo.setColor(BossInfo.Color.PURPLE);
-		else
-		this.bossInfo.setColor(BossInfo.Color.RED);
-		this.bossInfo.setDarkenSky(true);
-	}
-    
-    public TextFormatting getNameColor()
-    {
-    	return TextFormatting.DARK_GRAY;
-    }
 
 	public boolean isBoss()
 	{

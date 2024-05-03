@@ -13,6 +13,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.endermanofdoom.mac.dialogue.DialogueManager;
+import net.endermanofdoom.mac.interfaces.IBossBar;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.endermanofdoom.mac.util.math.Maths;
@@ -154,7 +155,7 @@ import net.minecraftforge.fml.common.Optional.Interface;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 @Interface(iface = "com.github.alexthe666.iceandfire.entity.IBlacklistedFromStatues", modid = "iceandfire")
-public abstract class EntityFriendlyCreature extends EntityCreature implements IEntityOwnable, ITeamedMobs
+public abstract class EntityFriendlyCreature extends EntityCreature implements IEntityOwnable, ITeamedMobs, IBossBar
 {
 	//TODO: Make sure to revisit the reflection helper lines to see if they error
 	public static float EXP_FACTOR = 1.0F / (float)EngenderConfig.mobs.levelFactor;
@@ -228,7 +229,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	protected int blockTimer;
 	public float rotationPitchFalling;
 	public float prevRotationPitchFalling;
-	protected BossInfoServer bossInfo = new BossInfoServer(new TextComponentTranslation(getName(), new Object[0]), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS);
 	private EnumStudy currentStudy = EnumStudy.Physical;
 	private ItemStack currentReadingBook = ItemStack.EMPTY;
 	public NBTTagCompound polymorpherData;
@@ -250,7 +250,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		timeUntilPortal = 100;
 		basicInventory = new InventoryBasic("Basic inventory", false, 8);
 		lastChanceInvul = getSpawnTimer();
-		updateBossBar();
 		chasingPosX = posX;
 		chasingPosY = posY + getEyeHeight();
 		chasingPosZ = posZ;
@@ -628,7 +627,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		chasingPosY += d1 * 0.25D;
 		
 		//----------- General Operations -----------\\
-		updateBossBar();
 		
 		if (isAlive && posY <= -200D)
 		{
@@ -1348,7 +1346,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	}
 	public void onDeath(DamageSource cause)
 	{
-		if (!world.isRemote && EngenderConfig.general.useMessage && (isHero() || isBoss()))
+		if (!world.isRemote && EngenderConfig.general.useMessage && (isHero() || isBoss()) && !(this instanceof EntityWitherStormHead) && !(this instanceof EntityWitherStormTentacle) && !(this instanceof EntityWitherStormTentacleDevourer))
 		{
 			Entity owner = this.getOwner();
 			List<EntityPlayerMP> players = getServer().getPlayerList().getPlayers();
@@ -2949,11 +2947,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	
 	if (!world.isRemote && getAttackTarget() == null && entity != null && entity instanceof EntityLivingBase && !isOnSameTeam((EntityLivingBase)entity) && !source.isExplosion())
 	setAttackTarget((EntityLivingBase)entity);
-	if (hurtResistantTime <= 1)
-	if (source.isProjectile())playSound(getPierceHurtSound(), 3.0F, 1.0F);
-	else if ((amount >= 7.0F) || (source.isExplosion()) || (source.isDamageAbsolute()) || (source.isUnblockable()) || (source == DamageSource.ANVIL) || (source.canHarmInCreative()) || (source.isMagicDamage()) || (source == DamageSource.LAVA))
-	playSound(getCrushHurtSound(), 3.0F, 1.0F);
-	else playSound(getRegularHurtSound(), 3.0F, 1.0F);
+
 
 	setTotalEXP(getTotalEXP() + amount);
 	setCurrentStudy(EnumStudy.Combative, (int)amount);
@@ -3322,21 +3316,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (entity.isEntityInvulnerable(DamageSource.causeMobDamage(this)) && f >= 6.0F)
 	{
 	((EntityLivingBase)entity).setHealth(((EntityLivingBase)entity).getHealth() - f);
-	if (EntityType.isWoodLikeMob(entity))
-	{
-	entity.playSound(SoundRegistry.woodHitCrush, 2F, 1.0F);
-	}
-	else if (EntityType.isMetalLikeMob(entity))
-	{
-	entity.playSound(SoundRegistry.metalHitCrush, 2F, 1.0F);
-	}
-	else
-	{
-	if (entity.height >= 5.0F)
-	entity.playSound(SoundRegistry.fleshHitCrushHeavy, 2F, 1.0F);
-	else
-	entity.playSound(SoundRegistry.fleshHitCrush, 2F, 1.0F);
-	}
 	if (((EntityLivingBase)entity).getHealth() <= 0F)
 	((EntityLivingBase)entity).onDeath(DamageSource.causeMobDamage(this));
 	}
@@ -3571,21 +3550,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (entity.isEntityInvulnerable(attacktype) && (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA))
 	{
 	entity.setHealth(entity.getHealth() - damage);
-	if (EntityType.isWoodLikeMob(entity))
-	{
-	entity.playSound(SoundRegistry.woodHitCrush, 2F, 1.0F);
-	}
-	else if (EntityType.isMetalLikeMob(entity))
-	{
-	entity.playSound(SoundRegistry.metalHitCrush, 2F, 1.0F);
-	}
-	else
-	{
-	if (entity.height >= 5.0F)
-	entity.playSound(SoundRegistry.fleshHitCrushHeavy, 2F, 1.0F);
-	else
-	entity.playSound(SoundRegistry.fleshHitCrush, 2F, 1.0F);
-	}
+	
 	if (entity.getHealth() <= 0F)
 	entity.onDeath(attacktype);
 	}
@@ -4381,29 +4346,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	sprinting = false;
 	super.setSprinting(sprinting);
 	}
-	public void updateBossBar()
-	{
-	bossInfo.setName(getDisplayName());
-	bossInfo.setPercent(getFakeHealth() > 0 ? getFakeHealth() / (getMaxHealth() * 2) : getHealth() / getMaxHealth());
-	bossInfo.setVisible(!isSneaking() && !isInvisible() && isEntityAlive());
-	bossInfo.setOverlay(getTier().ordinal() > EnumTier.TIER5.ordinal() ? BossInfo.Overlay.NOTCHED_20 : (getTier() == EnumTier.TIER5 ? (getMaxHealth() >= 250 ? BossInfo.Overlay.NOTCHED_12 : BossInfo.Overlay.NOTCHED_10) : (getMaxHealth() >= 50 ? BossInfo.Overlay.NOTCHED_6 : BossInfo.Overlay.PROGRESS)));
-	}
-    
-    public TextFormatting getNameColor()
-    {
-    	return TextFormatting.WHITE;
-    }
-    
-    public String getName()
-    {
-    	TextFormatting color = this.getNameColor();
-    	
-    	if (this.isBoss())
-    		return color + super.getName() + TextFormatting.WHITE + " " + MinecraftAdventures.parseFloat(getHealth() + this.getAbsorptionAmount());
-    	else
-    		return super.getName();
-    }
-	
+
 	public boolean isBoss()
 	{
 		return false;
@@ -4422,8 +4365,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public void addTrackingPlayer(EntityPlayerMP player)
 	{
 	super.addTrackingPlayer(player);
-	if (isBoss() || (getGrowingAge() <= 0 && player.getName().equals("Mrbt0907")))
-	bossInfo.addPlayer(player);
 	}
 	
 	/**
@@ -4433,7 +4374,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public void removeTrackingPlayer(EntityPlayerMP player)
 	{
 	super.removeTrackingPlayer(player);
-	bossInfo.removePlayer(player);
 	}
 	public int getSpawnTimer()
 	{
@@ -4483,18 +4423,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public boolean passesDreadPlague()
 	{
 	return false;
-	}
-	protected SoundEvent getRegularHurtSound()
-	{
-	return SoundRegistry.fleshHit;
-	}
-	protected SoundEvent getPierceHurtSound()
-	{
-	return SoundRegistry.fleshHitPierce;
-	}
-	protected SoundEvent getCrushHurtSound()
-	{
-	return SoundRegistry.fleshHitCrush;
 	}
 	
 	public EnumSoundType getSoundType()
@@ -4817,5 +4745,35 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public static float calculateExperience(float level)
 	{
 		return (float) Math.pow(level, 2.0F) * EXP_FACTOR;
+	}
+	
+	@Override
+	public boolean canRenderBar()
+	{
+		return isBoss();
+	}
+
+	@Override
+	public boolean isDead()
+	{
+		return isDead;
+	}
+
+	@Override
+	public double getBarHealth()
+	{
+		return getHealth();
+	}
+
+	@Override
+	public double getBarMaxHealth()
+	{
+		return getMaxHealth();
+	}
+
+	@Override
+	public String getBarName()
+	{
+		return getDisplayName().getFormattedText();
 	}
 }
