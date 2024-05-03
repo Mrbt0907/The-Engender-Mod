@@ -500,16 +500,4 @@ public class EntityIronGolem extends EntityFriendlyCreature implements Armored
 		{
 			return LootRegistry.ENTITIES_IRON_GOLEM;
 		}
-		protected SoundEvent getRegularHurtSound()
-		{
-			return SoundRegistry.metalHit;
-		}
-		protected SoundEvent getPierceHurtSound()
-		{
-			return SoundRegistry.metalHitPierce;
-		}
-		protected SoundEvent getCrushHurtSound()
-		{
-			return SoundRegistry.metalHitCrush;
-		}
 	}

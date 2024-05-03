@@ -954,18 +954,7 @@ extends EntityFriendlyCreature implements Armored, Structure, Ender
 				return false;
 			}
 		}
-		protected SoundEvent getRegularHurtSound()
-		{
-			return SoundRegistry.woodHit;
-		}
-		protected SoundEvent getPierceHurtSound()
-		{
-			return SoundRegistry.woodHitPierce;
-		}
-		protected SoundEvent getCrushHurtSound()
-		{
-			return SoundRegistry.woodHitCrush;
-		}
+
 		class AIAttack extends EntityAIBase
 		{
 			private int field_188520_b;

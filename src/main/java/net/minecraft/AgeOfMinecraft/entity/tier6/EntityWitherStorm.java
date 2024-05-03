@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.endermanofdoom.mac.music.IMusicInteractable;
+import net.endermanofdoom.mca.MinecraftAdventures;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
@@ -53,6 +54,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
@@ -112,6 +114,11 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	{
 		return 0;
 	}
+    
+    public TextFormatting getNameColor()
+    {
+    	return TextFormatting.DARK_PURPLE;
+    }
 
 	public boolean isBoss()
 	{
@@ -222,11 +229,9 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	}
 	public String getName()
 	{
-		if (hasCustomName())
-		{
-			return getCustomNameTag();
-		}
-		return this.doesntContainACommandBlock() ? "Severed Wither Storm" : "The Wither Storm";
+    	TextFormatting color = this.getNameColor();
+    	
+    	return color + (hasCustomName() ? getCustomNameTag() : (this.doesntContainACommandBlock() ? "Severed Wither Storm" : "The Wither Storm")) + TextFormatting.WHITE + " " + MinecraftAdventures.parseFloat(getHealth() + this.getAbsorptionAmount());
 	}
 	protected void entityInit()
 	{
@@ -1165,10 +1170,6 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	protected ResourceLocation getLootTable()
 	{
 		return this.doesntContainACommandBlock() ? LootRegistry.ENTITIES_WITHER_STORM_MULAGEN : LootRegistry.ENTITIES_WITHER_STORM;
-	}
-	protected SoundEvent getCrushHurtSound()
-	{
-		return SoundRegistry.fleshHitCrushHeavy;
 	}
 
 	protected void onDeathUpdate()

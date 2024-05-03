@@ -710,16 +710,7 @@ public class EntityWitherStormHead extends EntityFriendlyCreature implements IRa
 	{
 		return EnumPushReaction.IGNORE;
 	}
-	
-	protected SoundEvent getCrushHurtSound()
-	{
-		return SoundRegistry.fleshHitCrushHeavy;
-	}
 
 	@Override
 	public void setSwingingArms(boolean swingingArms) {}
-
-	
 }
-
-

@@ -51,6 +51,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -427,10 +428,7 @@ extends EntityFriendlyCreature implements Massive, Flying, Armored, IMusicIntera
 				return false;
 			}
 		}
-		protected SoundEvent getCrushHurtSound()
-		{
-			return SoundRegistry.fleshHitCrushHeavy;
-		}
+
 		public void launchFireball(EntityGhasther ghast, double d2, double d3, double d4, double d5, double d6, double d7)
 		{
 			EntityLargeFireballOther entitylargefireball = new EntityLargeFireballOther(world, ghast, d2, d3, d4);

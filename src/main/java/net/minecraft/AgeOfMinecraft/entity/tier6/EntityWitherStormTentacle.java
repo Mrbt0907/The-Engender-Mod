@@ -472,10 +472,4 @@ public class EntityWitherStormTentacle extends EntityFriendlyCreature implements
 
 		return false;
 	}
-	protected SoundEvent getCrushHurtSound()
-	{
-		return SoundRegistry.fleshHitCrushHeavy;
-	}
 }
-
-

@@ -2,7 +2,6 @@ package net.minecraft.AgeOfMinecraft;
 
 import net.minecraft.AgeOfMinecraft.blocks.TileFusionCrafter;
 import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
-import net.minecraft.AgeOfMinecraft.registry.PotionRegistry;
 import net.minecraft.AgeOfMinecraft.registry.EnchantmentRegistry;
 import net.minecraft.AgeOfMinecraft.registry.EntityRegistry;
 import net.minecraft.AgeOfMinecraft.registry.FusionRecipeRegistry;
@@ -16,14 +15,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-
 public class CommonProxy
 {
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		new EngenderSetup();
 		SpawnerRegistry.init();
-		PotionRegistry.registerPotions();
 		EnchantmentRegistry.init();
 		LootRegistry.registerAllModdedLootTables();
 		SoundRegistry.registerSounds();

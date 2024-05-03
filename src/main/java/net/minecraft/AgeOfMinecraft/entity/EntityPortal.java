@@ -1032,18 +1032,6 @@ if ((this.ticksExisted + this.getEntityId()) > 60 && ((this.ticksExisted + this.
 						super.setAttackTarget(entitylivingbaseIn);
 					}
 				}
-				protected SoundEvent getRegularHurtSound()
-				{
-					return SoundRegistry.woodHit;
-				}
-				protected SoundEvent getPierceHurtSound()
-				{
-					return SoundRegistry.woodHitPierce;
-				}
-				protected SoundEvent getCrushHurtSound()
-				{
-					return SoundRegistry.woodHitCrush;
-				}
 				public boolean processInteract(EntityPlayer player, EnumHand hand)
 				{
 					ItemStack stack = player.getHeldItem(hand);

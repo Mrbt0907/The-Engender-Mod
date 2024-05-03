@@ -17,6 +17,7 @@ import net.endermanofdoom.mac.interfaces.IBossBar;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.endermanofdoom.mac.util.math.Maths;
+import net.endermanofdoom.mca.MinecraftAdventures;
 import net.minecraft.AgeOfMinecraft.EngenderCompat;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
@@ -142,6 +143,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
@@ -2945,11 +2947,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	
 	if (!world.isRemote && getAttackTarget() == null && entity != null && entity instanceof EntityLivingBase && !isOnSameTeam((EntityLivingBase)entity) && !source.isExplosion())
 	setAttackTarget((EntityLivingBase)entity);
-	if (hurtResistantTime <= 1)
-	if (source.isProjectile())playSound(getPierceHurtSound(), 3.0F, 1.0F);
-	else if ((amount >= 7.0F) || (source.isExplosion()) || (source.isDamageAbsolute()) || (source.isUnblockable()) || (source == DamageSource.ANVIL) || (source.canHarmInCreative()) || (source.isMagicDamage()) || (source == DamageSource.LAVA))
-	playSound(getCrushHurtSound(), 3.0F, 1.0F);
-	else playSound(getRegularHurtSound(), 3.0F, 1.0F);
+
 
 	setTotalEXP(getTotalEXP() + amount);
 	setCurrentStudy(EnumStudy.Combative, (int)amount);
@@ -3318,21 +3316,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (entity.isEntityInvulnerable(DamageSource.causeMobDamage(this)) && f >= 6.0F)
 	{
 	((EntityLivingBase)entity).setHealth(((EntityLivingBase)entity).getHealth() - f);
-	if (EntityType.isWoodLikeMob(entity))
-	{
-	entity.playSound(SoundRegistry.woodHitCrush, 2F, 1.0F);
-	}
-	else if (EntityType.isMetalLikeMob(entity))
-	{
-	entity.playSound(SoundRegistry.metalHitCrush, 2F, 1.0F);
-	}
-	else
-	{
-	if (entity.height >= 5.0F)
-	entity.playSound(SoundRegistry.fleshHitCrushHeavy, 2F, 1.0F);
-	else
-	entity.playSound(SoundRegistry.fleshHitCrush, 2F, 1.0F);
-	}
 	if (((EntityLivingBase)entity).getHealth() <= 0F)
 	((EntityLivingBase)entity).onDeath(DamageSource.causeMobDamage(this));
 	}
@@ -3567,21 +3550,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (entity.isEntityInvulnerable(attacktype) && (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA))
 	{
 	entity.setHealth(entity.getHealth() - damage);
-	if (EntityType.isWoodLikeMob(entity))
-	{
-	entity.playSound(SoundRegistry.woodHitCrush, 2F, 1.0F);
-	}
-	else if (EntityType.isMetalLikeMob(entity))
-	{
-	entity.playSound(SoundRegistry.metalHitCrush, 2F, 1.0F);
-	}
-	else
-	{
-	if (entity.height >= 5.0F)
-	entity.playSound(SoundRegistry.fleshHitCrushHeavy, 2F, 1.0F);
-	else
-	entity.playSound(SoundRegistry.fleshHitCrush, 2F, 1.0F);
-	}
+	
 	if (entity.getHealth() <= 0F)
 	entity.onDeath(attacktype);
 	}
@@ -4377,7 +4346,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	sprinting = false;
 	super.setSprinting(sprinting);
 	}
-	
+
 	public boolean isBoss()
 	{
 		return false;
@@ -4454,18 +4423,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	public boolean passesDreadPlague()
 	{
 	return false;
-	}
-	protected SoundEvent getRegularHurtSound()
-	{
-	return SoundRegistry.fleshHit;
-	}
-	protected SoundEvent getPierceHurtSound()
-	{
-	return SoundRegistry.fleshHitPierce;
-	}
-	protected SoundEvent getCrushHurtSound()
-	{
-	return SoundRegistry.fleshHitCrush;
 	}
 	
 	public EnumSoundType getSoundType()

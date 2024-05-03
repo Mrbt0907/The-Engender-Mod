@@ -54,6 +54,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.BossInfo.Color;
 import net.minecraft.world.gen.feature.WorldGenEndPodium;
@@ -1545,6 +1546,11 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	{
 		return ROUTE.size() > 0 && (path == null || ROUTE.get(0).distanceTo(getPositionVector()) < 15.0D) || ROUTE.isEmpty();
 	}
+    
+    public TextFormatting getNameColor()
+    {
+    	return TextFormatting.DARK_PURPLE;
+    }
 	
 	public float getDragonPhase()
     {

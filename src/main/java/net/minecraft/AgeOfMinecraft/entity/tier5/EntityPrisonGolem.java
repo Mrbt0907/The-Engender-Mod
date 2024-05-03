@@ -408,18 +408,7 @@ public class EntityPrisonGolem extends EntityFriendlyCreature implements Armored
 		{
 			return LootRegistry.ENTITIES_PRISON_GOLEM;
 		}
-		protected SoundEvent getRegularHurtSound()
-		{
-			return SoundRegistry.metalHit;
-		}
-		protected SoundEvent getPierceHurtSound()
-		{
-			return SoundRegistry.metalHitPierce;
-		}
-		protected SoundEvent getCrushHurtSound()
-		{
-			return SoundRegistry.metalHitCrush;
-		}
+
 		public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
 		{
 			if (!this.world.isRemote && this.world.rand.nextBoolean())

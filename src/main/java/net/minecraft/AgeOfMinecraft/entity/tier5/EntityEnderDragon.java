@@ -6,8 +6,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
-import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
-
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
@@ -193,6 +191,11 @@ public void onUpdate()
 	}
 }
 
+
+public TextFormatting getNameColor()
+{
+	return TextFormatting.LIGHT_PURPLE;
+}
 
 public boolean isBoss()
 {
@@ -1939,9 +1942,5 @@ protected void applyEntityAttributes()
 								return false;
 							}
 
-							protected SoundEvent getCrushHurtSound()
-							{
-								return SoundRegistry.fleshHitCrushHeavy;
-							}
 							public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) { }
 						}

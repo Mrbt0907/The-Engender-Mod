@@ -63,11 +63,6 @@ public class ItemRegistry
 	public static ItemManaCollector entropyContainer = new ItemManaCollector(1);
 	public static ItemManaCollector artifact1 = new ItemManaCollector(2);
 	public static Item witheredNetherStar = new ItemSimpleFoiled();
-	public static Item woodencleaver = new ItemCleaver(ToolMaterial.WOOD);
-	public static Item stonecleaver = new ItemCleaver(ToolMaterial.STONE);
-	public static Item ironcleaver = new ItemCleaver(ToolMaterial.IRON);
-	public static Item goldencleaver = new ItemCleaver(ToolMaterial.GOLD);
-	public static Item diamondcleaver = new ItemCleaver(ToolMaterial.DIAMOND);
 	public static Item statChecker = new ItemEngenderStatChecker();
 	public static Item carrier = new ItemCarrier();
 	public static Item heromaker = new ItemHeroMaker();
@@ -416,11 +411,6 @@ public class ItemRegistry
 		addItem("entropy_collector", entropyContainer, CreativeTabRegistry.ENGENDER_EQUIPMENT, 9);
 		addItem("infinite_well_spring", artifact1, CreativeTabRegistry.ENGENDER_EQUIPMENT);
 		addItem("withered_nether_star", witheredNetherStar, CreativeTabRegistry.ENGENDER);
-		addItem("wooden_cleaver", woodencleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("stone_cleaver", stonecleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("iron_cleaver", ironcleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("golden_cleaver", goldencleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("diamond_cleaver", diamondcleaver, CreativeTabRegistry.ENGENDER_EQUIPMENT);
 		addItem("statchecker", statChecker, CreativeTabRegistry.ENGENDER_EQUIPMENT);
 		addItem("carrier", carrier, CreativeTabRegistry.ENGENDER_EQUIPMENT);
 		addItem("heromaker", heromaker, CreativeTabRegistry.ENGENDER_EQUIPMENT);

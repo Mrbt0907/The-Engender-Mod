@@ -55,6 +55,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -802,18 +803,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	{
 		return true;
 	}
-	protected SoundEvent getRegularHurtSound()
-	{
-		return SoundRegistry.woodHit;
-	}
-	protected SoundEvent getPierceHurtSound()
-	{
-		return SoundRegistry.woodHitPierce;
-	}
-	protected SoundEvent getCrushHurtSound()
-	{
-		return SoundRegistry.woodHitCrush;
-	}
+
 	class AIDoNothing extends EntityAIBase
 	{
 		public AIDoNothing()

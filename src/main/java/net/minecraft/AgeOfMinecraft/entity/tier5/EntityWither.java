@@ -64,6 +64,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -155,6 +156,11 @@ public void setCanSpawnSkeletons(boolean childZombie)
 public float getCreeperFlashIntensity(float p_70831_1_)
 {
 	return (this.lastActiveTime + (this.timeSinceIgnited - this.lastActiveTime) * p_70831_1_) / 30;
+}
+
+public TextFormatting getNameColor()
+{
+	return TextFormatting.DARK_GRAY;
 }
 
 public boolean isBoss()
@@ -1330,18 +1336,6 @@ public void handleStopJump()
 			public boolean isEntityUndead()
 			{
 				return true;
-			}
-			protected SoundEvent getRegularHurtSound()
-			{
-				return SoundRegistry.woodHit;
-			}
-			protected SoundEvent getPierceHurtSound()
-			{
-				return SoundRegistry.woodHitPierce;
-			}
-			protected SoundEvent getCrushHurtSound()
-			{
-				return SoundRegistry.woodHitCrush;
 			}
 
 			protected void onDeathUpdate()
