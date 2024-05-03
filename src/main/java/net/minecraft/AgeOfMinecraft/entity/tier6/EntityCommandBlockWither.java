@@ -817,18 +817,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	{
 		return true;
 	}
-	protected SoundEvent getRegularHurtSound()
-	{
-		return SoundRegistry.woodHit;
-	}
-	protected SoundEvent getPierceHurtSound()
-	{
-		return SoundRegistry.woodHitPierce;
-	}
-	protected SoundEvent getCrushHurtSound()
-	{
-		return SoundRegistry.woodHitCrush;
-	}
+
 	class AIDoNothing extends EntityAIBase
 	{
 		public AIDoNothing()

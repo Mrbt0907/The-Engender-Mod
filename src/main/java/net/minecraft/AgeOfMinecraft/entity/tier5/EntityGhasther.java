@@ -438,10 +438,7 @@ extends EntityFriendlyCreature implements Massive, Flying, Armored, IMusicIntera
 				return false;
 			}
 		}
-		protected SoundEvent getCrushHurtSound()
-		{
-			return SoundRegistry.fleshHitCrushHeavy;
-		}
+
 		public void launchFireball(EntityGhasther ghast, double d2, double d3, double d4, double d5, double d6, double d7)
 		{
 			EntityLargeFireballOther entitylargefireball = new EntityLargeFireballOther(world, ghast, d2, d3, d4);

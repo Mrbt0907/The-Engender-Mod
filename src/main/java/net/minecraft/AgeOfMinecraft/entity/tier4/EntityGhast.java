@@ -17,7 +17,6 @@ import net.minecraft.AgeOfMinecraft.entity.Massive;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAvoidEntitySPC;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
-import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -437,10 +436,6 @@ extends EntityFriendlyCreature implements Massive, Flying, Light
 				{
 					return false;
 				}
-			}
-			protected SoundEvent getCrushHurtSound()
-			{
-				return SoundRegistry.fleshHitCrushHeavy;
 			}
 			static class AIFireballAttack extends EntityAIBase
 			{

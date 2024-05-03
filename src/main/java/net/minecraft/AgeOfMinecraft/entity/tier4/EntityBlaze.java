@@ -14,7 +14,6 @@ import net.minecraft.AgeOfMinecraft.entity.Flying;
 import net.minecraft.AgeOfMinecraft.entity.Light;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
-import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityList;
@@ -532,18 +531,6 @@ extends EntityFriendlyCreature implements IJumpingMount, Light, Flying, Elementa
 		protected boolean isValidLightLevel()
 		{
 			return true;
-		}
-		protected SoundEvent getRegularHurtSound()
-		{
-			return SoundRegistry.metalHit;
-		}
-		protected SoundEvent getPierceHurtSound()
-		{
-			return SoundRegistry.metalHitPierce;
-		}
-		protected SoundEvent getCrushHurtSound()
-		{
-			return SoundRegistry.metalHitCrush;
 		}
 
 		protected float getSoundPitch()

@@ -1344,18 +1344,6 @@ public void handleStopJump()
 			{
 				return true;
 			}
-			protected SoundEvent getRegularHurtSound()
-			{
-				return SoundRegistry.woodHit;
-			}
-			protected SoundEvent getPierceHurtSound()
-			{
-				return SoundRegistry.woodHitPierce;
-			}
-			protected SoundEvent getCrushHurtSound()
-			{
-				return SoundRegistry.woodHitCrush;
-			}
 
 			protected void onDeathUpdate()
 			{

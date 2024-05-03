@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
-import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -16,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -95,18 +93,4 @@ public class EntityMooshroom extends EntityCow implements net.minecraftforge.com
 		playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1.0F, 0.7F);
 		return ret;
 	}
-	protected SoundEvent getRegularHurtSound()
-	{
-		return SoundRegistry.woodHit;
-	}
-	protected SoundEvent getPierceHurtSound()
-	{
-		return SoundRegistry.woodHitPierce;
-	}
-	protected SoundEvent getCrushHurtSound()
-	{
-		return SoundRegistry.woodHitCrush;
-	}
 }
-
-

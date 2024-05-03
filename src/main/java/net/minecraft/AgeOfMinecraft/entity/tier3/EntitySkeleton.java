@@ -905,21 +905,6 @@ implements IRangedAttackMob, Undead
 							return false;
 						}
 					}
-					protected SoundEvent getRegularHurtSound()
-					{
-						return getTotalArmorValue() > 10 ? SoundRegistry.metalHit : SoundRegistry.woodHit;
-					}
-					protected SoundEvent getPierceHurtSound()
-					{
-						return SoundRegistry.woodHitPierce;
-					}
-					protected SoundEvent getCrushHurtSound()
-					{
-						return SoundRegistry.woodHitCrush;
-					}
 					@Override
 					public void setSwingingArms(boolean swingingArms) {}
 				}
-
-				
-				

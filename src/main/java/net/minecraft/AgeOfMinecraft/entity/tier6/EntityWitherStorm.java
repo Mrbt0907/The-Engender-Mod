@@ -1177,10 +1177,6 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	{
 		return this.doesntContainACommandBlock() ? LootRegistry.ENTITIES_WITHER_STORM_MULAGEN : LootRegistry.ENTITIES_WITHER_STORM;
 	}
-	protected SoundEvent getCrushHurtSound()
-	{
-		return SoundRegistry.fleshHitCrushHeavy;
-	}
 
 	protected void onDeathUpdate()
 	{

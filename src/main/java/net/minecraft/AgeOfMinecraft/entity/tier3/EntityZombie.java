@@ -1064,10 +1064,6 @@ extends EntityFriendlyCreature implements Undead
 			}
 			return i;
 		}
-		protected SoundEvent getRegularHurtSound()
-		{
-			return getTotalArmorValue() >= 10 ? SoundRegistry.metalHit : SoundRegistry.fleshHit;
-		}
 		
 		public class GroupData implements IEntityLivingData
 		{

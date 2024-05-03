@@ -380,10 +380,6 @@ public class EntityGiant extends EntityFriendlyCreature implements Massive, Armo
 		{
 			return isChild() ? (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F : (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F + 0.5F;
 		}
-		protected SoundEvent getCrushHurtSound()
-		{
-			return SoundRegistry.fleshHitCrushHeavy;
-		}
 
 		public boolean canBeCollidedWith()
 		{

@@ -415,16 +415,4 @@ public class EntityMagmaGolem extends EntityFriendlyCreature implements Armored,
 		{
 			return LootRegistry.ENTITIES_MAGMA_GOLEM;
 		}
-		protected SoundEvent getRegularHurtSound()
-		{
-			return SoundRegistry.woodHit;
-		}
-		protected SoundEvent getPierceHurtSound()
-		{
-			return SoundRegistry.woodHitPierce;
-		}
-		protected SoundEvent getCrushHurtSound()
-		{
-			return SoundRegistry.woodHitCrush;
-		}
 	}

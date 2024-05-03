@@ -1,12 +1,10 @@
 package net.minecraft.AgeOfMinecraft.events;
 
 import java.util.List;
-
 import net.endermanofdoom.mac.internal.music.MusicManager;
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
-import net.minecraft.AgeOfMinecraft.api.entity.EntityType;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
 import net.minecraft.AgeOfMinecraft.entity.cameos.Darkness.EntityDarkness;
@@ -51,11 +49,8 @@ import net.minecraft.AgeOfMinecraft.items.ItemFusion;
 import net.minecraft.AgeOfMinecraft.items.ItemFusionSpawner;
 import net.minecraft.AgeOfMinecraft.nexudium.NexudiumClient;
 import net.minecraft.AgeOfMinecraft.nexudium.NexudiumServer;
-import net.minecraft.AgeOfMinecraft.registry.PotionRegistry;
 import net.minecraft.AgeOfMinecraft.registry.ItemRegistry;
-import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.AgeOfMinecraft.registry.TextureRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
@@ -77,9 +72,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -100,7 +93,6 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.PotionEvent.PotionAddedEvent;
 import net.minecraftforge.event.world.WorldEvent.Save;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -203,18 +195,6 @@ public class EngenderEventHandler
 	}
 	
 	@SubscribeEvent
-	public void onPotionAdded(PotionAddedEvent event)
-	{
-		if (event.getEntity() instanceof EntityLivingBase)
-		{
-			EntityLivingBase entity = (EntityLivingBase)event.getEntity();
-			
-			if (EntityType.doesntHaveTimeToBleed(entity) && event.getPotionEffect().getPotion().equals(PotionRegistry.BLEEDING))
-				entity.removeActivePotionEffect(event.getPotionEffect().getPotion());
-		}
-	}
-	
-	@SubscribeEvent
 	public void onLivingEvent(LivingUpdateEvent event)
 	{
 		Entity entity = event.getEntity();
@@ -240,43 +220,6 @@ public class EngenderEventHandler
 		}
 	}
 	
-	public static void playOnHitSound(DamageSource attacktype, Entity entity, float damage)
-	{
-		if (attacktype.getDamageType() != "yell")
-			if (EntityType.isWoodLikeMob(entity))
-			{
-				if (attacktype.isProjectile() && attacktype.getDamageType() != "fireball")
-					entity.playSound(SoundRegistry.woodHitPierce, 2F, 1.0F);
-				else if (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA)
-					entity.playSound(SoundRegistry.woodHitCrush, 2F, 1.0F);
-				else
-					entity.playSound(SoundRegistry.woodHit, 2F, 1.0F);
-			}
-			else if (EntityType.isMetalLikeMob(entity))
-			{
-				if (attacktype.isProjectile() && attacktype.getDamageType() != "fireball")
-					entity.playSound(SoundRegistry.metalHitPierce, 2F, 1.0F);
-				else if (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA)
-					entity.playSound(SoundRegistry.metalHitCrush, 2F, 1.0F);
-				else
-					entity.playSound(SoundRegistry.metalHit, 2F, 1.0F);
-			}
-			else
-			{
-				if (attacktype.isProjectile() && attacktype.getDamageType() != "fireball")
-					entity.playSound(SoundRegistry.fleshHitPierce, 2F, 1.0F);
-				else if (damage >= 6.0F || attacktype.isExplosion() || attacktype.isDamageAbsolute() || attacktype.isUnblockable() || attacktype == DamageSource.ANVIL || attacktype.canHarmInCreative() || (attacktype.isMagicDamage()) || attacktype == DamageSource.LAVA)
-				{
-				if (entity.height >= 5.0F)
-					entity.playSound(SoundRegistry.fleshHitCrushHeavy, 2F, 1.0F);
-				else
-					entity.playSound(SoundRegistry.fleshHitCrush, 2F, 1.0F);
-				}
-				else
-					entity.playSound(SoundRegistry.fleshHit, 2F, 1.0F);
-			}
-	}
-	
 	@SubscribeEvent
 	public void onMobHitEvent(LivingHurtEvent event)
 	{
@@ -296,21 +239,7 @@ public class EngenderEventHandler
 			event.setCanceled(true);
 			return;
 		}
-		
-		
-		if (EngenderConfig.general.useBleeding && !source.isMagicDamage() && !source.isFireDamage() && !EntityType.doesntHaveTimeToBleed(victim))
-			if ((damage > 1.5F || source.isProjectile() || source.isExplosion()) && victim.getRNG().nextFloat() >= 0.3F)
-			{
-				int level = damage > 10 ? 3 : damage > 6 ? 2 : damage > 4 ? 1 : 0;
-				
-				if (source.isProjectile() || source.isExplosion())
-					damage += damage > 15 ? 3 : damage > 8 ? 2 : damage > 3 ? 1 : 0;
-				
-					if (victim.world.isRemote)
-						victim.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, true, victim.posX + (victim.getRNG().nextFloat() - 0.5D) * victim.width, victim.posY + (victim.getRNG().nextFloat()* victim.height), victim.posZ + (victim.getRNG().nextFloat() - 0.5D) * victim.width, 4.0D * (victim.getRNG().nextFloat() - 0.5D), 0.5D, (victim.getRNG().nextFloat() - 0.5D) * 4.0D, new int[] { Block.getStateId(Blocks.REDSTONE_BLOCK.getDefaultState()) });
-				victim.addPotionEffect(new PotionEffect(PotionRegistry.BLEEDING, (int)(damage * (60 + (damage * level))), level, false, false));
-			}
-		
+
 		if (attacker instanceof EntityLivingBase)
 		{
 			EntityLivingBase entity = (EntityLivingBase) attacker;
@@ -324,9 +253,6 @@ public class EngenderEventHandler
 				entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) ((EntityFriendlyCreature)event.getSource().getTrueSource()).getOwner()), 1);
 			}
 		}
-		
-		if(EngenderConfig.mobs.useHitSounds && !event.isCanceled())
-			playOnHitSound(source, victim, damage);
 		
 		if (!victim.isEntityAlive())
 		{
