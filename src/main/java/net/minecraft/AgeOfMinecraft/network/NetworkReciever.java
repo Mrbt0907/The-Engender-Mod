@@ -3,6 +3,7 @@ package net.minecraft.AgeOfMinecraft.network;
 import net.endermanofdoom.mac.interfaces.INetworkReciever;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.nexudium.NexudiumClient;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class NetworkReciever implements INetworkReciever
@@ -28,7 +29,7 @@ public class NetworkReciever implements INetworkReciever
 	}
 
 	@Override
-	public void onServerRecieved(int commandID, NBTTagCompound nbt)
+	public void onServerRecieved(int commandID, NBTTagCompound nbt, EntityPlayerMP player)
 	{
 		switch (commandID)
 		{
