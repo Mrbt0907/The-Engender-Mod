@@ -55,10 +55,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -1567,6 +1565,6 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 		public SoundEvent getMusic()
 		{
 			int size = getSize();
-			return isOnSameTeam(FMLClientHandler.instance().getClientPlayerEntity()) && false ? null : size >= 250000 ? SoundRegistry.witherStormTheme3 : size >= 50000 ? SoundRegistry.witherStormTheme2 : SoundRegistry.witherStormTheme;
+			return size >= 250000 ? SoundRegistry.witherStormTheme3 : size >= 50000 ? SoundRegistry.witherStormTheme2 : SoundRegistry.witherStormTheme;
 		}
 	}
