@@ -1,7 +1,6 @@
 package net.minecraft.AgeOfMinecraft.events;
 
 import java.util.List;
-import net.endermanofdoom.mac.internal.music.MusicManager;
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
@@ -69,7 +68,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -101,7 +99,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 
 public class EngenderEventHandler
 {
@@ -391,11 +388,6 @@ public class EngenderEventHandler
 			
 			if (entityLiving != null)
 				NexudiumServer.onEntitySpawned(entityLiving);
-		}
-		else
-		{
-			if (entity instanceof EntityDragon)
-				MusicManager.playMusic(entityLiving, SoundEvents.MUSIC_DRAGON, 3);
 		}
 		
 		if (entity instanceof EntityLiving)
