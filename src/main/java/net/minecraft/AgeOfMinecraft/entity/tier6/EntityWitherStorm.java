@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.endermanofdoom.mac.music.IMusicInteractable;
-import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
@@ -229,7 +228,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 	{
     	TextFormatting color = this.getNameColor();
     	
-    	return color + (hasCustomName() ? getCustomNameTag() : (this.doesntContainACommandBlock() ? "Severed Wither Storm" : "The Wither Storm")) + TextFormatting.WHITE + " " + MCA.parseFloat(getHealth() + this.getAbsorptionAmount());
+    	return color + (hasCustomName() ? getCustomNameTag() : (this.doesntContainACommandBlock() ? "Severed Wither Storm" : "The Wither Storm")) + TextFormatting.WHITE;
 	}
 	protected void entityInit()
 	{

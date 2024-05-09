@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
-import net.endermanofdoom.mac.util.TranslateUtil;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
@@ -19,7 +18,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MultiPartEntityPart;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -94,24 +92,6 @@ public class EntityGiant extends EntityFriendlyCreature implements Massive, Armo
 	public EnumTier getTier()
 	{
 		return EnumTier.TIER5;
-	}
-
-	public String getName()
-	{
-		if (hasCustomName())
-		{
-			return getCustomNameTag();
-		}
-
-			String s = EntityList.getEntityString(this);
-			
-			if (s == null)
-			{
-				s = "generic";
-			}
-
-			return TranslateUtil.translateServer("entity." + s + ".name");
-		
 	}
 
 	public boolean canBeMatedWith()

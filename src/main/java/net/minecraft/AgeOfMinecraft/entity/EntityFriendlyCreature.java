@@ -128,7 +128,6 @@ import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.CombatRules;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -3511,15 +3510,6 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	damage *= ((isSneaking() || isInvisible() || !canEntityBeSeen(entity)) && entity instanceof EntityLiving && ((EntityLiving)entity).getAttackTarget() != this ? 3 : 1) * (isHero() ? (entity instanceof IMob ? 3F : 1.5F) : 1F);
 	
 	ReflectionUtil.set(EntityLivingBase.class, entity, "recentlyHit", "field_70718_bc", 100);
-	
-	if (attacktype.getTrueSource() != null && !(attacktype instanceof EntityDamageSourceIndirect) && getEntityAttribute(AGILITY).getBaseValue() >= rand.nextDouble() * 10000D)
-	{
-	entity.hurtResistantTime = 0;
-	damage *= 10F;
-	playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 5F, 1F);
-	if (EngenderConfig.general.useMessage && !isWild())
-	getOwner().sendMessage(new TextComponentTranslation(getName() + " got a critical hit!", new Object[0]));
-	}
 	
 	damage *= getStrengthMultiplier();
 	if (entity.isEntityAlive())
