@@ -1,0 +1,6 @@
+{
+    "parent": "ageofminecraft:item/darkness_bow",
+    "textures": {
+        "layer0": "ageofminecraft:items/darkness_bow_pulling_2"
+    }
+}

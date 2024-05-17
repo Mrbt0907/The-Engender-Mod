@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 
 import com.google.common.collect.ImmutableMap;
 
+import net.endermanofdoom.mac.item.ItemBowEX;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.tier1.EntityMooshroom;
@@ -23,6 +24,7 @@ import net.minecraft.AgeOfMinecraft.entity.tier6.EntityCommandBlockWither;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntityMagmaCube;
 import net.minecraft.AgeOfMinecraft.entity.tier3.EntitySkeleton;
 import net.minecraft.AgeOfMinecraft.items.*;
+import net.minecraft.AgeOfMinecraft.items.cameos.darkness.ItemDarknessBow;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.Minecraft;
@@ -331,6 +333,7 @@ public class ItemRegistry
 	public static ItemFusionSpawner mutantSkeletonItem;
 	public static ItemFusionSpawner mutantZombieItem;
 	public static ItemFusionSpawner mutantEndermanItem;
+	public static final Item DARKNESS_BOW = new ItemDarknessBow();
 	
 	public static final List<ItemLearningBook> SKILL_BOOKS = new ArrayList<ItemLearningBook>();
 	
@@ -422,6 +425,7 @@ public class ItemRegistry
 		addItem("summoningstaff", summoningStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
 		addItem("commandingstaff", commandingStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
 		addItem("portalstaff", portalStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		addItem("darkness_bow", DARKNESS_BOW, CreativeTabRegistry.ENGENDER_EQUIPMENT);
 		
 		Integer[] fusionTiers = new Integer[fusionSpawners.size()];
 		fusionTiers = fusionSpawners.keySet().toArray(fusionTiers);
@@ -458,7 +462,6 @@ public class ItemRegistry
 				double d1 = (double)((float)(source.getBlockPos().getY() + enumfacing.getFrontOffsetY()) + 0.2F);
 				double d2 = source.getZ() + (double)enumfacing.getFrontOffsetZ();
 				
-				@SuppressWarnings("unused")
 				Entity entity = ItemCarrier.spawnMob(source.getWorld(), stack, d0, d1, d2);
 				
 				super.dispenseStack(source, stack);

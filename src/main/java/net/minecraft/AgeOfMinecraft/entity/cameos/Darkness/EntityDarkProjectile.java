@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.endermanofdoom.mac.util.math.Maths;
+import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.sources.EngenderDamageSources;
 import net.minecraft.entity.Entity;
@@ -48,7 +49,7 @@ public class EntityDarkProjectile extends Entity
 		setType(type);
 		setSize(2F, 2F);
 		
-		if (world.isRemote)
+		if (world.isRemote && shooter instanceof EntityDarkness)
 			world.playSound(posX, posY, posZ, SoundEvents.ENTITY_ENDERDRAGON_SHOOT, SoundCategory.HOSTILE, 15.0F, rand.nextFloat() * 0.3F + ((int) type > 1 ? 0.85F : 0.4F), false);
 		
 		if (shooter != null)
@@ -70,6 +71,12 @@ public class EntityDarkProjectile extends Entity
 				motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI)) * 5.0D;
 				motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI)) * 5.0D;
 			}
+			else
+			{
+				motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI)) * 0.5D;
+				motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI)) * 0.5D;
+				motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI)) * 0.5D;
+			}
 			
 			motionX *= 3.0F;
 			motionY *= 3.0F;
@@ -77,6 +84,13 @@ public class EntityDarkProjectile extends Entity
 		}
 	}
 
+	@Override
+	public boolean isEntityInvulnerable(DamageSource source)
+    {
+		
+		return shooter != null ? shooter.equals(this.shooter) : super.isEntityInvulnerable(source);
+    }
+	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
@@ -123,7 +137,7 @@ public class EntityDarkProjectile extends Entity
 				{
 					curDistance = this.getDistanceSq(entity);
 					
-					if (curDistance < distance && entity.isEntityAlive() && (shooter != null && !entity.equals(shooter) && !shooter.isOnSameTeam(entity)) || shooter == null)
+					if (curDistance < distance && entity.isEntityAlive() && entity.canBeAttackedWithItem() && !(entity instanceof EntityDarkProjectile || entity instanceof IProjectile) && (shooter != null && !entity.equals(shooter) && !shooter.isOnSameTeam(entity)) || shooter == null)
 					{
 						player = entity instanceof EntityPlayer;
 						if (player && !((EntityPlayer)entity).isSpectator() && !((EntityPlayer)entity).isCreative() || !player)
@@ -205,7 +219,7 @@ public class EntityDarkProjectile extends Entity
 		{
 			player = target instanceof EntityPlayer;
 			
-			if (target.isEntityAlive() && (player && !((EntityPlayer)target).isSpectator() || !player) && (shooter != null && !shooter.isOnSameTeam(target) || shooter == null))
+			if (target.isEntityAlive() && !target.equals(shooter) && (player && !((EntityPlayer)target).isSpectator() || !player) && (shooter != null && !shooter.isOnSameTeam(target) || shooter == null))
 			{
 				factor = Math.min((float) range / getDistance(target), 1.0F) * (player ? 0.05F : 1.0F);
 				switch(source.damageType)
@@ -229,7 +243,7 @@ public class EntityDarkProjectile extends Entity
 	{
 		Entity attacker = source.getTrueSource();
 		
-		if (heath <= 0)
+		if (heath <= 0 || attacker != null && attacker.equals(shooter))
 			return false;
 			
 		if (attacker instanceof EntityLivingBase || attacker instanceof IProjectile)

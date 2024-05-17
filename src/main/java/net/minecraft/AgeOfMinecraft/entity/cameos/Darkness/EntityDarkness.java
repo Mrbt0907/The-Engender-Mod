@@ -121,16 +121,16 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		setAttackPhase(16000.0F);
-		setDragonPhase(16000.0F);
+		setDragonMaxHealth(16000.0F);
+		setDragonHealth(16000.0F);
 		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(300.0D);
-		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getAttackPhase());
+		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getDragonMaxHealth());
 		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(40.0D);
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(100.0D);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(5.0D);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.25D);
-		super.setHealth(getDragonPhase());
+		super.setHealth(getDragonHealth());
 	}
 
 	protected void entityInit()
@@ -148,7 +148,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
-		compound.setFloat("dragonHealth", getDragonPhase());
+		compound.setFloat("dragonHealth", getDragonHealth());
 		compound.setInteger("dragonPhase", getPhase());
 		compound.setInteger("dragonMove", getCurrentMove());
 	}
@@ -158,7 +158,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 		super.readEntityFromNBT(compound);
 		
 		if (compound.hasKey("dragonHealth"))
-			setDragonPhase(compound.getFloat("dragonHealth"));
+			setDragonHealth(compound.getFloat("dragonHealth"));
 		if (compound.hasKey("dragonPhase"))
 			setPhase(compound.getInteger("dragonPhase"));
 		if (compound.hasKey("dragonMove"))
@@ -204,14 +204,14 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 			switch(phase)
 			{
 				case 0: // First Phase - Trial
-					if (getDragonPhase() < getAttackPhase() * 0.25F)
+					if (getDragonHealth() < getDragonMaxHealth() * 0.25F)
 						say(4, true, false);
-					else if (getDragonPhase() < getAttackPhase() * 0.5F)
+					else if (getDragonHealth() < getDragonMaxHealth() * 0.5F)
 						say(3, true, false);
-					else if (getDragonPhase() < getAttackPhase() * 0.75F)
+					else if (getDragonHealth() < getDragonMaxHealth() * 0.75F)
 						say(2, true, false);
 					
-					if (getDragonPhase() < getAttackPhase() * 0.35F)
+					if (getDragonHealth() < getDragonMaxHealth() * 0.35F)
 					{
 						getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 						nextPhase();
@@ -220,8 +220,8 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 				case 1: // Start Of Second Phase
 					if (healTime > 0)
 					{
-						if (getDragonPhase() < getAttackPhase());
-							setDragonPhase(getDragonPhase() + getAttackPhase() * 0.0025F);
+						if (getDragonHealth() < getDragonMaxHealth());
+							setDragonHealth(getDragonHealth() + getDragonMaxHealth() * 0.0025F);
 						healTime--;
 					}
 					else
@@ -236,11 +236,11 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 					break;
 				case 3: break; // Death
 				default: // Phase 2 - True God
-					if (getDragonPhase() < getAttackPhase() * 0.25F)
+					if (getDragonHealth() < getDragonMaxHealth() * 0.25F)
 						say(4, true, false);
-					else if (getDragonPhase() < getAttackPhase() * 0.5F)
+					else if (getDragonHealth() < getDragonMaxHealth() * 0.5F)
 						say(3, true, false);
-					else if (getDragonPhase() < getAttackPhase() * 0.75F)
+					else if (getDragonHealth() < getDragonMaxHealth() * 0.75F)
 						say(2, true, false);
 			}
 	}
@@ -349,7 +349,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	
 	public void onLivingUpdate()
 	{
-		super.setHealth(getDragonPhase());
+		super.setHealth(getDragonHealth());
 		if (world.isRemote)
 		{
 			if (!isSilent())
@@ -599,8 +599,8 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 				if (!world.isRemote)
 				{
 					slowed = destroyBlocksInAABB(dragonPartHead.getEntityBoundingBox()) | destroyBlocksInAABB(dragonPartNeck.getEntityBoundingBox()) | destroyBlocksInAABB(dragonPartBody.getEntityBoundingBox());
-					if (getDragonPhase() > getAttackPhase())
-						setDragonPhase(getAttackPhase());
+					if (getDragonHealth() > getDragonMaxHealth())
+						setDragonHealth(getDragonMaxHealth());
 					for (int l = 0; l < dragonPartArray.length; ++l)
 					{
 						dragonPartArray[l].prevPosX = avec3d[l].x;
@@ -899,9 +899,9 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 			//TODO: Implement anticheat config before adding in one shot detection
 			attackDragonFrom(source, damage);
 			
-			if (getDragonPhase() <= 0.0F)
+			if (getDragonHealth() <= 0.0F)
 			{
-				setDragonPhase(0.0F);
+				setDragonHealth(0.0F);
 				setPhase(3);
 			}
 			return true;
@@ -926,7 +926,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	@Override
 	protected void damageEntity(DamageSource source, float amount)
 	{
-		float factor = MathHelper.clamp((ticksExisted - tickLastHit) / 20.0F, 0.1F, 1.0F), damage = getAttackPhase() / amount;
+		float factor = MathHelper.clamp((ticksExisted - tickLastHit) / 20.0F, 0.1F, 1.0F), damage = getDragonMaxHealth() / amount;
 		tickLastHit = ticksExisted;
 		
 		if (factor < 0.3)
@@ -936,15 +936,15 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 		
 		if (damage > 0.1F)
 			say(11, false, true, source.getTrueSource());
-		if (getAttackPhase() / amount > 0.05F)
+		if (getDragonMaxHealth() / amount > 0.05F)
 			say(22, false, true, source.getTrueSource());
-		else if (getAttackPhase() / amount > 0.01F)
+		else if (getDragonMaxHealth() / amount > 0.01F)
 			say(21, false, true, source.getTrueSource());
 		else
 			say(20, false, true, source.getTrueSource());			
 		amount *= factor;
 		
-		setDragonPhase(getDragonPhase() - amount);
+		setDragonHealth(getDragonHealth() - amount);
 	}
 	
 	/**
@@ -953,8 +953,8 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	public void onKillCommand()
 	{
 		say(15, false, true);
-		attackEntityFromPart(dragonPartBody, DamageSource.GENERIC, getAttackPhase() * 0.2F);
-		setDragonPhase(0);
+		attackEntityFromPart(dragonPartBody, DamageSource.GENERIC, getDragonMaxHealth() * 0.2F);
+		setDragonHealth(0);
 		isDead = true;
 	}
 
@@ -1115,7 +1115,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	@Override
 	public boolean isEntityAlive()
 	{
-		return world.isRemote || !world.getMinecraftServer().isServerRunning() ? super.isEntityAlive() : getDragonPhase() > 0.0F;
+		return world.isRemote || !world.getMinecraftServer().isServerRunning() ? super.isEntityAlive() : getDragonHealth() > 0.0F;
 	}
 	
 	@Override
@@ -1130,7 +1130,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 		else
 		{
 			say(15, false, true);
-			attackEntityFromPart(dragonPartBody, DamageSource.GENERIC, getAttackPhase() * 0.08F);
+			attackEntityFromPart(dragonPartBody, DamageSource.GENERIC, getDragonMaxHealth() * 0.08F);
 		}
 	}
 	
@@ -1146,21 +1146,21 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	@Override
 	public void heal(float healAmount)
 	{
-		setDragonPhase(getDragonPhase() + Math.max(healAmount, 0.0F));
+		setDragonHealth(getDragonHealth() + Math.max(healAmount, 0.0F));
 	}
 	
 	@Override
 	public void setHealth(float health)
 	{
-		if (getMaxHealth() < getAttackPhase())
+		if (getMaxHealth() < getDragonMaxHealth())
 		{
-			getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getAttackPhase());
+			getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getDragonMaxHealth());
 			say(14, false, true);
 		}
-		else if (getHealth() != getDragonPhase())
+		else if (getHealth() != getDragonHealth())
 			say(13, false, true);
-		else if (health < getDragonPhase())
-			attackEntityFromPart(dragonPartBody, DamageSource.GENERIC, (getAttackPhase() - health) * 0.08F);
+		else if (health < getDragonHealth())
+			attackEntityFromPart(dragonPartBody, DamageSource.GENERIC, (getDragonMaxHealth() - health) * 0.08F);
 	}
 
 	@Nullable
@@ -1551,24 +1551,24 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
     	return TextFormatting.DARK_PURPLE;
     }
 	
-	public float getDragonPhase()
+	public float getDragonHealth()
     {
         return ((Float)dataManager.get(DRAGONH)).floatValue();
     }
 
-	private void setDragonPhase(float phase)
+	private void setDragonHealth(float health)
     {
-        dataManager.set(DRAGONH, Float.valueOf(MathHelper.clamp(phase, 0.0F, getAttackPhase())));
+        dataManager.set(DRAGONH, Float.valueOf(MathHelper.clamp(health, 0.0F, getDragonMaxHealth())));
     }
 	
-    public final float getAttackPhase()
+    public final float getDragonMaxHealth()
     {
         return ((Float)dataManager.get(DRAGONP)).floatValue();
     }
 
-    private void setAttackPhase(float phase)
+    private void setDragonMaxHealth(float health)
     {
-        dataManager.set(DRAGONP, Float.valueOf(Math.max(phase, 0.0F)));
+        dataManager.set(DRAGONP, Float.valueOf(Math.max(health, 0.0F)));
     }
     
 	@Override
@@ -1612,12 +1612,12 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	@Override
 	public double getBarHealth()
 	{
-		return getDragonPhase();
+		return getDragonHealth();
 	}
 
 	@Override
 	public double getBarMaxHealth()
 	{
-		return getAttackPhase();
+		return getDragonMaxHealth();
 	}
 }

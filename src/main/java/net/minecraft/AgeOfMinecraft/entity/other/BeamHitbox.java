@@ -2,7 +2,7 @@ package net.minecraft.AgeOfMinecraft.entity.other;
 
 import java.util.List;
 
-import net.endermanofdoom.mac.util.math.Maths.Vec3;
+import net.endermanofdoom.mac.util.math.Vec3;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;

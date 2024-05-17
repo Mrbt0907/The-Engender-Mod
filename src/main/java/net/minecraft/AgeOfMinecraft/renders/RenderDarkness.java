@@ -1,5 +1,4 @@
 package net.minecraft.AgeOfMinecraft.renders;
-import net.endermanofdoom.mac.util.math.Maths.Vec3;
 import net.minecraft.AgeOfMinecraft.entity.cameos.Darkness.EntityDarkness;
 import net.minecraft.AgeOfMinecraft.entity.other.BeamHitbox;
 import net.minecraft.AgeOfMinecraft.models.ModelDarkness;
@@ -109,8 +108,8 @@ public class RenderDarkness extends RenderLiving<EntityDarkness>
 		BeamHitbox lesserBeam = entity.getLesserBeam(); 
 		if (lesserBeam.hasPosition())
 		{
-			Vec3 startPos = lesserBeam.getStartPos();
-			Vec3 endPos = lesserBeam.getEndPos();
+			net.endermanofdoom.mac.util.math.Vec3 startPos = lesserBeam.getStartPos();
+			net.endermanofdoom.mac.util.math.Vec3 endPos = lesserBeam.getEndPos();
 			
 			renderLaserBeam(entity, x, y, z, startPos.posX, startPos.posY, startPos.posZ, endPos.posX, endPos.posY, endPos.posZ, lesserBeam.getSize(), partialTicks);
 		}
