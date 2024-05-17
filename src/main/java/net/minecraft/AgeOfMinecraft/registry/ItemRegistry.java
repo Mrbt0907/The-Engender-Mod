@@ -334,6 +334,7 @@ public class ItemRegistry
 	public static ItemFusionSpawner mutantZombieItem;
 	public static ItemFusionSpawner mutantEndermanItem;
 	public static final Item DARKNESS_BOW = new ItemDarknessBow();
+	public static final Item STORM_BOW = new ItemStormBow();
 	
 	public static final List<ItemLearningBook> SKILL_BOOKS = new ArrayList<ItemLearningBook>();
 	
@@ -426,6 +427,7 @@ public class ItemRegistry
 		addItem("commandingstaff", commandingStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
 		addItem("portalstaff", portalStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
 		addItem("darkness_bow", DARKNESS_BOW, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		addItem("storm_bow", STORM_BOW, CreativeTabRegistry.ENGENDER_EQUIPMENT);
 		
 		Integer[] fusionTiers = new Integer[fusionSpawners.size()];
 		fusionTiers = fusionSpawners.keySet().toArray(fusionTiers);
