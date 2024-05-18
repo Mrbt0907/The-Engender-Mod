@@ -56,7 +56,7 @@ public class ItemArrowExplosive extends ItemArrowEX
 	@Override
 	public void onArrowStop(World world, EntityLivingBase shooter, EntityArrowEX arrow)
 	{
-		world.newExplosion(arrow, arrow.posX, arrow.posY, arrow.posZ, 1.0F, false, true);
+		world.newExplosion(arrow, arrow.posX + arrow.motionX, arrow.posY + arrow.motionY, arrow.posZ + arrow.motionZ, 1.0F, false, true);
 		arrow.setDead();
 	}
 }
