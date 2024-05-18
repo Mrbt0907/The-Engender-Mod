@@ -1,7 +1,5 @@
 package net.minecraft.AgeOfMinecraft.items;
 
-import java.util.function.Predicate;
-
 import net.endermanofdoom.mac.item.ItemBowEX;
 import net.endermanofdoom.mac.util.math.Maths;
 import net.endermanofdoom.mac.util.math.Vec;

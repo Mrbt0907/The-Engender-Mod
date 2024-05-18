@@ -2,6 +2,7 @@ package net.minecraft.AgeOfMinecraft.registry;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import net.endermanofdoom.mac.entity.EntityArrowEX;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
@@ -111,6 +112,7 @@ public class EntityRegistry
 		createEntity(EntityInvisibleFangsProjectile.class, "InvisibleFangsProjectile", 512);
 		createEntity(EntityManaOrb.class, "ManaOrb", 64);
 		createEntity(EntityDarkProjectile.class, "darkball", 2048);
+		createEntity(EntityArrowEX.class, "arrowEX", 64);
 		
 		EntitySpawnPlacementRegistry.setPlacementType(EntitySquid.class, EntityLiving.SpawnPlacementType.IN_WATER);
 		EntitySpawnPlacementRegistry.setPlacementType(EntityGuardian.class, EntityLiving.SpawnPlacementType.IN_WATER);

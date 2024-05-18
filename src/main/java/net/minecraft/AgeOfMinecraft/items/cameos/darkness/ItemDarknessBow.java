@@ -29,7 +29,6 @@ public class ItemDarknessBow extends ItemBowEX
 	@Override
 	public void onStartUse(ItemStack stack, World world, EntityPlayer shooter)
 	{
-		
 	}
 	
 	@Override

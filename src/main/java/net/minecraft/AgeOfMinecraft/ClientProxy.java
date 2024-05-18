@@ -1,5 +1,6 @@
 package net.minecraft.AgeOfMinecraft;
 
+import net.endermanofdoom.mac.entity.EntityArrowEX;
 import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
 import net.minecraft.AgeOfMinecraft.entity.EntityPortal;
 import net.minecraft.AgeOfMinecraft.entity.EntityPortalLightning;
@@ -17,6 +18,7 @@ import net.minecraft.AgeOfMinecraft.renders.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
 import net.minecraft.init.Items;
@@ -123,6 +125,7 @@ public class ClientProxy extends CommonProxy
 		 RenderingRegistry.registerEntityRenderingHandler(EntityTippedArrowOther.class, manager -> new RenderTippedArrow(manager));
 		 RenderingRegistry.registerEntityRenderingHandler(EntityDarkness.class, manager -> new RenderDarkness(manager));
 		 RenderingRegistry.registerEntityRenderingHandler(EntityDarkProjectile.class, manager -> new RenderDarkProjectile(manager));
+		 RenderingRegistry.registerEntityRenderingHandler(EntityArrowEX.class, manager -> new RenderArrowEX(manager));
 	}
     public static void registerItemSubbed(ItemModelMesher renderItem, Item item, int meta)
     {
