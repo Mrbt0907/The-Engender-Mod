@@ -88,5 +88,3 @@ public class BlockRegistry
 		EngenderMod.error("Registry event returned null");
 	}
 }
-
-

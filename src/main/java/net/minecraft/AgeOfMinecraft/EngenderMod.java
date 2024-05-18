@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import static net.minecraft.AgeOfMinecraft.EngenderCompat.*;
 
-@Mod(modid=EngenderMod.MODID, name=EngenderMod.MODNAME, version=EngenderMod.VERSION, acceptedMinecraftVersions="[1.12.2]", dependencies="required-after:mac@[2.4,)")
+@Mod(modid=EngenderMod.MODID, name=EngenderMod.MODNAME, version=EngenderMod.VERSION, acceptedMinecraftVersions="[1.12.2]", dependencies="required-after:mac@[2.5,)")
 
 public class EngenderMod
 {
