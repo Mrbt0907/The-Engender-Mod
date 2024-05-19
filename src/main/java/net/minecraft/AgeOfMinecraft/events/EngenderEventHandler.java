@@ -209,7 +209,7 @@ public class EngenderEventHandler
 			
 			if (!dragon.world.isRemote && EngenderConfig.general.dragonEgg && dragon.getFightManager() != null && dragon.getFightManager().hasPreviouslyKilledDragon())
 			{
-				ReflectionUtil.set(DragonFightManager.class, dragon.getFightManager(), "previouslyKilled", "field_186118_l", false);
+				dragon.getFightManager().previouslyKilled = false;
 				if (EngenderConfig.general.useMessage)
 					for (EntityPlayer entityplayer : dragon.world.playerEntities)
 						entityplayer.sendStatusMessage(new TextComponentTranslation(TextFormatting.BOLD + "The respawned dragon will drop another egg now."), true);
@@ -246,7 +246,7 @@ public class EngenderEventHandler
 			
 			if (attacker instanceof EntityFriendlyCreature && ((EntityFriendlyCreature)attacker).getOwner() != null)
 			{
-				ReflectionUtil.set(EntityLivingBase.class, entity, "recentlyHit", "field_70718_bc", 100);
+				((EntityLivingBase)attacker).recentlyHit = 100;
 				entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) ((EntityFriendlyCreature)event.getSource().getTrueSource()).getOwner()), 1);
 			}
 		}

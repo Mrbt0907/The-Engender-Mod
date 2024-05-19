@@ -227,7 +227,7 @@ public class EntityDarkProjectile extends Entity
 						target.hurtResistantTime = 0;
 						if (target instanceof EntityLivingBase)
 						{
-							ReflectionUtil.set(EntityLivingBase.class, target, "recentlyHit", "field_70718_bc", 100);
+							((EntityLivingBase)target).recentlyHit = 100;
 							if (absoluteDamage > 0.0F)
 								((EntityLivingBase) target).setHealth(((EntityLivingBase) target).getHealth() - absoluteDamage * factor);
 						}

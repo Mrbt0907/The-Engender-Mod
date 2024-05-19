@@ -3034,7 +3034,8 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	heal(2F);
 	}
 	setSitResting(false);
-	ReflectionUtil.set(EntityLivingBase.class, entity, "recentlyHit", "field_70718_bc", 100);
+	if (entity instanceof EntityLivingBase)
+		((EntityLivingBase)entity).recentlyHit = 100;
 	if (isASwarmingMob())
 	{
 	if (entity != null)
@@ -3350,7 +3351,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	
 	if (EngenderConfig.general.useMessage && !entity.isEntityAlive() && !isWild())
 	{
-	boolean flag1 = (boolean) ReflectionUtil.get(EntityLivingBase.class, entity, "dead", "field_70729_aU");
+	boolean flag1 = entity instanceof EntityLivingBase ? ((EntityLivingBase)entity).dead : false;
 	
 	if (!flag1)
 	{
@@ -3509,7 +3510,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	++entity.limbSwingAmount;
 	damage *= ((isSneaking() || isInvisible() || !canEntityBeSeen(entity)) && entity instanceof EntityLiving && ((EntityLiving)entity).getAttackTarget() != this ? 3 : 1) * (isHero() ? (entity instanceof IMob ? 3F : 1.5F) : 1F);
 	
-	ReflectionUtil.set(EntityLivingBase.class, entity, "recentlyHit", "field_70718_bc", 100);
+	entity.recentlyHit = 100;
 	
 	damage *= getStrengthMultiplier();
 	if (entity.isEntityAlive())
@@ -3549,7 +3550,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	entity.setHealth(entity.getHealth() - (isHero() ? 0.03F : 0.01F));
 	if (EngenderConfig.general.useMessage && !entity.isEntityAlive() && !isWild() && entity.getHealth() <= 0F)
 	{
-	boolean flag1 = (boolean) ReflectionUtil.get(EntityLivingBase.class, entity, "dead", "field_70729_aU");
+	boolean flag1 = entity.dead;
 
 	if (!flag1)
 	{

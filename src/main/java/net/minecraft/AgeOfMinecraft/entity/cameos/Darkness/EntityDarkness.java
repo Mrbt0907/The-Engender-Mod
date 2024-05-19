@@ -682,8 +682,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 				entity.hurtResistantTime = 0;
 			if (entity instanceof EntityLivingBase)
 			{
-				
-				ReflectionUtil.set(EntityLivingBase.class, entity, "recentlyHit", "field_70718_bc", 100);
+				((EntityLivingBase)entity).recentlyHit = 100;
 				((EntityLivingBase) entity).setHealth(((EntityLivingBase) entity).getHealth() - (phase > 1 ? 20.0F : 10F));
 			}
 			
