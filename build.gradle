@@ -11,15 +11,17 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 project.mkdir "libs"
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
+
 version = "0.8.6-indev"
 group = "net.minecraft.AgeOfMinecraft"
 archivesBaseName = "Engender_Mod"
 
+
 minecraft
 {
     version = "1.12.2-14.23.5.2847"
-    runDir = "run"
     mappings = "snapshot_20171003"
+    runDir = "run"
     makeObfSourceJar = false
 }
 
@@ -46,7 +48,7 @@ processResources
         include 'mcmod.info'
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-    from(sourceSets.main.resources.srcDirs) {exclude 'mcmod.info'}
-   //rename '(ender_at.cfg)', 'META-INF/$1'
+    from(sourceSets.main.resources.srcDirs) { exclude 'mcmod.info' }
+    //rename '(.+_at.cfg)', 'META-INF/$1'
 }
-//jar {manifest {attributes 'FMLAT': 'ender_at.cfg'}}
+//jar { manifest{attributes 'FMLAT': 'ender_at.cfg'} }
