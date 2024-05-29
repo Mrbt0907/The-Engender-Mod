@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 
 import net.endermanofdoom.mac.dialogue.DialogueManager;
 import net.endermanofdoom.mac.music.IMusicInteractable;
-import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.endermanofdoom.mac.util.TranslateUtil;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;

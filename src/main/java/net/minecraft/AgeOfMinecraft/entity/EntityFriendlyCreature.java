@@ -15,7 +15,6 @@ import com.google.common.base.Predicates;
 import net.endermanofdoom.mac.dialogue.DialogueManager;
 import net.endermanofdoom.mac.interfaces.IBossBar;
 import net.endermanofdoom.mac.music.IMusicInteractable;
-import net.endermanofdoom.mac.util.ReflectionUtil;
 import net.endermanofdoom.mac.util.math.Maths;
 import net.minecraft.AgeOfMinecraft.EngenderCompat;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
