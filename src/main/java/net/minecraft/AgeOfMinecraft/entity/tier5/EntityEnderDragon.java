@@ -162,12 +162,6 @@ public class EntityEnderDragon extends EntityFriendlyCreature implements IEntity
 	getPhaseManager().setPhase(PhaseList.HOLDING_PATTERN);
 	this.forceSpawn = true;
 	this.experienceValue = 500;
-	if (this.posX <= 1D || this.posX >= -1D)
-		this.posX = 5D;
-	if (this.posZ <= 1D || this.posZ >= -1D)
-		this.posZ = 5D;
-	if (this.posY <= 1D)
-		this.posY = 5D;
 }
 
 public void onUpdate()
