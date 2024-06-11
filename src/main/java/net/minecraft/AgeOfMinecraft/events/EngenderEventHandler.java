@@ -1,6 +1,8 @@
 package net.minecraft.AgeOfMinecraft.events;
 
 import java.util.List;
+
+import net.endermanofdoom.mca.world.MCAWorldData;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
@@ -339,7 +341,7 @@ public class EngenderEventHandler
 			//TODO: Spawn Darkness here
 			if (victim instanceof net.minecraft.entity.boss.EntityDragon)
 			{
-				boolean spawn = !EntityDarkness.hardmode;
+				boolean spawn = !EntityDarkness.hardmode && MCAWorldData.progress.getBoolean("postEnderDragon");
 				List<Entity> entities = victim.world.loadedEntityList;
 				
 				for(Entity entity : entities)
