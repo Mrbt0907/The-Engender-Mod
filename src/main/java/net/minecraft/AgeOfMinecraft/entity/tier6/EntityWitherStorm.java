@@ -9,6 +9,7 @@ import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
+import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.Flying;
 import net.minecraft.AgeOfMinecraft.entity.Massive;
@@ -300,7 +301,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 
 		this.getNavigator().clearPath();
 		this.experienceValue = this.getSize();
-		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((doesntContainACommandBlock() ? 1000D : (this.getSize())));
+		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((doesntContainACommandBlock() ? 1000D : ("Gensui".equals(TextFormatting.getTextWithoutFormattingCodes(getName())) ? (this.getSize() * 500) : this.getSize())));
 		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(doesntContainACommandBlock() ? 20D : 24.0D);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(doesntContainACommandBlock() ? 10D : 20.0D);
 		
@@ -353,6 +354,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					
 					if (getOwner() != null)
 					this.centerHead.setOwnerId(getOwnerId());
+					if (this.isHero() && !this.centerHead.isHero())
+						this.centerHead.setIsHero(true);
+					if (this.hasCustomName())
+						this.centerHead.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -379,6 +384,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					
 					if (getOwner() != null)
 					this.rightHead.setOwnerId(getOwnerId());
+					if (this.isHero() && !this.rightHead.isHero())
+						this.rightHead.setIsHero(true);
+					if (this.hasCustomName())
+						this.rightHead.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -405,6 +414,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					
 					if (getOwner() != null)
 					this.leftHead.setOwnerId(getOwnerId());
+					if (this.isHero() && !this.leftHead.isHero())
+						this.leftHead.setIsHero(true);
+					if (this.hasCustomName())
+						this.leftHead.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -431,6 +444,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					
 					if (getOwner() != null)
 					this.tentacle1.setOwnerId(getOwnerId());
+					if (this.isHero() && !this.tentacle1.isHero())
+						this.tentacle1.setIsHero(true);
+					if (this.hasCustomName())
+						this.tentacle1.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -457,6 +474,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					
 					if (getOwner() != null)
 					this.tentacle2.setOwnerId(getOwnerId());
+					if (this.isHero() && !this.tentacle2.isHero())
+						this.tentacle2.setIsHero(true);
+					if (this.hasCustomName())
+						this.tentacle2.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -484,6 +505,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						
 						if (getOwner() != null)
 						this.tentacle3.setOwnerId(getOwnerId());
+						if (this.isHero() && !this.tentacle3.isHero())
+							this.tentacle3.setIsHero(true);
+						if (this.hasCustomName())
+							this.tentacle3.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -510,6 +535,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					
 					if (getOwner() != null)
 					this.tentacle4.setOwnerId(getOwnerId());
+					if (this.isHero() && !this.tentacle4.isHero())
+						this.tentacle4.setIsHero(true);
+					if (this.hasCustomName())
+						this.tentacle4.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -536,6 +565,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					
 					if (getOwner() != null)
 					this.tentacle5.setOwnerId(getOwnerId());
+					if (this.isHero() && !this.tentacle5.isHero())
+						this.tentacle5.setIsHero(true);
+					if (this.hasCustomName())
+						this.tentacle5.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -562,6 +595,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					
 					if (getOwner() != null)
 					this.tentacledevourer1.setOwnerId(getOwnerId());
+					if (this.isHero() && !this.tentacledevourer1.isHero())
+						this.tentacledevourer1.setIsHero(true);
+					if (this.hasCustomName())
+						this.tentacledevourer1.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -588,6 +625,10 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						
 						if (getOwner() != null)
 						this.tentacledevourer2.setOwnerId(getOwnerId());
+						if (this.isHero() && !this.tentacledevourer2.isHero())
+							this.tentacledevourer2.setIsHero(true);
+						if (this.hasCustomName())
+							this.tentacledevourer2.setCustomNameTag(getCustomNameTag());
 					}
 				}
 				else
@@ -791,6 +832,12 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						entity.motionX = (d01 / f2 * 0.5D * 0.5D + entity.motionX * 0.5D);
 						entity.motionY = (d11 / f2 * 0.5D * 0.5D + entity.motionY * 0.5D);
 						entity.motionZ = (d21 / f2 * 0.5D * 0.5D + entity.motionZ * 0.5D);
+						if (entity.getDistance(this) < width)
+						{
+							entity.setDead();
+							Grow(getSize() + 3);
+							this.heal("Gensui".equals(getName()) ? 60F : 2);
+						}
 						
 						List<EntityLivingBase> sublist = this.world.getEntitiesWithinAABB(EntityLivingBase.class, entity.getEntityBoundingBox(), EntitySelectors.NOT_SPECTATING);
 						if (this.isEntityAlive() && (sublist != null) && (!sublist.isEmpty()))
@@ -808,20 +855,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					}
 				}
 			}
-			List<EntityFallingBlock> list1 = this.world.getEntitiesWithinAABB(EntityFallingBlock.class, getEntityBoundingBox(), EntitySelectors.NOT_SPECTATING);
-			if ((list1 != null) && (!list1.isEmpty()) && this.isEntityAlive() && !this.doesntContainACommandBlock())
-			{
-				for (int i1 = 0; i1 < list1.size(); i1++)
-				{
-					EntityFallingBlock entity = (EntityFallingBlock)list1.get(i1);
-					if (entity != null)
-					{
-						entity.setDead();
-						Grow(getSize() + 3);
-						this.heal(2);
-					}
-				}
-			}
+
 			List<EntityItem> list11 = this.world.getEntitiesWithinAABB(EntityItem.class, getEntityBoundingBox().grow(256.0D, 256.0D, 256.0D), EntitySelectors.NOT_SPECTATING);
 			if ((list11 != null) && (!list11.isEmpty()) && this.isEntityAlive() && !this.doesntContainACommandBlock())
 			{
@@ -837,6 +871,12 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						entity.motionX = (d01 / f2 * 0.6D * 0.6D + entity.motionX * 0.6D);
 						entity.motionY = (d11 / f2 * 0.6D * 0.6D + entity.motionY * 0.6D);
 						entity.motionZ = (d21 / f2 * 0.6D * 0.6D + entity.motionZ * 0.6D);
+						if (entity.getDistance(this) < width)
+						{
+							entity.setDead();
+							Grow(getSize() + 1 + entity.getItem().getCount());
+							this.heal("Gensui".equals(getName()) ? 60F * 1 + entity.getItem().getCount() : 1 + entity.getItem().getCount());
+						}
 					}
 				}
 			}
@@ -850,7 +890,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 					{
 						entity.setDead();
 						Grow(getSize() + 1 + entity.getItem().getCount());
-						this.heal(1 + entity.getItem().getCount());
+						this.heal("Gensui".equals(getName()) ? 60F * 1 + entity.getItem().getCount() : 1 + entity.getItem().getCount());
 					}
 				}
 			}
@@ -870,20 +910,37 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 						entity.motionX = (d01 / f2 * 0.6D * 0.6D + entity.motionX * 0.6D);
 						entity.motionY = (d11 / f2 * 0.6D * 0.6D + entity.motionY * 0.6D);
 						entity.motionZ = (d21 / f2 * 0.6D * 0.6D + entity.motionZ * 0.6D);
+						if (entity.getDistance(this) < width)
+						{
+							entity.setDead();
+							Grow(getSize() + 1);
+							this.heal("Gensui".equals(getName()) ? 60F : 1);
+						}
 					}
 				}
 			}
-			List<EntityArrow> list11111 = this.world.getEntitiesWithinAABB(EntityArrow.class, getEntityBoundingBox().grow(4.0D, 4.0D, 4.0D), EntitySelectors.NOT_SPECTATING);
+
+			List<EntityManaOrb> list11111 = this.world.getEntitiesWithinAABB(EntityManaOrb.class, getEntityBoundingBox().grow(256.0D, 256.0D, 256.0D), EntitySelectors.NOT_SPECTATING);
 			if ((list11111 != null) && (!list11111.isEmpty()) && this.isEntityAlive() && !this.doesntContainACommandBlock())
 			{
 				for (int i1 = 0; i1 < list11111.size(); i1++)
 				{
-					EntityArrow entity = (EntityArrow)list11111.get(i1);
-					if (entity != null && !(entity instanceof EntityTippedArrowOther))
+					EntityManaOrb entity = (EntityManaOrb)list11111.get(i1);
+					if (entity != null)
 					{
-						entity.setDead();
-						Grow(getSize() + 1);
-						this.heal(1);
+						double d01 = this.posX - entity.posX;
+						double d11 = this.posY + 2.0D - entity.posY;
+						double d21 = this.posZ - entity.posZ;
+						float f2 = MathHelper.sqrt(d01 * d01 + d11 * d11 + d21 * d21);
+						entity.motionX = (d01 / f2 * 0.6D * 0.6D + entity.motionX * 0.6D);
+						entity.motionY = (d11 / f2 * 0.6D * 0.6D + entity.motionY * 0.6D);
+						entity.motionZ = (d21 / f2 * 0.6D * 0.6D + entity.motionZ * 0.6D);
+						if (entity.getDistance(this) < width)
+						{
+							entity.setDead();
+							Grow(getSize() + (1 + entity.getMana() * (entity.getEntropy() ? 100 : 1)));
+							this.heal((1 + entity.getMana() * (entity.getEntropy() ? 100 : 1)) * ("Gensui".equals(getName()) ? 60F : 1F));
+						}
 					}
 				}
 			}
@@ -925,7 +982,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 			if (tentacledevourer2 != null)
 			this.tentacledevourer2.setLocationAndAngles(this.posX, this.posY + 10.0D, this.posZ + oned, 0.0F, 0.0F);
 			if (!this.world.isRemote)
-			heal(1F);
+			heal("Gensui".equals(getName()) ? 60F : 1F);
 			setSize(12.0F, 12.0F);
 		}
 		else
@@ -980,7 +1037,7 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 				this.tentacledevourer2.setInvisible(this.getHealth() <= 10000 || getSize() < 50000 || doesntContainACommandBlock());
 			}
 			if (!this.world.isRemote)
-			heal(2F);
+			heal("Gensui".equals(getName()) ? 200F : 2F);
 			setSize(9.0F, 32.0F);
 
 			if (posY > 200)
@@ -1049,6 +1106,9 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 		{
 			if ((source.getTrueSource() != null) && ((source.getTrueSource() instanceof EntityLivingBase)))
 			{
+				if (!((EntityLivingBase)source.getTrueSource()).isNonBoss())
+					this.hurtResistantTime = 0;
+				
 				setAttackTarget((EntityLivingBase)source.getTrueSource());
 				if (this.centerHead != null)
 				this.centerHead.setAttackTarget((EntityLivingBase)source.getTrueSource());
@@ -1143,14 +1203,16 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 		if (!this.world.isRemote)
 		{
 			this.dataManager.set(SIZE, Integer.valueOf(doesntContainACommandBlock() ? 12500 : p_82215_1_));
-			getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((doesntContainACommandBlock() ? 1000D : (p_82215_1_)));
-			if (p_82215_1_ == 12500 && getOwner() != null)
+			if (p_82215_1_ == 12500 && getOwner() != null && this.isEntityAlive())
 			{
 				for (EntityPlayer entityplayer : world.playerEntities)
 				{
 					entityplayer.sendStatusMessage(new TextComponentTranslation(doesntContainACommandBlock() ? "\u00A75 A Wither Storm has fissioned!" : "\u00A75"+ this.getOwner().getName() + "'s Wither Storm has grown to Destroyer form!!"), true);
 				}
 			}
+			if ("Gensui".equals(TextFormatting.getTextWithoutFormattingCodes(getName())))
+				p_82215_1_ *= 500;
+			getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((doesntContainACommandBlock() ? 1000D : (p_82215_1_)));
 		}
 	}
 	public boolean doesntContainACommandBlock()

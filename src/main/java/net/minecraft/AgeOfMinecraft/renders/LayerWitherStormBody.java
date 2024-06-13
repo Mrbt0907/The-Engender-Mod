@@ -38,15 +38,15 @@ implements LayerRenderer<EntityWitherStorm>
 		}
 		else
 		{
-			float size = (p_177214_1_.getMaxHealth() * 0.000025F);
-			GlStateManager.scale(0.01F + size, 0.01F + size, 0.01F + size);
-			GlStateManager.translate(0.0F, -12F - (p_177214_1_.getMaxHealth() * 0.0000005F), 0.0F + (p_177214_1_.getMaxHealth() * 0.000000625F));
+			float size = (p_177214_1_.getSize() * 0.0000125F);
+			GlStateManager.translate(0.0F, -12F - (p_177214_1_.getSize() * 0.0000005F), 0.0F + (p_177214_1_.getSize() * 0.000000625F));
 			if (p_177214_1_.getSize() > 50000)
-			GlStateManager.translate(0.0F, 4F + (p_177214_1_.getMaxHealth() * 0.0000005F), 0.5F + (p_177214_1_.getMaxHealth() * 0.00001F));
+			GlStateManager.translate(0.0F, 4F + (p_177214_1_.getSize() * 0.0000005F), 0.5F + (p_177214_1_.getSize() * 0.000001F));
 			if (p_177214_1_.getSize() > 250000)
-			GlStateManager.translate(0.0F, 2F - (p_177214_1_.getMaxHealth() * 0.0000001F), 1.0F - (p_177214_1_.getMaxHealth() * 0.00001F));
+			GlStateManager.translate(0.0F, 2F - (p_177214_1_.getSize() * 0.0000001F), 1.0F - (p_177214_1_.getSize() * 0.000001F));
 			GlStateManager.rotate((p_177214_1_.isSneaking() ? -60F : -20.0F), 1.0F, 0.0F, 0.0F);
-			if (p_177214_1_.getMaxHealth() >= 300000F)
+			GlStateManager.scale(0.01F + size, 0.01F + size, 0.01F + size);
+			if (p_177214_1_.getSize() >= 300000F)
 			GlStateManager.scale(1F + (MathHelper.cos(p_177214_1_.ticksExisted + p_177214_4_) * 0.01F), 1F + (MathHelper.cos(p_177214_1_.ticksExisted + p_177214_4_) * 0.01F), 1F + (MathHelper.sin(p_177214_1_.ticksExisted + p_177214_4_) * 0.01F));
 			this.witherRenderer.bindTexture(witherTextures);
 			this.modelmatter.render(p_177214_1_, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);

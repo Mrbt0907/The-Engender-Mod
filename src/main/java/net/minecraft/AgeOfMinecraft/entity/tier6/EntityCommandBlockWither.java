@@ -55,6 +55,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -245,8 +246,9 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	public void onLivingUpdate()
 	{
-		this.experienceValue = this.getSize();
-		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getSize() < 300? 300 : this.getSize());
+		double size = "Gensui".equals(getName()) ? (this.getSize() * 500) : this.getSize();
+		this.experienceValue = (int) size;
+		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(size < 300? 300 : size);
 		if (this.posY < 0)
 		this.motionY += (0.5D - this.motionY) * 0.6000000238418579D;
 		if (this.motionX > 1D)
@@ -276,6 +278,8 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 			witherstorm.Grow(12500);
 			this.Grow(0);
 			this.onKillCommand();
+			if (this.hasCustomName())
+				witherstorm.setCustomNameTag(getCustomNameTag());
 		}
 		if (this.ticksExisted % 160 == 0)
 		{
@@ -318,7 +322,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 					if (this.world.getGameRules().getBoolean("mobGriefing") == true)
 					{
 						Grow(getSize() + 3);
-						this.heal(3);
+						this.heal("Gensui".equals(getName()) ? 300F : 3);
 						if (block.getMaterial(iblockstate).isLiquid())
 						this.world.setBlockToAir(new BlockPos(l1, i11, i2));
 						else
@@ -370,7 +374,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 				{
 					entity.setDead();
 					Grow(getSize() + 3);
-					heal(3.0F);
+					heal("Gensui".equals(getName()) ? 300F : 3.0F);
 				}
 			}
 		}
@@ -402,7 +406,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 				{
 					entity.setDead();
 					Grow(getSize() + 1 + entity.getItem().getCount());
-					heal(1.0F + entity.getItem().getCount());
+					heal("Gensui".equals(getName()) ? 100F * (1 + entity.getItem().getCount()) : 1.0F + entity.getItem().getCount());
 				}
 			}
 		}
@@ -464,7 +468,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 						else
 						entity1.setDead();
 						this.Grow(this.getSize() + 1 + ((int)entity1.height * (int)entity1.height) + ((int)entity1.width * (int)entity1.width));
-						this.heal(1 + entity1.getMaxHealth() + ((int)entity1.height * (int)entity1.height) + ((int)entity1.width * (int)entity1.width));
+						this.heal(1 + entity1.getMaxHealth() + ((int)entity1.height * (int)entity1.height) + ((int)entity1.width * (int)entity1.width) * ("Gensui".equals(getName()) ? 600F : 1));
 					}
 				}
 			}
@@ -562,7 +566,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 			setInvulTime(i);
 			if (this.ticksExisted % 1 == 0)
 			{
-				heal(1.0F);
+				heal("Gensui".equals(getName()) ? 60F : 1.0F);
 			}
 		}
 		else
@@ -603,7 +607,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 				}
 			}
 			if (this.ticksExisted % 20 == 0)
-			heal(1.0F);
+			heal("Gensui".equals(getName()) ? 60F : 1.0F);
 		}
 	}
 	public static boolean canDestroyBlock(Block p_181033_0_)

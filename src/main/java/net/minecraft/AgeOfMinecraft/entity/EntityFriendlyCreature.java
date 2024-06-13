@@ -3136,6 +3136,8 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (hasLimitedLife() && !bonus.hasModifier(summondebuff))
 	bonus.applyModifier(summondebuff);
 	
+	
+	
 	if (this instanceof net.minecraft.AgeOfMinecraft.entity.tier4.EntityEnderman && ((net.minecraft.AgeOfMinecraft.entity.tier4.EntityEnderman)this).andr)
 	{
 	i += 60;
@@ -3173,6 +3175,8 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (this instanceof EntityWitherStormHead)
 	{
 	i += 3;
+	if ("Gensui".equals(((EntityWitherStormHead)this).getName()))
+		f *= 300F;
 	}
 	if (this instanceof EntityEnderDragon)
 	{
@@ -3182,11 +3186,15 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (this instanceof EntityWitherStormTentacle)
 	{
 	i += 9;
+	if ("Gensui".equals(((EntityWitherStormTentacle)this).getName()))
+		f *= 300F;
 	}
 	
 	if (this instanceof EntityWitherStormTentacleDevourer)
 	{
 	i += 12;
+	if ("Gensui".equals(((EntityWitherStormTentacleDevourer)this).getName()))
+		f *= 300F;
 	}
 	}
 	

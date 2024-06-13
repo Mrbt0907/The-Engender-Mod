@@ -172,16 +172,6 @@ public void onUpdate()
 	
 	super.onUpdate();
 	++this.innerRotation;
-	
-	if (this.ticksExisted <= 1)
-	{
-		if (this.posX <= 1D || this.posX >= -1D)
-			this.posX = 5D;
-		if (this.posZ <= 1D || this.posZ >= -1D)
-			this.posZ = 5D;
-		if (this.posY <= 1D)
-			this.posY = 5D;
-	}
 }
 
 
@@ -281,8 +271,8 @@ protected void applyEntityAttributes()
 {
 	super.applyEntityAttributes();
 	getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(128.0D);
-	getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
-	getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
+	getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1200.0D);
+	getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(80.0D);
 	getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(10.0D);
 	getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
 	getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(27D);

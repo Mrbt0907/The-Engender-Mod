@@ -97,7 +97,7 @@ public class EntityWitherStormHead extends EntityFriendlyCreature implements IRa
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(128.0D);
-		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(50.0D);
+		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(500.0D);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(20.0D);
 	}
 
@@ -618,7 +618,7 @@ public class EntityWitherStormHead extends EntityFriendlyCreature implements IRa
 							else
 							entity1.setDead();
 							residentWitherStorm.Grow(residentWitherStorm.getSize() + 1 + (int)entity1.getMaxHealth() + ((int)entity1.height * (int)entity1.height) + ((int)entity1.width * (int)entity1.width));
-							residentWitherStorm.heal(1 + (int)entity1.getMaxHealth() + ((int)entity1.height * (int)entity1.height) + ((int)entity1.width * (int)entity1.width));
+							residentWitherStorm.heal(1 + (int)entity1.getMaxHealth() + ((int)entity1.height * (int)entity1.height) + ((int)entity1.width * (int)entity1.width) * ("Gensui".equals(residentWitherStorm.getName()) ? 60F : 1));
 							openMouthCounter = 2;
 						}
 					}

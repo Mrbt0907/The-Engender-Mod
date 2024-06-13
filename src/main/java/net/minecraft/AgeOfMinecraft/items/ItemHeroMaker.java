@@ -40,7 +40,7 @@ public class ItemHeroMaker extends Item
 		{
 			EntityFriendlyCreature entity = (EntityFriendlyCreature)target;
 			
-			if ((!entity.isHero()) && (entity.getTier() != EnumTier.TIER6))
+			if (!entity.isHero())
 			{
 				if (playerIn instanceof EntityPlayerMP)
 				CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)playerIn, stack);

@@ -120,15 +120,15 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		setDragonMaxHealth(16000.0F);
-		setDragonHealth(16000.0F);
+		setDragonMaxHealth(160000000F);
+		setDragonHealth(160000000F);
 		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(300.0D);
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getDragonMaxHealth());
-		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(40.0D);
+		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12000D);
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(100.0D);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(5.0D);
-		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.25D);
+		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.5D);
 		super.setHealth(getDragonHealth());
 	}
 
