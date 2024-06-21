@@ -908,9 +908,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
-		if (source instanceof EntityDamageSource && ((EntityDamageSource)source).getIsThornsDamage())
-			attackEntityFromPart(dragonPartBody, source, amount);
-		return false;
+		return attackEntityFromPart(rand.nextInt(4) == 0 ? this.dragonPartHead : this.dragonPartBody, source, amount);
 	}
 
 	/**
