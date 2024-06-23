@@ -166,6 +166,7 @@ public class EntityPortalLightning extends EntityFireball
 				this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
 				if ((targetEntity instanceof EntityLivingBase && !(targetEntity instanceof EntityPlayer) && !(targetEntity instanceof EntityLiving)))
 				{
+					if (targetEntity.isNonBoss())
 					++targetEntity.motionY;
 					if ((targetEntity instanceof EntityLivingBase))
 					{

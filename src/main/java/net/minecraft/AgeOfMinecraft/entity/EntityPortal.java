@@ -321,11 +321,12 @@ public boolean attackEntityAsMob(Entity entityIn)
 	//this.playSound(ModSoundEvents.lightningShot, 10F, 1.0F);
 	if (entityIn instanceof EntityLivingBase)
 	{
+		if (entityIn.isNonBoss())
 		++entityIn.motionY;
 		if (!entityIn.isEntityAlive() && !entityIn.isDead)
 		this.onKillEntity((EntityLivingBase) entityIn);
 		((EntityLivingBase)entityIn).knockBack(this, 1F, MathHelper.sin(entityIn.rotationYaw * 0.017453292F), -MathHelper.cos(entityIn.rotationYaw * 0.017453292F));
-		if (!(entityIn instanceof EntityFriendlyCreature))
+		if (!(entityIn instanceof EntityFriendlyCreature) && entityIn.isNonBoss())
 		entityIn.motionY += rand.nextDouble();
 	}
 	entityIn.setFire(100);
