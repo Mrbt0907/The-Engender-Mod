@@ -8,6 +8,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.endermanofdoom.mac.music.IMusicInteractable;
+import net.endermanofdoom.mac.util.chunk.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
@@ -17,7 +18,6 @@ import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIAvoidEntitySPC;
 import net.minecraft.AgeOfMinecraft.entity.ai.EntityAIFollowLeader;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityGhast;
 import net.minecraft.AgeOfMinecraft.entity.tier4.EntityLargeFireballOther;
-import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.block.state.IBlockState;

@@ -9,13 +9,13 @@ import javax.annotation.Nullable;
 import net.endermanofdoom.mac.dialogue.DialogueManager;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.endermanofdoom.mac.util.TranslateUtil;
+import net.endermanofdoom.mac.util.chunk.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.entity.other.BeamHitbox;
 import net.minecraft.AgeOfMinecraft.entity.other.IBeamHitboxHandler;
 import net.minecraft.AgeOfMinecraft.entity.sources.EngenderDamageSources;
-import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.AgeOfMinecraft.util.DialogColors;
 import net.minecraft.block.Block;
@@ -120,8 +120,8 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		setDragonMaxHealth(160000000F);
-		setDragonHealth(160000000F);
+		setDragonMaxHealth(2000000F);
+		setDragonHealth(2000000F);
 		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(300.0D);
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getDragonMaxHealth());
 		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12000D);

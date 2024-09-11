@@ -2,7 +2,7 @@ package net.minecraft.AgeOfMinecraft.entity;
 
 import java.util.List;
 
-import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
+import net.endermanofdoom.mac.util.chunk.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

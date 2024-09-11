@@ -121,6 +121,7 @@ public class EntityDarkProjectile extends Entity
 	public void onUpdate()
 	{
 		super.onUpdate();
+		this.onGround = false;
 		if (!world.isRemote)
 		{
 			//Target Update
@@ -219,10 +220,10 @@ public class EntityDarkProjectile extends Entity
 			
 			if (target.isEntityAlive() && !target.equals(shooter) && (player && !((EntityPlayer)target).isSpectator() || !player) && (shooter != null && !shooter.isOnSameTeam(target) || shooter == null))
 			{
-				if (!target.isNonBoss())
-					damage *= 20;
 				
 				factor = Math.min((float) range / getDistance(target), 1.0F) * (player ? 0.05F : 1.0F);
+				if (!target.isNonBoss())
+					factor *= 20;
 				switch(source.damageType)
 				{
 					default:

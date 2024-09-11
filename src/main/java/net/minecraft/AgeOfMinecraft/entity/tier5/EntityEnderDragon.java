@@ -10,6 +10,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 
+import net.endermanofdoom.mac.util.chunk.MobChunkLoader;
 import net.endermanofdoom.mac.util.math.Maths;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.Ender;
@@ -25,7 +26,6 @@ import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.PhaseFireballAndSt
 import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.PhaseList;
 import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.PhaseManager;
 import net.minecraft.AgeOfMinecraft.entity.tier5.dragonphases.PhaseRamAttack;
-import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.registry.LootRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockJukebox;

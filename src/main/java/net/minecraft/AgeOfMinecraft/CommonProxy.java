@@ -1,7 +1,7 @@
 package net.minecraft.AgeOfMinecraft;
 
+import net.endermanofdoom.mac.util.chunk.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.blocks.TileFusionCrafter;
-import net.minecraft.AgeOfMinecraft.events.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.registry.EnchantmentRegistry;
 import net.minecraft.AgeOfMinecraft.registry.EntityRegistry;
 import net.minecraft.AgeOfMinecraft.registry.FusionRecipeRegistry;
@@ -25,7 +25,6 @@ public class CommonProxy
 		LootRegistry.registerAllModdedLootTables();
 		SoundRegistry.registerSounds();
 		GameRegistry.registerTileEntity(TileFusionCrafter.class, new ResourceLocation(EngenderMod.MODID, "mob_spawner_spc"));
-		MobChunkLoader.init();
 		EntityRegistry.registerEntity();
 	}
 	
