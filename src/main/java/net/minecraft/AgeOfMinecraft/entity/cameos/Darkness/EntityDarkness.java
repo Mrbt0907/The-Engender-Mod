@@ -800,7 +800,7 @@ public class EntityDarkness extends EntityFriendlyCreature implements IEntityMul
 		for (Entity entity : p_70971_1_)
 			if (entity instanceof EntityLivingBase)
 			{
-				entity.attackEntityFrom(DamageSource.causeMobDamage(this), phase > 1 ? 50.0F : 15.0F);
+				entity.attackEntityFrom(DamageSource.causeMobDamage(this), !target.isNonBoss() ? 500 : phase > 1 ? 50.0F : 15.0F);
 				applyEnchantments(this, entity);
 			}
 	}
