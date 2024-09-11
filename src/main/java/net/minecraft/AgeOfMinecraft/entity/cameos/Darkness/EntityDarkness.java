@@ -3,9 +3,7 @@ package net.minecraft.AgeOfMinecraft.entity.cameos.Darkness;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.annotation.Nullable;
-
 import net.endermanofdoom.mac.dialogue.DialogueManager;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.endermanofdoom.mac.util.TranslateUtil;
@@ -43,7 +41,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
