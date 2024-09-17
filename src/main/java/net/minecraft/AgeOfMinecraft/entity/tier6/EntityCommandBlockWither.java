@@ -55,7 +55,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -247,6 +246,9 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	public void onLivingUpdate()
 	{
 		double size = "Gensui".equals(getName()) ? (this.getSize() * 500) : this.getSize();
+		
+		if ("Gensui".equals(getName()))
+			this.setIsHero(true);
 		this.experienceValue = (int) size;
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(size < 300? 300 : size);
 		if (this.posY < 0)

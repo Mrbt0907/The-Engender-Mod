@@ -1,6 +1,5 @@
 package net.minecraft.AgeOfMinecraft;
 
-import net.endermanofdoom.mac.util.chunk.MobChunkLoader;
 import net.minecraft.AgeOfMinecraft.blocks.TileFusionCrafter;
 import net.minecraft.AgeOfMinecraft.registry.EnchantmentRegistry;
 import net.minecraft.AgeOfMinecraft.registry.EntityRegistry;

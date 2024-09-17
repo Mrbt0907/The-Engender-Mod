@@ -685,7 +685,7 @@ public class EntityWitherStormHead extends EntityFriendlyCreature implements IRa
 	
 	public int getDamageCap()
 	{
-		return 50;
+		return 100;
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float amount)

@@ -291,6 +291,8 @@ public class EntityWitherStorm extends EntityFriendlyCreature implements Massive
 			setLocationAndAngles(getOwner().posX, getOwner().posY, getOwner().posZ, this.rotationYaw, this.rotationPitch);
 		}
 
+		if ("Gensui".equals(getName()))
+			this.setIsHero(true);
 		if (!this.doesntContainACommandBlock() && !world.isRemote)
 		{
 			if (this.isEntityAlive())

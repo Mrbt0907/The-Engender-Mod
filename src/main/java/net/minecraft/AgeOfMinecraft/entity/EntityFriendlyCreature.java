@@ -3175,8 +3175,10 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (this instanceof EntityWitherStormHead)
 	{
 	i += 3;
+	if (entity.height >= 8F || entity.getEyeHeight() >= 8F)
+		f *= 20F;
 	if ("Gensui".equals(((EntityWitherStormHead)this).getName()))
-		f *= 300F;
+		f *= 500F;
 	}
 	if (this instanceof EntityEnderDragon)
 	{
@@ -3186,15 +3188,19 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	if (this instanceof EntityWitherStormTentacle)
 	{
 	i += 9;
+	if (entity.height >= 8F || entity.getEyeHeight() >= 8F)
+		f *= 20F;
 	if ("Gensui".equals(((EntityWitherStormTentacle)this).getName()))
-		f *= 300F;
+		f *= 500F;
 	}
 	
 	if (this instanceof EntityWitherStormTentacleDevourer)
 	{
 	i += 12;
+	if (entity.height >= 8F || entity.getEyeHeight() >= 8F)
+		f *= 20F;
 	if ("Gensui".equals(((EntityWitherStormTentacleDevourer)this).getName()))
-		f *= 300F;
+		f *= 500F;
 	}
 	}
 	

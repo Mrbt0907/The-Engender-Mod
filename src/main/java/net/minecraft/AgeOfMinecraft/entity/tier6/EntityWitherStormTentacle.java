@@ -450,7 +450,7 @@ public class EntityWitherStormTentacle extends EntityFriendlyCreature implements
 	}
 	public int getDamageCap()
 	{
-		return 50;
+		return 200;
 	}
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
