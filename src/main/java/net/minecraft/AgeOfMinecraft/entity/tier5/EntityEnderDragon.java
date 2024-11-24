@@ -12,6 +12,7 @@ import com.google.common.collect.Lists;
 
 import net.endermanofdoom.mac.util.chunk.MobChunkLoader;
 import net.endermanofdoom.mac.util.math.Maths;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.Ender;
 import net.minecraft.AgeOfMinecraft.entity.EntityBodyHelperDragon;
@@ -229,7 +230,7 @@ public float getBonusVSMassive()
 */
 public EnumCreatureAttribute getCreatureAttribute()
 {
-	return EngenderSetup.ENDER;
+	return MCA.ENDER;
 }
 
 public boolean isChild()

@@ -16,6 +16,7 @@ import net.endermanofdoom.mac.dialogue.DialogueManager;
 import net.endermanofdoom.mac.interfaces.IBossBar;
 import net.endermanofdoom.mac.music.IMusicInteractable;
 import net.endermanofdoom.mac.util.math.Maths;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.EngenderCompat;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.EngenderMod;
@@ -269,7 +270,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 		{
 			public boolean shouldExecute()
 			{
-				if (!EntityFriendlyCreature.this.getCurrentBook().isEmpty() || EntityFriendlyCreature.this.getAttackTarget() != null || EntityFriendlyCreature.this.getCreatureAttribute() != EngenderSetup.WITHER_STORM)
+				if (!EntityFriendlyCreature.this.getCurrentBook().isEmpty() || EntityFriendlyCreature.this.getAttackTarget() != null || EntityFriendlyCreature.this.getCreatureAttribute() != MCA.WITHER_STORM)
 					return false;
 				else
 					return super.shouldExecute();
@@ -1987,7 +1988,7 @@ public abstract class EntityFriendlyCreature extends EntityCreature implements I
 	*/
 	public boolean isUndead() 
 	{
-		return this instanceof EntitySlime || isEntityUndead() || getCreatureAttribute() == EngenderSetup.CONSTRUCT || this instanceof Structure || this instanceof Elemental;
+		return this instanceof EntitySlime || isEntityUndead() || getCreatureAttribute() == MCA.CONSTRUCT || this instanceof Structure || this instanceof Elemental;
 	}
 	
 	public final double getVigor()

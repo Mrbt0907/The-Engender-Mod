@@ -8,6 +8,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
@@ -87,7 +88,7 @@ public class EntityIronGolem extends EntityFriendlyCreature implements Armored
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EngenderSetup.CONSTRUCT;
+		return MCA.CONSTRUCT;
 	}
 	/**
 	* Bonus damage vs mobs that implement Light

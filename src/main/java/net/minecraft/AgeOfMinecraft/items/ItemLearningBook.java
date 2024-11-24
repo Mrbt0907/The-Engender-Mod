@@ -7,6 +7,7 @@ import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 
 import javax.annotation.Nullable;
 
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.registry.CreativeTabRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.EnumRarity;
@@ -63,7 +64,7 @@ public class ItemLearningBook extends ItemSimpleFoiled
 	}
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		return artifact ? EngenderSetup.UBEREPIC : super.getRarity(stack);
+		return artifact ? MCA.LEGENDARY : super.getRarity(stack);
 	}
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{

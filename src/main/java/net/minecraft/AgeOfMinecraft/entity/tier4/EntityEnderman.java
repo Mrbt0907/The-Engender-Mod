@@ -12,6 +12,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Sets;
 
 import net.endermanofdoom.mac.util.TranslateUtil;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.Ender;
@@ -179,7 +180,7 @@ extends EntityFriendlyCreature implements IJumpingMount, Armored, Ender
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EngenderSetup.ENDER;
+		return MCA.ENDER;
 	}
 
 	public void func_184716_o()

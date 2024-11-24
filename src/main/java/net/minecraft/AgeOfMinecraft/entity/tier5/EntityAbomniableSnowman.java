@@ -9,6 +9,7 @@ import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.Elemental;
@@ -91,7 +92,7 @@ public class EntityAbomniableSnowman extends EntityFriendlyCreature implements I
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EngenderSetup.CONSTRUCT;
+		return MCA.CONSTRUCT;
 	}
 	/**
 	* Bonus damage vs mobs that implement Light

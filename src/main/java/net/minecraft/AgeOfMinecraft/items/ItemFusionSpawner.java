@@ -26,6 +26,7 @@ import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 import net.endermanofdoom.mac.item.ItemUtils;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
@@ -64,15 +65,15 @@ public class ItemFusionSpawner extends Item
 				break;
 			case 4:
 				setMaxStackSize(4);
-				rarity = EngenderSetup.SUPEREPIC;
+				rarity = MCA.SUPER_EPIC;
 				break;
 			case 5:
 				setMaxStackSize(1);
-				rarity = EngenderSetup.UBEREPIC;
+				rarity = MCA.LEGENDARY;
 				break;
 			default:
 				setMaxStackSize(1);
-				rarity = EngenderSetup.UBEREPIC;
+				rarity = MCA.LEGENDARY;
 		}
 	}
 	

@@ -5,6 +5,7 @@ import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 
 import javax.annotation.Nullable;
 
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.EntityPortal;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -59,9 +60,9 @@ public class ItemPortalStaff extends Item
 			case 3:
 			return EnumRarity.EPIC;
 			case 4:
-			return EngenderSetup.SUPEREPIC;
+			return MCA.SUPER_EPIC;
 			default:
-			return EngenderSetup.UBEREPIC;
+			return MCA.LEGENDARY;
 		}
 	}
 	@SideOnly(Side.CLIENT)

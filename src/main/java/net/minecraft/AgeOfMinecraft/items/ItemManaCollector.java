@@ -2,6 +2,7 @@ package net.minecraft.AgeOfMinecraft.items;
 
 import java.util.List;
 
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import javax.annotation.Nullable;
@@ -178,7 +179,7 @@ public class ItemManaCollector extends ItemSimpleFoiled implements baubles.api.I
 				stack.getTagCompound().setInteger("mana", 0);
 				stack.getTagCompound().setInteger("entropy", 0);
 			}
-			return type == 2 ? EngenderSetup.UBEREPIC : EnumRarity.EPIC;
+			return type == 2 ? MCA.LEGENDARY : EnumRarity.EPIC;
 		}
 
 		public int getMaxMana(ItemStack stack)

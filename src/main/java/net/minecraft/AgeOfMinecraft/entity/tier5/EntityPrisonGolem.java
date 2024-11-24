@@ -9,6 +9,7 @@ import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
@@ -87,7 +88,7 @@ public class EntityPrisonGolem extends EntityFriendlyCreature implements Armored
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EngenderSetup.CONSTRUCT;
+		return MCA.CONSTRUCT;
 	}
 	protected void entityInit()
 	{

@@ -10,6 +10,7 @@ import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.Ender;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
@@ -162,7 +163,7 @@ extends EntityFriendlyCreature implements Armored, Structure, Ender
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EngenderSetup.ENDER;
+		return MCA.ENDER;
 	}
 	public int getMaxSpawnedInChunk()
 	{

@@ -8,6 +8,7 @@ import com.google.common.base.Predicates;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
 import net.endermanofdoom.mac.util.chunk.MobChunkLoader;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
@@ -119,7 +120,7 @@ public class EntityWitherStormTentacle extends EntityFriendlyCreature implements
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EngenderSetup.WITHER_STORM;
+		return MCA.WITHER_STORM;
 	}
 	public EnumTier getTier()
 	{

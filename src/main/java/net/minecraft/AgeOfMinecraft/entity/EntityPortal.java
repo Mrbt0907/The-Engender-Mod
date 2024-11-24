@@ -7,6 +7,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.AgeOfMinecraft.registry.SoundRegistry;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.tier1.EntityChicken;
 import net.minecraft.AgeOfMinecraft.entity.tier1.EntityCow;
@@ -133,7 +134,7 @@ public boolean canWearEasterEggs()
 */
 public EnumCreatureAttribute getCreatureAttribute()
 {
-	return EngenderSetup.CONSTRUCT;
+	return MCA.CONSTRUCT;
 }
 protected void entityInit()
 {

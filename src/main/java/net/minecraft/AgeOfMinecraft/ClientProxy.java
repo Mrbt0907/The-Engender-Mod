@@ -1,6 +1,7 @@
 package net.minecraft.AgeOfMinecraft;
 
 import net.endermanofdoom.mac.entity.EntityArrowEX;
+import net.endermanofdoom.mca.client.render.RenderNullEntity;
 import net.minecraft.AgeOfMinecraft.entity.EntityManaOrb;
 import net.minecraft.AgeOfMinecraft.entity.EntityPortal;
 import net.minecraft.AgeOfMinecraft.entity.EntityPortalLightning;

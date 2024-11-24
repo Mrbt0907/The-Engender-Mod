@@ -9,6 +9,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.endermanofdoom.mac.music.IMusicInteractable;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.EngenderConfig;
 import net.minecraft.AgeOfMinecraft.entity.Armored;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
@@ -97,7 +98,7 @@ implements IRangedAttackMob, Massive, Armored, Flying, Undead, IMusicInteractabl
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EngenderSetup.WITHER_STORM;
+		return MCA.WITHER_STORM;
 	}
 	protected void applyEntityAttributes()
 	{

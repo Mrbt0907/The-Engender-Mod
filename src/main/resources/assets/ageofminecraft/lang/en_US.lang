@@ -8,22 +8,6 @@ tile.attack_block.name=Attack Block
 tile.defense_block.name=Defense Block
 tile.economic_block.name=Economic Block
 
-#Enchantments
-enchantment.crusher=Destruction
-enchantment.ageofminecraft.crusher.desc=Deal bonus damage to utility mobs and golems
-enchantment.disruption=Ender Disruption
-enchantment.ageofminecraft.disruption.desc=Deal bonus damage to Endermen and Endermites
-enchantment.conviction=Conviction
-enchantment.ageofminecraft.conviction.desc=Deal bonus damage to Illagers
-enchantment.disintigration=Disintegration
-enchantment.ageofminecraft.disintigration.desc=Great bonus damage to the undead and destroys their corpses
-enchantment.obliteration=Obliteration
-enchantment.ageofminecraft.obliteration.desc=Entities that are killed explode to cause area damage
-enchantment.neglection=Neglection
-enchantment.ageofminecraft.neglection.desc=Ignore invincibility frames of any entity
-enchantment.superweapon=The Eraser Command
-enchantment.ageofminecraft.superweapon.desc=Adds 50 damage to anything and deals massive bonus damage to the Wither Storm
-
 #Items
 item.fusionspawner.spawn_wild=Fusion mode changed to %1%s[Spawn Wild]
 item.fusionspawner.spawn_friendly=Fusion mode changed to %1%s[Spawn Friendly]

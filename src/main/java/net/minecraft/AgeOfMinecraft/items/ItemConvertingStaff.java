@@ -1,6 +1,7 @@
 package net.minecraft.AgeOfMinecraft.items;
 import java.util.List;
 
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
@@ -61,9 +62,9 @@ public class ItemConvertingStaff extends Item
 			case 3:
 			return EnumRarity.EPIC;
 			case 4:
-			return EngenderSetup.SUPEREPIC;
+			return MCA.SUPER_EPIC;
 			default:
-			return EngenderSetup.UBEREPIC;
+			return MCA.LEGENDARY;
 		}
 	}
 	@SideOnly(Side.CLIENT)

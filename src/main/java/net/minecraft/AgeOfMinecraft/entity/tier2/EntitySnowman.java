@@ -2,6 +2,7 @@ package net.minecraft.AgeOfMinecraft.entity.tier2;
 import javax.annotation.Nullable;
 
 import net.endermanofdoom.mac.util.TranslateUtil;
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.entity.Elemental;
 import net.minecraft.AgeOfMinecraft.entity.EntityFriendlyCreature;
 import net.minecraft.AgeOfMinecraft.entity.EnumTier;
@@ -140,7 +141,7 @@ public class EntitySnowman extends EntityFriendlyCreature implements IRangedAtta
 	*/
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EngenderSetup.CONSTRUCT;
+		return MCA.CONSTRUCT;
 	}
 	public void onLivingUpdate()
 	{

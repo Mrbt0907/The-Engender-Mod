@@ -2,6 +2,8 @@ package net.minecraft.AgeOfMinecraft.items;
 
 import java.util.List;
 import javax.annotation.Nullable;
+
+import net.endermanofdoom.mca.MCA;
 import net.minecraft.AgeOfMinecraft.registry.EngenderSetup;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.EnumRarity;
@@ -45,15 +47,15 @@ public class ItemFusion extends Item
 				break;
 			case 4:
 				setMaxStackSize(4);
-				rarity = EngenderSetup.SUPEREPIC;
+				rarity = MCA.SUPER_EPIC;
 				break;
 			case 5:
 				setMaxStackSize(1);
-				rarity = EngenderSetup.UBEREPIC;
+				rarity = MCA.LEGENDARY;
 				break;
 			default:
 				setMaxStackSize(1);
-				rarity = EngenderSetup.UBEREPIC;
+				rarity = MCA.LEGENDARY;
 		}
 	}
 
