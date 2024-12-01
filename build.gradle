@@ -12,15 +12,15 @@ project.mkdir "libs"
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 
-version = "0.8.6-indev"
-group = "net.minecraft.AgeOfMinecraft"
-archivesBaseName = "Engender_Mod"
+version = mod_version
+group = mod_group
+archivesBaseName = mod_name
 
 
 minecraft
 {
-    version = "1.12.2-14.23.5.2847"
-    mappings = "snapshot_20171003"
+    version = "${minecraft_version}-${forge_version}"
+    mappings = minecraft_mappings
     runDir = "run"
     makeObfSourceJar = false
 }
@@ -32,11 +32,26 @@ repositories
 		name 'Progwml6'
 		url "http://dvs1.progwml6.com/files/maven"
 	}
+	maven
+	{
+		url "https://maven.covers1624.net"
+	}
+	maven
+	{
+		url 'https://maven.blamejared.com'
+	}
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
 }
 
 dependencies
 {
-   runtime "mezz.jei:jei_1.12.2:4.13.1.225"
+   runtime "mezz.jei:jei_${minecraft_version}:${jei_version}"
+   runtime "codechicken:CodeChickenLib:${minecraft_version}-${codechicken_version}"
+   runtime "net.darkhax.bookshelf:Bookshelf-${minecraft_version}:${bookshelf_version}"
+   compile 'baubles:Baubles:1.12:${baubles_version}'
 }
 
 processResources
@@ -49,6 +64,12 @@ processResources
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
     from(sourceSets.main.resources.srcDirs) { exclude 'mcmod.info' }
-    //rename '(.+_at.cfg)', 'META-INF/$1'
+    rename '(.+_at.cfg)', 'META-INF/$1'
 }
-//jar { manifest{attributes 'FMLAT': 'ender_at.cfg'} }
+jar
+{
+	manifest
+	{
+		attributes 'FMLAT': '${at_mixin_name}_at.cfg'
+	}
+}
