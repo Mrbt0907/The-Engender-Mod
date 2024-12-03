@@ -4,6 +4,8 @@ import static net.mrbt0907.ageofminecraft.EngenderCompat.*;
 
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.world.GameRules;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -84,6 +86,12 @@ public class EngenderMod
 	public void onServerStart(FMLServerStartingEvent e)
 	{
 		e.registerServerCommand(new CommandKillEngenderMobs());
+		for (WorldServer world : e.getServer().worlds)
+		{
+			GameRules gamerule = world.getGameRules();
+			if (!gamerule.hasRule("friendlyFire"))
+				gamerule.addGameRule("friendlyFire", "false", GameRules.ValueType.BOOLEAN_VALUE);
+		}
 	}
 
 	@SubscribeEvent

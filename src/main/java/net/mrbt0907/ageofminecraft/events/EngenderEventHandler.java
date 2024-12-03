@@ -1,9 +1,17 @@
 package net.mrbt0907.ageofminecraft.events;
 
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAITarget;
+import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.registry.TextureRegistry;
 
 public class EngenderEventHandler
@@ -15,6 +23,21 @@ public class EngenderEventHandler
 	public void registerIcons(TextureStitchEvent.Pre event)
 	{	
 		TextureRegistry.init(event);	
+	}
+	
+	@SubscribeEvent
+	public void onSpawnEvent(EntityJoinWorldEvent event)
+	{
+		if (event.getEntity() instanceof EntityCreature)
+		{
+			EntityCreature entity = (EntityCreature) event.getEntity();
+			for (EntityAITaskEntry task : entity.targetTasks.taskEntries)
+				if (task.action.getClass().equals(EntityAINearestAttackableTarget.class) && ((EntityAINearestAttackableTarget<?>)task.action).targetClass.equals(EntityPlayer.class))
+				{
+					entity.targetTasks.addTask(task.priority, new EntityAINearestAttackableTarget<EntityEngendered>(entity, EntityEngendered.class, ((EntityAINearestAttackableTarget<?>)task.action).targetChance, ((EntityAITarget)task.action).shouldCheckSight, ((EntityAITarget)task.action).nearbyOnly, EntityEngendered.DONT_TARGET_WILD));
+					break;
+				}
+		}
 	}
 	
 	/*@SubscribeEvent
