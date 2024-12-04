@@ -12,21 +12,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
-import net.mrbt0907.ageofminecraft.EngenderMod;
-import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 
 public class ItemEngenderStatChecker extends Item
 {
-	public static EntityFriendlyCreature viewedEntity;
 	public ItemEngenderStatChecker()
 	{
 		setMaxStackSize(1);
 	}
+	
 	public EnumRarity getRarity(ItemStack stack)
 	{
 		return EnumRarity.UNCOMMON;
 	}
+	
+	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		tooltip.add("View the stats of any engendered mob");
@@ -35,29 +37,23 @@ public class ItemEngenderStatChecker extends Item
 
 	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand)
 	{
-		if (target instanceof EntityFriendlyCreature)
+		if (target instanceof EntityEngendered)
 		{
-			EntityFriendlyCreature entitypig = (EntityFriendlyCreature)target;
-			
-			if (entitypig.isEntityAlive())
+			playerIn.swingArm(hand);
+			if (playerIn.world.isRemote)
 			{
-				playerIn.swingArm(hand);
-				ItemEngenderStatChecker.viewedEntity = entitypig;
-				if(playerIn.world.isRemote)
-				FMLNetworkHandler.openGui(playerIn, EngenderMod.instance, EngenderMod.statCheckerGUIID, playerIn.world, (int)target.posX, (int)target.posY, (int)target.posZ);
+				net.minecraft.client.Minecraft.getMinecraft().displayGuiScreen(new net.mrbt0907.ageofminecraft.gui.GuiEngenderMobInventory(playerIn, (EntityEngendered) target));
+				//FMLNetworkHandler.openGui(playerIn, EngenderMod.instance, EngenderMod.statCheckerGUIID, playerIn.world, (int)target.posX, (int)target.posY, (int)target.posZ);
 			}
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
-		if (attacker instanceof EntityPlayer && target instanceof EntityLivingBase)
-		itemInteractionForEntity(stack, (EntityPlayer)attacker, target, EnumHand.MAIN_HAND);
+		if (attacker instanceof EntityPlayer)
+			itemInteractionForEntity(stack, (EntityPlayer)attacker, target, attacker.swingingHand);
 		return true;
 	}
 }

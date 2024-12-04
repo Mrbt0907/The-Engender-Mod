@@ -8,7 +8,6 @@ import net.minecraft.util.ResourceLocation;
 import net.mrbt0907.ageofminecraft.EngenderMod;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.tier1.*;
-import net.mrbt0907.ageofminecraft.entity.tier3.EntityZombie;
 
 
 public class EntityRegistry
@@ -19,7 +18,6 @@ public class EntityRegistry
 		createEntity(net.mrbt0907.ageofminecraft.entity.tier6.witherstorm.EntityWitherStorm.class, "wither_storm", 2048);
 		createEngenderedEntity(EntityCow.class, "cow", 64, 0, 2, 0, 7); 
 		createEngenderedEntity(EntityMooshroom.class, "mooshroom", 64, 0, 4, 0, 5);
-		createEntity(EntityZombie.class, "ZombieHelpful", 64); 
 		if (true) return;
 		/*createEngenderedEntity(EntityBat.class, "BatHelpful", 64, 0, 1, 0, 5); 
 		createEngenderedEntity(EntityChicken.class, "ChickenHelpful", 64, 0, 1, 0, 5); 

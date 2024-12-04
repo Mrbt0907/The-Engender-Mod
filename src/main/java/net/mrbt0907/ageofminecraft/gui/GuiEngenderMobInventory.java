@@ -25,7 +25,7 @@ import net.mrbt0907.ageofminecraft.entity.Animal;
 import net.mrbt0907.ageofminecraft.entity.Armored;
 import net.mrbt0907.ageofminecraft.entity.Elemental;
 import net.mrbt0907.ageofminecraft.entity.Ender;
-import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
+import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.EnumTier;
 import net.mrbt0907.ageofminecraft.entity.Massive;
 import net.mrbt0907.ageofminecraft.entity.Structure;
@@ -43,13 +43,13 @@ public class GuiEngenderMobInventory extends GuiContainer
 	private float oldMouseX;
 	/** The old y position of the mouse pointer */
 	private float oldMouseY;
-	private final EntityFriendlyCreature mob;
+	private final EntityEngendered mob;
 	private Slot theSlot;
 	private ItemStack draggedStack = ItemStack.EMPTY;
 	private Slot clickedSlot;
 	private boolean isRightMouseClick;
 	private int dragSplittingLimit;
-	public GuiEngenderMobInventory(EntityPlayer player, EntityFriendlyCreature entity)
+	public GuiEngenderMobInventory(EntityPlayer player, EntityEngendered entity)
 	{
 		super(player.inventoryContainer);
 		this.allowUserInput = true;
@@ -69,9 +69,9 @@ public class GuiEngenderMobInventory extends GuiContainer
 	{
 		int tier = mob.getTier() == EnumTier.TIER6 ? 6 : mob.getTier() == EnumTier.TIER5 ? 5 : mob.getTier() == EnumTier.TIER4 ? 4 : mob.getTier() == EnumTier.TIER3 ? 3 : mob.getTier() == EnumTier.TIER2 ? 2 : 1;
 		this.fontRenderer.drawString(this.mob.getName() + " (Tier " + tier + ")", 0, -10, 16777215);
-		this.fontRenderer.drawString("EXP: " + ((int)this.mob.getEXP() + "/" + (int)(this.mob.getNextLevelRequirement())), 70, 100, 4210752);
-		this.fontRenderer.drawString("Total EXP: " + (this.mob.getTotalEXP() >= Integer.MAX_VALUE ? "N/A" : (int)this.mob.getTotalEXP()), 70, 110, 4210752);
-		this.fontRenderer.drawString("Level " + (this.mob.getLevel() + 1), 80, 82, 4210752);
+		//this.fontRenderer.drawString("EXP: " + ((int)this.mob.getEXP() + "/" + (int)(this.mob.getNextLevelRequirement())), 70, 100, 4210752);
+		//this.fontRenderer.drawString("Total EXP: " + (this.mob.getTotalEXP() >= Integer.MAX_VALUE ? "N/A" : (int)this.mob.getTotalEXP()), 70, 110, 4210752);
+		//this.fontRenderer.drawString("Level " + (this.mob.getLevel() + 1), 80, 82, 4210752);
 		this.fontRenderer.drawString("STR (" + TextFormatting.RED + (int)(mob.getStrength()) + TextFormatting.RESET + ")", 8, 90, 4210752);
 		this.fontRenderer.drawString("STA (" + TextFormatting.DARK_GREEN + (int)(mob.getStamina()) + TextFormatting.RESET + ")", 8, 100, 4210752);
 		this.fontRenderer.drawString("INT (" + TextFormatting.BLUE + (int)(mob.getIntelligence()) + TextFormatting.RESET + ")", 8, 110, 4210752);
@@ -112,13 +112,13 @@ public class GuiEngenderMobInventory extends GuiContainer
 		else
 		{
 			render = TextFormatting.DARK_GREEN;
-			renderS = this.mob.getFittness() > 1.1F ? "Super Healthy" : this.mob.getFittness() < 0.9F ? "Slightly Sickly" : "Healthy";
+			renderS = "Healthy";
 		}
 		this.fontRenderer.drawString("Status: " + render + renderS, 8, 150, 4210752);GlStateManager.pushMatrix();
 		GlStateManager.scale(0.75F, 0.75F, 1F);
-		this.fontRenderer.drawString((mob.isWild() ? TextFormatting.LIGHT_PURPLE + "Mother Nature" : TextFormatting.GOLD + "Clan Leader " + mob.getOwner().getName()), 0, -25, 16777215);
+		this.fontRenderer.drawString((!mob.hasOwner() ? TextFormatting.LIGHT_PURPLE + "Mother Nature" : mob.getOwner() == null ? TextFormatting.GOLD + "Clan Leader Offline" : TextFormatting.GOLD + "Clan Leader " + mob.getOwner().getName()), 0, -25, 16777215);
 		this.fontRenderer.drawString("HP " + (int)this.mob.getHealth() + "/" + (int)this.mob.getMaxHealth(), 110, 11, 0);
-		this.fontRenderer.drawString("EN " + (int)this.mob.getEnergy() + "/" + 100, 110, 33, 0);
+		//this.fontRenderer.drawString("EN " + (int)this.mob.getEnergy() + "/" + 100, 110, 33, 0);
 		this.fontRenderer.drawString("Armor " + mob.getTotalArmorValue() + "/" +(int)(MathHelper.floor(mob.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getAttributeValue())), 110, 56, 0);
 		GlStateManager.scale(1F, 1F, 1F);
 		GlStateManager.popMatrix();
@@ -148,23 +148,23 @@ public class GuiEngenderMobInventory extends GuiContainer
 			((GuiLabel)this.labelList.get(j1)).drawLabel(this.mc, mouseX, mouseY);
 		}
 		this.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		for (int i1 = 0; i1 < mob.basicInventory.getSizeInventory(); ++i1)
+		for (int i1 = 0; i1 < mob.inventory.getSizeInventory(); ++i1)
 		{
-			Slot slot = new Slot(mob.basicInventory, i1, 8, 8);
+			Slot slot = new Slot(mob.inventory, i1, 8, 8);
 			if (i1 == 1)
-			slot = new Slot(mob.basicInventory, i1, 8, 26);
+			slot = new Slot(mob.inventory, i1, 8, 26);
 			if (i1 == 2)
-			slot = new Slot(mob.basicInventory, i1, 8, 44);
+			slot = new Slot(mob.inventory, i1, 8, 44);
 			if (i1 == 3)
-			slot = new Slot(mob.basicInventory, i1, 8, 62);
+			slot = new Slot(mob.inventory, i1, 8, 62);
 			if (i1 == 4)
-			slot = new Slot(mob.basicInventory, i1, 77, 62);
+			slot = new Slot(mob.inventory, i1, 77, 62);
 			if (i1 == 5)
-			slot = new Slot(mob.basicInventory, i1, 95, 62);
+			slot = new Slot(mob.inventory, i1, 95, 62);
 			if (i1 == 6)
-			slot = new Slot(mob.basicInventory, i1, 131, 62);
-			if (i1 == 7 && !mob.basicInventory.getStackInSlot(7).isEmpty())
-			slot = new Slot(mob.basicInventory, i1, 113, 62);
+			slot = new Slot(mob.inventory, i1, 131, 62);
+			if (i1 == 7 && !mob.inventory.getStackInSlot(7).isEmpty())
+			slot = new Slot(mob.inventory, i1, 113, 62);
 			if (slot.isEnabled())
 			{
 				this.drawSlot(slot, i1);
@@ -197,7 +197,7 @@ public class GuiEngenderMobInventory extends GuiContainer
 		ItemStack itemstack = slotIn.getStack();
 		boolean flag = false;
 		boolean flag1 = slotIn == this.clickedSlot && !this.draggedStack.isEmpty() && !this.isRightMouseClick;
-		ItemStack itemstack1 = this.mob.basicInventory.getStackInSlot(index);
+		ItemStack itemstack1 = this.mob.inventory.getStackInSlot(index);
 		String s = null;
 		
 		if (slotIn == this.clickedSlot && !this.draggedStack.isEmpty() && this.isRightMouseClick && !itemstack.isEmpty())
@@ -309,20 +309,20 @@ public class GuiEngenderMobInventory extends GuiContainer
 		int i = this.guiLeft;
 		int j = this.guiTop;
 		this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
-		if (mob.basicInventory.getStackInSlot(5).isEmpty())
+		if (mob.inventory.getStackInSlot(5).isEmpty())
 		this.drawTexturedModalRect(i + 95, j + 62, 80, 201, 16, 16);
-		if (mob.basicInventory.getStackInSlot(7).isEmpty())
+		if (mob.inventory.getStackInSlot(7).isEmpty())
 		this.drawTexturedModalRect(i + 113, j + 62, 96, 201, 16, 16);
-		if (mob.basicInventory.getStackInSlot(6).isEmpty())
+		if (mob.inventory.getStackInSlot(6).isEmpty())
 		this.drawTexturedModalRect(i + 131, j + 62, 112, 201, 16, 16);
-		if (mob.getLevel() > 299)
-		this.drawTypeBox(1, 0, 16, true);
-		if (mob.isBoss())
+		//if (mob.getLevel() > 299)
+		//this.drawTypeBox(1, 0, 16, true);
+		if (!mob.isNonBoss())
 		this.drawTypeBox(1, 1, 19, true);
-		if (mob.isHero())
-		this.drawTypeBox(1, 2, 17, true);
-		if (mob.hasLastChance())
-		this.drawTypeBox(1, 3, 14, true);
+		//if (mob.isHero())
+		//this.drawTypeBox(1, 2, 17, true);
+		//if (mob.hasLastChance())
+		//this.drawTypeBox(1, 3, 14, true);
 		if (mob instanceof Animal)
 		this.drawTypeBox(0, 0, 7, false);
 		if (mob instanceof Armored)
@@ -341,15 +341,15 @@ public class GuiEngenderMobInventory extends GuiContainer
 		this.drawTypeBox(0, 7, 1, false);
 		
 		//this.drawTexturedModalRect(i + 152, j + 60, 0, 211, 20, 20);
-		int health = (int)(mob.getHealthPercent() * 94F);
+		int health = (int)(mob.getHealth() / mob.getMaxHealth() * 94F);
 		if (health > 0)
 		this.drawTexturedModalRect(i + 77, j + 15, 0, 166, health, 5);
-		int energy = (int)(mob.getEnergyPercent() * 94F);
-		if (energy > 0)
-		this.drawTexturedModalRect(i + 77, j + 31, 0, 171, energy, 5);
-		int exp = (int)(mob.getEXPPercent() * 101F);
-		if (exp > 0)
-		this.drawTexturedModalRect(i + 70, j + 92, 0, 176, exp, 5);
+		//int energy = (int)(mob.getEnergyPercent() * 94F);
+		//if (energy > 0)
+		//this.drawTexturedModalRect(i + 77, j + 31, 0, 171, energy, 5);
+		//int exp = (int)(mob.getEXPPercent() * 101F);
+		//if (exp > 0)
+		//this.drawTexturedModalRect(i + 70, j + 92, 0, 176, exp, 5);
 		int armor = (int)(mob.getTotalArmorValue() * 2F);
 		if (armor > 0)
 		this.drawTexturedModalRect(i + 77, j + 48, 95, 166, armor + 1, 5);

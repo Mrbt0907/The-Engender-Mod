@@ -20,7 +20,15 @@ public class EntityMooshroom extends EntityCow implements net.minecraftforge.com
 		//spawnableBlock = Blocks.MYCELIUM;
 		experienceValue = 3;
 	}
+	
+	protected void applyEntityAttributes()
+	{
+		super.applyEntityAttributes();
+		getEntityAttribute(INTELLIGENCE).setBaseValue(30);
+	}
 /*
+ * 	
+ * 
 	public boolean interact(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack stack = player.getHeldItem(hand);

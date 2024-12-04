@@ -13,20 +13,13 @@ import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.EnumTier;
 import net.mrbt0907.ageofminecraft.registry.LootRegistry;
 
-public class EntityCow extends EntityEngendered
+public class EntityCow extends EntityEngendered implements IJumpingMount
 {
 	protected float jumpPower;
 	public EntityCow(World worldIn)
 	{
 		super(worldIn);
 		setSize(0.9F, 1.3F);
-	}
-	
-	protected void aiInit()
-	{
-		super.aiInit();
-		//tasks.addTask(0, new EntityAIFollow(this, 1.1D));
-		//tasks.addTask(0, new EntityAIWander(this, 1.0D, 100));
 	}
 	
 	protected void applyEntityAttributes()
@@ -48,7 +41,7 @@ public class EntityCow extends EntityEngendered
 	@Override
 	public EnumTier getTier() {return null;}
 	@Override
-	public long getBaseVigor() {return 0;}
+	public long getBaseVigor() {return 10;}
 	@Override
 	public long getBaseStrength() {return 0;}
 	@Override
@@ -59,4 +52,34 @@ public class EntityCow extends EntityEngendered
 	public long getBaseDexterity() {return 0;}
 	@Override
 	public long getBaseAgility() {return 0;}
+
+	@Override
+	public void setJumpPower(int jumpPower)
+	{
+		if (isBeingRidden())
+		{
+			if (jumpPower < 0)
+				jumpPower = 0;
+
+			if (jumpPower >= 90)
+				this.jumpPower = 1.0F;
+			else
+				this.jumpPower = 0.4F + 0.4F * (float)jumpPower / 90.0F;
+		}
+	}
+
+	@Override
+	public boolean canJump()
+	{
+		return true;
+	}
+
+	@Override
+	public void handleStartJump(int jumpPower)
+	{
+		playLivingSound();
+	}
+
+	@Override
+	public void handleStopJump() {}
 }

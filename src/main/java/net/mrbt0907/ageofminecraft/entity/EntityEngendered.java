@@ -3,6 +3,10 @@ package net.mrbt0907.ageofminecraft.entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.BiPredicate;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
@@ -17,17 +21,26 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.mrbt0907.ageofminecraft.EngenderMod;
-import net.mrbt0907.ageofminecraft.entity.ai.eng.EngenderedPathNavigator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.ai.eng.EntityAIFollow;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EntityAIOpenDoor;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EntityTargetAttacker;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EntityTargetLead;
 import net.mrbt0907.ageofminecraft.entity.ai.eng.EntityTargetNearest;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EnumAIStance;
+import net.mrbt0907.ageofminecraft.util.mrbtutil.TranslateUtil;
 
 /*
  * TODO:
@@ -38,6 +51,15 @@ import net.mrbt0907.ageofminecraft.entity.ai.eng.EntityTargetNearest;
  */
 public abstract class EntityEngendered extends EntityCreature implements IEntityOwnable
 {
+	public static final BiPredicate<EntityEngendered, EntityLivingBase> TARGET_WILD = new BiPredicate<EntityEngendered, EntityLivingBase>()
+	{
+		@Override
+		public boolean test(EntityEngendered entity, EntityLivingBase target)
+		{
+			EntityPlayer player = target instanceof EntityPlayer ? (EntityPlayer) target : null;
+			return target.isEntityAlive() && target.attackable() && (player == null ? true : !(player.capabilities.isCreativeMode || player.isSpectator())) && !target.isInvisible() && !entity.isOnSameTeam(target) && entity.canEntityBeSeen(target);
+		}
+	};
 	public static final Predicate<EntityEngendered> DONT_TARGET_WILD = new Predicate<EntityEngendered>() {
 		@Override
 		public boolean apply(EntityEngendered entity)
@@ -63,23 +85,31 @@ public abstract class EntityEngendered extends EntityCreature implements IEntity
 	public static final UUID INTELLIGENCE_UUID = UUID.fromString("643d2a29-0f58-4f6b-94b9-c63254015afe");
 	public static final UUID DEXTERITY_UUID = UUID.fromString("71f1bde9-6962-4c30-bf20-48de06cb25db");
 	public static final UUID AGILITY_UUID = UUID.fromString("e3be3d18-3162-415a-b611-c83fadf96360");
-	
+	public final InventoryBasic inventory;
+	protected EnumAIStance stance;
 	protected Entity owner;
-	protected double followRange = 32.0D;
-	protected double knockbackResistance = 0.09D;
+	public BlockPos[] followPos;
+	
+	@SideOnly(Side.CLIENT)
+	public boolean selected;
+	protected short healTime;
 	
 	
 	public EntityEngendered(World world)
 	{
 		super(world);
-		aiInit();
+		inventory = new InventoryBasic("Basic inventory", false, 8);
 	}
 	
-	protected void aiInit()
+	protected void initEntityAI()
 	{
-		tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
+		super.initEntityAI();
+		tasks.addTask(0, new EntityAIOpenDoor(this));
+		tasks.addTask(1, new EntityAIAttackMelee(this, 0.75D, true));
 		tasks.addTask(3, new EntityAIFollow(this, 1.1D));
-		targetTasks.addTask(0, new EntityTargetNearest(this, EntityLivingBase.class));
+		targetTasks.addTask(0, new EntityTargetLead(this));
+		targetTasks.addTask(1, new EntityTargetAttacker(this));
+		targetTasks.addTask(2, new EntityTargetNearest(this, EntityLivingBase.class));
 	}
 	
 	protected void entityInit()
@@ -104,8 +134,8 @@ public abstract class EntityEngendered extends EntityCreature implements IEntity
 		getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_SPEED);
 		getAttributeMap().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
 		getAttributeMap().registerAttribute(SharedMonsterAttributes.LUCK);
-		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(followRange);
-		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(knockbackResistance);
+		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
+		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.9D);
 	}
 	
 	public void readEntityFromNBT(NBTTagCompound nbt)
@@ -113,6 +143,7 @@ public abstract class EntityEngendered extends EntityCreature implements IEntity
 		super.readEntityFromNBT(nbt);
 		if (nbt.hasUniqueId("owner")) setOwner(nbt.getUniqueId("owner"));
 		setChild(nbt.getBoolean("IsBaby"));
+		
 		
 		if (nbt.hasKey("VGR")) setVigor(nbt.getLong("VGR"));
 		if (nbt.hasKey("STR")) setStrength(nbt.getLong("STR"));
@@ -145,6 +176,14 @@ public abstract class EntityEngendered extends EntityCreature implements IEntity
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
+		
+		if (healTime > 200)
+		{
+			if (ticksExisted % 20 == 0 && getHealth() < getMaxHealth() && hasOwner())
+				heal((float)(1.0D + Math.max(0.0D, getVigor() * 0.01D)));
+		}
+		else
+			healTime++;
 	}
 	
 	protected void onDeathUpdate()
@@ -152,10 +191,19 @@ public abstract class EntityEngendered extends EntityCreature implements IEntity
 		super.onDeathUpdate();
 	}
 	
+	public boolean attackEntityAsMob(Entity entity)
+    {
+		boolean truth = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue() * Math.max(0.0D, 1.0D + getStrength() * 0.01D)));
+		if (truth)
+			entity.hurtResistantTime = 0;
+		return truth;
+    }
+	
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isOnSameTeam(source.getTrueSource()) && !world.getGameRules().getBoolean("friendlyFire"))
 			return false;
+		healTime = 0;
 		return super.attackEntityFrom(source, amount);
 	}
 	
@@ -164,7 +212,8 @@ public abstract class EntityEngendered extends EntityCreature implements IEntity
 	@Override
 	public boolean isOnSameTeam(Entity entity)
 	{
-		if (this.equals(entity) || entity == null) return true;
+		if (entity == null) return false;
+		if (this.equals(entity)) return true;
 		
 		if (hasOwner())
 		{
@@ -182,7 +231,39 @@ public abstract class EntityEngendered extends EntityCreature implements IEntity
 		return super.isOnSameTeam(entity);
 	}
 	
+	@Override
+	public String getName()
+	{
+		return super.getName() + "  (" + TextFormatting.GREEN + TranslateUtil.translateServer("stance.aggressive") + TextFormatting.RESET + ")";
+	}
+	
+	@Override
+	public void setAttackTarget(@Nullable EntityLivingBase entity)
+    {
+		if (entity != null)
+			healTime = Short.MIN_VALUE;
+		else
+			healTime = healTime > 0 ? healTime : 0;
+		super.setAttackTarget(entity);
+    }
+	
 	//----- GETTERS & SETTERS -----\\
+	public EnumAIStance getStance()
+	{
+		return stance;
+	}
+	
+	public void setStance(@Nonnull EnumAIStance stance)
+	{
+		this.stance = stance;
+	}
+	
+	public void setStance(int stanceID)
+	{
+		EnumAIStance[] stances = EnumAIStance.values();
+		stance = stances[MathHelper.clamp(stanceID, 0, stances.length - 1)];
+	}
+	
 	public long getVigor()
 	{
 		return (long) Math.max(0.0D, getBaseVigor() + getEntityAttribute(VIGOR).getAttributeValue());
@@ -312,7 +393,7 @@ public abstract class EntityEngendered extends EntityCreature implements IEntity
 			updateOwner();
 		return owner;
 	}
-	
+
 	@Override
 	public UUID getOwnerId()
 	{

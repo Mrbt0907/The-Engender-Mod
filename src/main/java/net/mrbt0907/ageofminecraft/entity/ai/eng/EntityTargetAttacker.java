@@ -2,7 +2,6 @@ package net.mrbt0907.ageofminecraft.entity.ai.eng;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiPredicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -11,41 +10,46 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.util.mrbtutil.Maths;
 
-public class EntityTargetNearest extends EntityAIBase
+public class EntityTargetAttacker extends EntityAIBase
 {
 	private final EntityEngendered entity;
-	private final Class<? extends EntityLivingBase> targetClass;
-	private final BiPredicate<EntityEngendered, EntityLivingBase> predicate;
 	private EntityLivingBase target;
 	
-	public EntityTargetNearest(EntityEngendered entity, Class<? extends EntityLivingBase> targetClass)
-	{
-		this(entity, targetClass, EntityEngendered.TARGET_WILD);
-	}
-	
-	public EntityTargetNearest(EntityEngendered entity, Class<? extends EntityLivingBase> targetClass, BiPredicate<EntityEngendered, EntityLivingBase> predicate)
+	public EntityTargetAttacker(EntityEngendered entity)
 	{
 		this.entity = entity;
-		this.targetClass = targetClass;
-		this.predicate = predicate;
 	}
 	
 	@Override
 	public boolean shouldExecute()
 	{
+		target = entity.getRevengeTarget();
+		if (target != null && !entity.isOnSameTeam(target))
+			return true;
+		
+		target = null;
+		if (entity.ticksExisted % 100 != 0 || entity.getAttackTarget() != null || entity.getStance().equals(EnumAIStance.STAND_GROUND) || entity.getStance().equals(EnumAIStance.PASSIVE)) return false;
+		
 		IAttributeInstance attribute = entity.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE);
 		double followDistance = Math.pow(attribute.getAttributeValue(), 2.0D), resultDistance = followDistance, targetDistance;
 		List<Entity> entities = new ArrayList<Entity>(entity.world.loadedEntityList);
+		
 		for(Entity entity : entities)
 		{
 			targetDistance = Maths.distance(this.entity.posX, this.entity.posY, this.entity.posZ, entity.posX, entity.posY, entity.posZ);
-			if (!entity.equals(this.entity) && targetClass.isAssignableFrom(entity.getClass()) && targetDistance < resultDistance && (predicate == null ? true : predicate.test(this.entity, (EntityLivingBase) entity)))
+			if (!entity.equals(this.entity) && targetDistance < resultDistance && this.entity.isOnSameTeam(entity) && entity instanceof EntityLivingBase && ((EntityLivingBase)entity).getRevengeTarget() != null && !entity.isOnSameTeam(((EntityLivingBase)entity).getRevengeTarget()))
 			{
 				resultDistance = targetDistance;
 				target = (EntityLivingBase) entity;
 			}
 		}
-		return target != null;
+		
+		if (target != null)
+		{
+			target = target.getRevengeTarget();
+			return true;
+		}
+		return false;
 	}
 	
 	@Override

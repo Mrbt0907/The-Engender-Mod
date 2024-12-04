@@ -23,6 +23,7 @@ import net.mrbt0907.ageofminecraft.commands.CommandKillEngenderMobs;
 import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
 import net.mrbt0907.ageofminecraft.events.EngenderEventHandler;
 import net.mrbt0907.ageofminecraft.gui.EngenderGuiHandler;
+import net.mrbt0907.ageofminecraft.items.capabilities.CapabilityManager;
 import net.mrbt0907.ageofminecraft.network.EngenderNetworkReciever;
 import net.mrbt0907.ageofminecraft.registry.BlockRegistry;
 import net.mrbt0907.ageofminecraft.registry.ItemRegistry;
@@ -57,10 +58,12 @@ public class EngenderMod
 		MinecraftForge.EVENT_BUS.register(EngenderEventHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(BlockRegistry.class);
 		MinecraftForge.EVENT_BUS.register(ItemRegistry.class);
+		MinecraftForge.EVENT_BUS.register(CapabilityManager.class);
 		NetworkHandler.register(network);
 		NetworkRegistry.INSTANCE.registerGuiHandler(EngenderMod.instance, new EngenderGuiHandler());
 		EngenderMod.debug("Engender detected the following mods:\nIce and Fire: " + ICE_AND_FIRE_LOADED + "\nSCP - Lockdown: " + SCP_LOCKDOWN_LOADED);
-		EngenderMod.debug("NOTE: ALL INTERNAL ADDONS HAVE BEEN REMOVED");	
+		EngenderMod.debug("NOTE: ALL INTERNAL ADDONS HAVE BEEN REMOVED");
+		CapabilityManager.preInit();
 		proxy.preInit(e);
 		debug("Pre-Initialization finished");
 	}
@@ -98,10 +101,7 @@ public class EngenderMod
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) 
 	{
 		if (event.getModID().equals(MODID))
-		{
 			ConfigManager.sync(MODID, Config.Type.INSTANCE);
-			EntityFriendlyCreature.EXP_FACTOR = 1.0F / (float)EngenderConfig.mobs.levelFactor;
-		}
 	}
 
 	public static void info(Object message)
