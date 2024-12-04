@@ -5,10 +5,11 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -19,13 +20,17 @@ public class CapabilityCommandStaff
 {
 	protected final List<EntityEngendered> entities = new ArrayList<EntityEngendered>();
 	
+	public List<EntityEngendered> getUnits()
+	{
+		return new ArrayList<EntityEngendered>(entities);
+	}
 	
-	public boolean selectUnit(Entity owner, EntityEngendered entity)
+	public boolean selectUnit(EntityPlayer owner, EntityEngendered entity)
 	{
 		return selectUnit(owner, entity, false);
 	}
 	
-	public boolean selectUnit(Entity owner, EntityEngendered entity, boolean addUnit)
+	public boolean selectUnit(EntityPlayer owner, EntityEngendered entity, boolean addUnit)
 	{
 		if (entity == null || !entity.isEntityAlive() || !owner.getUniqueID().equals(entity.getOwnerId())) return false;
 		
@@ -34,14 +39,20 @@ public class CapabilityCommandStaff
 			if (entities.contains(entity))
 			{
 				if (entity.world.isRemote)
+				{
+					owner.sendStatusMessage(new TextComponentTranslation("engender.command.deselect", entity.getName()), true);
 					entity.selected = false;
+				}
 				entities.remove(entity);
 			}
 			else
 			{
 				entities.add(entity);
 				if (entity.world.isRemote)
+				{
+					owner.sendStatusMessage(new TextComponentTranslation("engender.command.select.multiple", entity.getName()), true);
 					entity.selected = true;
+				}
 			}
 		}
 		else
@@ -49,14 +60,22 @@ public class CapabilityCommandStaff
 			if (entities.contains(entity))
 			{
 				if (entity.world.isRemote)
+				{
+					owner.sendStatusMessage(new TextComponentTranslation("engender.command.deselect", entity.getName()), true);
 					entities.forEach(selectedEntity -> selectedEntity.selected = false);
+				}
 				entities.clear();
 			}
 			else
 			{
-				entities.add(entity);
 				if (entity.world.isRemote)
+				{
+					entities.forEach(selectedEntity -> selectedEntity.selected = false);
+					owner.sendStatusMessage(new TextComponentTranslation("engender.command.select", entity.getName()), true);
 					entity.selected = true;
+				}
+				entities.clear();
+				entities.add(entity);
 			}
 		}
 		return true;
@@ -91,6 +110,28 @@ public class CapabilityCommandStaff
 	public void setStance(@Nonnull EnumAIStance stance)
 	{
 		entities.forEach(entity -> entity.setStance(stance));
+	}
+	
+	public void nextStance()
+	{
+		nextStance(false);
+	}
+	
+	public void nextStance(boolean reverse)
+	{
+		EnumAIStance stance = getStance();
+		EnumAIStance[] stances = EnumAIStance.values();
+		if (stance == null)
+		{
+			if (reverse)
+				setStance(stances[0]);
+			else
+				setStance(stances[stances.length - 1]);
+			return;
+		}
+		int index = (stance.ordinal() + (reverse ? -1 : 1)) % stances.length;
+		
+		setStance(stances[index < 0 ? stances.length - 1 : index]);
 	}
 	
 	public static class Storage implements Capability.IStorage<CapabilityCommandStaff>

@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.EnumTier;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EnumAIStance;
 
 public class EntityWitherStorm extends EntityEngendered
 {
@@ -96,5 +97,11 @@ public class EntityWitherStorm extends EntityEngendered
 	public float getHeadYRotation(int headIndex)
 	{
 		return this.yRotationHeads[headIndex];
+	}
+
+	@Override
+	public EnumAIStance getDefaultStance()
+	{
+		return EnumAIStance.AGGRESSIVE;
 	}
 }

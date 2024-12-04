@@ -33,6 +33,7 @@ public class EntityTargetNearest extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
+		if (entity.getAttackTarget() != null) return false;
 		IAttributeInstance attribute = entity.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE);
 		double followDistance = Math.pow(attribute.getAttributeValue(), 2.0D), resultDistance = followDistance, targetDistance;
 		List<Entity> entities = new ArrayList<Entity>(entity.world.loadedEntityList);

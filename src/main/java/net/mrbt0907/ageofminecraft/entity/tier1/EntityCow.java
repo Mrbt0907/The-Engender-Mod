@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.EnumTier;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EnumAIStance;
 import net.mrbt0907.ageofminecraft.registry.LootRegistry;
 
 public class EntityCow extends EntityEngendered implements IJumpingMount
@@ -52,7 +53,9 @@ public class EntityCow extends EntityEngendered implements IJumpingMount
 	public long getBaseDexterity() {return 0;}
 	@Override
 	public long getBaseAgility() {return 0;}
-
+	@Override
+	public EnumAIStance getDefaultStance() {return EnumAIStance.AGGRESSIVE;}
+	
 	@Override
 	public void setJumpPower(int jumpPower)
 	{
@@ -82,4 +85,5 @@ public class EntityCow extends EntityEngendered implements IJumpingMount
 
 	@Override
 	public void handleStopJump() {}
+
 }

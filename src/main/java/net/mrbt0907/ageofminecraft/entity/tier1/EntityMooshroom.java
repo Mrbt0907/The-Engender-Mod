@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EnumAIStance;
 import net.mrbt0907.ageofminecraft.registry.LootRegistry;
 
 public class EntityMooshroom extends EntityCow implements net.minecraftforge.common.IShearable
@@ -26,6 +27,8 @@ public class EntityMooshroom extends EntityCow implements net.minecraftforge.com
 		super.applyEntityAttributes();
 		getEntityAttribute(INTELLIGENCE).setBaseValue(30);
 	}
+	@Override
+	public EnumAIStance getDefaultStance() {return EnumAIStance.STAND_GROUND;}
 /*
  * 	
  * 

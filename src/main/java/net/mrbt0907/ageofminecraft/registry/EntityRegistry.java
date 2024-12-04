@@ -112,6 +112,7 @@ public class EntityRegistry
 	{
 		createEntity(entityClass, entityName, updateDistance);
 		ItemRegistry.addEngenderedEntity(entityClass, tier, mana, entropy, fusionTime);
+		net.minecraftforge.fml.common.registry.EntityRegistry.registerEgg(new ResourceLocation(EngenderMod.MODID, entityName), 0, 0);
 	}
 	
 	public static void createEntityWithEgg(Class<? extends Entity> entityClass, String entityName, int primary, int secondary, int updateDistance)

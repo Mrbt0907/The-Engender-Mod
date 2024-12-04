@@ -247,75 +247,75 @@ item.fusionwitherstorm.name=Fusion Part (Wither Storm)
 item.witherstorm.name=Wither Storm Fusion
 
 #Entities
-entity.BatHelpful.name=Bat
-entity.ChickenHelpful.name=Chicken
-entity.CowHelpful.name=Cow
-entity.MushroomcowHelpful.name=Mooshroom
-entity.ParrotHelpful.name=Parrot
-entity.PigHelpful.name=Pig
-entity.RabbitHelpful.name=Rabbit
-entity.SheepHelpful.name=Sheep
-entity.OzelotHelpful.name=Ocelot
-entity.SquidHelpful.name=Squid
-entity.LlamaHelpful.name=Llama
-entity.VillagerHelpful.name=Villager
-entity.SnowmanHelpful.name=Snow Golem
-entity.SilverfishHelpful.name=Silverfish
-entity.EndermiteHelpful.name=Endermite
-entity.WolfHelpful.name=Wolf
-entity.SpiderHelpful.name=Spider
-entity.ZombieHelpful.name=Zombie
-entity.HuskHelpful.name=Husk
-entity.PrisonZombieHelpful.name=Prison Zombie
-entity.SkeletonHelpful.name=Skeleton
-entity.StrayHelpful.name=Stray
-entity.CreeperHelpful.name=Creeper
-entity.ChargedCreeperHelpful.name=Charged Creeper
-entity.SlimeHelpful.name=Slime
-entity.LavaSlimeHelpful.name=Magma Cube
-entity.PrisonSlimeHelpful.name=Prison Slime
-entity.VexHelpful.name=Vex
-entity.EndermanHelpful.name=Enderman
-entity.BlazeHelpful.name=Blaze
-entity.CaveSpiderHelpful.name=Cave Spider
-entity.IceSpiderHelpful.name=Ice Spider
-entity.PrisonSpiderHelpful.name=Prison Spider
-entity.CreederHelpful.name=Creeder
-entity.ChargedCreederHelpful.name=Charged Creeder
-entity.IcyEnderCreeperHelpful.name=Icy Ender Creeper
-entity.WitherSkeletonHelpful.name=Wither Skeleton
-entity.PolarBearHelpful.name=Polar Bear
+entity.Bat.name=Bat
+entity.Chicken.name=Chicken
+entity.cow.name=Cow
+entity.mooshroom.name=Mooshroom
+entity.Parrot.name=Parrot
+entity.Pig.name=Pig
+entity.Rabbit.name=Rabbit
+entity.Sheep.name=Sheep
+entity.Ozelot.name=Ocelot
+entity.Squid.name=Squid
+entity.Llama.name=Llama
+entity.Villager.name=Villager
+entity.Snowman.name=Snow Golem
+entity.Silverfish.name=Silverfish
+entity.Endermite.name=Endermite
+entity.Wolf.name=Wolf
+entity.Spider.name=Spider
+entity.Zombie.name=Zombie
+entity.Husk.name=Husk
+entity.PrisonZombie.name=Prison Zombie
+entity.Skeleton.name=Skeleton
+entity.Stray.name=Stray
+entity.Creeper.name=Creeper
+entity.ChargedCreeper.name=Charged Creeper
+entity.Slime.name=Slime
+entity.LavaSlime.name=Magma Cube
+entity.PrisonSlime.name=Prison Slime
+entity.Vex.name=Vex
+entity.Enderman.name=Enderman
+entity.Blaze.name=Blaze
+entity.CaveSpider.name=Cave Spider
+entity.IceSpider.name=Ice Spider
+entity.PrisonSpider.name=Prison Spider
+entity.Creeder.name=Creeder
+entity.ChargedCreeder.name=Charged Creeder
+entity.IcyEnderCreeper.name=Icy Ender Creeper
+entity.WitherSkeleton.name=Wither Skeleton
+entity.PolarBear.name=Polar Bear
 entity.KillerBunny.name=The Killer Rabbit
-entity.PigZombieHelpful.name=Zombie Pigman
-entity.GuardianHelpful.name=Guardian
-entity.GhastHelpful.name=Ghast
-entity.ShulkerHelpful.name=Shulker
-entity.WitchHelpful.name=Witch
-entity.VindicatorHelpful.name=Vindicator
-entity.ElderGuardianHelpful.name=Elder Guardian
-entity.SkeletonHorsemanHelpful.name=Skeleton Horseman
-entity.WitherSkeletonHorsemanHelpful.name=Wither Skeleton Horseman
-entity.StrayHorsemanHelpful.name=Stray Horseman
-entity.EversourceHelpful.name=Eversource
-entity.EvokerHelpful.name=Evoker
-entity.GiantHelpful.name=Giant
-entity.IllusionerHelpful.name=Illusioner
-entity.VillagerGolemHelpful.name=Iron Golem
-entity.IceGolemHelpful.name=Ice Golem
-entity.MagmaGolemHelpful.name=Magma Golem
-entity.PrisonGolemHelpful.name=Prison Golem
-entity.AbomniableSnowmanHelpful.name=Abomnible Snow Golem
-entity.PrismarineSoldierHelpful.name=Prismarine Soldier
-entity.GhastherHelpful.name=Ghasther
-entity.EnderDragonHelpful.name=Ender Dragon
-entity.WitherBossHelpful.name=Wither
-entity.GiantMagmaGolemHelpful.name=Giant Magma Golem
-entity.GiantEndermanHelpful.name=Giant Enderman
-entity.WitherBossCommandBlockHelpful.name=Wither (Wither Storm)
-entity.WitherStormBossHelpful.name=Wither Storm
-entity.WitherStormBossTentacleHelpful.name=Wither Storm Tentacle
-entity.WitherStormBossHeadHelpful.name=Wither Storm Head
-entity.WitherStormBossTentacleDevourerHelpful.name=Wither Storm Tentacle
+entity.PigZombie.name=Zombie Pigman
+entity.Guardian.name=Guardian
+entity.Ghast.name=Ghast
+entity.Shulker.name=Shulker
+entity.Witch.name=Witch
+entity.Vindicator.name=Vindicator
+entity.ElderGuardian.name=Elder Guardian
+entity.SkeletonHorseman.name=Skeleton Horseman
+entity.WitherSkeletonHorseman.name=Wither Skeleton Horseman
+entity.StrayHorseman.name=Stray Horseman
+entity.Eversource.name=Eversource
+entity.Evoker.name=Evoker
+entity.Giant.name=Giant
+entity.Illusioner.name=Illusioner
+entity.VillagerGolem.name=Iron Golem
+entity.IceGolem.name=Ice Golem
+entity.MagmaGolem.name=Magma Golem
+entity.PrisonGolem.name=Prison Golem
+entity.AbomniableSnowman.name=Abomnible Snow Golem
+entity.PrismarineSoldier.name=Prismarine Soldier
+entity.Ghasther.name=Ghasther
+entity.EnderDragon.name=Ender Dragon
+entity.WitherBoss.name=Wither
+entity.GiantMagmaGolem.name=Giant Magma Golem
+entity.GiantEnderman.name=Giant Enderman
+entity.WitherBossCommandBlock.name=Wither (Wither Storm)
+entity.WitherStormBoss.name=Wither Storm
+entity.WitherStormBossTentacle.name=Wither Storm Tentacle
+entity.WitherStormBossHead.name=Wither Storm Head
+entity.WitherStormBossTentacleDevourer.name=Wither Storm Tentacle
 entity.Portal.name=Portal
 entity.darkness.name=Darkness, God Of The End
 
@@ -355,6 +355,23 @@ advancements.engender.vanilla.convert_mob.desc=Convert a wild Engender mob.
 itemGroup.ageofminecraft=Engender Mod
 itemGroup.ageofminecraft_equipment=Engender Equipment
 itemGroup.ageofminecraft_fusion=Engender Fusions
+
+stance.aggressive=Aggressive
+stance.defensive=Defensive
+stance.stand_ground=Stand Ground
+stance.passive=Passive
+
+engender.command.stance=Stance: "%1%s"
+engender.command.stance.select=Changing stance to "%1%s"
+engender.command.select=Selected "%1$s"
+engender.command.select.multiple=Selected "%1$s"
+engender.command.select.all=Selected %1$s unit(s)
+engender.command.deselect=Deselected %1$s
+engender.command.deselect.all=Deselected %1$s unit(s)
+engender.command.move=Move There
+engender.command.patrol=Patrol There
+engender.command.follow=Follow
+engender.command.attack=Attack "%1%s"
 
 #Messages
 death.attack.blaster=%1$s was blasted by %2$s
@@ -542,111 +559,6 @@ subtitles.jzaharshout=CHA!
 subtitles.blast=Sonic boom
 subtitles.slashflesh=Flesh being cleaved
 
-#Other
-
-
-
-## AbyssalCraft
-#Blocks
-#Enchantments
-#Items
-item.pegun.name=Potential Energy Gun (Level I)
-item.pegun1.name=Potential Energy Gun (Level II)
-item.pegun2.name=Potential Energy Gun (Level III)
-item.pegun3.name=Potential Energy Gun (Level VI)
-item.pegun4.name=Potential Energy Gun (Level MAX)
-item.darkstone_cleaver.name=Darkstone Cleaver
-item.abyssalnite_cleaver.name=Abyssalnite Cleaver
-item.refined_coralium_cleaver.name=Refined Coralium Cleaver
-item.dreadium_cleaver.name=Dreadium Cleaver
-item.ethaxium_cleaver.name=Ethaxium Cleaver
-
-item.abyssalportalstaff.name=Abyssal Portal Staff
-
-#Fusions
-item.fusionabygolem.name=Fusion Part (Abyssalnite Golem)
-item.abygolem.name=Abyssalnite Golem Fusion
-item.fusiondreadgolem.name=Fusion Part (Dread Abyssalnite Golem)
-item.dreadgolem.name=Dread Abyssalnite Golem Fusion
-item.fusionabyssalzombie.name=Fusion Part (Abyssal Zombie)
-item.abyssalzombie.name=Abyssal Zombie Fusion
-item.fusiondepthsghoul.name=Fusion Part (Depths Ghoul)
-item.depthsghoul.name=Depths Ghoul Fusion
-item.fusiongskeleton.name=Fusion Part (Skeleton Goliath)
-item.gskeleton.name=Skeleton Goliath Fusion
-item.fusiondreadling.name=Fusion Part (Dreadling)
-item.dreadling.name=Dreadling Fusion
-item.fusiondreadspawn.name=Fusion Part (Dread Spawn)
-item.dreadspawn.name=Dread Spawn
-item.fusionchagarothspawn.name=Fusion Part (Spawn of Cha'garoth)
-item.chagarothspawn.name=Spawn of Cha'garoth Fusion
-item.fusionchagarothfist.name=Fusion Part (Fist of Cha'garoth)
-item.chagarothfist.name=Fist of Cha'garoth Fusion
-item.fusiongreaterdreadspawn.name=Fusion Part (Greater Dread Spawn)
-item.greaterdreadspawn.name=Greater Dread Spawn Fusion
-item.fusiondreadguard.name=Fusion Part (Dreadguard)
-item.dreadguard.name=Dreadguard Fusion
-item.fusionlesserdreadbeast.name=Fusion Part (Lesser Dreadbeast)
-item.lesserdreadbeast.name=Lesser Dreadbeast Fusion
-item.fusionchagaroth.name=Fusion Part (Cha'garoth, The Dreadbeast)
-item.chagaroth.name=Cha'garoth, The Dreadbeast Fusion
-item.fusionomotholghoul.name=Fusion Part (Omothol Ghoul)
-item.omotholghoul.name=Omothol Ghoul Fusion
-item.fusionshoggoth.name=Fusion Part (Lesser Shoggoth)
-item.shoggoth.name=Lesser Shoggoth Fusion
-item.fusionshadowcreature.name=Fusion Part (Shadow Creature)
-item.shadowcreature.name=Shadow Creature Fusion
-item.fusionshadowmonster.name=Fusion Part (Shadow Monster)
-item.shadowmonster.name=Shadow Monster Fusion
-item.fusionshadowbeast.name=Fusion Part (Shadow Beast)
-item.shadowbeast.name=Shadow Beast Fusion
-item.fusionsacthoth.name=Fusion Part (Sacthoth, Harbinger of Doom)
-item.sacthoth.name=Sacthoth, Harbinger of Doom Fusion
-item.fusionremnant.name=Fusion Part (Remnant)
-item.remnant.name=Remnant Fusion
-item.fusioncoraliumsquid.name=Fusion Part (Coralium Infested Squid)
-item.coraliumsquid.name=Coralium Infested Squid Fusion
-item.fusiongatekeeperminion.name=Fusion Part (Minion of the Gatekeeper)
-item.gatekeeperminion.name=Minion of the Gatekeeper Fusion
-item.fusionspectraldragon.name=Fusion Part (Spectral Dragon)
-item.spectraldragon.name=Spectral Dragon Fusion
-item.fusionasorah.name=Fusion Part (Asorah, The Fallen)
-item.asorah.name=Asorah, The Fallen Fusion
-item.fusionjzahar.name=Fusion Part (J'zahar, Gatekeeper of The Abyss!)
-item.jzahar.name=J'zahar, Gatekeeper of The Abyss Fusion
-
-#Entities
-entity.AbyssalZombieHelpful.name=Abyssal Zombie
-entity.AbygolemHelpful.name=Abyssalnite Golem
-entity.DreadgolemHelpful.name=Dread Abyssalnite Golem
-entity.DepthsGhoulHelpful.name=Depths Ghoul
-entity.SkeletonGoliathHelpful.name=Skeleton Goliath
-entity.DreadlingHelpful.name=Dreadling
-entity.DreadSpawnHelpful.name=Dread Spawn
-entity.ChagarothSpawnHelpful.name=Spawn of Cha'garoth
-entity.ChagarothFistHelpful.name=Fist of Cha'garoth
-entity.GreaterDreadSpawnHelpful.name=Greater Dread Spawn
-entity.DreadguardHelpful.name=Dreadguard
-entity.LesserDreadbeastHelpful.name=Lesser Dreadbeast
-entity.OmotholGhoulHelpful.name=Omothol Ghoul
-entity.LesserShoggothHelpful.name=Lesser Shoggoth
-entity.ShadowCreatureHelpful.name=Shadow Creature
-entity.ShadowMonsterHelpful.name=Shadow Monster
-entity.ShadowBeastHelpful.name=Shadow Beast
-entity.RemnantHelpful.name=Remnant
-entity.CoraliumSquidHelpful.name=Coralium Infested Squid
-entity.GatekeeperMinionHelpful.name=Minion of The Gatekeeper
-entity.DragonMinionHelpful.name=Spectral Dragon
-entity.DragonBossHelpful.name=Asorah, The Fallen
-entity.ChagarothHelpful.name=Cha'garoth, The Dreadbeast
-entity.SacthothHelpful.name=Sacthoth, Harbinger of Doom
-entity.JzaharHelpful.name=J'zahar, Gatekeeper of The Abyss
-entity.AbyssalPortal.name=Abyssal Portal
-
-#Advancements
-#Creative Tabs
-itemGroup.ageofminecraft.abyssalcraft=Abyssalcraft Addon
-
 #Messages
 message.remnanthelpful.trade=Hey there, player. Let's get trading, shall we?
 message.remnanthelpful.trade.success=An even trade, yes?
@@ -686,108 +598,3 @@ message.jzaharhelpful.banish.jzh=Hello there, pretty mirror. BEGONE! *Creates sw
 message.jzaharhelpful.banish.other=Who are you? It doesn't matter. You're an enemy, and I shall banish your soul to the steps of hell. Duh du du DUH!
 message.jzaharhelpful.creative.1=%s, hello. I am J'zahar, but you already knew that. You're in creative?
 message.jzaharhelpful.creative.2=Perhaps you're testing me? Bah hum bug! It matters not.
-
-#Subtitles
-#Other
-ac.ritual.gunUpgrade1=Upgrade PE Gun to level II
-ac.ritual.gunUpgrade1.desc=Upgrades your PE Gun to level II.
-ac.ritual.gunUpgrade2=Upgrade PE Gun to level III
-ac.ritual.gunUpgrade2.desc=Upgrades your PE Gun to level III.
-ac.ritual.gunUpgrade3=Upgrade PE Gun to level IV
-ac.ritual.gunUpgrade3.desc=Upgrades your PE Gun to level IV.
-ac.ritual.gunUpgrade4=Upgrade PE Gun to MAX
-ac.ritual.gunUpgrade4.desc=Upgrades your PE Gun to MAX. The pellets now also bypass enchantments.
-ac.ritual.abyportalStaffLevel2=Upgrade Abyssal Portal Staff to level II
-ac.ritual.abyportalStaffLevel2.desc=Upgrades your Abyssal Portal Staff to level II, adding Resistance and Strength I to the summoned portal.
-ac.ritual.abyportalStaffLevel3=Upgrade Abyssal Portal Staff to level III
-ac.ritual.abyportalStaffLevel3.desc=Upgrades your Abyssal Portal Staff to level III, adding a halved lightning shooting time to the summoned portal.
-ac.ritual.abyportalStaffLevel4=Upgrade Abyssal Portal Staff to level IV
-ac.ritual.abyportalStaffLevel4.desc=Upgrades your Abyssal Portal Staff to level IV, adding Resistance and Strength II to the summoned portal.
-ac.ritual.abyportalStaffLevel5=Upgrade Abyssal Portal Staff to level V
-ac.ritual.abyportalStaffLevel5.desc=Upgrades your Abyssal Portal Staff to level V, adding a halved summoning time to the portal.
-ac.ritual.changeRitual=Polymorph mobs
-ac.ritual.changeRitual.desc=Turn nearby normal mobs into their Engender counterparts if they have one.
-ac.ritual.mobGirlBreeding=Cupid's nuke
-ac.ritual.mobGirlBreeding.desc=Make every single one of your mob girls horny for your ass. Requires that you enable CMM mod and mob girl breeding.
-ac.ritual.engenderAsorah=Create Asorah Fusion part
-ac.ritual.engenderAsorah.desc=By using plenty of coralium related things, along with a bit of transmutation, you can have your own Asorah in your army, using items and blocks related to him of course.
-ac.ritual.engenderChagaroth=Create Cha'garoth Fusion part
-ac.ritual.engenderChagaroth.desc=By using plenty of dread related things, along with a good tint of despair, you can have your own Cha'garoth in your army, using items and blocks related to him of course.
-ac.ritual.engenderSacthoth=Create Sacthoth Fusion part
-ac.ritual.engenderSacthoth.desc=By using a collection of powerful dark artifacts, along with some shadow related things, you can have your own Sacthoth in your army, using items and blocks related to him of course.
-ac.ritual.engenderJzahar=Create J'zahar Fusion part
-ac.ritual.engenderJzahar.desc=By using the most powerful resources avalable to you at this time, with a pint of broken 4th wall, you can have your own J'zahar in your army, using items and blocks related to him of course.
-
-
-
-## Draconic Evolution
-#Blocks
-#Items
-item.draconicportalstaff.name=Draconic Portal Staff
-#Enchantments
-#Fusions
-item.fusionchaosguardian.name=Fusion Part (Chaos Guardian!)
-item.chaosguardian.name=Chaos Guardian Fusion
-#Entities
-entity.ChaosGuardianHelpful.name=Chaos Guardian
-entity.GuardianProjectileOther.name=Guardian Projectile
-entity.DraconicPortal.name=Draconic Portal
-
-#Advancements
-#Creative Tabs
-itemGroup.ageofminecraft.draconicevolution=Draconic Evolution Addon
-
-#Messages
-#Subtitles
-#Other
-
-##Twilight Forest
-#Blocks
-#Enchantments
-#Items
-#Fusions
-#Entities
-#Advancements
-#Creative Tabs
-itemGroup.ageofminecraft.twilightforest=Twilight Forest Addon
-
-##Mutant Beasts
-#Blocks
-#Enchantments
-#Items
-item.mutatedgene.name=Mutated Gene
-item.endersoulhammer.name=Ender Soul Hammer
-item.soulshard.name=Soul Shard
-item.hulkshard.name=Hulk Shard
-item.infusedskeletonhelmet.name=Infused Skeleton Helmet
-item.infusedskeletonchestplate.name=Infused Skeleton Chestplate
-item.infusedskeletonleggings.name=Infused Skeleton Leggings
-item.infusedskeletonboots.name=Infused Skeleton Boots
-item.mutantportalstaff.name=Mutant Portal Staff
-#Fusions
-item.fusionmutantzombie.name=Fusion Part (Mutant Zombie)
-item.mutantzombie.name=Mutant Zombie Fusion
-item.fusionmutantcreeper.name=Fusion Part (Mutant Creeper)
-item.mutantcreeper.name=Mutant Creeper Fusion
-item.fusionmutantskeleton.name=Fusion Part (Mutant Skeleton)
-item.mutantskeleton.name=Mutant Skeleton Fusion
-item.fusionmutantenderman.name=Fusion Part (Mutant Enderman)
-item.mutantenderman.name=Mutant Enderman Fusion
-item.fusionmutantsnowgolem.name=Fusion Part (Mutant Snow Golem)
-item.mutantsnowgolem.name=Mutant Snow Golem Fusion
-item.fusionspiderpig.name=Fusion Part (Spider Pig)
-item.spiderpig.name=Spider Pig Fusion
-#Entities
-entity.MutantZombieHelpful.name=Mutant Zombie
-entity.MutantCreeperHelpful.name=Mutant Creeper
-entity.MutantSkeletonHelpful.name=Mutant Skeleton
-entity.MutantEndermanHelpful.name=Mutant Enderman
-entity.MutantSnowGolemHelpful.name=Mutant Snow Golem
-entity.SpiderpigHelpful.name=Spider Pig
-#Advancements
-#Creative Tabs
-itemGroup.ageofminecraft.mutantbeasts=Mutant Beasts Addon
-
-#Messages
-#Subtitles
-#Other

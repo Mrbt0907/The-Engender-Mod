@@ -1,22 +1,34 @@
 package net.mrbt0907.ageofminecraft.events;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAITarget;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
+import net.mrbt0907.ageofminecraft.items.ItemCommandingStaff;
+import net.mrbt0907.ageofminecraft.items.capabilities.CapabilityCommandStaff;
+import net.mrbt0907.ageofminecraft.network.PacketCommandStaff;
 import net.mrbt0907.ageofminecraft.registry.TextureRegistry;
 
 public class EngenderEventHandler
 {
 	public static final EngenderEventHandler INSTANCE = new EngenderEventHandler();
+
+	@SideOnly(Side.CLIENT)
+	private ItemStack staff;
+	@SideOnly(Side.CLIENT)
+	private CapabilityCommandStaff capability;
+	@SideOnly(Side.CLIENT)
+	private int slot = -1;
 	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
@@ -37,6 +49,61 @@ public class EngenderEventHandler
 					entity.targetTasks.addTask(task.priority, new EntityAINearestAttackableTarget<EntityEngendered>(entity, EntityEngendered.class, ((EntityAINearestAttackableTarget<?>)task.action).targetChance, ((EntityAITarget)task.action).shouldCheckSight, ((EntityAITarget)task.action).nearbyOnly, EntityEngendered.DONT_TARGET_WILD));
 					break;
 				}
+		}
+	}
+	
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onTickClient(ClientTickEvent event)
+	{
+		if (event.phase.equals(Phase.END))
+		{
+			net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getMinecraft();
+			if (mc.player != null)
+			{
+				ItemStack stack = mc.player.inventory.getCurrentItem();
+				if (stack.getItem() instanceof ItemCommandingStaff)
+				{
+					staff = stack;
+					slot = mc.player.inventory.currentItem;
+				}
+				else if (staff != null)
+					if (slot > mc.player.inventory.currentItem)
+					{
+						if (capability == null && staff.hasCapability(CapabilityCommandStaff.Provider.INSTANCE, CapabilityCommandStaff.Provider.FACE))
+						{
+							capability = staff.getCapability(CapabilityCommandStaff.Provider.INSTANCE, CapabilityCommandStaff.Provider.FACE);
+						}
+							
+						if (mc.player.isSneaking())
+						{
+							if (capability != null)
+								capability.nextStance();
+							PacketCommandStaff.changeStance(capability.getUnits(), capability.getStance());
+							mc.player.inventory.currentItem = slot;
+						}
+						else
+						{
+							staff = null;
+							slot = -1;
+						}
+					}
+					else
+					{
+						if (mc.player.isSneaking())
+						{
+							if (capability != null)
+								capability.nextStance(true);
+							PacketCommandStaff.changeStance(capability.getUnits(), capability.getStance());
+							mc.player.inventory.currentItem = slot;
+						}
+						else
+						{
+							staff = null;
+							slot = -1;
+						}
+					}
+			}
 		}
 	}
 	

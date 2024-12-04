@@ -36,7 +36,7 @@ public class EntityAIFollow extends EntityAIBase
 	public boolean shouldExecute()
 	{
 		Entity owner = entity.getOwner();
-		return !entity.getLeashed() && entity.hasOwner() && owner != null && !entity.getStance().equals(EnumAIStance.STAND_GROUND) && entity.getAttackTarget() == null;
+		return entity.followPos == null && !entity.getLeashed() && entity.hasOwner() && owner != null && !entity.getStance().equals(EnumAIStance.STAND_GROUND) && entity.getAttackTarget() == null;
 	}
 	
 	public void startExecuting()

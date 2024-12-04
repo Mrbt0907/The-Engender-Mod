@@ -13,11 +13,13 @@ import net.mrbt0907.ageofminecraft.util.mrbtutil.Maths;
 public class EntityTargetAttacker extends EntityAIBase
 {
 	private final EntityEngendered entity;
+	private final boolean shouldReinforce;
 	private EntityLivingBase target;
 	
-	public EntityTargetAttacker(EntityEngendered entity)
+	public EntityTargetAttacker(EntityEngendered entity, boolean shouldReinforce)
 	{
 		this.entity = entity;
+		this.shouldReinforce = shouldReinforce;
 	}
 	
 	@Override
@@ -28,7 +30,7 @@ public class EntityTargetAttacker extends EntityAIBase
 			return true;
 		
 		target = null;
-		if (entity.ticksExisted % 100 != 0 || entity.getAttackTarget() != null || entity.getStance().equals(EnumAIStance.STAND_GROUND) || entity.getStance().equals(EnumAIStance.PASSIVE)) return false;
+		if (entity.ticksExisted % 100 != 0 || entity.getAttackTarget() != null || !shouldReinforce) return false;
 		
 		IAttributeInstance attribute = entity.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE);
 		double followDistance = Math.pow(attribute.getAttributeValue(), 2.0D), resultDistance = followDistance, targetDistance;
@@ -37,7 +39,7 @@ public class EntityTargetAttacker extends EntityAIBase
 		for(Entity entity : entities)
 		{
 			targetDistance = Maths.distance(this.entity.posX, this.entity.posY, this.entity.posZ, entity.posX, entity.posY, entity.posZ);
-			if (!entity.equals(this.entity) && targetDistance < resultDistance && this.entity.isOnSameTeam(entity) && entity instanceof EntityLivingBase && ((EntityLivingBase)entity).getRevengeTarget() != null && !entity.isOnSameTeam(((EntityLivingBase)entity).getRevengeTarget()))
+			if (!entity.equals(this.entity) && targetDistance < resultDistance && this.entity.isOnSameTeam(entity) && entity instanceof EntityLivingBase && ((EntityLivingBase)entity).getRevengeTarget() != null && !this.entity.isOnSameTeam(((EntityLivingBase)entity).getRevengeTarget()))
 			{
 				resultDistance = targetDistance;
 				target = (EntityLivingBase) entity;

@@ -18,7 +18,7 @@ public class EntityTargetLead  extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if (!entity.hasOwner() || !entity.getStance().equals(EnumAIStance.AGGRESSIVE)) return false;
+		if (!entity.hasOwner() || entity.getAttackTarget() != null) return false;
 		Entity owner = entity.getOwner();
 		if (owner == null || !(owner instanceof EntityLivingBase)) return false;
 		
@@ -33,7 +33,7 @@ public class EntityTargetLead  extends EntityAIBase
 	@Override
 	public boolean shouldContinueExecuting()
 	{
-		return entity.getAttackTarget() != null && target != null && target.isEntityAlive() && entity.getStance().equals(EnumAIStance.AGGRESSIVE);
+		return entity.getAttackTarget() != null && target != null && target.isEntityAlive();
 	}
 	
 	@Override

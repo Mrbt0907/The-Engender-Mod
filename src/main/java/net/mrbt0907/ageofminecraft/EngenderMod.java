@@ -42,7 +42,7 @@ public class EngenderMod
 	public static final String VERSION = "1.0.0";
 	
 	private static Logger logger;
-	public static final EngenderNetworkReciever network = new EngenderNetworkReciever();
+	public static final EngenderNetworkReciever NETWORK = new EngenderNetworkReciever();
 	public static final int statCheckerGUIID = 100;
 	public static final int engenderfuserGUIID = 101;
 	
@@ -54,12 +54,13 @@ public class EngenderMod
 		info("Loading The Engender Mod...");
 		debug("Pre-Initialization started");
 		EngenderCompat.preInit();
+		NetworkHandler.preInit();
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(EngenderEventHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(BlockRegistry.class);
 		MinecraftForge.EVENT_BUS.register(ItemRegistry.class);
 		MinecraftForge.EVENT_BUS.register(CapabilityManager.class);
-		NetworkHandler.register(network);
+		NetworkHandler.register(NETWORK);
 		NetworkRegistry.INSTANCE.registerGuiHandler(EngenderMod.instance, new EngenderGuiHandler());
 		EngenderMod.debug("Engender detected the following mods:\nIce and Fire: " + ICE_AND_FIRE_LOADED + "\nSCP - Lockdown: " + SCP_LOCKDOWN_LOADED);
 		EngenderMod.debug("NOTE: ALL INTERNAL ADDONS HAVE BEEN REMOVED");
