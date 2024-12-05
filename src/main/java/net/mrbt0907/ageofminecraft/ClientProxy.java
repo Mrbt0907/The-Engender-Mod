@@ -57,6 +57,7 @@ public class ClientProxy extends CommonProxy
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, manager -> new RenderCow(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, manager -> new RenderMooshroom(manager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, manager -> new RenderChicken(manager));
 		RenderingRegistry.registerEntityRenderingHandler(net.mrbt0907.ageofminecraft.entity.tier6.witherstorm.EntityWitherStorm.class, manager -> new RenderWitherStorm(manager));
 		if (true)
 			return;
@@ -85,7 +86,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, manager -> new RenderPig(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, manager -> new RenderSheep(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, manager -> new RenderWolf(manager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, manager -> new RenderChicken(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityParrot.class, manager -> new RenderParrot(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOcelot.class, manager -> new RenderOcelot(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityRabbit.class, manager -> new RenderRabbit(manager));

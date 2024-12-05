@@ -157,7 +157,7 @@ public class SpawnerRegistry
 				entityMount.onInitialSpawn(player.world.getDifficultyForLocation(new BlockPos(entityMount)), null);
 				player.world.spawnEntity(entityMount);
 				if (!(boolean)args[8])
-					entityMount.setOwnerId(player.getUniqueID());
+					entityMount.setOwner(player.getUniqueID());
 				entity.startRiding(entityMount, true);
 			}
 		}
