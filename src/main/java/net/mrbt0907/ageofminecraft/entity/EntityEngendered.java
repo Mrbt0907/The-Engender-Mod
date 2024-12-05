@@ -76,7 +76,7 @@ public abstract class EntityEngendered extends EntityAgeable implements IEntityO
 		public boolean test(EntityEngendered entity, EntityLivingBase target)
 		{
 			EntityPlayer player = target instanceof EntityPlayer ? (EntityPlayer) target : null;
-			return target.isEntityAlive() && target.attackable() && (player == null ? true : !(player.capabilities.isCreativeMode || player.isSpectator())) && !target.isInvisible() && !entity.isOnSameTeam(target) && entity.canEntityBeSeen(target);
+			return target.isEntityAlive() && target.attackable() && (player == null ? true : !(player.capabilities.isCreativeMode || player.isSpectator())) && !target.isInvisible() &&!entity.isOnSameTeam(target) && entity.canEntityBeSeen(target);
 		}
 	};
 	public static final Predicate<EntityEngendered> DONT_TARGET_WILD = new Predicate<EntityEngendered>() {
