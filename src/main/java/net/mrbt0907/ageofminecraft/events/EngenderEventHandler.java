@@ -78,8 +78,10 @@ public class EngenderEventHandler
 						if (mc.player.isSneaking())
 						{
 							if (capability != null)
+							{
 								capability.nextStance();
-							PacketCommandStaff.changeStance(capability.getUnits(), capability.getStance());
+								PacketCommandStaff.changeStance(capability.getUnits(), capability.getStance());
+							}
 							mc.player.inventory.currentItem = slot;
 						}
 						else
@@ -93,8 +95,10 @@ public class EngenderEventHandler
 						if (mc.player.isSneaking())
 						{
 							if (capability != null)
+							{
 								capability.nextStance(true);
-							PacketCommandStaff.changeStance(capability.getUnits(), capability.getStance());
+								PacketCommandStaff.changeStance(capability.getUnits(), capability.getStance());
+							}
 							mc.player.inventory.currentItem = slot;
 						}
 						else
