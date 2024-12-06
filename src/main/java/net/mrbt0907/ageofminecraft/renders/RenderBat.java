@@ -32,6 +32,8 @@ public class RenderBat extends RenderLiving<EntityBat>
 	{
 		this.mainModel = regularmodel;
 		
+        GlStateManager.scale(0.35F, 0.35F, 0.35F);
+		
 		//if (entitylivingbaseIn.isHero())
 		//GlStateManager.scale(1.05F, 1.05F, 1.05F);
 		

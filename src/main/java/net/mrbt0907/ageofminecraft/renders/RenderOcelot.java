@@ -15,27 +15,23 @@ public class RenderOcelot
 extends RenderLiving<EntityOcelot>
 {
 	private static final ResourceLocation ocelotTextures = new ResourceLocation("textures/entity/cat/ocelot.png");
-	private static final ResourceLocation antiocelotTextures = new ResourceLocation("ageofminecraft", "textures/entities/anti/ocelot.png");
 	public RenderOcelot(RenderManager renderManagerIn)
 	{
 		super(renderManagerIn, new ModelOcelot(), 0.4F);
 		addLayer(new LayerArrowCustomSized(this, 1.0F));
-		this.addLayer(new LayerLearningBook(this));
+		//this.addLayer(new LayerLearningBook(this));
 	}
 	protected ResourceLocation getEntityTexture(EntityOcelot entity)
 	{
-		return (entity.isAntiMob() ? antiocelotTextures : ocelotTextures);
+		return ocelotTextures;
 	}
 	protected void preRenderCallback(EntityOcelot entitylivingbaseIn, float partialTickTime)
 	{
-		float fit = entitylivingbaseIn.getFittness();
-		GlStateManager.scale(fit, fit, fit);
+//		if (entitylivingbaseIn.isHero())
+//		GlStateManager.scale(1.05F, 1.05F, 1.05F);
 		
-		if (entitylivingbaseIn.isHero())
-		GlStateManager.scale(1.05F, 1.05F, 1.05F);
-		
-		if (!entitylivingbaseIn.onGround)
-		GlStateManager.rotate(entitylivingbaseIn.prevRotationPitchFalling + (entitylivingbaseIn.rotationPitchFalling - entitylivingbaseIn.prevRotationPitchFalling) * 2F - 1F, 1F, 0F, 0F);
+//		if (!entitylivingbaseIn.onGround)
+//		GlStateManager.rotate(entitylivingbaseIn.prevRotationPitchFalling + (entitylivingbaseIn.rotationPitchFalling - entitylivingbaseIn.prevRotationPitchFalling) * 2F - 1F, 1F, 0F, 0F);
 		
 		if (entitylivingbaseIn.ticksExisted <= 21 && entitylivingbaseIn.ticksExisted > 0)
 		{
@@ -53,7 +49,7 @@ extends RenderLiving<EntityOcelot>
 	*/
 	public void doRender(EntityOcelot entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
-		if (entity.getGhostTime() > 0)
+		/*if (entity.getGhostTime() > 0)
 		{
 			Vec3d[] avec3d = entity.getRenderLocations(partialTicks);
 			float f = this.handleRotationFloat(entity, partialTicks);
@@ -65,14 +61,14 @@ extends RenderLiving<EntityOcelot>
 			this.shadowOpaque = 0F;
 		}
 		else
-		{
-			this.shadowOpaque = 1F;
+		{*/
+			shadowOpaque = 1F;
 			super.doRender(entity, x, y, z, entityYaw, partialTicks);
-		}
+		//}
 	}
 
 	protected boolean isVisible(EntityOcelot entity)
 	{
-		return !entity.isInvisible() || this.renderOutlines || entity.getGhostTime() > 0;
+		return !entity.isInvisible() || this.renderOutlines;
 	}
 }

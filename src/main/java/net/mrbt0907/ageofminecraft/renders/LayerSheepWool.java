@@ -13,7 +13,6 @@ public class LayerSheepWool
 implements LayerRenderer<EntitySheep>
 {
 	private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/sheep/sheep_fur.png");
-	private static final ResourceLocation antiTEXTURE = new ResourceLocation("ageofminecraft", "textures/entities/anti/sheep_fur.png");
 	private final RenderSheep sheepRenderer;
 	private final ModelSheep1 sheepModel = new ModelSheep1();
 	public LayerSheepWool(RenderSheep sheepRendererIn)
@@ -24,7 +23,7 @@ implements LayerRenderer<EntitySheep>
 	{
 		if ((!entitylivingbaseIn.getSheared()) && (!entitylivingbaseIn.isInvisible()))
 		{
-			this.sheepRenderer.bindTexture((entitylivingbaseIn.isAntiMob() ? antiTEXTURE : TEXTURE));
+			this.sheepRenderer.bindTexture(TEXTURE);
 			if ((entitylivingbaseIn.hasCustomName()) && ("jeb_".equals(entitylivingbaseIn.getCustomNameTag())))
 			{
 				int i = entitylivingbaseIn.ticksExisted / 5 + entitylivingbaseIn.getEntityId();

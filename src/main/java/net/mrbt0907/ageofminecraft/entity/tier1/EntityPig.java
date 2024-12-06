@@ -35,160 +35,108 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.mrbt0907.ageofminecraft.entity.Animal;
+import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
 import net.mrbt0907.ageofminecraft.entity.EnumTier;
 import net.mrbt0907.ageofminecraft.entity.Light;
 import net.mrbt0907.ageofminecraft.entity.ai.EntityAIFollowLeader;
 import net.mrbt0907.ageofminecraft.entity.ai.EntityAIFriendlyAttackMelee;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EnumAIStance;
 import net.mrbt0907.ageofminecraft.entity.tier4.EntityPigZombie;
 import net.mrbt0907.ageofminecraft.registry.LootRegistry;
 import net.mrbt0907.ageofminecraft.registry.SoundRegistry;
 
-public class EntityPig extends EntityFriendlyCreature implements IJumpingMount, Light, Animal
+public class EntityPig extends EntityEngendered implements IJumpingMount
 {
+	protected float jumpPower;
 	private static final DataParameter<Boolean> SADDLED = EntityDataManager.createKey(EntityPig.class, DataSerializers.BOOLEAN);
 	public EntityPig(World worldIn)
 	{
 		super(worldIn);
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIFollowLeader(this, 1.2D, 16.0F, 4.0F));
-		this.tasks.addTask(2, new EntityAIFriendlyAttackMelee(this, 1.2D, true));
-		this.tasks.addTask(5, new EntityAIWander(this, 0.8D, 80));
-		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.experienceValue = 1;
+		setSize(0.9F, 0.9F);
 	}
-	/**
-	* Bonus damage vs mobs that implement Armored
-	*/
-	public float getBonusVSArmored()
-	{
-		return 0.5F;
-	}
-
-	/**
-	* Bonus damage vs mobs that implement Massive
-	*/
-	public float getBonusVSMassive()
-	{
-		return 0.1F;
-	}
-
-	public EntityFriendlyCreature spawnBaby(EntityFriendlyCreature par1idleTimeable)
-	{
-		return new EntityPig(this.world);
-	}
+	
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
 		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
 	}
 
-	public boolean canBeButchered()
+	//----- OVERRIDES -----\\
+	protected ResourceLocation getLootTable() {return LootRegistry.ENTITIES_PIG;}
+	protected SoundEvent getAmbientSound() {return SoundEvents.ENTITY_PIG_AMBIENT;}
+	protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.ENTITY_PIG_HURT;}
+	protected SoundEvent getDeathSound() {return SoundEvents.ENTITY_PIG_DEATH;}
+	protected void playStepSound(BlockPos pos, Block blockIn) {playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);}
+	protected float getSoundVolume() {return 0.4F;}
+	
+	@Override
+	public EnumTier getTier() {return null;}
+	@Override
+	public long getBaseVigor() {return 10;}
+	@Override
+	public long getBaseStrength() {return 0;}
+	@Override
+	public long getBaseStamina() {return 0;}
+	@Override
+	public long getBaseIntelligence() {return 0;}
+	@Override
+	public long getBaseDexterity() {return 0;}
+	@Override
+	public long getBaseAgility() {return 0;}
+	@Override
+	public EnumAIStance getDefaultStance() {return EnumAIStance.AGGRESSIVE;}
+	
+	@Override
+	public void setJumpPower(int jumpPower)
+	{
+		if (isBeingRidden())
+		{
+			if (jumpPower < 0)
+				jumpPower = 0;
+
+			if (jumpPower >= 90)
+				this.jumpPower = 1.0F;
+			else
+				this.jumpPower = 0.4F + 0.4F * (float)jumpPower / 90.0F;
+		}
+	}
+
+	@Override
+	public boolean canJump()
 	{
 		return true;
 	}
-	public boolean canBeMatedWith()
+
+	@Override
+	public void handleStartJump(int jumpPower)
 	{
-		return false;
+		playLivingSound();
 	}
 
-	public boolean canBeMarried()
-	{
-		return false;
-	}
-
-	public float getBlockPathWeight(BlockPos pos)
-	{
-		return this.world.getBlockState(pos.down()).getBlock() == this.spawnableBlock ? 10.0F : this.world.getLightBrightness(pos) - 0.5F;
-	}
-	public void performSpecialAttack()
-	{
-		setSpecialAttackTimer(400);
-		playSound(SoundRegistry.pigSpecial, 5.0F, getSoundPitch());
-		List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, getEntityBoundingBox().grow(32.0D, 32.0D, 32.0D), Predicates.and(new Predicate[] { EntitySelectors.IS_ALIVE }));
-		if ((list != null) && (!list.isEmpty()))
-		{
-			for (int i1 = 0; i1 < list.size(); i1++)
-			{
-				EntityLivingBase entity = (EntityLivingBase)list.get(i1);
-				if (entity != null)
-				{
-					if (!isOnSameTeam(entity))
-					{
-						entity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200, 0));
-						entity.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 200, 0));
-						entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 200, 0));
-					}
-				}
-			}
-		}
-	}
-	public void onLivingUpdate()
-	{
-		super.onLivingUpdate();
-		setSize(0.9F, 0.9F);
-		
-		if ((getAttackTarget() != null) && (getDistanceSq(getAttackTarget()) < 128.0D) && (getSpecialAttackTimer() <= 0) && (isHero()))
-		{
-			performSpecialAttack();
-		}
-	}
+	@Override
+	public void handleStopJump() {}
+	
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(SADDLED, Boolean.valueOf(false));
 	}
+	
 	public void writeEntityToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeEntityToNBT(tagCompound);
 		tagCompound.setBoolean("Saddle", getSaddled());
 	}
+	
 	public void readEntityFromNBT(NBTTagCompound tagCompund)
 	{
 		super.readEntityFromNBT(tagCompund);
 		setSaddled(tagCompund.getBoolean("Saddle"));
 	}
-	protected SoundEvent getAmbientSound()
-	{
-		return SoundEvents.ENTITY_PIG_AMBIENT;
-	}
-	protected SoundEvent getHurtSound(DamageSource source)
-	{
-		return SoundEvents.ENTITY_PIG_HURT;
-	}
-	protected SoundEvent getDeathSound()
-	{
-		return SoundEvents.ENTITY_PIG_DEATH;
-	}
-	protected void playStepSound(BlockPos pos, Block blockIn)
-	{
-		playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F / this.getFittness());
-	}
-	public boolean interact(EntityPlayer player, EnumHand hand)
-	{
-		ItemStack stack = player.getHeldItem(hand);
-		
-		if (!stack.isEmpty() && (stack.getItem() == Items.SADDLE) && hasOwner(player))
-		{
-			setSaddled(true);
-			playSound(SoundEvents.ENTITY_PIG_SADDLE, 0.5F, 1.0F);
-			stack.shrink(1);
-			return true;
-		}
-		else if (stack.isEmpty() && getRidingEntity() == null)
-		{
-			if (!isWild() && this.isOnSameTeam(player) && !this.isChild() && !this.world.isRemote)
-			player.startRiding(this);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
@@ -203,16 +151,11 @@ public class EntityPig extends EntityFriendlyCreature implements IJumpingMount, 
 		}
 	}
 
-	@Nullable
-	protected ResourceLocation getLootTable()
-	{
-		return LootRegistry.ENTITIES_PIG;
-	}
-
 	public boolean getSaddled()
 	{
 		return ((Boolean)this.dataManager.get(SADDLED)).booleanValue();
 	}
+	
 	public void setSaddled(boolean saddled)
 	{
 		if (saddled)
@@ -224,136 +167,4 @@ public class EntityPig extends EntityFriendlyCreature implements IJumpingMount, 
 			this.dataManager.set(SADDLED, Boolean.valueOf(false));
 		}
 	}
-	public void onStruckByLightning(EntityLightningBolt lightningBolt)
-	{
-		if ((!this.world.isRemote) && (!this.isDead))
-		{
-			EntityPigZombie entitypigzombie = new EntityPigZombie(this.world);
-			entitypigzombie.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
-			entitypigzombie.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-			entitypigzombie.setNoAI(isAIDisabled());
-			if (hasCustomName())
-			{
-				entitypigzombie.setCustomNameTag(getCustomNameTag());
-			}
-			if (!this.isWild())
-			{
-				entitypigzombie.setOwnerId(this.getOwnerId());
-			}
-
-			this.world.spawnEntity(entitypigzombie);
-			if (this.isBeingRidden())
-			this.getControllingPassenger().startRiding(entitypigzombie);
-			setDead();
-		}
-	}
-	protected float jumpPower;
-	
-	public void setJumpPower(int jumpPowerIn)
-	{
-		if (this.isBeingRidden())
-		{
-			if (jumpPowerIn < 0)
-			{
-				jumpPowerIn = 0;
-			}
-
-			if (jumpPowerIn >= 90)
-			{
-				this.jumpPower = 1.0F;
-			}
-			else
-			{
-				this.jumpPower = 0.4F + 0.4F * (float)jumpPowerIn / 90.0F;
-			}
-		}
-	}
-
-	public boolean canJump()
-	{
-		return true;
-	}
-
-	public void handleStartJump(int p_184775_1_)
-	{
-		this.playLivingSound();
-	}
-
-	public void handleStopJump()
-	{
-	}public void travel(float strafe, float vertical, float forward)
-		{
-			if (isBeingRidden())
-			{
-				this.stepHeight = 1F;
-				EntityLivingBase entitylivingbase = (EntityLivingBase)getControllingPassenger();
-				this.rotationYawHead = entitylivingbase.rotationYawHead;
-				this.rotationPitch = entitylivingbase.rotationPitch;
-				setRotation(this.rotationYaw, this.rotationPitch);
-				strafe = entitylivingbase.moveStrafing;
-				forward = entitylivingbase.moveForward;
-				
-				if (forward != 0F)
-				{
-					this.rotationYaw = this.renderYawOffset = this.rotationYawHead;
-					this.prevRotationYaw = (this.rotationYaw = entitylivingbase.rotationYaw);
-				}
-				if (canPassengerSteer())
-				{
-					setAIMoveSpeed((float)getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() * (this.getSaddled() ? 1.5F : 1F));
-					super.travel(strafe, vertical, forward);
-				}
-				else if ((entitylivingbase instanceof EntityPlayer))
-				{
-					this.motionX = 0.0D;
-					this.motionY = 0.0D;
-					this.motionZ = 0.0D;
-				}
-				if (this.jumpPower > 0.0F && this.onGround)
-				{
-					this.motionY = (0.7D * (double)this.jumpPower) * this.getFittness();
-					
-					if (this.isPotionActive(MobEffects.JUMP_BOOST))
-					{
-						this.motionY += (double)((float)(this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.1F);
-					}
-
-					this.isAirBorne = true;
-					
-					if (forward > 0.0F)
-					{
-						float f = MathHelper.sin(this.rotationYaw * 0.017453292F);
-						float f1 = MathHelper.cos(this.rotationYaw * 0.017453292F);
-						this.motionX += (double)(-0.4F * f * this.jumpPower);
-						this.motionZ += (double)(0.4F * f1 * this.jumpPower);
-					}
-
-					this.jumpPower = 0.0F;
-				}
-				this.prevLimbSwingAmount = this.limbSwingAmount;
-				double d5 = this.posX - this.prevPosX;
-				double d7 = this.posZ - this.prevPosZ;
-				float f10 = MathHelper.sqrt(d5 * d5 + d7 * d7) * 4.0F;
-				
-				if (f10 > 1.0F)
-				{
-					f10 = 1.0F;
-				}
-
-				this.limbSwingAmount += (f10 - this.limbSwingAmount) * 0.4F;
-				this.limbSwing += this.limbSwingAmount;
-			}
-			else {
-				super.travel(strafe, vertical, forward);
-			}
-		}
-	
-	@Override
-	public EnumTier getTier()
-	{
-		return EnumTier.TIER1;
-	}
-	}
-
-	
-	
+}

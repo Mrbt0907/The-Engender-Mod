@@ -15,29 +15,25 @@ public class RenderSheep
 extends RenderLiving<EntitySheep>
 {
 	private static final ResourceLocation shearedSheepTextures = new ResourceLocation("textures/entity/sheep/sheep.png");
-	private static final ResourceLocation antishearedSheepTextures = new ResourceLocation("ageofminecraft", "textures/entities/anti/sheep.png");
 	public RenderSheep(RenderManager p_i46145_1_)
 	{
 		super(p_i46145_1_, new ModelSheep2(), 0.8F);
 		addLayer(new LayerSheepWool(this));
 		addLayer(new LayerArrowCustomSized(this, 1.0F));
 		this.addLayer(new LayerCustomHeadEngender(((ModelSheep2)this.mainModel).head));
-		this.addLayer(new LayerLearningBook(this));
+//		this.addLayer(new LayerLearningBook(this));
 	}
 	protected ResourceLocation getEntityTexture(EntitySheep entity)
 	{
-		return (entity.isAntiMob() ? antishearedSheepTextures : shearedSheepTextures);
+		return shearedSheepTextures;
 	}
 	protected void preRenderCallback(EntitySheep entitylivingbaseIn, float partialTickTime)
 	{
-		float fit = entitylivingbaseIn.getFittness();
-		GlStateManager.scale(fit, fit, fit);
+//		if (entitylivingbaseIn.isHero())
+//		GlStateManager.scale(1.05F, 1.05F, 1.05F);
 		
-		if (entitylivingbaseIn.isHero())
-		GlStateManager.scale(1.05F, 1.05F, 1.05F);
-		
-		if (!entitylivingbaseIn.onGround)
-		GlStateManager.rotate(entitylivingbaseIn.prevRotationPitchFalling + (entitylivingbaseIn.rotationPitchFalling - entitylivingbaseIn.prevRotationPitchFalling) * 2F - 1F, 1F, 0F, 0F);
+//		if (!entitylivingbaseIn.onGround)
+//		GlStateManager.rotate(entitylivingbaseIn.prevRotationPitchFalling + (entitylivingbaseIn.rotationPitchFalling - entitylivingbaseIn.prevRotationPitchFalling) * 2F - 1F, 1F, 0F, 0F);
 		
 		if (entitylivingbaseIn.ticksExisted <= 21 && entitylivingbaseIn.ticksExisted > 0)
 		{
@@ -55,7 +51,7 @@ extends RenderLiving<EntitySheep>
 	*/
 	public void doRender(EntitySheep entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
-		if (entity.getGhostTime() > 0)
+		/*if (entity.getGhostTime() > 0)
 		{
 			Vec3d[] avec3d = entity.getRenderLocations(partialTicks);
 			float f = this.handleRotationFloat(entity, partialTicks);
@@ -67,16 +63,14 @@ extends RenderLiving<EntitySheep>
 			this.shadowOpaque = 0F;
 		}
 		else
-		{
-			this.shadowOpaque = 1F;
+		{*/
+			shadowOpaque = 1F;
 			super.doRender(entity, x, y, z, entityYaw, partialTicks);
-		}
+		//}
 	}
 
 	protected boolean isVisible(EntitySheep entity)
 	{
-		return !entity.isInvisible() || this.renderOutlines || entity.getGhostTime() > 0;
+		return !entity.isInvisible() || this.renderOutlines;
 	}
 }
-
-

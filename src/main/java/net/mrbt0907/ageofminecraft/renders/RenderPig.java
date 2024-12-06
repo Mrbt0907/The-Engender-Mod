@@ -15,29 +15,25 @@ public class RenderPig
 extends RenderLiving<EntityPig>
 {
 	private static final ResourceLocation pigTextures = new ResourceLocation("textures/entity/pig/pig.png");
-	private static final ResourceLocation antipigTextures = new ResourceLocation("ageofminecraft", "textures/entities/anti/pig.png");
 	public RenderPig(RenderManager p_i46149_1_)
 	{
 		super(p_i46149_1_, new ModelPig(0.0F), 0.75F);
 		addLayer(new LayerSaddle(this));
 		addLayer(new LayerArrowCustomSized(this, 1.0F));
 		this.addLayer(new LayerCustomHeadEngender(((ModelPig)this.mainModel).head));
-		this.addLayer(new LayerLearningBook(this));
+//		this.addLayer(new LayerLearningBook(this));
 	}
 	protected ResourceLocation getEntityTexture(EntityPig entity)
 	{
-		return (entity.isAntiMob() ? antipigTextures : pigTextures);
+		return pigTextures;
 	}
 	protected void preRenderCallback(EntityPig entitylivingbaseIn, float partialTickTime)
 	{
-		float fit = entitylivingbaseIn.getFittness();
-		GlStateManager.scale(fit, fit, fit);
+//		if (entitylivingbaseIn.isHero())
+//		GlStateManager.scale(1.05F, 1.05F, 1.05F);
 		
-		if (entitylivingbaseIn.isHero())
-		GlStateManager.scale(1.05F, 1.05F, 1.05F);
-		
-		if (!entitylivingbaseIn.onGround)
-		GlStateManager.rotate(entitylivingbaseIn.prevRotationPitchFalling + (entitylivingbaseIn.rotationPitchFalling - entitylivingbaseIn.prevRotationPitchFalling) * 2F - 1F, 1F, 0F, 0F);
+//		if (!entitylivingbaseIn.onGround)
+//		GlStateManager.rotate(entitylivingbaseIn.prevRotationPitchFalling + (entitylivingbaseIn.rotationPitchFalling - entitylivingbaseIn.prevRotationPitchFalling) * 2F - 1F, 1F, 0F, 0F);
 		
 		if (entitylivingbaseIn.ticksExisted <= 21 && entitylivingbaseIn.ticksExisted > 0)
 		{
@@ -55,7 +51,7 @@ extends RenderLiving<EntityPig>
 	*/
 	public void doRender(EntityPig entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
-		if (entity.getGhostTime() > 0)
+		/*if (entity.getGhostTime() > 0)
 		{
 			Vec3d[] avec3d = entity.getRenderLocations(partialTicks);
 			float f = this.handleRotationFloat(entity, partialTicks);
@@ -67,14 +63,14 @@ extends RenderLiving<EntityPig>
 			this.shadowOpaque = 0F;
 		}
 		else
-		{
-			this.shadowOpaque = 1F;
+		{*/
+			shadowOpaque = 1F;
 			super.doRender(entity, x, y, z, entityYaw, partialTicks);
-		}
+		//}
 	}
 
 	protected boolean isVisible(EntityPig entity)
 	{
-		return !entity.isInvisible() || this.renderOutlines || entity.getGhostTime() > 0;
+		return !entity.isInvisible() || this.renderOutlines;
 	}
 }

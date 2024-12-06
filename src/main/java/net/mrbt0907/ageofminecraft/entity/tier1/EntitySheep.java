@@ -46,17 +46,19 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.Animal;
+import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
 import net.mrbt0907.ageofminecraft.entity.EnumTier;
 import net.mrbt0907.ageofminecraft.entity.Light;
 import net.mrbt0907.ageofminecraft.entity.ai.EntityAIFollowLeader;
 import net.mrbt0907.ageofminecraft.entity.ai.EntityAIFriendlyAttackMelee;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EnumAIStance;
 import net.mrbt0907.ageofminecraft.registry.LootRegistry;
 
-public class EntitySheep extends EntityFriendlyCreature implements Light, Animal, IShearable, IJumpingMount
+public class EntitySheep extends EntityEngendered implements IShearable, IJumpingMount
 {
 	private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(EntitySheep.class, DataSerializers.BYTE);
-	private int shootTimer;
+	protected float jumpPower;
 	private final InventoryCrafting inventoryCrafting = new InventoryCrafting(new Container()
 	{
 		public boolean canInteractWith(EntityPlayer playerIn)
@@ -71,43 +73,80 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 		{
 			return (float[])DYE_TO_RGB.get(dyeColor);
 		}
-		public EntityFriendlyCreature spawnBaby(EntityFriendlyCreature par1idleTimeable)
-		{
-			return new EntitySheep(this.world);
-		}
+
 		public EntitySheep(World worldIn)
 		{
 			super(worldIn);
 			setSize(0.9F, 1.3F);
 			this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.DYE));
 			this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.DYE));
-			this.tasks.addTask(0, new EntityAISwimming(this));
-			this.tasks.addTask(1, new EntityAIFollowLeader(this, 1.2D, 16.0F, 4.0F));
-			this.tasks.addTask(2, new EntityAIFriendlyAttackMelee(this, 1.2D, true));
-			this.tasks.addTask(4, this.entityAIEatGrass = new EntityAIEatGrass(this));
-			this.tasks.addTask(5, new EntityAIWander(this, 1.0D, 80));
-			this.tasks.addTask(8, new EntityAILookIdle(this));
-			this.experienceValue = 1;
 		}
-		public boolean canBeButchered()
+		
+		protected void initEntityAI()
+		{
+			super.initEntityAI();
+			this.tasks.addTask(4, this.entityAIEatGrass = new EntityAIEatGrass(this));
+		}
+		
+		protected void applyEntityAttributes()
+		{
+			super.applyEntityAttributes();
+			getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
+			getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
+		}
+
+		//----- OVERRIDES -----\\
+		protected SoundEvent getAmbientSound() {return SoundEvents.ENTITY_SHEEP_AMBIENT;}
+		protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.ENTITY_SHEEP_HURT;}
+		protected SoundEvent getDeathSound() {return SoundEvents.ENTITY_SHEEP_DEATH;}
+		protected void playStepSound(BlockPos pos, Block blockIn) {playSound(SoundEvents.ENTITY_SHEEP_STEP, 0.15F, 1.0F);}
+		
+		@Override
+		public EnumTier getTier() {return null;}
+		@Override
+		public long getBaseVigor() {return 10;}
+		@Override
+		public long getBaseStrength() {return 0;}
+		@Override
+		public long getBaseStamina() {return 0;}
+		@Override
+		public long getBaseIntelligence() {return 0;}
+		@Override
+		public long getBaseDexterity() {return 0;}
+		@Override
+		public long getBaseAgility() {return 0;}
+		@Override
+		public EnumAIStance getDefaultStance() {return EnumAIStance.AGGRESSIVE;}
+		
+		@Override
+		public void setJumpPower(int jumpPower)
+		{
+			if (isBeingRidden())
+			{
+				if (jumpPower < 0)
+					jumpPower = 0;
+
+				if (jumpPower >= 90)
+					this.jumpPower = 1.0F;
+				else
+					this.jumpPower = 0.4F + 0.4F * (float)jumpPower / 90.0F;
+			}
+		}
+
+		@Override
+		public boolean canJump()
 		{
 			return true;
 		}
-		/**
-		* Bonus damage vs mobs that implement Armored
-		*/
-		public float getBonusVSArmored()
+
+		@Override
+		public void handleStartJump(int jumpPower)
 		{
-			return 0.5F;
+			playLivingSound();
 		}
 
-		/**
-		* Bonus damage vs mobs that implement Massive
-		*/
-		public float getBonusVSMassive()
-		{
-			return 0.1F;
-		}
+		@Override
+		public void handleStopJump() {}
 
 		protected void updateAITasks()
 		{
@@ -115,20 +154,6 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 			super.updateAITasks();
 		}
 
-		public boolean canBeMatedWith()
-		{
-			return false;
-		}
-
-		public boolean canBeMarried()
-		{
-			return false;
-		}
-
-		public float getBlockPathWeight(BlockPos pos)
-		{
-			return this.world.getBlockState(pos.down()).getBlock() == this.spawnableBlock ? 10.0F : this.world.getLightBrightness(pos) - 0.5F;
-		}
 		public void onLivingUpdate()
 		{
 			setSize(0.9F, 1.3F);
@@ -136,44 +161,8 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 			{
 				this.sheepTimer = Math.max(0, this.sheepTimer - 1);
 			}
-			if (this.getAttackTarget() != null)
-			++this.shootTimer;
-			else
-			{
-				if (this.shootTimer > 0)
-				--this.shootTimer;
-			}
 
-			if (this.ticksExisted > 20 && (this.hasCustomName()) && ("jeb_".equals(this.getCustomNameTag())) && this.getAttackTarget() != null)
-			{
-				if (this.shootTimer > 0)
-				{
-					this.getNavigator().clearPath();
-					this.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, this.getSoundVolume(), 0.5F + (float)(this.shootTimer / 20));
-				}
-				if (this.shootTimer >= 60)
-				{
-					for (int i = 0; i < 256; i++)
-					{
-						double d9 = i / (256 - 1.0D);
-						double d6 = this.posX + (this.posX - getAttackTarget().posX) * -d9;
-						double d7 = this.posY + this.getEyeHeight() + (this.posY - getAttackTarget().posY) * -d9;
-						double d8 = this.posZ + (this.posZ - getAttackTarget().posZ) * -d9;
-						this.world.spawnParticle(EnumParticleTypes.END_ROD, d6, d7, d8, 0.0D, 0.01D, 0.0D, new int[0]);
-					}
-					this.playSound(SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE, this.getSoundVolume(), this.rand.nextFloat() - this.rand.nextFloat() * 0.4F + 1.0F);
-					this.getAttackTarget().attackEntityFrom(DamageSource.causeExplosionDamage(this), 12F);
-					this.shootTimer = -200;
-				}
-			}
 			super.onLivingUpdate();
-		}
-		protected void applyEntityAttributes()
-		{
-			super.applyEntityAttributes();
-			getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-			getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
-			getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
 		}
 		protected void entityInit()
 		{
@@ -243,7 +232,7 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 		{
 			ItemStack stack = player.getHeldItem(hand);
 			
-			if (!stack.isEmpty() && stack.getItem() == Items.DYE && hasOwner(player))
+			if (!stack.isEmpty() && stack.getItem() == Items.DYE && hasOwner())
 			{
 				EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(stack.getMetadata());
 				
@@ -257,118 +246,11 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 
 				return true;
 			}
-			else if (stack.isEmpty() && getRidingEntity() == null)
-			{
-				if (!isWild() && this.isOnSameTeam(player) && !this.isChild() && !this.world.isRemote)
-				player.startRiding(this);
-				playSound(getAmbientSound(), getSoundVolume(), getSoundPitch());
-				this.world.playEvent(2001, this.getPosition(), Block.getStateId(Blocks.CARPET.getDefaultState().withProperty(BlockCarpet.COLOR, this.getFleeceColor())));
-				return true;
-			}
 			else
 			{
-				return false;
+				return super.processInteract(player, hand);
 			}
 		}
-
-		protected float jumpPower;
-		
-		public void setJumpPower(int jumpPowerIn)
-		{
-			if (this.isBeingRidden())
-			{
-				if (jumpPowerIn < 0)
-				{
-					jumpPowerIn = 0;
-				}
-
-				if (jumpPowerIn >= 90)
-				{
-					this.jumpPower = 1.0F;
-				}
-				else
-				{
-					this.jumpPower = 0.4F + 0.4F * (float)jumpPowerIn / 90.0F;
-				}
-			}
-		}
-
-		public boolean canJump()
-		{
-			return true;
-		}
-
-		public void handleStartJump(int p_184775_1_)
-		{
-			this.playLivingSound();
-		}
-
-		public void handleStopJump()
-		{
-		}public void travel(float strafe, float vertical, float forward)
-			{
-				if (isBeingRidden())
-				{
-					this.stepHeight = 1F;
-					EntityLivingBase entitylivingbase = (EntityLivingBase)getControllingPassenger();
-					this.rotationYawHead = entitylivingbase.rotationYawHead;
-					this.rotationPitch = entitylivingbase.rotationPitch;
-					setRotation(this.rotationYaw, this.rotationPitch);
-					strafe = entitylivingbase.moveStrafing;
-					forward = entitylivingbase.moveForward;
-					
-					if (forward != 0F)
-					{
-						this.rotationYaw = this.renderYawOffset = this.rotationYawHead;
-						this.prevRotationYaw = (this.rotationYaw = entitylivingbase.rotationYaw);
-					}
-					if (canPassengerSteer())
-					{
-						setAIMoveSpeed((float)getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
-						super.travel(strafe, vertical, forward);
-					}
-					else if ((entitylivingbase instanceof EntityPlayer))
-					{
-						this.motionX = 0.0D;
-						this.motionY = 0.0D;
-						this.motionZ = 0.0D;
-					}
-					if (this.jumpPower > 0.0F && this.onGround)
-					{
-						this.motionY = 0.7D * (double)this.jumpPower;
-						
-						if (this.isPotionActive(MobEffects.JUMP_BOOST))
-						{
-							this.motionY += (double)((float)(this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.1F);
-						}
-
-						this.isAirBorne = true;
-						
-						if (forward > 0.0F)
-						{
-							float f = MathHelper.sin(this.rotationYaw * 0.017453292F);
-							float f1 = MathHelper.cos(this.rotationYaw * 0.017453292F);
-							this.motionX += (double)(-0.4F * f * this.jumpPower);
-							this.motionZ += (double)(0.4F * f1 * this.jumpPower);
-						}
-
-						this.jumpPower = 0.0F;
-					}
-					this.prevLimbSwingAmount = this.limbSwingAmount;
-					double d1 = this.posX - this.prevPosX;
-					double d0 = this.posZ - this.prevPosZ;
-					float f2 = MathHelper.sqrt(d1 * d1 + d0 * d0) * 4.0F;
-					if (f2 > 1.0F)
-					{
-						f2 = 1.0F;
-					}
-					this.limbSwingAmount += (f2 - this.limbSwingAmount) * 0.1F;
-					this.limbSwing += this.limbSwingAmount;
-				}
-				else {
-					super.travel(strafe, vertical, forward);
-				}
-			}
 			@SideOnly(Side.CLIENT)
 			public float getHeadRotationPointY(float p_70894_1_)
 			{
@@ -396,22 +278,7 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 				setSheared(tagCompund.getBoolean("Sheared"));
 				setFleeceColor(EnumDyeColor.byMetadata(tagCompund.getByte("Color")));
 			}
-			protected SoundEvent getAmbientSound()
-			{
-				return SoundEvents.ENTITY_SHEEP_AMBIENT;
-			}
-			protected SoundEvent getHurtSound(DamageSource source)
-			{
-				return SoundEvents.ENTITY_SHEEP_HURT;
-			}
-			protected SoundEvent getDeathSound()
-			{
-				return SoundEvents.ENTITY_SHEEP_DEATH;
-			}
-			protected void playStepSound(BlockPos pos, Block blockIn)
-			{
-				playSound(SoundEvents.ENTITY_SHEEP_STEP, 0.15F, 1.0F / this.getFittness());
-			}
+
 			public EnumDyeColor getFleeceColor()
 			{
 				return EnumDyeColor.byMetadata(((Byte)this.dataManager.get(DYE_COLOR)).byteValue() & 0xF);
@@ -496,13 +363,4 @@ public class EntitySheep extends EntityFriendlyCreature implements Light, Animal
 				playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
 				return ret;
 			}
-			
-			@Override
-			public EnumTier getTier()
-			{
-				return EnumTier.TIER1;
-			}
-		}
-
-		
-		
+}

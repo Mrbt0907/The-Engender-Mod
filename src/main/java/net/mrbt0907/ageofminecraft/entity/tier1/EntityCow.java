@@ -27,7 +27,6 @@ public class EntityCow extends EntityEngendered implements IJumpingMount
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
 		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
 	}
 
@@ -37,7 +36,6 @@ public class EntityCow extends EntityEngendered implements IJumpingMount
 	protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.ENTITY_COW_HURT;}
 	protected SoundEvent getDeathSound() {return SoundEvents.ENTITY_COW_DEATH;}
 	protected void playStepSound(BlockPos pos, Block blockIn) {playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);}
-	protected float getSoundVolume() {return 0.4F;}
 	
 	@Override
 	public EnumTier getTier() {return null;}

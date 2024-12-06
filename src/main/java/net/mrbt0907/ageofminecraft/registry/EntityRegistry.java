@@ -20,13 +20,14 @@ public class EntityRegistry
 		createEngenderedEntity(EntityChicken.class, "chicken", 64, 0, 1, 0, 5); 
 		createEngenderedEntity(EntityCow.class, "cow", 64, 0, 2, 0, 7); 
 		createEngenderedEntity(EntityMooshroom.class, "mooshroom", 64, 0, 4, 0, 5);
+		createEngenderedEntity(EntityOcelot.class, "ocelot", 64, 0, 2, 0, 6); 
+		createEngenderedEntity(EntityPig.class, "pig", 64, 0, 2, 0, 7); 
+		createEngenderedEntity(EntitySheep.class, "sheep", 64, 0, 3, 0, 7); 
 		if (true) return;
 		/*
 		createEngenderedEntity(EntityParrot.class, "ParrotHelpful", 64, 0, 1, 0, 10); 
-		createEngenderedEntity(EntityPig.class, "PigHelpful", 64, 0, 2, 0, 7); 
 		createEngenderedEntity(EntityRabbit.class, "RabbitHelpful", 64, 0, 1, 0, 6); 
 		addEngenderedVariant(EntityRabbit.class, "killerbunny", 3, 200, 0, 24, rabbit -> ((EntityRabbit)rabbit).setRabbitType(99));
-		createEngenderedEntity(EntitySheep.class, "SheepHelpful", 64, 0, 3, 0, 7); 
 		createEngenderedEntity(EntityOcelot.class, "OzelotHelpful", 64, 0, 2, 0, 6); 
 		createEngenderedEntity(EntitySquid.class, "SquidHelpful", 64, 0, 6, 0, 8); 
 		createEngenderedEntity(EntityLlama.class, "LlamaHelpful", 64, 1, 4, 0, 16); 

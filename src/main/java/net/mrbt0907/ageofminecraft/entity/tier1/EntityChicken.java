@@ -64,7 +64,6 @@ public class EntityChicken extends EntityEngendered implements IJumpingMount
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4.0D);
-		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
 		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
 	}
 	
@@ -79,7 +78,6 @@ public class EntityChicken extends EntityEngendered implements IJumpingMount
 	protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.ENTITY_CHICKEN_HURT;}
 	protected SoundEvent getDeathSound() {return SoundEvents.ENTITY_CHICKEN_DEATH;}
 	protected void playStepSound(BlockPos pos, Block blockIn) {playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);}
-	protected float getSoundVolume() {return 0.4F;}
 	
 	@Override
 	public EnumTier getTier() {return null;}
