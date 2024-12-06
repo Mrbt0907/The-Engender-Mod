@@ -30,9 +30,9 @@ import net.mrbt0907.ageofminecraft.items.capabilities.CapabilityCommandStaff;
 import net.mrbt0907.ageofminecraft.network.PacketCommandStaff;
 
 
-public class ItemCommandingStaff extends Item
+public class ItemCommandStaff extends Item
 {
-	public ItemCommandingStaff()
+	public ItemCommandStaff()
 	{
 		setMaxStackSize(1);
 	}

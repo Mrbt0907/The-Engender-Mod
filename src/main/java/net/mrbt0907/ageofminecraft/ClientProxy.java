@@ -55,9 +55,10 @@ public class ClientProxy extends CommonProxy
 	public void renderEntities()
 	{
 
+		RenderingRegistry.registerEntityRenderingHandler(EntityBat.class, manager -> new RenderBat(manager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, manager -> new RenderChicken(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, manager -> new RenderCow(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, manager -> new RenderMooshroom(manager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, manager -> new RenderChicken(manager));
 		RenderingRegistry.registerEntityRenderingHandler(net.mrbt0907.ageofminecraft.entity.tier6.witherstorm.EntityWitherStorm.class, manager -> new RenderWitherStorm(manager));
 		if (true)
 			return;
@@ -106,7 +107,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntitySquid.class, manager -> new RenderSquid(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityVillager.class, manager -> new RenderVillager(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIronGolem.class, manager -> new RenderIronGolem(manager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBat.class, manager -> new RenderBat(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityGuardian.class, manager -> new RenderGuardian(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityElderGuardian.class, manager -> new RenderGuardian(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityShulker.class, manager -> new RenderShulker(manager));

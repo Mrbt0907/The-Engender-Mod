@@ -14,7 +14,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
-import net.mrbt0907.ageofminecraft.items.ItemCommandingStaff;
+import net.mrbt0907.ageofminecraft.entity.ai.eng.EnumAIStance;
+import net.mrbt0907.ageofminecraft.items.ItemCommandStaff;
 import net.mrbt0907.ageofminecraft.items.capabilities.CapabilityCommandStaff;
 import net.mrbt0907.ageofminecraft.network.PacketCommandStaff;
 import net.mrbt0907.ageofminecraft.registry.TextureRegistry;
@@ -62,7 +63,7 @@ public class EngenderEventHandler
 			if (mc.player != null)
 			{
 				ItemStack stack = mc.player.inventory.getCurrentItem();
-				if (stack.getItem() instanceof ItemCommandingStaff)
+				if (stack.getItem() instanceof ItemCommandStaff)
 				{
 					staff = stack;
 					slot = mc.player.inventory.currentItem;
@@ -80,7 +81,8 @@ public class EngenderEventHandler
 							if (capability != null)
 							{
 								capability.nextStance();
-								PacketCommandStaff.changeStance(capability.getUnits(), capability.getStance());
+								EnumAIStance stance = capability.getStance();
+								PacketCommandStaff.changeStance(capability.getUnits(), stance == null ? EnumAIStance.AGGRESSIVE : stance);
 							}
 							mc.player.inventory.currentItem = slot;
 						}
@@ -97,7 +99,8 @@ public class EngenderEventHandler
 							if (capability != null)
 							{
 								capability.nextStance(true);
-								PacketCommandStaff.changeStance(capability.getUnits(), capability.getStance());
+								EnumAIStance stance = capability.getStance();
+								PacketCommandStaff.changeStance(capability.getUnits(), stance == null ? EnumAIStance.AGGRESSIVE : stance);
 							}
 							mc.player.inventory.currentItem = slot;
 						}

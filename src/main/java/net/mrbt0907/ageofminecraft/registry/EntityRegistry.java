@@ -16,11 +16,12 @@ public class EntityRegistry
 	public static void registerEntity()
 	{
 		createEntity(net.mrbt0907.ageofminecraft.entity.tier6.witherstorm.EntityWitherStorm.class, "wither_storm", 2048);
+		createEngenderedEntity(EntityBat.class, "bat", 64, 0, 1, 0, 5); 
 		createEngenderedEntity(EntityChicken.class, "chicken", 64, 0, 1, 0, 5); 
 		createEngenderedEntity(EntityCow.class, "cow", 64, 0, 2, 0, 7); 
 		createEngenderedEntity(EntityMooshroom.class, "mooshroom", 64, 0, 4, 0, 5);
 		if (true) return;
-		/*createEngenderedEntity(EntityBat.class, "BatHelpful", 64, 0, 1, 0, 5); 
+		/*
 		createEngenderedEntity(EntityParrot.class, "ParrotHelpful", 64, 0, 1, 0, 10); 
 		createEngenderedEntity(EntityPig.class, "PigHelpful", 64, 0, 2, 0, 7); 
 		createEngenderedEntity(EntityRabbit.class, "RabbitHelpful", 64, 0, 1, 0, 6); 

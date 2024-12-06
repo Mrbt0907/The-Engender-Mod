@@ -73,7 +73,7 @@ public class ItemRegistry
 	public static Item blowhorn2 = new ItemDragonsHorn();
 	public static Item convertingStaff = new ItemConvertingStaff();
 	public static Item summoningStaff = new ItemSummoningStaff();
-	public static Item commandingStaff = new ItemCommandingStaff();
+	public static Item commandStaff = new ItemCommandStaff();
 	public static Item portalStaff = new ItemPortalStaff();
 	public static ItemLearningBook learningBookBasic;
 	public static ItemLearningBook learningBookBasicCombat;
@@ -411,18 +411,18 @@ public class ItemRegistry
 		addItem("mana_collector", manaContainer, CreativeTabRegistry.ENGENDER_EQUIPMENT, 9);
 		addItem("entropy_collector", entropyContainer, CreativeTabRegistry.ENGENDER_EQUIPMENT, 9);
 		addItem("infinite_well_spring", artifact1, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("withered_nether_star", witheredNetherStar, CreativeTabRegistry.ENGENDER);
+		//addItem("withered_nether_star", witheredNetherStar, CreativeTabRegistry.ENGENDER);
 		addItem("statchecker", statChecker, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("carrier", carrier, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("heromaker", heromaker, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("last_chance", lastchance, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("trainingstick", trainingstick, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("moralhorn", blowhorn, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("enderdragonshorn", blowhorn2, CreativeTabRegistry.ENGENDER_EQUIPMENT);
-		addItem("convertingstaff", convertingStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
-		addItem("summoningstaff", summoningStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
-		addItem("commandingstaff", commandingStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
-		addItem("portalstaff", portalStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		//addItem("carrier", carrier, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		//addItem("heromaker", heromaker, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		//addItem("last_chance", lastchance, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		//addItem("trainingstick", trainingstick, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		//addItem("moralhorn", blowhorn, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		//addItem("enderdragonshorn", blowhorn2, CreativeTabRegistry.ENGENDER_EQUIPMENT);
+		//addItem("convertingstaff", convertingStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		//addItem("summoningstaff", summoningStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		addItem("command_staff", commandStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
+		//addItem("portalstaff", portalStaff, CreativeTabRegistry.ENGENDER_EQUIPMENT, 4);
 		
 		Integer[] fusionTiers = new Integer[fusionSpawners.size()];
 		fusionTiers = fusionSpawners.keySet().toArray(fusionTiers);

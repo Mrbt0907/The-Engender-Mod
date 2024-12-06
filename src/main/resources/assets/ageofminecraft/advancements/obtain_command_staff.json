@@ -1,0 +1,25 @@
+{
+	"display":
+	{
+		"icon": {"item": "ageofminecraft:commandingstaff"},
+		"title": {"translate": "advancements.engender.obtain_command_staff.title"},
+		"description": {"translate": "advancements.engender.obtain_command_staff.desc"}
+	},
+	"parent": "ageofminecraft:root",
+	"criteria":
+	{
+		"staff":
+		{
+			"trigger": "minecraft:inventory_changed",
+			"conditions":
+			{
+				"items":
+				[
+					{
+						"item": "ageofminecraft:command_staff"
+					}
+				]
+			}
+		}
+	}
+}

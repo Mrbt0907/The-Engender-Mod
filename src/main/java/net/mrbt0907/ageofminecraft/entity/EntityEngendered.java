@@ -248,7 +248,7 @@ public abstract class EntityEngendered extends EntityAgeable implements IEntityO
 	
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
-		if (this.isOnSameTeam(source.getTrueSource()) && !world.getGameRules().getBoolean("friendlyFire"))
+		if (isOnSameTeam(source.getTrueSource()) && !world.getGameRules().getBoolean("friendlyFire"))
 			return false;
 		healTime = 0;
 		return super.attackEntityFrom(source, amount);

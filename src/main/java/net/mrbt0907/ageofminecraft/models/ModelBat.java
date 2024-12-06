@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
+import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.tier1.EntityBat;
 @SideOnly(Side.CLIENT)
 
@@ -18,85 +18,83 @@ extends ModelBase
 	private ModelRenderer batLeftWing;
 	private ModelRenderer batOuterRightWing;
 	private ModelRenderer batOuterLeftWing;
+	
 	public ModelBat()
 	{
-		this.textureWidth = 64;
-		this.textureHeight = 64;
-		this.batHead = new ModelRenderer(this, 0, 0);
-		this.batHead.addBox(-3.0F, -3.0F, -3.0F, 6, 6, 6);
+		textureWidth = 64;
+		textureHeight = 64;
+		batHead = new ModelRenderer(this, 0, 0);
+		batHead.addBox(-3.0F, -3.0F, -3.0F, 6, 6, 6);
 		ModelRenderer modelrenderer = new ModelRenderer(this, 24, 0);
 		modelrenderer.addBox(-4.0F, -6.0F, -2.0F, 3, 4, 1);
-		this.batHead.addChild(modelrenderer);
+		batHead.addChild(modelrenderer);
 		ModelRenderer modelrenderer1 = new ModelRenderer(this, 24, 0);
 		modelrenderer1.mirror = true;
 		modelrenderer1.addBox(1.0F, -6.0F, -2.0F, 3, 4, 1);
-		this.batHead.addChild(modelrenderer1);
-		this.batBody = new ModelRenderer(this, 0, 16);
-		this.batBody.addBox(-3.0F, 4.0F, -3.0F, 6, 12, 6);
-		this.batBody.setTextureOffset(0, 34).addBox(-5.0F, 16.0F, 0.0F, 10, 6, 1);
-		this.batRightWing = new ModelRenderer(this, 42, 0);
-		this.batRightWing.addBox(-12.0F, 1.0F, 1.5F, 10, 16, 1);
-		this.batOuterRightWing = new ModelRenderer(this, 24, 16);
-		this.batOuterRightWing.setRotationPoint(-12.0F, 1.0F, 1.5F);
-		this.batOuterRightWing.addBox(-8.0F, 1.0F, 0.0F, 8, 12, 1);
-		this.batLeftWing = new ModelRenderer(this, 42, 0);
-		this.batLeftWing.mirror = true;
-		this.batLeftWing.addBox(2.0F, 1.0F, 1.5F, 10, 16, 1);
-		this.batOuterLeftWing = new ModelRenderer(this, 24, 16);
-		this.batOuterLeftWing.mirror = true;
-		this.batOuterLeftWing.setRotationPoint(12.0F, 1.0F, 1.5F);
-		this.batOuterLeftWing.addBox(0.0F, 1.0F, 0.0F, 8, 12, 1);
-		this.batBody.addChild(this.batRightWing);
-		this.batBody.addChild(this.batLeftWing);
-		this.batRightWing.addChild(this.batOuterRightWing);
-		this.batLeftWing.addChild(this.batOuterLeftWing);
+		batHead.addChild(modelrenderer1);
+		batBody = new ModelRenderer(this, 0, 16);
+		batBody.addBox(-3.0F, 4.0F, -3.0F, 6, 12, 6);
+		batBody.setTextureOffset(0, 34).addBox(-5.0F, 16.0F, 0.0F, 10, 6, 1);
+		batRightWing = new ModelRenderer(this, 42, 0);
+		batRightWing.addBox(-12.0F, 1.0F, 1.5F, 10, 16, 1);
+		batOuterRightWing = new ModelRenderer(this, 24, 16);
+		batOuterRightWing.setRotationPoint(-12.0F, 1.0F, 1.5F);
+		batOuterRightWing.addBox(-8.0F, 1.0F, 0.0F, 8, 12, 1);
+		batLeftWing = new ModelRenderer(this, 42, 0);
+		batLeftWing.mirror = true;
+		batLeftWing.addBox(2.0F, 1.0F, 1.5F, 10, 16, 1);
+		batOuterLeftWing = new ModelRenderer(this, 24, 16);
+		batOuterLeftWing.mirror = true;
+		batOuterLeftWing.setRotationPoint(12.0F, 1.0F, 1.5F);
+		batOuterLeftWing.addBox(0.0F, 1.0F, 0.0F, 8, 12, 1);
+		batBody.addChild(batRightWing);
+		batBody.addChild(batLeftWing);
+		batRightWing.addChild(batOuterRightWing);
+		batLeftWing.addChild(batOuterLeftWing);
 	}
+	
 	public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_)
 	{
-		setRotationAngles(p_78088_2_, p_78088_3_, ((EntityFriendlyCreature)p_78088_1_).isAIDisabled() ? 0 : p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, p_78088_1_);
-		this.batHead.render(p_78088_7_);
-		this.batBody.render(p_78088_7_);
+		setRotationAngles(p_78088_2_, p_78088_3_, ((EntityEngendered)p_78088_1_).isAIDisabled() ? 0 : p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, p_78088_1_);
+		batHead.render(p_78088_7_);
+		batBody.render(p_78088_7_);
 	}
+	
 	public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_)
 	{
 		EntityBat entity = (EntityBat)p_78087_7_;
 		if (entity.isAIDisabled())
-		p_78087_3_ = 1;
+			p_78087_3_ = 1;
 		if (entity.getIsBatHanging())
 		{
-			this.batHead.rotateAngleX = (p_78087_5_ / 57.295776F);
-			this.batHead.rotateAngleY = (3.1415927F - p_78087_4_ / 57.295776F);
-			this.batHead.rotateAngleZ = 3.1415927F;
-			this.batHead.setRotationPoint(0.0F, -2.0F, 0.0F);
-			this.batRightWing.setRotationPoint(-3.0F, 0.0F, 3.0F);
-			this.batLeftWing.setRotationPoint(3.0F, 0.0F, 3.0F);
-			this.batBody.rotateAngleX = 3.1415927F;
-			this.batRightWing.rotateAngleX = -0.15707964F;
-			this.batRightWing.rotateAngleY = -1.2566371F;
-			this.batOuterRightWing.rotateAngleY = -1.7278761F;
-			this.batLeftWing.rotateAngleX = this.batRightWing.rotateAngleX;
-			this.batLeftWing.rotateAngleY = (-this.batRightWing.rotateAngleY);
-			this.batOuterLeftWing.rotateAngleY = (-this.batOuterRightWing.rotateAngleY);
-			if (!entity.getCurrentBook().isEmpty())
-			{
-				this.batHead.rotateAngleY += 3.1415927F;
-				this.batHead.rotateAngleX = -(p_78087_5_ / 57.295776F);
-			}
+			batHead.rotateAngleX = (p_78087_5_ / 57.295776F);
+			batHead.rotateAngleY = (3.1415927F - p_78087_4_ / 57.295776F);
+			batHead.rotateAngleZ = 3.1415927F;
+			batHead.setRotationPoint(0.0F, -2.0F, 0.0F);
+			batRightWing.setRotationPoint(-3.0F, 0.0F, 3.0F);
+			batLeftWing.setRotationPoint(3.0F, 0.0F, 3.0F);
+			batBody.rotateAngleX = 3.1415927F;
+			batRightWing.rotateAngleX = -0.15707964F;
+			batRightWing.rotateAngleY = -1.2566371F;
+			batOuterRightWing.rotateAngleY = -1.7278761F;
+			batLeftWing.rotateAngleX = batRightWing.rotateAngleX;
+			batLeftWing.rotateAngleY = (-batRightWing.rotateAngleY);
+			batOuterLeftWing.rotateAngleY = (-batOuterRightWing.rotateAngleY);
 		}
 		else
 		{
-			this.batHead.rotateAngleX = (p_78087_5_ / 57.295776F);
-			this.batHead.rotateAngleY = (p_78087_4_ / 57.295776F);
-			this.batHead.rotateAngleZ = 0.0F;
-			this.batHead.setRotationPoint(0.0F, 0.0F, 0.0F);
-			this.batRightWing.setRotationPoint(0.0F, 0.0F, 0.0F);
-			this.batLeftWing.setRotationPoint(0.0F, 0.0F, 0.0F);
-			this.batBody.rotateAngleX = (0.7853982F + MathHelper.cos(p_78087_3_ * 0.1F) * 0.15F);
-			this.batBody.rotateAngleY = 0.0F;
-			this.batRightWing.rotateAngleY = (MathHelper.cos(p_78087_3_ * 1.3F) * 3.1415927F * 0.25F);
-			this.batLeftWing.rotateAngleY = (-this.batRightWing.rotateAngleY);
-			this.batOuterRightWing.rotateAngleY = (this.batRightWing.rotateAngleY * 0.5F);
-			this.batOuterLeftWing.rotateAngleY = (-this.batRightWing.rotateAngleY * 0.5F);
+			batHead.rotateAngleX = (p_78087_5_ / 57.295776F);
+			batHead.rotateAngleY = (p_78087_4_ / 57.295776F);
+			batHead.rotateAngleZ = 0.0F;
+			batHead.setRotationPoint(0.0F, 0.0F, 0.0F);
+			batRightWing.setRotationPoint(0.0F, 0.0F, 0.0F);
+			batLeftWing.setRotationPoint(0.0F, 0.0F, 0.0F);
+			batBody.rotateAngleX = (0.7853982F + MathHelper.cos(p_78087_3_ * 0.1F) * 0.15F);
+			batBody.rotateAngleY = 0.0F;
+			batRightWing.rotateAngleY = (MathHelper.cos(p_78087_3_ * 1.3F) * 3.1415927F * 0.25F);
+			batLeftWing.rotateAngleY = (-batRightWing.rotateAngleY);
+			batOuterRightWing.rotateAngleY = (batRightWing.rotateAngleY * 0.5F);
+			batOuterLeftWing.rotateAngleY = (-batRightWing.rotateAngleY * 0.5F);
 		}
 	}
 }
