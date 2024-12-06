@@ -1,6 +1,6 @@
 {
     "parent":"item/handheld",
         "textures": {
-        "layer0": "ageofminecraft:items/commanding_staff"
+        "layer0": "ageofminecraft:items/command_staff"
     }
 }

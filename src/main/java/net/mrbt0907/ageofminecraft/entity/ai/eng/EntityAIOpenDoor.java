@@ -1,6 +1,5 @@
 package net.mrbt0907.ageofminecraft.entity.ai.eng;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIDoorInteract;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 

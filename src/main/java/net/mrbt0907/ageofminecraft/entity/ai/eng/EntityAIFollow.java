@@ -3,7 +3,6 @@ package net.mrbt0907.ageofminecraft.entity.ai.eng;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.PathNavigate;
@@ -11,7 +10,6 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.mrbt0907.ageofminecraft.EngenderMod;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 
 public class EntityAIFollow extends EntityAIBase

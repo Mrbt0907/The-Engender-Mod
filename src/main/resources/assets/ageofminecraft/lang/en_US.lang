@@ -110,11 +110,11 @@ item.iron_cleaver.name=Iron Cleaver
 item.golden_cleaver.name=Golden Cleaver
 item.diamond_cleaver.name=Diamond Cleaver
 
-item.trainingstick.name=Training Staff
-item.convertingstaff.name=Converting Staff
-item.summoningstaff.name=Summoning Staff
-item.commandingstaff.name=Chaos Staff
-item.portalstaff.name=Portal Staff
+item.training_stick.name=Training Staff
+item.converting_staff.name=Converting Staff
+item.summoning_staff.name=Summoning Staff
+item.command_staff.name=Command Staff
+item.portal_staff.name=Portal Staff
 
 #Fusions
 item.fusionbat.name=Fusion Part (Bat)

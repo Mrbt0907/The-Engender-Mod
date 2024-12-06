@@ -2,7 +2,6 @@ package net.mrbt0907.ageofminecraft.network;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import net.minecraft.entity.Entity;

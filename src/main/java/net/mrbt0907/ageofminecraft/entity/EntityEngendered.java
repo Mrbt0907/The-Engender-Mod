@@ -48,7 +48,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.mrbt0907.ageofminecraft.EngenderMod;
 import net.mrbt0907.ageofminecraft.api.events.EventAIChange;
 import net.mrbt0907.ageofminecraft.api.events.EventAIChange.EntityAITaskEntry;
 import net.mrbt0907.ageofminecraft.api.events.EventStanceChange;
@@ -107,16 +106,20 @@ public abstract class EntityEngendered extends EntityAgeable implements IEntityO
 	protected EnumAIStance stance;
 	protected Entity owner;
 	public BlockPos[] followPos;
+	public boolean doSpawnAnimation;
+	protected short healTime;
 	
 	@SideOnly(Side.CLIENT)
 	public boolean selected;
-	protected short healTime;
 	
 	public EntityEngendered(World world)
 	{
 		super(world);
 		if (world.isRemote)
+		{
 			stance = getDefaultStance();
+			doSpawnAnimation = true;
+		}
 		inventory = new InventoryBasic("Basic inventory", false, 8);
 	}
 	
@@ -165,7 +168,7 @@ public abstract class EntityEngendered extends EntityAgeable implements IEntityO
 		if (nbt.hasKey("INT")) setIntelligence(nbt.getLong("INT"));
 		if (nbt.hasKey("DEX")) setDexterity(nbt.getLong("DEX"));
 		if (nbt.hasKey("AGI")) setAgility(nbt.getLong("AGI"));
-		
+
 		if (nbt.hasKey("Path"))
 		{
 			NBTTagCompound nbtPos = nbt.getCompoundTag("Path");
@@ -178,6 +181,8 @@ public abstract class EntityEngendered extends EntityAgeable implements IEntityO
 		}
 		else
 			followPos = null;
+		
+		doSpawnAnimation = nbt.getBoolean("doSpawnAnimation");
 	}
 	
 	public void writeEntityToNBT(NBTTagCompound nbt)
@@ -203,6 +208,7 @@ public abstract class EntityEngendered extends EntityAgeable implements IEntityO
 					nbtPos.setLong(nbtPos.getSize() + "", pos.toLong());
 			nbt.setTag("Path", nbtPos);
 		}
+		nbt.setBoolean("doSpawnAnimation", doSpawnAnimation);
 	}
 	
 	public void onUpdate()

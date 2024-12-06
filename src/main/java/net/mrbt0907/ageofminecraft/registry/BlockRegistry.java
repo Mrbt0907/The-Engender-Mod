@@ -24,22 +24,13 @@ public class BlockRegistry
 {
 	private static IForgeRegistry<Block> registry;
 	public static final BlockFusionCrafter fusionCrafter = new BlockFusionCrafter();
-	public static final BlockGuardBlock guard_block = new BlockGuardBlock();
 	
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<Block> event)
 	{
 		EngenderMod.debug("Registering blocks...");
 		registry = event.getRegistry();
-		
-		Blocks.COMMAND_BLOCK.setCreativeTab(CreativeTabs.REDSTONE);
-		Blocks.CHAIN_COMMAND_BLOCK.setCreativeTab(CreativeTabs.REDSTONE);
-		Blocks.REPEATING_COMMAND_BLOCK.setCreativeTab(CreativeTabs.REDSTONE);
-		Blocks.STRUCTURE_BLOCK.setCreativeTab(CreativeTabs.REDSTONE);
-		Blocks.BARRIER.setCreativeTab(CreativeTabs.MISC);
-		
 		addBlock("mob_spawner_spc", fusionCrafter, CreativeTabRegistry.ENGENDER);
-		addBlock("guard_block", guard_block, CreativeTabRegistry.ENGENDER);
 		registry = null;
 	}
 	

@@ -5,23 +5,24 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.tier1.EntityChicken;
-@SideOnly(Side.CLIENT)
+import net.mrbt0907.ageofminecraft.util.mrbtutil.Maths;
 
-public class RenderChicken
-extends RenderLiving<EntityChicken>
+@SideOnly(Side.CLIENT)
+public class RenderChicken extends RenderLiving<EntityChicken>
 {
 	private static final ResourceLocation textures = new ResourceLocation("textures/entity/chicken.png");
+	
 	public RenderChicken(RenderManager renderManagerIn)
 	{
 		super(renderManagerIn, new ModelChicken(), 0.3F);
 		addLayer(new LayerArrowCustomSized(this, 1.0F));
-		this.addLayer(new LayerCustomHeadEngender(((ModelChicken)this.mainModel).head));
+		addLayer(new LayerCustomHeadEngender(((ModelChicken)mainModel).head));
 		//this.addLayer(new LayerLearningBook(this));
 	}
+	
 	protected void preRenderCallback(EntityChicken entitylivingbaseIn, float partialTickTime)
 	{
 //		if (entitylivingbaseIn.isHero())
@@ -49,14 +50,11 @@ extends RenderLiving<EntityChicken>
 	
 	protected float handleRotationFloat(EntityChicken livingBase, float partialTicks)
 	{
-		float f = livingBase.field_70888_h + (livingBase.wingRotation - livingBase.field_70888_h) * partialTicks;
-		float f1 = livingBase.field_70884_g + (livingBase.destPos - livingBase.field_70884_g) * partialTicks;
-		return (MathHelper.sin(f) + 1.0F) * f1;
+		float f = livingBase.oFlap + (livingBase.wingRotation - livingBase.oFlap) * partialTicks;
+		float f1 = livingBase.oFlapSpeed + (livingBase.destPos - livingBase.oFlapSpeed) * partialTicks;
+		return ((float)(Maths.fastSin(f)) + 1.0F) * f1;
 	}
 	
-	/**
-	* Renders the desired {@code T} type Entity.
-	*/
 	public void doRender(EntityChicken entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		/*if (entity.getGhostTime() > 0)

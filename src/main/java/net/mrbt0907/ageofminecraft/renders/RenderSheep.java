@@ -4,7 +4,6 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.tier1.EntitySheep;
@@ -20,13 +19,15 @@ extends RenderLiving<EntitySheep>
 		super(p_i46145_1_, new ModelSheep2(), 0.8F);
 		addLayer(new LayerSheepWool(this));
 		addLayer(new LayerArrowCustomSized(this, 1.0F));
-		this.addLayer(new LayerCustomHeadEngender(((ModelSheep2)this.mainModel).head));
+		addLayer(new LayerCustomHeadEngender(((ModelSheep2)mainModel).head));
 //		this.addLayer(new LayerLearningBook(this));
 	}
+	
 	protected ResourceLocation getEntityTexture(EntitySheep entity)
 	{
 		return shearedSheepTextures;
 	}
+	
 	protected void preRenderCallback(EntitySheep entitylivingbaseIn, float partialTickTime)
 	{
 //		if (entitylivingbaseIn.isHero())
@@ -37,10 +38,9 @@ extends RenderLiving<EntitySheep>
 		
 		if (entitylivingbaseIn.ticksExisted <= 21 && entitylivingbaseIn.ticksExisted > 0)
 		{
-			float f5 = (entitylivingbaseIn.ticksExisted + partialTickTime - 1.0F) / 20.0F * 1.6F;
-			f5 = MathHelper.sqrt(f5);
+			float f5 = MathHelper.sqrt((entitylivingbaseIn.ticksExisted + partialTickTime - 1.0F) / 20.0F * 1.6F);
 			if (f5 > 1.0F)
-			f5 = 1.0F;
+				f5 = 1.0F;
 			GlStateManager.scale(f5, f5, f5);
 			GlStateManager.rotate(f5 * 90F - 90F, f5, f5, f5);
 		}
@@ -71,6 +71,6 @@ extends RenderLiving<EntitySheep>
 
 	protected boolean isVisible(EntitySheep entity)
 	{
-		return !entity.isInvisible() || this.renderOutlines;
+		return !entity.isInvisible() || renderOutlines;
 	}
 }

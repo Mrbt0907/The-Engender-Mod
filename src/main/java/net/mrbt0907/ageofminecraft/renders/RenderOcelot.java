@@ -4,15 +4,14 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.tier1.EntityOcelot;
 import net.mrbt0907.ageofminecraft.models.ModelOcelot;
+import net.mrbt0907.ageofminecraft.util.RenderUtil;
 @SideOnly(Side.CLIENT)
 
-public class RenderOcelot
-extends RenderLiving<EntityOcelot>
+public class RenderOcelot extends RenderLiving<EntityOcelot>
 {
 	private static final ResourceLocation ocelotTextures = new ResourceLocation("textures/entity/cat/ocelot.png");
 	public RenderOcelot(RenderManager renderManagerIn)
@@ -33,16 +32,7 @@ extends RenderLiving<EntityOcelot>
 //		if (!entitylivingbaseIn.onGround)
 //		GlStateManager.rotate(entitylivingbaseIn.prevRotationPitchFalling + (entitylivingbaseIn.rotationPitchFalling - entitylivingbaseIn.prevRotationPitchFalling) * 2F - 1F, 1F, 0F, 0F);
 		
-		if (entitylivingbaseIn.ticksExisted <= 21 && entitylivingbaseIn.ticksExisted > 0)
-		{
-			float f5 = (entitylivingbaseIn.ticksExisted + partialTickTime - 1.0F) / 20.0F * 1.6F;
-			f5 = MathHelper.sqrt(f5);
-			if (f5 > 1.0F)
-			f5 = 1.0F;
-			GlStateManager.scale(f5, f5, f5);
-			GlStateManager.rotate(f5 * 90F - 90F, f5, f5, f5);
-		}
-
+		RenderUtil.doSpawnRender(entitylivingbaseIn, partialTickTime);
 	}
 	/**
 	* Renders the desired {@code T} type Entity.

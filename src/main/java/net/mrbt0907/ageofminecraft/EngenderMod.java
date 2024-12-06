@@ -20,7 +20,6 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.mrbt0907.ageofminecraft.commands.CommandKillEngenderMobs;
-import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
 import net.mrbt0907.ageofminecraft.events.EngenderEventHandler;
 import net.mrbt0907.ageofminecraft.gui.EngenderGuiHandler;
 import net.mrbt0907.ageofminecraft.items.capabilities.CapabilityManager;

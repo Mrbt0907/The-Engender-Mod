@@ -1,34 +1,12 @@
 package net.mrbt0907.ageofminecraft.entity.tier1;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.mrbt0907.ageofminecraft.entity.Animal;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
-import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
 import net.mrbt0907.ageofminecraft.entity.EnumTier;
-import net.mrbt0907.ageofminecraft.entity.Light;
-import net.mrbt0907.ageofminecraft.entity.ai.EntityAICustomLeapAttack;
-import net.mrbt0907.ageofminecraft.entity.ai.EntityAIFollowLeader;
-import net.mrbt0907.ageofminecraft.entity.ai.EntityAIFriendlyAttackMelee;
 import net.mrbt0907.ageofminecraft.entity.ai.eng.EnumAIStance;
 import net.mrbt0907.ageofminecraft.registry.LootRegistry;
 
@@ -75,13 +53,13 @@ public class EntityOcelot extends EntityEngendered
 		super.updateAITasks();
 		if (getMoveHelper().isUpdating())
 		{
-			double d0 = getMoveHelper().getSpeed();
-			if (d0 <= 0.6D)
+			double speed = getMoveHelper().getSpeed();
+			if (speed <= 0.6D)
 			{
 				setSneaking(true);
 				setSprinting(false);
 			}
-			else if (d0 >= 1.33D)
+			else if (speed >= 1.33D)
 			{
 				setSneaking(false);
 				setSprinting(true);

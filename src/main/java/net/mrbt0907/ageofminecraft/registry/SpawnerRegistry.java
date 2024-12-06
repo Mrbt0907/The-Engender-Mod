@@ -5,7 +5,6 @@ import java.util.function.Consumer;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;

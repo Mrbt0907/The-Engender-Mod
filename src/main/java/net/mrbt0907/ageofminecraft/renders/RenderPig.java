@@ -5,14 +5,12 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.tier1.EntityPig;
 @SideOnly(Side.CLIENT)
 
-public class RenderPig
-extends RenderLiving<EntityPig>
+public class RenderPig extends RenderLiving<EntityPig>
 {
 	private static final ResourceLocation pigTextures = new ResourceLocation("textures/entity/pig/pig.png");
 	public RenderPig(RenderManager p_i46149_1_)
@@ -20,7 +18,7 @@ extends RenderLiving<EntityPig>
 		super(p_i46149_1_, new ModelPig(0.0F), 0.75F);
 		addLayer(new LayerSaddle(this));
 		addLayer(new LayerArrowCustomSized(this, 1.0F));
-		this.addLayer(new LayerCustomHeadEngender(((ModelPig)this.mainModel).head));
+		addLayer(new LayerCustomHeadEngender(((ModelPig)this.mainModel).head));
 //		this.addLayer(new LayerLearningBook(this));
 	}
 	protected ResourceLocation getEntityTexture(EntityPig entity)
@@ -37,10 +35,9 @@ extends RenderLiving<EntityPig>
 		
 		if (entitylivingbaseIn.ticksExisted <= 21 && entitylivingbaseIn.ticksExisted > 0)
 		{
-			float f5 = (entitylivingbaseIn.ticksExisted + partialTickTime - 1.0F) / 20.0F * 1.6F;
-			f5 = MathHelper.sqrt(f5);
+			float f5 = MathHelper.sqrt((entitylivingbaseIn.ticksExisted + partialTickTime - 1.0F) / 20.0F * 1.6F);
 			if (f5 > 1.0F)
-			f5 = 1.0F;
+				f5 = 1.0F;
 			GlStateManager.scale(f5, f5, f5);
 			GlStateManager.rotate(f5 * 90F - 90F, f5, f5, f5);
 		}
