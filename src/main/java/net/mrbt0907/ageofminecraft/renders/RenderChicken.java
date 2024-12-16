@@ -1,46 +1,20 @@
 package net.mrbt0907.ageofminecraft.renders;
-import net.minecraft.client.model.ModelChicken;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.tier1.EntityChicken;
+import net.mrbt0907.ageofminecraft.models.ModelChicken;
 import net.mrbt0907.ageofminecraft.util.mrbtutil.Maths;
 
 @SideOnly(Side.CLIENT)
-public class RenderChicken extends RenderLiving<EntityChicken>
+public class RenderChicken extends RenderEngendered<EntityChicken>
 {
 	private static final ResourceLocation textures = new ResourceLocation("textures/entity/chicken.png");
 	
 	public RenderChicken(RenderManager renderManagerIn)
 	{
 		super(renderManagerIn, new ModelChicken(), 0.3F);
-		addLayer(new LayerArrowCustomSized(this, 1.0F));
-		addLayer(new LayerCustomHeadEngender(((ModelChicken)mainModel).head));
-		//this.addLayer(new LayerLearningBook(this));
-	}
-	
-	protected void preRenderCallback(EntityChicken entitylivingbaseIn, float partialTickTime)
-	{
-//		if (entitylivingbaseIn.isHero())
-//		GlStateManager.scale(1.05F, 1.05F, 1.05F);
-		
-//		if (!entitylivingbaseIn.onGround)
-//		GlStateManager.rotate(entitylivingbaseIn.prevRotationPitchFalling + (entitylivingbaseIn.rotationPitchFalling - entitylivingbaseIn.prevRotationPitchFalling) * 2F - 1F, 1F, 0F, 0F);
-		
-		if (entitylivingbaseIn.ticksExisted <= 21 && entitylivingbaseIn.ticksExisted > 0)
-		{
-			float f5 = (entitylivingbaseIn.ticksExisted + partialTickTime - 1.0F) / 20.0F * 1.6F;
-			f5 = MathHelper.sqrt(f5);
-			if (f5 > 1.0F)
-			f5 = 1.0F;
-			GlStateManager.scale(f5, f5, f5);
-			GlStateManager.rotate(f5 * 90F - 90F, f5, f5, f5);
-		}
-
 	}
 	
 	protected ResourceLocation getEntityTexture(EntityChicken entity)
@@ -53,26 +27,6 @@ public class RenderChicken extends RenderLiving<EntityChicken>
 		float f = livingBase.oFlap + (livingBase.wingRotation - livingBase.oFlap) * partialTicks;
 		float f1 = livingBase.oFlapSpeed + (livingBase.destPos - livingBase.oFlapSpeed) * partialTicks;
 		return ((float)(Maths.fastSin(f)) + 1.0F) * f1;
-	}
-	
-	public void doRender(EntityChicken entity, double x, double y, double z, float entityYaw, float partialTicks)
-	{
-		/*if (entity.getGhostTime() > 0)
-		{
-			Vec3d[] avec3d = entity.getRenderLocations(partialTicks);
-			float f = this.handleRotationFloat(entity, partialTicks);
-			
-			for (int i = 0; i < avec3d.length; ++i)
-			{
-				super.doRender(entity, x + avec3d[i].x + (double)MathHelper.cos((float)i + f * 0.5F) * 0.025D, y + avec3d[i].y + (double)MathHelper.cos((float)i + f * 0.75F) * 0.0125D, z + avec3d[i].z + (double)MathHelper.cos((float)i + f * 0.7F) * 0.025D, entityYaw, partialTicks);
-			}
-			this.shadowOpaque = 0F;
-		}
-		else
-		{*/
-			shadowOpaque = 1F;
-			super.doRender(entity, x, y, z, entityYaw, partialTicks);
-		//}
 	}
 	
 	protected boolean isVisible(EntityChicken entity)

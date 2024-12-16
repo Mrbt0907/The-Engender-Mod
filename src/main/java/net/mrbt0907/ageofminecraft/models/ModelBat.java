@@ -7,10 +7,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.tier1.EntityBat;
+import net.mrbt0907.ageofminecraft.renders.IModelHead;
 @SideOnly(Side.CLIENT)
 
-public class ModelBat
-extends ModelBase
+public class ModelBat extends ModelBase implements IModelHead
 {
 	private ModelRenderer batHead;
 	private ModelRenderer batBody;
@@ -97,6 +97,9 @@ extends ModelBase
 			batOuterLeftWing.rotateAngleY = (-batRightWing.rotateAngleY * 0.5F);
 		}
 	}
+
+	@Override
+	public ModelRenderer getHead() {return batHead;}
 }
 
 

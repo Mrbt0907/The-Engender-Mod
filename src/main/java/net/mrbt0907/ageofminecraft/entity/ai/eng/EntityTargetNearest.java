@@ -17,6 +17,7 @@ public class EntityTargetNearest extends EntityAIBase
 	private final Class<? extends EntityLivingBase> targetClass;
 	private final BiPredicate<EntityEngendered, EntityLivingBase> predicate;
 	private EntityLivingBase target;
+	private ArrayList<Entity> cachedEntities;
 	
 	public EntityTargetNearest(EntityEngendered entity, Class<? extends EntityLivingBase> targetClass)
 	{
@@ -34,10 +35,13 @@ public class EntityTargetNearest extends EntityAIBase
 	public boolean shouldExecute()
 	{
 		if (entity.getAttackTarget() != null) return false;
+		if (entity.ticksExisted % 100 == 0)
+			cachedEntities = new ArrayList<Entity>(entity.world.loadedEntityList);
+		if (cachedEntities == null) return false;
 		IAttributeInstance attribute = entity.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE);
 		double followDistance = Math.pow(attribute.getAttributeValue(), 2.0D), resultDistance = followDistance, targetDistance;
-		List<Entity> entities = new ArrayList<Entity>(entity.world.loadedEntityList);
-		for(Entity entity : entities)
+		
+		for(Entity entity : cachedEntities)
 		{
 			targetDistance = Maths.distance(this.entity.posX, this.entity.posY, this.entity.posZ, entity.posX, entity.posY, entity.posZ);
 			if (!entity.equals(this.entity) && targetClass.isAssignableFrom(entity.getClass()) && targetDistance < resultDistance && (predicate == null ? true : predicate.test(this.entity, (EntityLivingBase) entity)))

@@ -18,8 +18,7 @@ public class ReflectionUtil
 	private static Field modifiers = null;
 	private static boolean enabled = false;
 	
-	@SuppressWarnings("deprecation")
-	private static Field getField(Class <?> clazz, String fieldName, String fieldObfName)
+	public static Field getField(Class <?> clazz, String fieldName, String fieldObfName)
 	{
 		Field field = FIELDS.get(fieldObfName);
 		if (field == null)

@@ -10,8 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mrbt0907.ageofminecraft.entity.tier1.EntityRabbit;
 @SideOnly(Side.CLIENT)
 
-public class ModelRabbit
-extends ModelBase
+public class ModelRabbit extends ModelBase
 {
 	ModelRenderer rabbitLeftFoot;
 	ModelRenderer rabbitRightFoot;
@@ -154,7 +153,7 @@ extends ModelBase
 		this.rabbitNose.rotateAngleY = (this.rabbitHead.rotateAngleY = netHeadYaw * 0.017453292F);
 		this.rabbitRightEar.rotateAngleY = (this.rabbitNose.rotateAngleY - 0.2617994F);
 		this.rabbitLeftEar.rotateAngleY = (this.rabbitNose.rotateAngleY + 0.2617994F);
-		this.field_178701_m = MathHelper.sin(entityrabbit.func_175521_o(f) * 3.1415927F);
+		this.field_178701_m = MathHelper.sin(entityrabbit.setJumpCompletion(f) * 3.1415927F);
 		this.rabbitLeftThigh.rotateAngleX = (this.rabbitRightThigh.rotateAngleX = (this.field_178701_m * 50.0F - 21.0F) * 0.017453292F);
 		this.rabbitLeftFoot.rotateAngleX = (this.rabbitRightFoot.rotateAngleX = this.field_178701_m * 50.0F * 0.017453292F);
 		this.rabbitLeftArm.rotateAngleX = (this.rabbitRightArm.rotateAngleX = (this.field_178701_m * -40.0F - 11.0F) * 0.017453292F);
@@ -162,7 +161,7 @@ extends ModelBase
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
 	{
 		super.setLivingAnimations(entitylivingbaseIn, p_78086_2_, p_78086_3_, partialTickTime);
-		this.field_178701_m = MathHelper.sin(((EntityRabbit)entitylivingbaseIn).func_175521_o(partialTickTime) * 3.1415927F);
+		this.field_178701_m = MathHelper.sin(((EntityRabbit)entitylivingbaseIn).setJumpCompletion(partialTickTime) * 3.1415927F);
 	}
 }
 

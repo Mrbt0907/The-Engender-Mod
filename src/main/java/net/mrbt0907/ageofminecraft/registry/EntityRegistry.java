@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.mrbt0907.ageofminecraft.EngenderMod;
 import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.tier1.*;
+import net.mrbt0907.ageofminecraft.entity.tier3.EntityZombie;
 
 
 public class EntityRegistry
@@ -21,12 +22,13 @@ public class EntityRegistry
 		createEngenderedEntity(EntityCow.class, "cow", 64, 0, 2, 0, 7); 
 		createEngenderedEntity(EntityMooshroom.class, "mooshroom", 64, 0, 4, 0, 5);
 		createEngenderedEntity(EntityOcelot.class, "ocelot", 64, 0, 2, 0, 6); 
-		createEngenderedEntity(EntityPig.class, "pig", 64, 0, 2, 0, 7); 
+		createEngenderedEntity(EntityPig.class, "pig", 64, 0, 2, 0, 7);  
+		createEngenderedEntity(EntityRabbit.class, "rabbit", 64, 0, 1, 0, 6); 
 		createEngenderedEntity(EntitySheep.class, "sheep", 64, 0, 3, 0, 7); 
+		createEngenderedEntity(EntityZombie.class, "zombie", 64, 2, 20, 0, 25); 
 		if (true) return;
 		/*
-		createEngenderedEntity(EntityParrot.class, "ParrotHelpful", 64, 0, 1, 0, 10); 
-		createEngenderedEntity(EntityRabbit.class, "RabbitHelpful", 64, 0, 1, 0, 6); 
+		createEngenderedEntity(EntityParrot.class, "ParrotHelpful", 64, 0, 1, 0, 10);
 		addEngenderedVariant(EntityRabbit.class, "killerbunny", 3, 200, 0, 24, rabbit -> ((EntityRabbit)rabbit).setRabbitType(99));
 		createEngenderedEntity(EntityOcelot.class, "OzelotHelpful", 64, 0, 2, 0, 6); 
 		createEngenderedEntity(EntitySquid.class, "SquidHelpful", 64, 0, 6, 0, 8); 
@@ -37,7 +39,6 @@ public class EntityRegistry
 		createEngenderedEntity(EntityEndermite.class, "EndermiteHelpful", 64, 1, 5, 0, 10); 
 		createEngenderedEntity(EntityWolf.class, "WolfHelpful", 64, 1, 6, 0, 20); 
 		createEngenderedEntity(EntitySpider.class, "SpiderHelpful", 64, 2, 8, 0, 20); 
-		createEngenderedEntity(EntityZombie.class, "ZombieHelpful", 64, 2, 20, 0, 25); 
 		addEngenderedVariant(EntityZombie.class, "chickenjockey", 2, 10, 0, 22, SpawnerRegistry.SPAWN_CHICKEN_JOCKEY, zombie -> {zombie.setChild(true); zombie.setGrowingAge(-48000);});
 		addEngenderedVariant(EntityZombie.class, "husk", 3, 40, 0, 36, zombie -> ((EntityZombie)zombie).setZombieType(1));
 		addEngenderedVariant(EntityZombie.class, "prisonzombie", 3, 60, 0, 40, zombie -> ((EntityZombie)zombie).setZombieType(2));

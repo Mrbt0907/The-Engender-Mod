@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.mrbt0907.ageofminecraft.entity.EntityFriendlyCreature;
+import net.mrbt0907.ageofminecraft.entity.EntityEngendered;
 import net.mrbt0907.ageofminecraft.entity.tier4.EntityPigZombie;
 @SideOnly(net.minecraftforge.fml.relauncher.Side.CLIENT)
 
@@ -28,7 +28,7 @@ public class ModelZombie extends ModelBiped implements ICappedModel
 
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
-		this.setRotationAngles(limbSwing, limbSwingAmount, ((EntityFriendlyCreature)entityIn).isAIDisabled() ? 0 : ageInTicks, netHeadYaw, headPitch, scale, entityIn);
+		this.setRotationAngles(limbSwing, limbSwingAmount, ((EntityEngendered)entityIn).isAIDisabled() ? 0 : ageInTicks, netHeadYaw, headPitch, scale, entityIn);
 		GlStateManager.pushMatrix();
 		
 		if (this.isChild)
@@ -81,7 +81,7 @@ public class ModelZombie extends ModelBiped implements ICappedModel
 			GlStateManager.rotate(6.0F + flo2 / 2.0F + flo1, 1.0F, 0.0F, 0.0F);
 			GlStateManager.rotate(flo3 / 2.0F, 0.0F, 0.0F, 1.0F);
 			GlStateManager.rotate(-flo3 / 2.0F, 0.0F, 1.0F, 0.0F);
-			GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+			GlStateManager.rotate(0.0F, 0.0F, 1.0F, 0.0F);
 			this.bipedCape.render(scale);
 			GlStateManager.popMatrix();
 		}
@@ -89,7 +89,7 @@ public class ModelZombie extends ModelBiped implements ICappedModel
 
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
-		EntityFriendlyCreature entity = (EntityFriendlyCreature)entityIn;
+		EntityEngendered entity = (EntityEngendered)entityIn;
 		if (entity.isAIDisabled())
 		ageInTicks = 1;
 		
@@ -112,7 +112,7 @@ public class ModelZombie extends ModelBiped implements ICappedModel
 			this.bipedLeftArm.rotateAngleZ = 0.0F;
 			this.bipedRightArm.rotateAngleY = (-(f * 0.6F));
 			this.bipedLeftArm.rotateAngleY = ((f * 0.6F));
-			float f2 = entity.isArmsRaised() ? -1.5F : -0.75F;
+			float f2 = entity.getAttackTarget() != null ? -1.5F : -0.75F;
 			this.bipedRightArm.rotateAngleX = (this.bipedHead.rotateAngleX + f2 - 0.5F);
 			this.bipedLeftArm.rotateAngleX = (this.bipedHead.rotateAngleX + f2 - 0.5F);
 			this.bipedRightArm.rotateAngleX += f * 1.2F - f1 * 0.4F;
@@ -155,7 +155,7 @@ public class ModelZombie extends ModelBiped implements ICappedModel
 			this.bipedLeftArm.rotateAngleY = 0.0F;
 		}
 
-		if (entity.getJukeboxToDanceTo() != null)
+		/*if (entity.getJukeboxToDanceTo() != null)
 		{
 			float fl = MathHelper.sin(ageInTicks * 0.5F) * 0.7F;
 			this.bipedRightArm.rotationPointZ = 0.0F;
@@ -170,13 +170,13 @@ public class ModelZombie extends ModelBiped implements ICappedModel
 			this.bipedLeftArm.rotateAngleY = 0.0F;
 			this.bipedHead.setRotationPoint(0.0F + (MathHelper.cos(ageInTicks * 0.25F) * 1F), 0.5F - fl, 0.0F);
 		}
-		else
+		else*/
 		
 		this.bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
 		
 		copyModelAngles(this.bipedHead, this.bipedHeadwear);
 		
-		if (!entity.getCurrentBook().isEmpty())
+		/*if (!entity.getCurrentBook().isEmpty())
 		{
 			this.bipedRightArm.rotateAngleY = entity.bookSpread - 1F;
 			this.bipedLeftArm.rotateAngleY = -entity.bookSpread + 1F;
@@ -184,6 +184,6 @@ public class ModelZombie extends ModelBiped implements ICappedModel
 			this.bipedLeftArm.rotateAngleZ = 0F;
 			this.bipedRightArm.rotateAngleX = -1.5F + (0.1F + MathHelper.sin((float)entity.ticksExisted * 0.1F) * 0.01F);
 			this.bipedLeftArm.rotateAngleX = -1.5F + (0.1F + MathHelper.sin((float)entity.ticksExisted * 0.1F) * 0.01F);
-		}
+		}*/
 	}
 }

@@ -61,8 +61,10 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, manager -> new RenderMooshroom(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOcelot.class, manager -> new RenderOcelot(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, manager -> new RenderPig(manager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityRabbit.class, manager -> new RenderRabbit(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, manager -> new RenderSheep(manager));
 		RenderingRegistry.registerEntityRenderingHandler(net.mrbt0907.ageofminecraft.entity.tier6.witherstorm.EntityWitherStorm.class, manager -> new RenderWitherStorm(manager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityZombie.class, manager -> new RenderZombie(manager));
 		if (true)
 			return;
 		RenderingRegistry.registerEntityRenderingHandler(EntityManaOrb.class, manager -> new RenderManaOrb(manager));
@@ -89,7 +91,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, manager -> new RenderSpider<EntitySpider>(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, manager -> new RenderWolf(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityParrot.class, manager -> new RenderParrot(manager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityRabbit.class, manager -> new RenderRabbit(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySilverfish.class, manager -> new RenderSilverfish(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEndermite.class, manager -> new RenderEndermite(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCreeper.class, manager -> new RenderCreeper(manager));
@@ -99,7 +100,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityWitch.class, manager -> new RenderWitch(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlaze.class, manager -> new RenderBlaze(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPigZombie.class, manager -> new RenderPigZombie(manager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityZombie.class, manager -> new RenderZombie(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySlime.class, manager -> new RenderSlime(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMagmaCube.class, manager -> new RenderMagmaCube(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityGiant.class, manager -> new RenderGiant(manager));
