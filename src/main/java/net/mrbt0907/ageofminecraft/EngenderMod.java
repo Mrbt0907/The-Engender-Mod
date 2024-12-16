@@ -44,7 +44,7 @@ public class EngenderMod
 	public static final EngenderNetworkReciever NETWORK = new EngenderNetworkReciever();
 	public static final int statCheckerGUIID = 100;
 	public static final int engenderfuserGUIID = 101;
-	
+	//
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
